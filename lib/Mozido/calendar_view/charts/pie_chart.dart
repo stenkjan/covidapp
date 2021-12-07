@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +71,7 @@ import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
                     child: Row(
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(top: 13, left: 10),
+                          padding: EdgeInsets.only(top: 0, left: 72),
                           child: Text(
 
                             (total/5).toString(),
@@ -83,7 +82,7 @@ import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
                                  shadows: [
                                  Shadow(
                                   offset: Offset(2.0, 2.0),
-                                  blurRadius: 10.0,
+                                  blurRadius: 20.0,
                                   color: Color.fromRGBO(220,255,255, 30.0),
 
 
@@ -94,7 +93,7 @@ import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
                             textAlign: TextAlign.end,
                           ),
                         ),
-
+/*
                             Padding(
                               padding: const EdgeInsets.only(left:8.0),
                               child: Text(
@@ -114,7 +113,7 @@ import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
                               ],
                          ),
                               ),
-                            ),
+                            ),*/
                       ],
                     ),
                   ),

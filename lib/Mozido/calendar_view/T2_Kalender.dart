@@ -1,21 +1,23 @@
+import 'package:covidapp/Mozido/content/size.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
+// import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'T2_calendar_form.dart';
+import 'charts/arrow_button.dart';
+import 'charts/colors.dart';
 
-class T2_kalender extends StatefulWidget {
-  T2_kalender({Key? key}) : super(key: key);
+class T2Kalender extends StatefulWidget {
+  T2Kalender({Key? key}) : super(key: key);
 
-  _T2_kalenderState createState() => _T2_kalenderState();
+  T2KalenderState createState() => T2KalenderState();
 }
 
-class _T2_kalenderState extends State<T2_kalender> {
+class T2KalenderState extends State<T2Kalender> {
   @override
-
   ///
   /// Data for grafik line
   ///
-  var _data = [
+/*  var _data = [
     0.0,
     0.5,
     0.9,
@@ -29,9 +31,12 @@ class _T2_kalenderState extends State<T2_kalender> {
     -0.5,
     0.0,
     0.0
-  ];
+  ];*/
 
   Widget build(BuildContext context) {
+    double fontSize(double size) {
+      return size * SizeConfig.getWidth(context) / 414;
+    }
     return Scaffold(
       backgroundColor: Color(0xFF313237),
       body: SingleChildScrollView(
@@ -40,10 +45,6 @@ class _T2_kalenderState extends State<T2_kalender> {
             SizedBox(
               height: 00.0,
             ),
-
-            ///
-            /// Grafik
-            ///
             Container(
               height: 230.0,
               child: T2_Calendar(),),
@@ -72,7 +73,7 @@ class _T2_kalenderState extends State<T2_kalender> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 90.0,
+                      height: 50.0,
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -89,7 +90,7 @@ class _T2_kalenderState extends State<T2_kalender> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(top: 30.0),
+                              padding: const EdgeInsets.only(top: 8.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,26 +99,56 @@ class _T2_kalenderState extends State<T2_kalender> {
                                     "Zustand",
                                     style: TextStyle(
                                         fontFamily: "Sans",
-                                        fontSize: 24.0,
+                                        fontSize: 28.0,
                                         color: Colors.white70),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
 
-                                  ),
                                 ],
                               ),
                             ),
+
                             Container(
+                              margin: EdgeInsets.only(bottom:4),
                               height: 35.0,
                               width: 35.0,
                               decoration: BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
-                                  color: Colors.white),
+                                  color: AppColors.primaryWhite),
                               child: Icon(Icons.emoji_emotions,
                                   color: Color(0xFF3DB6D4)),
-                            )
+                            ),
+                            SizedBox(
+                              width: 70.0,
+                            ),
+                            Container(
+                                width: SizeConfig.getWidth(context) / 4.5,
+
+                                margin: EdgeInsets.only(right: SizeConfig.getWidth(
+                                    context) / 50, bottom: 2.0, left: 20),
+                                child: Row(
+                                  children: <Widget>[
+                                    ArrowButton(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 3, vertical: 7),
+                                      icon: Icon(
+
+                                        Icons.arrow_back_ios,
+                                        size: fontSize(17),
+                                      ),
+                                    ),
+                                    Padding(padding: EdgeInsets.only(
+                                        left: SizeConfig.getWidth(context) / 50)),
+                                    ArrowButton(
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: fontSize(17),
+                                      ), margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 6),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                           ],
                         ),
                       ),

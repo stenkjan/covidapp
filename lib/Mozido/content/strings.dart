@@ -1,10 +1,9 @@
 
 List healthscore = [
-  {"name": "Healthscore", "amount": 30.0},
-  {"name": "Routine", "amount": 20.0},
+  {"name": "Krankheitsgrad", "amount": 30.0},
+  {"name": "Härtefälle", "amount": 20.0},
   {"name": "Wohlbefinden", "amount": 70.0},
-  {"name": "Fortschritt", "amount": 30.0},
-  {"name": "Härtefälle", "amount": 5.0},
+
 
 ];
 List hquestions = [

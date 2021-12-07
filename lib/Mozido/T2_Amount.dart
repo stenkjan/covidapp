@@ -2,6 +2,9 @@
 import 'package:covidapp/Mozido/calendar_view/T2_Grafik.dart';
 import 'package:covidapp/Mozido/calendar_view/T2_Kalender.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'content/size.dart';
 
 
 
@@ -28,7 +31,7 @@ class _T2_AmountState extends State<T2_Amount> {
               color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
         ),
         centerTitle: true,
-        brightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         backgroundColor: Color(0xFF313237),
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.lightBlue),
@@ -100,16 +103,78 @@ class _T2_AmountState extends State<T2_Amount> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 20.0),
-                      child: T2_kalender(),
+                          left: 5.0, right: 5.0, top: 5.0),
+                      child: T2Kalender(),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 20.0),
-                      child: Expanded(
-                        child:T2_grafik(),
+                          left: 5.0, right: 5.0, top: 5.0),
+                        child:
+                        Container(
+                          width: SizeConfig.getWidth(context),
+                          decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                              color: Colors.blue[900]!.withOpacity(0.1),
+                              blurRadius: 50,
+                              spreadRadius: 40,
+                              offset: Offset(40, 0)),
+                            BoxShadow(
+                                color: Colors.white12,
+                                blurRadius: 30,
+                                spreadRadius: 20,
+                                offset: Offset(20, 0)),
+                          ], shape: BoxShape.circle, color: Colors.white30),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: SizeConfig.getWidth(context) / 50, vertical: SizeConfig.getHeight(context) / 100),
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned.fill(
+                                top: 150,
+                                bottom: -100,
+                                left: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: Color(0xFF31A1C9).withOpacity(0.6),
+                                        blurRadius: 50,
+                                        spreadRadius: 20,
+                                        offset: Offset(20, 0)),
+                                    BoxShadow(
+                                        color: Colors.white12,
+                                        blurRadius: 50,
+                                        spreadRadius: 20,
+                                        offset: Offset(0, 0)),
+                                  ], shape: BoxShape.circle, color: Colors.white30),
+                                ),
+                              ),
+                              Positioned.fill(
+                                top: -100,
+                                bottom: -100,
+                                left: -300,
+                                child: Container(
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                        color: Color(0xFF31A1C9).withOpacity(0.2),
+                                        blurRadius: 300,
+                                        spreadRadius: 40,
+                                        offset: Offset(10, 0)),
+                                    BoxShadow(
+                                        color: Color(0xFF31A1C9),
+                                        blurRadius: 150,
+                                        spreadRadius: 80,
+                                        offset: Offset(20, 0)),
+                                  ], shape: BoxShape.circle, color: Colors.white30),
+                                ),
+                              ),
+
+                              //FormDesignScrollView(),
+
+                              T2Grafik(),
+                              //FormDesignScrollView(),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),

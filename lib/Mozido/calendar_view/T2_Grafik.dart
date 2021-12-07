@@ -2,91 +2,112 @@ import 'package:covidapp/Mozido/calendar_view/charts/pie_chart.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
+//import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'charts/arrow_button.dart';
 import 'charts/colors.dart';
 
-class T2_grafik extends StatefulWidget {
-  T2_grafik({Key? key}) : super(key: key);
+class T2Grafik extends StatefulWidget {
+  T2Grafik({Key? key}) : super(key: key);
 
-  _T2_grafikState createState() => _T2_grafikState();
+  T2GrafikState createState() => T2GrafikState();
 }
 
-class _T2_grafikState extends State<T2_grafik> {
+class T2GrafikState extends State<T2Grafik> {
   @override
 
   ///
   /// Data for grafik line
   ///
-
-  double fontSize(double size) {
-    return size * SizeConfig.getWidth(context)/ 414;
-  }
   Widget build(BuildContext context) {
+    double fontSize(double size) {
+      return size * SizeConfig.getWidth(context) / 414;
+    }
 
+    return Container(
 
-    return Scaffold(
-
-
-      body: Column(
-
-        children: [
-          Column(
+       child: Column(
             children: [
               SingleChildScrollView(
                 child: Column(
 
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  height: SizeConfig.getHeight(context) / 14,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                          margin: EdgeInsets.only(left: SizeConfig.getWidth(context) / 20),
-                          child: Text(
-                            "Woche"+" X",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: fontSize(20)),
-                          )),
-                      Container(
-                        width: SizeConfig.getWidth(context)  / 3.5,
-                        margin: EdgeInsets.only(right: SizeConfig.getWidth(context)  / 30),
-                        child: Row(
-                          children: <Widget>[
-                            ArrowButton(
-                              margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                size: fontSize(17),
-                              ),
-                            ),
-                            Padding(padding: EdgeInsets.only(left: SizeConfig.getWidth(context) / 50)),
-                            ArrowButton(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      height: SizeConfig.getHeight(context) / 14,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            height: 40,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  color: Colors.white70,
+                                  
+
+                                  borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 20.0,
+                                spreadRadius: 2.0,
+                              )
+                          ]),
+                              margin: EdgeInsets.only(left: SizeConfig.getWidth(
+                                  context) / 20),
+
+                              child: Center(
+                                child: Text(
+
+                                  "Woche" + " X ",
+
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: fontSize(25),
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                          Container(
+                            width: SizeConfig.getWidth(context) / 3.7,
+                            margin: EdgeInsets.only(right: SizeConfig.getWidth(
+                                context) / 30),
+                            child: Row(
+                              children: <Widget>[
+                                ArrowButton(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 6, vertical: 6),
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    size: fontSize(17),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(
+                                    left: SizeConfig.getWidth(context) / 50)),
+                                 ArrowButton(
                               icon: Icon(
                                 Icons.arrow_forward_ios,
                                 size: fontSize(17),
-                              ), margin: const EdgeInsets.all(1),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
+                              ), margin: const EdgeInsets.symmetric(
+                                     horizontal: 5, vertical: 5),
+                                 ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                        flex: 5,
+                    Container(
+
                         child: Center(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: healthscore.map((data) {
                               return Container(
-                            padding: const EdgeInsets.symmetric(
+                            padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 child: Row(
                                   children: <Widget>[
@@ -112,21 +133,29 @@ class _T2_grafikState extends State<T2_grafik> {
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 6,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: PieChart(),
+                      SizedBox(
+                        height: 120.0,
 
-                        ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-    ),
+                          Container(
+                            margin: EdgeInsets.only(right: 5.0),
+                            height: SizeConfig.getHeight(context) / 9,
+                              child: PieChart(),
+                            ),
 
-                      /*new Sparkline(
+
+
+                      ],
+                    ),
+                    ),
+                      ],
+          ),
+    ),
+        ],
+
+      ),
+
+      /*new Sparkline(
                         data: _data,
                         lineWidth: 0.3,
                         fillMode: FillMode.below,
@@ -140,8 +169,10 @@ class _T2_grafikState extends State<T2_grafik> {
                           ],
                         ),
                       ),*/
-
-    ),
+    );
+  }
+}
+/*
             ],
           ),
 
@@ -432,4 +463,4 @@ class _T2_grafikState extends State<T2_grafik> {
         ),
     );
   }
-}
+}*/
