@@ -7,7 +7,7 @@ import 'T2_Investment.dart';
 import 'T2_Search.dart';
 
 class T2_home extends StatefulWidget {
-  const T2_home({Key? key}) : super(key: key);
+  //const T2_home({Key? key}) : super(key: key);
 
   @override
   _T2_homeState createState() => _T2_homeState();
@@ -15,9 +15,10 @@ class T2_home extends StatefulWidget {
 
 class _T2_homeState extends State<T2_home> {
   @override
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
 
       backgroundColor: const Color(0xFF313237),
 
@@ -114,7 +115,8 @@ class _T2_homeState extends State<T2_home> {
                     padding: const EdgeInsets.only(top: 12.0),
                     child: InkWell(
                         onTap: () {
-                          Scaffold.of(this.context).openDrawer();
+                          _scaffoldKey.currentState!.openDrawer();
+                          //Scaffold.of(this.context).openDrawer();
                         },
                         child: Image.asset(
                             "lib/Mozido/Assets/tabBar.png")),
