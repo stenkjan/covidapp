@@ -25,7 +25,7 @@ class T2GrafikState extends State<T2Grafik> {
       return size * SizeConfig.getWidth(context) / 414;
     }
 
-
+  //list of weeks here with different views in iconbutton on Click
     /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
 
     DateTime year = DateTime(DateTime.now().year);
