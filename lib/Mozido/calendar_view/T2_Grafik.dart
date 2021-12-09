@@ -2,6 +2,7 @@ import 'package:covidapp/Mozido/calendar_view/charts/pie_chart.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 //import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'charts/arrow_button.dart';
@@ -23,6 +24,30 @@ class T2GrafikState extends State<T2Grafik> {
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
+
+
+    /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
+
+    DateTime year = DateTime(DateTime.now().year);
+    int numOfWeeks(int year) {
+      DateTime dec28 = DateTime(year, 12, 28);
+      int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
+      return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
+    }
+
+    /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
+
+    int weekNumber(DateTime date) {
+      int dayOfYear = int.parse(DateFormat("D").format(date));
+      int woy =  ((dayOfYear - date.weekday + 10) / 7).floor();
+      if (woy < 1) {
+        woy = numOfWeeks(date.year - 1);
+      } else if (woy > numOfWeeks(date.year)) {
+        woy = 1;
+      }
+      return woy;
+    }
+
 
     return Container(
 
@@ -53,55 +78,59 @@ class T2GrafikState extends State<T2Grafik> {
                                 spreadRadius: 2.0,
                               )
                           ]),
-                              margin: EdgeInsets.only(left: SizeConfig.getWidth(
-                                  context) / 20),
-
-                              child: Center(
-                                child: Text(
-
-                                  "Woche" + " X ",
-
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: fontSize(25),
-                                      ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              )),
-                          Container(
-                            width: SizeConfig.getWidth(context) / 3.7,
-                            margin: EdgeInsets.only(right: SizeConfig.getWidth(
-                                context) / 30),
-                            child: Row(
-                              children: <Widget>[
-                                ArrowButton(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 6, vertical: 6),
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    size: fontSize(17),
-                                  ),
-                                ),
-                                Padding(padding: EdgeInsets.only(
-                                    left: SizeConfig.getWidth(context) / 50)),
-                                 ArrowButton(
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                size: fontSize(17),
-                              ), margin: const EdgeInsets.symmetric(
-                                     horizontal: 5, vertical: 5),
-                                 ),
-                              ],
+                          margin: EdgeInsets.only(
+                              left: SizeConfig.getWidth(context) / 20),
+                          child: Center(
+                            child: Text(
+                              "Woche" + " X ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize(25),
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
+                          )),
+                      Container(
+                        width: SizeConfig.getWidth(context) / 3.7,
+                        margin: EdgeInsets.only(
+                            right: SizeConfig.getWidth(context) / 30),
+                        child: Row(
+                          children: <Widget>[
+                            ArrowButton(
+                              iconbutton: IconButton(
+                                icon: Icon(
+                                  Icons.arrow_back_ios,
+                                  size: fontSize(17),
+                                ),
+                                onPressed: () {},
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 6),
+                            ),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    left: SizeConfig.getWidth(context) / 50)),
+                            ArrowButton(
+                              iconbutton: IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: fontSize(17),
+                                ),
+                                onPressed: () {},
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 5),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
                   child: Column(
                     children: <Widget>[
-                    Container(
-
+                      Container(
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

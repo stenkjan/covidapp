@@ -5,8 +5,8 @@ import 'colors.dart';
 
 class ArrowButton extends StatelessWidget {
   final EdgeInsets margin;
-  final Widget icon;
-  const ArrowButton({required this.margin, required this.icon});
+  final IconButton iconbutton;
+  const ArrowButton({required this.margin, required this.iconbutton});
   @override
   Widget build(BuildContext context) {
     var height = SizeConfig.getHeight(context);
@@ -16,10 +16,10 @@ class ArrowButton extends StatelessWidget {
         margin: margin,
         decoration: BoxDecoration(
             color: AppColors.primaryWhite,
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(5),
             boxShadow: AppColors.neumorpShadow),
         alignment: Alignment.center,
-        child: icon,
+        child: iconbutton,
       ),
     );
   }

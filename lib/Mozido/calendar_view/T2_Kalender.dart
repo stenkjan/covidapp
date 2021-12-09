@@ -122,33 +122,42 @@ class T2KalenderState extends State<T2Kalender> {
                               width: 70.0,
                             ),
                             Container(
-                                width: SizeConfig.getWidth(context) / 4.5,
-
-                                margin: EdgeInsets.only(right: SizeConfig.getWidth(
-                                    context) / 50, bottom: 2.0, left: 20),
-                                child: Row(
-                                  children: <Widget>[
-                                    ArrowButton(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 3, vertical: 7),
+                              width: SizeConfig.getWidth(context) / 4.5,
+                              margin: EdgeInsets.only(
+                                  right: SizeConfig.getWidth(context) / 50,
+                                  bottom: 2.0,
+                                  left: 20),
+                              child: Row(
+                                children: <Widget>[
+                                  ArrowButton(
+                                    iconbutton: IconButton(
                                       icon: Icon(
-
                                         Icons.arrow_back_ios,
                                         size: fontSize(17),
                                       ),
+                                      onPressed: () {},
                                     ),
-                                    Padding(padding: EdgeInsets.only(
-                                        left: SizeConfig.getWidth(context) / 50)),
-                                    ArrowButton(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 3, vertical: 7),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                          left: SizeConfig.getWidth(context) /
+                                              50)),
+                                  ArrowButton(
+                                    iconbutton: IconButton(
                                       icon: Icon(
                                         Icons.arrow_forward_ios,
                                         size: fontSize(17),
-                                      ), margin: const EdgeInsets.symmetric(horizontal: 3, vertical: 6),
+                                      ),
+                                      onPressed: () {},
                                     ),
-                                  ],
-                                ),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 3, vertical: 6),
+                                  ),
+                                ],
                               ),
-
+                            ),
                           ],
                         ),
                       ),
