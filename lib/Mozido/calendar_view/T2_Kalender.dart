@@ -13,7 +13,11 @@ class T2Kalender extends StatefulWidget {
 }
 
 class T2KalenderState extends State<T2Kalender> {
+  List <String> headline  = const ["Zustand", "Haertefaelle", "Krankheitsgrad"];
+  int hl_count = 0;
+  bool headline_toggle = true;
   @override
+
   ///
   /// Data for grafik line
   ///
@@ -34,6 +38,7 @@ class T2KalenderState extends State<T2Kalender> {
   ];*/
 
   Widget build(BuildContext context) {
+
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
@@ -96,7 +101,7 @@ class T2KalenderState extends State<T2Kalender> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    "Zustand",
+                                    headline[hl_count],
                                     style: TextStyle(
                                         fontFamily: "Sans",
                                         fontSize: 28.0,
@@ -108,7 +113,7 @@ class T2KalenderState extends State<T2Kalender> {
                             ),
 
                             Container(
-                              margin: EdgeInsets.only(bottom:4),
+                              margin: EdgeInsets.only(bottom: 4),
                               height: 35.0,
                               width: 35.0,
                               decoration: BoxDecoration(
@@ -135,7 +140,10 @@ class T2KalenderState extends State<T2Kalender> {
                                         Icons.arrow_back_ios,
                                         size: fontSize(17),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        toggleHeadline();
+                                        headline[hl_count];
+                                      },
                                     ),
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 3, vertical: 7),
@@ -150,7 +158,10 @@ class T2KalenderState extends State<T2Kalender> {
                                         Icons.arrow_forward_ios,
                                         size: fontSize(17),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        toggleHeadline();
+                                        headline[hl_count];
+                                      },
                                     ),
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 3, vertical: 6),
@@ -162,164 +173,344 @@ class T2KalenderState extends State<T2Kalender> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0, right: 20.0),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      "Ausgezeichnet",
-                                      style: TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  text: '😍️\u200d', // emoji characters
-                                  style: TextStyle(
-                                    fontFamily: 'EmojiOne',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      "Gut",
-                                      style: TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                      RichText(
-                        text: TextSpan(
-                              text: '☺\u200d', // emoji characters
-                              style: TextStyle(
-                                fontFamily: 'EmojiOne',
-                              ),
-                        ),
-                      ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.yellow,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      "Neutral",
-                                      style: TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  text: '😐️\u200d', // emoji characters
-                                  style: TextStyle(
-                                    fontFamily: 'EmojiOne',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      "Schlecht",
-                                      style: TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  text: '😧\u200d', // emoji characters
-                                  style: TextStyle(
-                                    fontFamily: 'EmojiOne',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
             SizedBox(
               height: 30.0,
+            ),
+          ],
+        ),
+      ),
+    );
+
+  }
+  void toggleHeadline() {
+    setState(() {
+      if (headline_toggle) {
+        hl_count++;
+        headline_toggle = false;
+      } else {
+        hl_count --;
+        headline_toggle = true;
+      }
+    });
+  }
+}
+
+class Zustand extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25.0, right: 20.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Ausgezeichnet",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😍️\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Gut",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '☺\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.yellow,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Neutral",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😐️\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Schlecht",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😧\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Haertefaelle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25.0, right: 20.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Ausgezeichnet",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😍️\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Gut",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '☺\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.yellow,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Neutral",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    ),
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😐️\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(
+                      height: 30.0,
+                      width: 3.0,
+                      color: Colors.white12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        "Schlecht",
+                        style: TextStyle(
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17.5,
+                            letterSpacing: 1.5,
+                            color: Colors.white70),
+                      ),
+                    )
+                  ],
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '😧\u200d', // emoji characters
+                    style: TextStyle(
+                      fontFamily: 'EmojiOne',
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

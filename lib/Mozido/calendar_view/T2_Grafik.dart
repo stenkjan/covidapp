@@ -9,12 +9,33 @@ import 'charts/arrow_button.dart';
 import 'charts/colors.dart';
 
 class T2Grafik extends StatefulWidget {
-  T2Grafik({Key? key}) : super(key: key);
+  const T2Grafik({Key? key}) : super(key: key);
 
   T2GrafikState createState() => T2GrafikState();
 }
 
 class T2GrafikState extends State<T2Grafik> {
+  bool week_change = true;
+  int week = 0;
+  DateTime year = DateTime(DateTime.now().year);
+  int numOfWeeks(int year) {
+    DateTime dec28 = DateTime(year, 12, 28);
+    int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
+    return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
+  }
+  int weekNumber(DateTime date) {
+    int dayOfYear = int.parse(DateFormat("D").format(date));
+    int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
+    if (woy < 1) {
+      woy = numOfWeeks(date.year - 1);
+    } else if (woy > numOfWeeks(date.year)) {
+      woy = 1;
+    }
+    return woy;
+  }
+
+
+
   @override
 
   ///
@@ -25,64 +46,47 @@ class T2GrafikState extends State<T2Grafik> {
       return size * SizeConfig.getWidth(context) / 414;
     }
 
-  //list of weeks here with different views in iconbutton on Click
+    //list of weeks here with different views in iconbutton on Click
     /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
 
-    DateTime year = DateTime(DateTime.now().year);
-    int numOfWeeks(int year) {
-      DateTime dec28 = DateTime(year, 12, 28);
-      int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
-      return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
-    }
+
 
     /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
 
-    int weekNumber(DateTime date) {
-      int dayOfYear = int.parse(DateFormat("D").format(date));
-      int woy =  ((dayOfYear - date.weekday + 10) / 7).floor();
-      if (woy < 1) {
-        woy = numOfWeeks(date.year - 1);
-      } else if (woy > numOfWeeks(date.year)) {
-        woy = 1;
-      }
-      return woy;
-    }
+
+
 
 
     return Container(
-
-       child: Column(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      height: SizeConfig.getHeight(context) / 14,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            height: 40,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                  color: Colors.white70,
-                                  
-
-                                  borderRadius: BorderRadius.circular(20),
-                                boxShadow: [
+      child: Column(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  height: SizeConfig.getHeight(context) / 14,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                          height: 40,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              color: Colors.white70,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
                                 BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 20.0,
-                                spreadRadius: 2.0,
-                              )
-                          ]),
+                                  color: Colors.black12,
+                                  blurRadius: 20.0,
+                                  spreadRadius: 2.0,
+                                )
+                              ]),
                           margin: EdgeInsets.only(
                               left: SizeConfig.getWidth(context) / 20),
                           child: Center(
                             child: Text(
-                              "Woche" + " X ",
+                              "Woche " + week.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: fontSize(25),
@@ -102,7 +106,10 @@ class T2GrafikState extends State<T2Grafik> {
                                   Icons.arrow_back_ios,
                                   size: fontSize(17),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  week_change= false;
+                                  toggleWeek();
+                                },
                               ),
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 6),
@@ -116,7 +123,11 @@ class T2GrafikState extends State<T2Grafik> {
                                   Icons.arrow_forward_ios,
                                   size: fontSize(17),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  week_change = true;
+                                  toggleWeek();
+                                  print(week);
+                                },
                               ),
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 5),
@@ -136,7 +147,7 @@ class T2GrafikState extends State<T2Grafik> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: healthscore.map((data) {
                               return Container(
-                            padding: EdgeInsets.symmetric(
+                                padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 10),
                                 child: Row(
                                   children: <Widget>[
@@ -145,8 +156,8 @@ class T2GrafikState extends State<T2Grafik> {
                                       width: 10,
                                       height: 10,
                                       decoration: BoxDecoration(
-                                          color: AppColors
-                                              .pieColors[healthscore.indexOf(data)],
+                                          color: AppColors.pieColors[
+                                              healthscore.indexOf(data)],
                                           shape: BoxShape.circle),
                                     ),
                                     Text(
@@ -164,24 +175,19 @@ class T2GrafikState extends State<T2Grafik> {
                       ),
                       SizedBox(
                         height: 120.0,
-
                       ),
-                          Container(
-                            margin: EdgeInsets.only(right: 5.0),
-                            height: SizeConfig.getHeight(context) / 9,
-                              child: PieChart(),
-                            ),
-
-
-
-                      ],
-                    ),
-                    ),
-                      ],
+                      Container(
+                        margin: EdgeInsets.only(right: 5.0),
+                        height: SizeConfig.getHeight(context) / 9,
+                        child: PieChart(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-    ),
         ],
-
       ),
 
       /*new Sparkline(
@@ -200,6 +206,20 @@ class T2GrafikState extends State<T2Grafik> {
                       ),*/
     );
   }
+  void toggleWeek(){
+    week = weekNumber(DateTime.now());
+    setState((){
+      if(week_change){
+        week +=1;
+        week_change = false;
+      }
+      else if (!week_change){
+        week -=1;
+        week_change = true;
+      }
+    }
+    );
+}
 }
 /*
             ],
