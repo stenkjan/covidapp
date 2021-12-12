@@ -54,90 +54,94 @@ _T2_CalendarState createState() => _T2_CalendarState();
 
     @override
     Widget build(BuildContext context) {
-      return Container(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              TableCalendar(
-                events: _events,
-                initialCalendarFormat: CalendarFormat.week,
-                calendarStyle: CalendarStyle(
-                    canEventMarkersOverflow: true,
-                    todayColor: Colors.orange,
-                    selectedColor: Theme.of(context).primaryColor,
-                    todayStyle: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                        color: Colors.white)),
-                headerStyle: HeaderStyle(
-                  centerHeaderTitle: true,
-                  formatButtonDecoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(20.0),
+      return Scaffold(
+    body:
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TableCalendar(
+                  events: _events,
+                  initialCalendarFormat: CalendarFormat.week,
+                  calendarStyle: CalendarStyle(
+                      canEventMarkersOverflow: true,
+                      todayColor: Colors.orange,
+                      selectedColor: Theme.of(context).primaryColor,
+                      todayStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                          color: Colors.white)),
+                  headerStyle: HeaderStyle(
+                    centerHeaderTitle: true,
+                    formatButtonDecoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    formatButtonTextStyle: TextStyle(color: Colors.white),
+                    formatButtonShowsNext: false,
                   ),
-                  formatButtonTextStyle: TextStyle(color: Colors.white),
-                  formatButtonShowsNext: false,
-                ),
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                onDaySelected: (date, events,holidays) {
-                  setState(() {
-                    _selectedEvents = events;
-                  });
-                },
-                builders: CalendarBuilders(
-                  selectedDayBuilder: (context, date, events) => Container(
-                      margin: const EdgeInsets.all(4.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Text(
-                        date.day.toString(),
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  todayDayBuilder: (context, date, events) => Container(
-                      margin: const EdgeInsets.all(4.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Text(
-                        date.day.toString(),
-                        style: TextStyle(color: Colors.white),
-                      )),
-                ),
-                calendarController: _controller,
-              ),
-              ..._selectedEvents.map((event) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height/20,
-                  width: MediaQuery.of(context).size.width/2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey)
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  onDaySelected: (date, events,holidays) {
+                    setState(() {
+                      _selectedEvents = events;
+                    });
+                  },
+                  builders: CalendarBuilders(
+                    selectedDayBuilder: (context, date, events) => Container(
+                        margin: const EdgeInsets.all(4.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Text(
+                          date.day.toString(),
+                          style: TextStyle(color: Colors.white),
+                        )),
+                    todayDayBuilder: (context, date, events) => Container(
+                        margin: const EdgeInsets.all(4.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Text(
+                          date.day.toString(),
+                          style: TextStyle(color: Colors.white),
+                        )),
                   ),
-                  child: Center(
-                      child: Text(event,
-                        style: TextStyle(color: Colors.blue,
-                            fontWeight: FontWeight.bold,fontSize: 16),)
-                  ),
+                  calendarController: _controller,
                 ),
-              )),
-            ],
+                ..._selectedEvents.map((event) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height/20,
+                    width: MediaQuery.of(context).size.width/2,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey)
+                    ),
+                    child: Center(
+                        child: Text(event,
+                          style: TextStyle(color: Colors.blue,
+                              fontWeight: FontWeight.bold,fontSize: 16),)
+                    ),
+                  ),
+                )),
+
+              ],
+            ),
           ),
-        ),
-      /*  floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
           child: Icon(Icons.add),
-          onPressed: _showAddDialog,
-        ),*/
+          onPressed:
+          showAddDialog,
+        ),
+
       );
     }
 
-    _showAddDialog() async {
+    showAddDialog() async {
       await showDialog(
           context: context,
           builder: (context) => AlertDialog(
