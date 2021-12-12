@@ -61,7 +61,8 @@ class T2KalenderState extends State<T2Kalender> {
             ),
             Container(
               height: 230.0,
-              child: T2_Calendar(),),
+              child: Expanded(
+                child:T2_Calendar(),),),
             SizedBox(
               height: 5.0,
             ),
