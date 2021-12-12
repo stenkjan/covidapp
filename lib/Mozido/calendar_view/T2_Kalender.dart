@@ -1,5 +1,6 @@
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_sparkline/flutter_sparkline.dart';
 
@@ -62,7 +63,7 @@ class T2KalenderState extends State<T2Kalender> {
               height: 230.0,
               child: T2_Calendar(),),
             SizedBox(
-              height: 10.0,
+              height: 5.0,
             ),
 
             ///
@@ -221,7 +222,10 @@ class T2KalenderState extends State<T2Kalender> {
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
-                        ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                //method giving data to calendar;
+                              }),
                       ),
                     ],
                   ),
