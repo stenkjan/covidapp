@@ -147,7 +147,10 @@ _T2_CalendarState createState() => _T2_CalendarState();
           builder: (context) => AlertDialog(
             backgroundColor: Colors.white70,
             title: Text("Add Events"),
-            content: TextField(
+            content:
+                  //  Text(
+                  //text: calenderChoices
+            TextField(
               controller: _eventController,
             ),
             actions: <Widget>[

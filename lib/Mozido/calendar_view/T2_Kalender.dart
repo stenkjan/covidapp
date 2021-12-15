@@ -21,10 +21,11 @@ class T2KalenderState extends State<T2Kalender> {
     toggleHeadline();
   }
   List <String> headline = const ["Zustand", "Haertefaelle", "Krankheitsgrad"];
+  var question_choices = <String>[];
   int arrow_count = 0;
   bool up_toggle = false;
   bool down_toggle = false;
-
+  bool item_switch = true;
 
   @override
 
@@ -226,6 +227,7 @@ class T2KalenderState extends State<T2Kalender> {
                           ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
+                            question_choices.add(calenderChoices[arrow_count]['item1']);
                                 //method giving data to calendar;
                               }),
                       ),
@@ -264,7 +266,11 @@ class T2KalenderState extends State<T2Kalender> {
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
-                        ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                question_choices.add(calenderChoices[arrow_count]['item2']);
+                                //method giving data to calendar;
+                              }),
                       ),
                     ],
                   ),
@@ -301,7 +307,11 @@ class T2KalenderState extends State<T2Kalender> {
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
-                        ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                question_choices.add(calenderChoices[arrow_count]['item3']);
+                                //method giving data to calendar;
+                              }),
                       ),
                     ],
                   ),
@@ -338,7 +348,11 @@ class T2KalenderState extends State<T2Kalender> {
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
-                        ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                question_choices.add(calenderChoices[arrow_count]['item4']);
+                                //method giving data to calendar;
+                              }),
                       ),
                     ],
                   ),
