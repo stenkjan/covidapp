@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covidapp/Mozido/calendar_view/T2_Kalender.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -18,7 +19,7 @@ _T2_CalendarState createState() => _T2_CalendarState();
     late List<dynamic> _selectedEvents;
     late TextEditingController _eventController;
     late SharedPreferences prefs;
-
+    late T2Kalender t2kalender;
     @override
     void initState() {
       super.initState();
@@ -171,7 +172,7 @@ _T2_CalendarState createState() => _T2_CalendarState();
                     _eventController.clear();
                     Navigator.pop(context);
                   });
-                  if(item_switch)
+
 
                 },
               )

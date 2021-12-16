@@ -10,11 +10,12 @@ import 'charts/colors.dart';
 
 class T2Kalender extends StatefulWidget {
   T2Kalender({Key? key}) : super(key: key);
-
+  @override
   T2KalenderState createState() => T2KalenderState();
 }
 
 class T2KalenderState extends State<T2Kalender> {
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +27,7 @@ class T2KalenderState extends State<T2Kalender> {
   bool up_toggle = false;
   bool down_toggle = false;
   bool item_switch = true;
+
 
   @override
 
@@ -228,7 +230,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                             question_choices.add(calenderChoices[arrow_count]['item1']);
-                            item_switch = false;
+                            questionChoice();
                                 //method giving data to calendar;
                               }),
                       ),
@@ -270,7 +272,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item2']);
-                                item_switch = false;
+                                questionChoice();
                                 //method giving data to calendar;
                               }),
                       ),
@@ -312,7 +314,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item3']);
-                                item_switch = false;
+                                questionChoice();
                                 //method giving data to calendar;
                               }),
                       ),
@@ -354,7 +356,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item4']);
-                                item_switch = false;
+                                questionChoice();
                                 //method giving data to calendar;
                               }),
                       ),
@@ -400,6 +402,18 @@ class T2KalenderState extends State<T2Kalender> {
       }
     print(arrow_count);
     });
+  }
+  questionChoice(){
+    String question_choice = question_choices.last;
+    if (item_switch){
+      item_switch = false;
+    }
+    else
+      {
+        print("No Item selected");
+      }
+
+    return  question_choice;
   }
 }
 
