@@ -228,6 +228,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                             question_choices.add(calenderChoices[arrow_count]['item1']);
+                            item_switch = false;
                                 //method giving data to calendar;
                               }),
                       ),
@@ -269,6 +270,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item2']);
+                                item_switch = false;
                                 //method giving data to calendar;
                               }),
                       ),
@@ -310,6 +312,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item3']);
+                                item_switch = false;
                                 //method giving data to calendar;
                               }),
                       ),
@@ -351,6 +354,7 @@ class T2KalenderState extends State<T2Kalender> {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 question_choices.add(calenderChoices[arrow_count]['item4']);
+                                item_switch = false;
                                 //method giving data to calendar;
                               }),
                       ),

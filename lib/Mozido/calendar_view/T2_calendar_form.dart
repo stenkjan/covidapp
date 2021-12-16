@@ -171,6 +171,7 @@ _T2_CalendarState createState() => _T2_CalendarState();
                     _eventController.clear();
                     Navigator.pop(context);
                   });
+                  if(item_switch)
 
                 },
               )
