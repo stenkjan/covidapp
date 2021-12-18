@@ -34,7 +34,7 @@ _T2_CalendarState createState() => _T2_CalendarState();
       prefs = await SharedPreferences.getInstance();
       setState(() {
         _events = Map<DateTime, List<dynamic>>.from(
-            decodeMap(json.decode(prefs.getString("events") ?? "{}")));
+            decodeMap(json.decode(prefs.getString("Ereignisse") ?? "{}")));
       });
     }
 
@@ -147,31 +147,39 @@ _T2_CalendarState createState() => _T2_CalendarState();
           context: context,
           builder: (context) => AlertDialog(
             backgroundColor: Colors.white70,
-            title: Text("Add Events"),
+            title: Text("Dateneingabe"),
             content:
                   //  Text(
                   //text: calenderChoices
             TextField(
+              decoration: InputDecoration(
+              labelText: t2kalender.question_choice,
+                hintText: "Bitte geben Sie einen Kommentar ein",
+              ),
               controller: _eventController,
             ),
             actions: <Widget>[
               FlatButton(
-                child: Text("Save",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+                child: Text("Speichern",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
                 onPressed: () {
                   if (_eventController.text.isEmpty) return;
                   setState(() {
                     if (_events[_controller.selectedDay] != null) {
                       _events[_controller.selectedDay]!
-                          .add(_eventController.text);
+                          ..add( t2kalender.question_choice)
+                          ..add(_eventController.text);
+
+
                     } else {
                       _events[_controller.selectedDay] = [
                         _eventController.text
                       ];
                     }
-                    prefs.setString("events", json.encode(encodeMap(_events)));
+                    prefs.setString("Ereignisse", json.encode(encodeMap(_events)));
                     _eventController.clear();
                     Navigator.pop(context);
                   });
+
 
 
                 },

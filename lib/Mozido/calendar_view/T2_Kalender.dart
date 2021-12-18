@@ -9,13 +9,17 @@ import 'charts/arrow_button.dart';
 import 'charts/colors.dart';
 
 class T2Kalender extends StatefulWidget {
-  T2Kalender({Key? key}) : super(key: key);
+  final bool item_switch;
+  final String question_choice;
+  T2Kalender({Key? key, required this.item_switch, required this.question_choice}) : super(key: key);
   @override
-  T2KalenderState createState() => T2KalenderState();
+  T2KalenderState createState() => T2KalenderState(item_switch: this.item_switch, question_choice: this.question_choice);
 }
 
 class T2KalenderState extends State<T2Kalender> {
-
+  bool item_switch = false;
+  String question_choice;
+  T2KalenderState({required this.item_switch,required this.question_choice});
   @override
   void initState() {
     super.initState();
@@ -26,7 +30,6 @@ class T2KalenderState extends State<T2Kalender> {
   int arrow_count = 0;
   bool up_toggle = false;
   bool down_toggle = false;
-  bool item_switch = true;
 
 
   @override
@@ -403,17 +406,20 @@ class T2KalenderState extends State<T2Kalender> {
     print(arrow_count);
     });
   }
-  questionChoice(){
+  void questionChoice(){
     String question_choice = question_choices.last;
-    if (item_switch){
-      item_switch = false;
+    item_switch = true;
+    if (widget.item_switch){
+      question_choice = question_choices.last;
+
     }
     else
       {
         print("No Item selected");
+        question_choice = "";
       }
-
-    return  question_choice;
+    item_switch = false;
+    //return  question_choice;
   }
 }
 
