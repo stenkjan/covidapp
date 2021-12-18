@@ -16,7 +16,8 @@ class T2_Amount extends StatefulWidget {
 }
 
 class _T2_AmountState extends State<T2_Amount> {
-
+bool item_switch = false;
+String question_choice = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,7 +106,7 @@ class _T2_AmountState extends State<T2_Amount> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 5.0, right: 5.0, top: 5.0),
-                      child: T2Kalender(),
+                      child: T2Kalender(item_switch: this.item_switch, question_choice: this.question_choice),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(

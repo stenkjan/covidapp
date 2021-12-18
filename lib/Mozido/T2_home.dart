@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/Mozido/calendar_view/Lrm_dataModel.dart';
+import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 import 'T2_Amount.dart';
 import 'T2_Investment.dart';
 import 'T2_Search.dart';
+import 'login/sign_in/signin.dart';
 
 class T2_home extends StatefulWidget {
   //const T2_home({Key? key}) : super(key: key);
@@ -28,6 +30,8 @@ class _T2_homeState extends State<T2_home> {
       drawer: DrawerLayout(),
       body: Stack(
         children: <Widget>[
+          //Login zwischenschieben
+          Expanded(child: SignInScreen(),),
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -318,6 +322,13 @@ class DrawerLayout extends StatelessWidget {
                     },
                     child: itemDrawer(
                         Icons.insert_drive_file, "Kalender")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => new SettingsUI()));
+                    },
+                    child: itemDrawer(
+                        Icons.insert_drive_file, "Einstellungen")),
                 SizedBox(
                   height: 3.0,
                 )

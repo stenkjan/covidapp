@@ -3,8 +3,10 @@ import 'package:covidapp/Mozido/T2_Amount.dart';
 import 'package:covidapp/Mozido/T2_Investment.dart';
 import 'package:covidapp/Mozido/T2_Search.dart';
 import 'package:covidapp/Mozido/T2_home.dart';
+import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'Mozido/calendar_view/charts/pie_chart.dart';
+import 'Mozido/login/sign_in/signin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,12 +32,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
 
+
       ),
       routes: {
         "T2_Amount": (context) => T2_Amount(),
         "T2_Investment": (context) => T2_Investment(),
         "T2_Search": (context) => T2_Search(),
         "PieChart": (context) => PieChart(),
+        "SignInScreen": (context) => SignInScreen(),
+        "SettingsUI": (context) => SettingsUI(),
       },
       home:  T2_home(),
     );
@@ -83,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+
   /*    appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
