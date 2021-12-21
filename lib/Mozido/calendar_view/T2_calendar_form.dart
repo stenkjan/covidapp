@@ -13,21 +13,28 @@ _T2_CalendarState createState() => _T2_CalendarState();
   }
 
   class _T2_CalendarState extends State<T2_Calendar> {
-
+    late bool item_switch;
+    late String question_choice;
     late CalendarController _controller;
     late Map<DateTime, List<dynamic>> _events;
     late List<dynamic> _selectedEvents;
     late TextEditingController _eventController;
     late SharedPreferences prefs;
     late T2Kalender t2kalender;
+
+
     @override
     void initState() {
-      super.initState();
+
       _controller = CalendarController();
       _eventController = TextEditingController();
       _events = {};
       _selectedEvents = [];
       prefsData();
+      item_switch = false;
+      question_choice = "";
+      t2kalender = T2Kalender(item_switch: item_switch, question_choice: question_choice);
+      super.initState();
     }
 
     prefsData() async {

@@ -25,6 +25,9 @@ class _T2_homeState extends State<T2_home> {
     if (Credentials.signed_in = false) {
       SignInScreen();
     }
+    else{
+      SignInScreen();
+    }
   }
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
