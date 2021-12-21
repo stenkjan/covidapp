@@ -47,6 +47,9 @@ dependencies:
   shared_preferences: ^2.0.9
   table_calendar: ^2.2.1
   settings_ui: ^1.0.0
+  flutter_bloc: ^8.0.0
+  meta: ^1.2.3
+  equatable: ^2.0.3
 
 
 

@@ -2,10 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/Mozido/calendar_view/Lrm_dataModel.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'T2_Amount.dart';
 import 'T2_Investment.dart';
 import 'T2_Search.dart';
+import 'login/bloc/authentication_bloc.dart';
 import 'login/sign_in/signin.dart';
 
 class T2_home extends StatefulWidget {
@@ -19,6 +21,9 @@ class _T2_homeState extends State<T2_home> {
   @override
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Widget build(BuildContext context) {
+    final AuthenticationBloc authenticationBloc =
+    BlocProvider.of<AuthenticationBloc>(context);
+    
     return Scaffold(
       key: _scaffoldKey,
 
