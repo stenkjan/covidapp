@@ -7,23 +7,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'T2_Amount.dart';
 import 'T2_Investment.dart';
 import 'T2_Search.dart';
-import 'login/bloc/authentication_bloc.dart';
+import 'login/sign_in/components/credentials.dart';
 import 'login/sign_in/signin.dart';
 
 class T2_home extends StatefulWidget {
-  //const T2_home({Key? key}) : super(key: key);
+  T2_home({Key? key}) : super(key: key);
 
   @override
   _T2_homeState createState() => _T2_homeState();
 }
 
 class _T2_homeState extends State<T2_home> {
+
   @override
+  void initState() {
+    super.initState();
+    if (Credentials.signed_in = false) {
+      SignInScreen();
+    }
+  }
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   Widget build(BuildContext context) {
-    final AuthenticationBloc authenticationBloc =
-    BlocProvider.of<AuthenticationBloc>(context);
-    
+
+
     return Scaffold(
       key: _scaffoldKey,
 
@@ -36,7 +43,7 @@ class _T2_homeState extends State<T2_home> {
       body: Stack(
         children: <Widget>[
           //Login zwischenschieben
-          Expanded(child: SignInScreen(),),
+
           SingleChildScrollView(
             child: Column(
               children: <Widget>[

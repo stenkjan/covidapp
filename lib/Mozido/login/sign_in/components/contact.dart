@@ -5,6 +5,7 @@ import 'package:covidapp/Mozido/login/widgets/account_check.dart';
 import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
 
 class Contact extends StatelessWidget {
+
   const Contact({Key? key}) : super(key: key);
 
   @override
