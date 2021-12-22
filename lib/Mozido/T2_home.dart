@@ -25,15 +25,18 @@ class _T2_homeState extends State<T2_home> {
     if (Credentials.signed_in = false) {
       SignInScreen();
     }
-    else{
+    else {
       SignInScreen();
     }
   }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Widget build(BuildContext context) {
-
-
+    /*
+    if (Credentials.signed_in = false) {
+    return SignInScreen();
+*/
     return Scaffold(
       key: _scaffoldKey,
 
@@ -172,6 +175,7 @@ class _T2_homeState extends State<T2_home> {
       ),
     );
   }
+
 
   Widget _card(Color _color, String _title, String _time, String _value) {
     return Padding(
@@ -509,4 +513,5 @@ Widget _cardHeader(lrmDataModel item) {
       ),
     ],
   );
+
 }
