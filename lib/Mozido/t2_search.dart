@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class T2_Search extends StatefulWidget {
   T2_Search({Key? key}) : super(key: key);
@@ -16,6 +17,9 @@ class _T2_SearchState extends State<T2_Search> {
       /// Appbar
       ///
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.dark
+        ),
         brightness: Brightness.dark,
         backgroundColor: Color(0xFF313237),
         title: Row(

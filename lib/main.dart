@@ -1,8 +1,8 @@
 // @dart=2.9
-import 'package:covidapp/Mozido/T2_Amount.dart';
-import 'package:covidapp/Mozido/T2_Investment.dart';
-import 'package:covidapp/Mozido/T2_Search.dart';
-import 'package:covidapp/Mozido/T2_home.dart';
+import 'package:covidapp/Mozido/t2_amount.dart';
+import 'package:covidapp/Mozido/t2_investment.dart';
+import 'package:covidapp/Mozido/t2_search.dart';
+import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'Mozido/calendar_view/charts/pie_chart.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
 
       ),
       routes: {
-        "T2_Amount": (context) => T2_Amount(),
+        "T2_Amount": (context) => T2Amount(),
         "T2_Investment": (context) => T2_Investment(),
         "T2_Search": (context) => T2_Search(),
         "PieChart": (context) => PieChart(),

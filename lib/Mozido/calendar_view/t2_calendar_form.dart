@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:covidapp/Mozido/calendar_view/T2_Kalender.dart';
+import 'package:covidapp/Mozido/calendar_view/t2_kalender.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -33,7 +33,7 @@ _T2_CalendarState createState() => _T2_CalendarState();
       prefsData();
       item_switch = false;
       question_choice = "";
-      t2kalender = T2Kalender(item_switch: item_switch, question_choice: question_choice);
+      t2kalender = T2Kalender(itemSwitch: item_switch, questionChoiceString: question_choice);
       super.initState();
     }
 
@@ -160,20 +160,20 @@ _T2_CalendarState createState() => _T2_CalendarState();
                   //text: calenderChoices
             TextField(
               decoration: InputDecoration(
-              labelText: t2kalender.question_choice,
+              labelText: t2kalender.questionChoiceString,
                 hintText: "Bitte geben Sie einen Kommentar ein",
               ),
               controller: _eventController,
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text("Speichern",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
                 onPressed: () {
                   if (_eventController.text.isEmpty) return;
                   setState(() {
                     if (_events[_controller.selectedDay] != null) {
                       _events[_controller.selectedDay]!
-                          ..add( t2kalender.question_choice)
+                          ..add( t2kalender.questionChoiceString)
                           ..add(_eventController.text);
 
 
