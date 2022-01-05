@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'T2_home.dart';
+import 't2_home.dart';
 
 /// Component UI
 class SplashScreenMozido extends StatefulWidget {

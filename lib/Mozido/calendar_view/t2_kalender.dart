@@ -4,33 +4,32 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_sparkline/flutter_sparkline.dart';
 
-import 'T2_calendar_form.dart';
+import 't2_calendar_form.dart';
 import 'charts/arrow_button.dart';
-import 'charts/colors.dart';
 
 class T2Kalender extends StatefulWidget {
-  final bool item_switch;
-  final String question_choice;
-  T2Kalender({Key? key, required this.item_switch, required this.question_choice}) : super(key: key);
+  final bool itemSwitch;
+  final String questionChoiceString;
+  const T2Kalender({Key? key, required this.itemSwitch, required this.questionChoiceString}) : super(key: key);
 
   @override
-  T2KalenderState createState() => T2KalenderState(item_switch: this.item_switch, question_choice: this.question_choice);
+  T2KalenderState createState() => T2KalenderState(itemSwitch: itemSwitch, questionChoiceString: this.questionChoiceString);
 }
 
 class T2KalenderState extends State<T2Kalender> {
-  bool item_switch = false;
-  String question_choice;
-  T2KalenderState({required this.item_switch,required this.question_choice});
+  bool itemSwitch = false;
+  String questionChoiceString;
+  T2KalenderState({required this.itemSwitch,required this.questionChoiceString});
   @override
   void initState() {
     super.initState();
     toggleHeadline();
   }
-  List <String> headline = const ["Zustand", "Haertefaelle", "Krankheitsgrad"];
-  var question_choices = <String>[];
-  int arrow_count = 0;
-  bool up_toggle = false;
-  bool down_toggle = false;
+  List <String> headline = const ["Zustand", "Härtefaelle", "Krankheitsgrad"];
+  var questionChoices = <String>[];
+  int arrowCount = 0;
+  bool upToggle = false;
+  bool downToggle = false;
 
 
   @override
@@ -119,7 +118,7 @@ class T2KalenderState extends State<T2Kalender> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    calenderChoices[arrow_count]['name']!=null?calenderChoices[arrow_count]['name']:'null',
+                                    calenderChoices[arrowCount]['name']!=null?calenderChoices[arrowCount]['name']:'null',
                                    // headline[arrow_up_count],
                                     style: TextStyle(
                                         fontFamily: "Sans",
@@ -160,8 +159,8 @@ class T2KalenderState extends State<T2Kalender> {
                                         size: fontSize(17),
                                       ),
                                       onPressed: () {
-                                        down_toggle = true;
-                                        print(down_toggle);
+                                        downToggle = true;
+                                        print(downToggle);
                                         toggleHeadline();
 
                                       },
@@ -180,8 +179,8 @@ class T2KalenderState extends State<T2Kalender> {
                                         size: fontSize(17),
                                       ),
                                       onPressed: () {
-                                        up_toggle = true;
-                                        print(up_toggle);
+                                        upToggle = true;
+                                        print(upToggle);
                                         toggleHeadline();
 
                                       },
@@ -214,7 +213,7 @@ class T2KalenderState extends State<T2Kalender> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text(
-                              calenderChoices[arrow_count]['item1']!=null?calenderChoices[arrow_count]['item1']:'null',
+                              calenderChoices[arrowCount]['item1']!=null?calenderChoices[arrowCount]['item1']:'null',
                               style: TextStyle(
                                   fontFamily: "Sans",
                                   fontWeight: FontWeight.w500,
@@ -227,13 +226,13 @@ class T2KalenderState extends State<T2Kalender> {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: calenderChoices[arrow_count]['icon1']!=null?calenderChoices[arrow_count]['icon1']:'null', // emoji characters
+                          text: calenderChoices[arrowCount]['icon1']!=null?calenderChoices[arrowCount]['icon1']:'null', // emoji characters
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                            question_choices.add(calenderChoices[arrow_count]['item1']);
+                            questionChoices.add(calenderChoices[arrowCount]['item1']);
                             questionChoice();
                                 //method giving data to calendar;
                               }),
@@ -256,7 +255,7 @@ class T2KalenderState extends State<T2Kalender> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text(
-                              calenderChoices[arrow_count]['item2']!=null?calenderChoices[arrow_count]['item2']:'null',
+                              calenderChoices[arrowCount]['item2']!=null?calenderChoices[arrowCount]['item2']:'null',
                               style: TextStyle(
                                   fontFamily: "Sans",
                                   fontWeight: FontWeight.w500,
@@ -269,13 +268,13 @@ class T2KalenderState extends State<T2Kalender> {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: calenderChoices[arrow_count]['icon2']!=null?calenderChoices[arrow_count]['icon2']:'null', // emoji characters
+                          text: calenderChoices[arrowCount]['icon2']!=null?calenderChoices[arrowCount]['icon2']:'null', // emoji characters
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                question_choices.add(calenderChoices[arrow_count]['item2']);
+                                questionChoices.add(calenderChoices[arrowCount]['item2']);
                                 questionChoice();
                                 //method giving data to calendar;
                               }),
@@ -298,7 +297,7 @@ class T2KalenderState extends State<T2Kalender> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text(
-                              calenderChoices[arrow_count]['item3']!=null?calenderChoices[arrow_count]['item3']:'null',
+                              calenderChoices[arrowCount]['item3']!=null?calenderChoices[arrowCount]['item3']:'null',
                               style: TextStyle(
                                   fontFamily: "Sans",
                                   fontWeight: FontWeight.w500,
@@ -311,13 +310,13 @@ class T2KalenderState extends State<T2Kalender> {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: calenderChoices[arrow_count]['icon3']!=null?calenderChoices[arrow_count]['icon3']:'null', // emoji characters
+                          text: calenderChoices[arrowCount]['icon3']!=null?calenderChoices[arrowCount]['icon3']:'null', // emoji characters
                           style: TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                question_choices.add(calenderChoices[arrow_count]['item3']);
+                                questionChoices.add(calenderChoices[arrowCount]['item3']);
                                 questionChoice();
                                 //method giving data to calendar;
                               }),
@@ -340,7 +339,7 @@ class T2KalenderState extends State<T2Kalender> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20.0),
                             child: Text(
-                              calenderChoices[arrow_count]['item4']!=null?calenderChoices[arrow_count]['item4']:'null',
+                              calenderChoices[arrowCount]['item4']!=null?calenderChoices[arrowCount]['item4']:'null',
                               style: TextStyle(
                                   fontFamily: "Sans",
                                   fontWeight: FontWeight.w500,
@@ -353,13 +352,13 @@ class T2KalenderState extends State<T2Kalender> {
                       ),
                       RichText(
                         text: TextSpan(
-                          text: calenderChoices[arrow_count]['icon4']!=null?calenderChoices[arrow_count]['icon4']:'null', // emoji characters
-                          style: TextStyle(
+                          text: calenderChoices[arrowCount]['icon4'] ?? 'null', // emoji characters
+                          style: const TextStyle(
                             fontFamily: 'EmojiOne',
                           ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                question_choices.add(calenderChoices[arrow_count]['item4']);
+                                questionChoices.add(calenderChoices[arrowCount]['item4']);
                                 questionChoice();
                                 //method giving data to calendar;
                               }),
@@ -385,41 +384,41 @@ class T2KalenderState extends State<T2Kalender> {
 
   void toggleHeadline() {
     setState(() {
-      if (up_toggle) {
-        arrow_count++;
+      if (upToggle) {
+        arrowCount++;
 
-        if(arrow_count> calenderChoices.length-1)
+        if(arrowCount> calenderChoices.length-1)
           {
-            arrow_count = 0;
+            arrowCount = 0;
           }
-        up_toggle = false;
+        upToggle = false;
       }
       else
-      if (down_toggle) {
-        arrow_count--;
+      if (downToggle) {
+        arrowCount--;
 
-        if(arrow_count<0)
+        if(arrowCount<0)
         {
-          arrow_count = calenderChoices.length-1;
+          arrowCount = calenderChoices.length-1;
         }
-        down_toggle = false;
+        downToggle = false;
       }
-    print(arrow_count);
+    print(arrowCount);
     });
   }
   void questionChoice(){
-    String question_choice = question_choices.last;
-    item_switch = true;
-    if (widget.item_switch){
-      question_choice = question_choices.last;
+    String questionChoiceString = questionChoices.last;
+    itemSwitch = true;
+    if (widget.itemSwitch){
+      questionChoiceString = questionChoices.last;
 
     }
     else
       {
         print("No Item selected");
-        question_choice = "";
+        questionChoiceString = "";
       }
-    item_switch = false;
+    itemSwitch = false;
     //return  question_choice;
   }
 }

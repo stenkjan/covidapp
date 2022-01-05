@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:covidapp/Mozido/calendar_view/Lrm_dataModel.dart';
+import 'package:covidapp/Mozido/calendar_view/lrm_dataModel.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'T2_Amount.dart';
-import 'T2_Investment.dart';
-import 'T2_Search.dart';
+
+import 't2_amount.dart';
+import 't2_investment.dart';
+
 import 'login/sign_in/components/credentials.dart';
 import 'login/sign_in/signin.dart';
 
@@ -337,7 +337,7 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new T2_Amount()));
+                          pageBuilder: (_, __, ___) => new T2Amount()));
                     },
                     child: itemDrawer(
                         Icons.insert_drive_file, "Kalender")),
