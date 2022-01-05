@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 class T2_Investment extends StatefulWidget {
@@ -17,7 +18,9 @@ class _T2_InvestmentState extends State<T2_Investment> {
       /// Appbar
       ///
       appBar: AppBar(
-        brightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.dark
+        ),
         backgroundColor: Color(0xFF313237),
         centerTitle: true,
         title: Text(
