@@ -11,11 +11,12 @@ import 'charts/colors.dart';
 class T2Grafik extends StatefulWidget {
   const T2Grafik({Key? key}) : super(key: key);
 
+  @override
   T2GrafikState createState() => T2GrafikState();
 }
 
 class T2GrafikState extends State<T2Grafik> {
-  bool week_change = true;
+  bool weekChange = true;
   int week = 0;
   DateTime year = DateTime(DateTime.now().year);
   int numOfWeeks(int year) {
@@ -75,7 +76,7 @@ class T2GrafikState extends State<T2Grafik> {
                           decoration: BoxDecoration(
                               color: Colors.white70,
                               borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   color: Colors.black12,
                                   blurRadius: 20.0,
@@ -107,7 +108,7 @@ class T2GrafikState extends State<T2Grafik> {
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  week_change= false;
+                                  weekChange= false;
                                   toggleWeek();
                                 },
                               ),
@@ -124,7 +125,7 @@ class T2GrafikState extends State<T2Grafik> {
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  week_change = true;
+                                  weekChange = true;
                                   toggleWeek();
                                   print(week);
                                 },
@@ -209,13 +210,13 @@ class T2GrafikState extends State<T2Grafik> {
   void toggleWeek(){
     week = weekNumber(DateTime.now());
     setState((){
-      if(week_change){
+      if(weekChange){
         week +=1;
-        week_change = false;
+        weekChange = false;
       }
-      else if (!week_change){
+      else if (!weekChange){
         week -=1;
-        week_change = true;
+        weekChange = true;
       }
     }
     );
