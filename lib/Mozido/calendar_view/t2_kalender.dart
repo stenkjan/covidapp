@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state, sized_box_for_whitespace, unused_local_variable, unused_import, file_names
+
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/gestures.dart';
@@ -10,27 +12,32 @@ import 'charts/arrow_button.dart';
 class T2Kalender extends StatefulWidget {
   final bool itemSwitch;
   final String questionChoiceString;
-  const T2Kalender({Key? key, required this.itemSwitch, required this.questionChoiceString}) : super(key: key);
+  const T2Kalender(
+      {Key? key, required this.itemSwitch, required this.questionChoiceString})
+      : super(key: key);
 
   @override
-  T2KalenderState createState() => T2KalenderState(itemSwitch: itemSwitch, questionChoiceString: this.questionChoiceString);
+  // ignore: unnecessary_this
+  T2KalenderState createState() => T2KalenderState(
+      itemSwitch: itemSwitch, questionChoiceString: this.questionChoiceString);
 }
 
 class T2KalenderState extends State<T2Kalender> {
   bool itemSwitch = false;
   String questionChoiceString;
-  T2KalenderState({required this.itemSwitch,required this.questionChoiceString});
+  T2KalenderState(
+      {required this.itemSwitch, required this.questionChoiceString});
   @override
   void initState() {
     super.initState();
     toggleHeadline();
   }
-  List <String> headline = const ["Zustand", "Härtefaelle", "Krankheitsgrad"];
+
+  List<String> headline = const ["Zustand", "Härtefaelle", "Krankheitsgrad"];
   var questionChoices = <String>[];
   int arrowCount = 0;
   bool upToggle = false;
   bool downToggle = false;
-
 
   @override
 
@@ -57,6 +64,7 @@ class T2KalenderState extends State<T2Kalender> {
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
+
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
       body: SingleChildScrollView(
@@ -67,8 +75,10 @@ class T2KalenderState extends State<T2Kalender> {
             ),
             Container(
               height: 230.0,
-              child: Expanded(
-                child:T2_Calendar(),),),
+              // child: Expanded(
+              child: T2_Calendar(),
+              //    ),
+            ),
             const SizedBox(
               height: 5.0,
             ),
@@ -79,12 +89,16 @@ class T2KalenderState extends State<T2Kalender> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 300.0,
+                height: 150.0,
                 width: 370.0,
                 //width: double.infinity,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    color: Color(0xFF363940),
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF363940), Color(0xFF2E4E57)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
@@ -118,7 +132,8 @@ class T2KalenderState extends State<T2Kalender> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    calenderChoices[arrowCount]['name'] ?? 'null',
+                                    calenderChoices[arrowCount]['name'] ??
+                                        'null',
                                     // headline[arrow_up_count],
                                     style: const TextStyle(
                                         fontFamily: "Sans",
@@ -162,7 +177,6 @@ class T2KalenderState extends State<T2Kalender> {
                                         downToggle = true;
 
                                         toggleHeadline();
-
                                       },
                                     ),
                                     margin: const EdgeInsets.symmetric(
@@ -182,7 +196,6 @@ class T2KalenderState extends State<T2Kalender> {
                                         upToggle = true;
 
                                         toggleHeadline();
-
                                       },
                                     ),
                                     margin: const EdgeInsets.symmetric(
@@ -195,9 +208,127 @@ class T2KalenderState extends State<T2Kalender> {
                         ),
                       ),
                     ),
+
+                    //new LOGIC here
                     Padding(
+                      padding: const EdgeInsets.only(top: 0.0, bottom: 0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Center(
+                              child: Icon(Icons.emoji_emotions,
+                                  color: Color(0xFF3DB6D4)),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Center(
+                              child: Icon(Icons.emoji_emotions,
+                                  color: Color(0xFF3DB6D4)),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Center(
+                              child: Icon(Icons.emoji_emotions,
+                                  color: Color(0xFF3DB6D4)),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: const Center(
+                              child: Icon(Icons.emoji_emotions,
+                                  color: Color(0xFF3DB6D4)),
+                            ),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Center(
+                              child: RichText(
+                                text: TextSpan(
+                                    text: calenderChoices[arrowCount]
+                                            ['icon1'] ??
+                                        'null', // emoji characters
+                                    style: const TextStyle(
+                                      fontFamily: 'EmojiOne',
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        questionChoices.add(
+                                            calenderChoices[arrowCount]
+                                                ['item1']);
+                                        questionChoice();
+                                        //method giving data to calendar;
+                                      }),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    //new LOGIC ends here
+
+                    /* Padding(
                       padding: const EdgeInsets.only(top: 25.0, right: 20.0),
-                      child: Column(
+                        
+                     child: Column(
                         children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -365,8 +496,8 @@ class T2KalenderState extends State<T2Kalender> {
                             ],
                           ),
                         ],
-                      ),
-                    ),
+                      ), 
+                    ), */
                   ],
                 ),
               ),
@@ -385,39 +516,30 @@ class T2KalenderState extends State<T2Kalender> {
       if (upToggle) {
         arrowCount++;
 
-        if(arrowCount> calenderChoices.length-1)
-        {
+        if (arrowCount > calenderChoices.length - 1) {
           arrowCount = 0;
         }
         upToggle = false;
-      }
-      else
-      if (downToggle) {
+      } else if (downToggle) {
         arrowCount--;
 
-        if(arrowCount<0)
-        {
-          arrowCount = calenderChoices.length-1;
+        if (arrowCount < 0) {
+          arrowCount = calenderChoices.length - 1;
         }
         downToggle = false;
       }
-
     });
   }
-  void questionChoice(){
+
+  void questionChoice() {
     String questionChoiceString = questionChoices.last;
     itemSwitch = true;
-    if (widget.itemSwitch){
+    if (widget.itemSwitch) {
       questionChoiceString = questionChoices.last;
-
-    }
-    else
-    {
-
+    } else {
       questionChoiceString = "";
     }
     itemSwitch = false;
     //return  question_choice;
   }
 }
-
