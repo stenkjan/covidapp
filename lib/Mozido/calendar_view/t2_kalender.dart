@@ -2,8 +2,10 @@
 
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 't2_calendar_form.dart';
@@ -75,8 +77,7 @@ class T2KalenderState extends State<T2Kalender> {
             ),
             Padding(
                 padding: const EdgeInsets.all(8.0),
-                child:
-                    Container(height: 200.0, width: 370, child: T2_Calendar())),
+                child: Container(width: 370, child: T2_Calendar())),
 
             ///
             /// Card under grafic line
@@ -359,20 +360,20 @@ class T2KalenderState extends State<T2Kalender> {
                             ],
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 12,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 width: 360,
-                                height: 40,
+                                height: 25,
                                 child: SizedBox(
                                   child: Text(
                                       calenderChoices[arrowCount]['name'] +
-                                          " von " +
+                                          ": " +
                                           calenderChoices[arrowCount]['item1'] +
-                                          " bis " +
+                                          " - " +
                                           calenderChoices[arrowCount]['item4'],
                                       maxLines: 1,
                                       overflow: TextOverflow.fade,
@@ -385,6 +386,36 @@ class T2KalenderState extends State<T2Kalender> {
                                           color: Colors.white70)),
                                 ),
                               ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Provider.of<T2_Calendar>(context,
+                                  //         listen: false)
+                                  //     .showAddDialog;
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Color(0xFF31A1C9)),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Kommentar',
+                                ),
+                              ),
+                              SizedBox(width: 15),
+                              IconButton(
+                                  color: Color(0xB0E4DD09),
+                                  iconSize: 40,
+                                  icon: Icon(Icons.help),
+                                  onPressed: () {}),
                             ],
                           ),
                         ],
