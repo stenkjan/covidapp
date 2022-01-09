@@ -73,15 +73,10 @@ class T2KalenderState extends State<T2Kalender> {
             const SizedBox(
               height: 00.0,
             ),
-            Container(
-              height: 230.0,
-              // child: Expanded(
-              child: T2_Calendar(),
-              //    ),
-            ),
-            const SizedBox(
-              height: 5.0,
-            ),
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                    Container(height: 200.0, width: 370, child: T2_Calendar())),
 
             ///
             /// Card under grafic line
@@ -89,7 +84,7 @@ class T2KalenderState extends State<T2Kalender> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 150.0,
+                height: 200.0,
                 width: 370.0,
                 //width: double.infinity,
                 decoration: const BoxDecoration(
@@ -211,114 +206,186 @@ class T2KalenderState extends State<T2Kalender> {
 
                     //new LOGIC here
                     Padding(
-                      padding: const EdgeInsets.only(top: 0.0, bottom: 0.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
+                      padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF31A1C9),
+                                      Color(0xFF3DB6D4)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: calenderChoices[arrowCount]
+                                                ['icon1'] ??
+                                            'null', // emoji characters
+                                        style: const TextStyle(
+                                          fontFamily: 'EmojiOne',
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            questionChoices.add(
+                                                calenderChoices[arrowCount]
+                                                    ['item1']);
+                                            questionChoice();
+                                            //method giving data to calendar;
+                                          }),
+                                  ),
+                                ),
                               ),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF31A1C9),
+                                      Color(0xFF3DB6D4)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: calenderChoices[arrowCount]
+                                                ['icon2'] ??
+                                            'null', // emoji characters
+                                        style: const TextStyle(
+                                          fontFamily: 'EmojiOne',
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            questionChoices.add(
+                                                calenderChoices[arrowCount]
+                                                    ['item2']);
+                                            questionChoice();
+                                            //method giving data to calendar;
+                                          }),
+                                  ),
+                                ),
                               ),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.emoji_emotions,
-                                  color: Color(0xFF3DB6D4)),
-                            ),
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF31A1C9),
+                                      Color(0xFF3DB6D4)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: calenderChoices[arrowCount]
+                                                ['icon3'] ??
+                                            'null', // emoji characters
+                                        style: const TextStyle(
+                                          fontFamily: 'EmojiOne',
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            questionChoices.add(
+                                                calenderChoices[arrowCount]
+                                                    ['item3']);
+                                            questionChoice();
+                                            //method giving data to calendar;
+                                          }),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF31A1C9),
+                                      Color(0xFF3DB6D4)
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: RichText(
+                                    text: TextSpan(
+                                        text: calenderChoices[arrowCount]
+                                                ['icon4'] ??
+                                            'null', // emoji characters
+                                        style: const TextStyle(
+                                          fontFamily: 'EmojiOne',
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            questionChoices.add(
+                                                calenderChoices[arrowCount]
+                                                    ['item4']);
+                                            questionChoice();
+                                            //method giving data to calendar;
+                                          }),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.emoji_emotions,
-                                  color: Color(0xFF3DB6D4)),
-                            ),
+                          SizedBox(
+                            height: 8,
                           ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 360,
+                                height: 40,
+                                child: SizedBox(
+                                  child: Text(
+                                      calenderChoices[arrowCount]['name'] +
+                                          " von " +
+                                          calenderChoices[arrowCount]['item1'] +
+                                          " bis " +
+                                          calenderChoices[arrowCount]['item4'],
+                                      maxLines: 1,
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: "Sans",
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white70)),
+                                ),
                               ),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(Icons.emoji_emotions,
-                                  color: Color(0xFF3DB6D4)),
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: const Center(
-                              child: Icon(Icons.emoji_emotions,
-                                  color: Color(0xFF3DB6D4)),
-                            ),
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                            ),
-                            child: Center(
-                              child: RichText(
-                                text: TextSpan(
-                                    text: calenderChoices[arrowCount]
-                                            ['icon1'] ??
-                                        'null', // emoji characters
-                                    style: const TextStyle(
-                                      fontFamily: 'EmojiOne',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        questionChoices.add(
-                                            calenderChoices[arrowCount]
-                                                ['item1']);
-                                        questionChoice();
-                                        //method giving data to calendar;
-                                      }),
-                              ),
-                            ),
+                            ],
                           ),
                         ],
                       ),
