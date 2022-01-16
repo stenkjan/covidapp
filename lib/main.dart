@@ -4,17 +4,21 @@ import 'package:covidapp/Mozido/t2_investment.dart';
 import 'package:covidapp/Mozido/t2_search.dart';
 import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Mozido/calendar_view/charts/pie_chart.dart';
 import 'Mozido/login/sign_in/signin.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  ;
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
+  MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -32,29 +36,42 @@ class MyApp extends StatelessWidget {
     // ]),
     // child: MaterialApp(
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      routes: {
-        "T2_Amount": (context) => T2Amount(),
-        "T2_Investment": (context) => T2_Investment(),
-        "T2_Search": (context) => T2_Search(),
-        "PieChart": (context) => PieChart(),
-        "SignInScreen": (context) => SignInScreen(),
-        "SettingsUI": (context) => SettingsUI(),
-      },
-      home: T2_home(),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
+        routes: {
+          "T2_Amount": (context) => T2Amount(),
+          "T2_Investment": (context) => T2_Investment(),
+          "T2_Search": (context) => T2_Search(),
+          "PieChart": (context) => PieChart(),
+          "SignInScreen": (context) => SignInScreen(),
+          "SettingsUI": (context) => SettingsUI(),
+        },
+        home: FutureBuilder(
+          future: _fbApp,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              print("Snapshot Error:  ${snapshot.error.toString()}");
+              return Text("Etwas ist schief gelaufen");
+            } else if (snapshot.hasData) {
+              return T2_home();
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ));
   }
 }
 
