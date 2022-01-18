@@ -4,7 +4,9 @@ import 'package:covidapp/Mozido/t2_investment.dart';
 import 'package:covidapp/Mozido/t2_search.dart';
 import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Mozido/calendar_view/charts/pie_chart.dart';
@@ -12,7 +14,7 @@ import 'Mozido/login/sign_in/signin.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ;
+
   runApp(MyApp());
 }
 
@@ -23,8 +25,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // return MultiProvider(providers: [
-    //   //Provider(create: (context) => UserModel)
+    // return MultiProvider(
+    // providers: [
+    //     StreamProvider<FirebaseUser>.value(stream: FirebaseAuth.instance.onAuthStateChanged),
+    // //   //Provider(create: (context) => UserModel)
     //     ChangeNotifierProxyProvider<CatalogModel, CartModel>(
     //       create: (context) => CartModel(),
     //       update: (context, catalog, cart) {
@@ -33,8 +37,8 @@ class MyApp extends StatelessWidget {
     //         return cart;
     //       },
     //     ),
-    // ]),
-    // child: MaterialApp(
+    // ]
+    //  child: MaterialApp(
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -106,6 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
   //    _counter++;
   // });
   // }
+  void setupDatabase() {
+    DatabaseReference _testRef =
+        FirebaseDatabase.instance.reference().child("test");
+  }
 
   @override
   Widget build(BuildContext context) {
