@@ -1,9 +1,11 @@
 // @dart=2.9
+import 'package:covidapp/Mozido/login/wrapper.dart';
 import 'package:covidapp/Mozido/t2_amount.dart';
 import 'package:covidapp/Mozido/t2_investment.dart';
 import 'package:covidapp/Mozido/t2_search.dart';
 import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
+import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -25,57 +27,60 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // return MultiProvider(
-    // providers: [
-    //     StreamProvider<FirebaseUser>.value(stream: FirebaseAuth.instance.onAuthStateChanged),
-    // //   //Provider(create: (context) => UserModel)
-    //     ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-    //       create: (context) => CartModel(),
-    //       update: (context, catalog, cart) {
-    //         if (cart == null) throw ArgumentError.notNull('cart');
-    //         cart.catalog = catalog;
-    //         return cart;
-    //       },
-    //     ),
-    // ]
-    //  child: MaterialApp(
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
-        routes: {
-          "T2_Amount": (context) => T2Amount(),
-          "T2_Investment": (context) => T2_Investment(),
-          "T2_Search": (context) => T2_Search(),
-          "PieChart": (context) => PieChart(),
-          "SignInScreen": (context) => SignInScreen(),
-          "SettingsUI": (context) => SettingsUI(),
-        },
-        home: FutureBuilder(
-          future: _fbApp,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              print("Snapshot Error:  ${snapshot.error.toString()}");
-              return Text("Etwas ist schief gelaufen");
-            } else if (snapshot.hasData) {
-              return T2_home();
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ));
+    return MultiProvider(
+        providers: [
+          Provider<AuthService>(
+            create: (_) => AuthService(),
+            //     StreamProvider<FirebaseUser>.value(stream: FirebaseAuth.instance.onAuthStateChanged),
+            // //   //Provider(create: (context) => UserModel)
+            //     ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+            //       create: (context) => CartModel(),
+            //       update: (context, catalog, cart) {
+            //         if (cart == null) throw ArgumentError.notNull('cart');
+            //         cart.catalog = catalog;
+            //         return cart;
+            //       },
+          ),
+        ],
+        child: MaterialApp(
+            //return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              // This is the theme of your application.
+              //
+              // Try running your application with "flutter run". You'll see the
+              // application has a blue toolbar. Then, without quitting the app, try
+              // changing the primarySwatch below to Colors.green and then invoke
+              // "hot reload" (press "r" in the console where you ran "flutter run",
+              // or simply save your changes to "hot reload" in a Flutter IDE).
+              // Notice that the counter didn't reset back to zero; the application
+              // is not restarted.
+              primarySwatch: Colors.blue,
+            ),
+            routes: {
+              "/": (context) => Wrapper(),
+              "T2_Amount": (context) => T2Amount(),
+              "T2_Investment": (context) => T2_Investment(),
+              "T2_Search": (context) => T2_Search(),
+              "PieChart": (context) => PieChart(),
+              "SignInScreen": (context) => SignInScreen(),
+              "SettingsUI": (context) => SettingsUI(),
+            },
+            home: FutureBuilder(
+              future: _fbApp,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  print("Snapshot Error:  ${snapshot.error.toString()}");
+                  return Text("Etwas ist schief gelaufen");
+                } else if (snapshot.hasData) {
+                  return Wrapper();
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            )));
   }
 }
 
