@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
               "T2_Search": (context) => T2_Search(),
               "PieChart": (context) => PieChart(),
               "SignInScreen": (context) => SignInScreen(),
-              "SettingsUI": (context) => SettingsUI(),
+              "SettingsUI": (context) => SettingsScreen(),
             },
             home: FutureBuilder(
               future: _fbApp,

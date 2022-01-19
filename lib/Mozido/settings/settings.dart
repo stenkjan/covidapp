@@ -1,67 +1,93 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-
-class SettingsUI extends StatefulWidget {
-  final String title = "Einstellungen";
-  SettingsUI({Key? key}) : super(key: key);
-
+class SettingsScreen extends StatefulWidget {
   @override
-  _SettingsUIState createState() => _SettingsUIState();
+  _SettingsScreenState createState() => _SettingsScreenState();
 }
 
-class _SettingsUIState extends State<SettingsUI> {
-  bool isSwitched = false;
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool lockInBackground = true;
+  bool notificationsEnabled = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SettingsList(
-        sections: [
-          SettingsSection(
-            titlePadding: EdgeInsets.all(20),
-            title: 'Allgemeine Einstellungen',
-            tiles: [
-              SettingsTile(
-                title: 'Language',
-                subtitle: 'English',
-                leading: Icon(Icons.language),
-                onPressed: (BuildContext context) {},
-              ),
-              SettingsTile.switchTile(
-                title: 'Use System Theme',
-                leading: Icon(Icons.phone_android),
-                switchValue: isSwitched,
-                onToggle: (value) {
-                  setState(() {
-                    isSwitched = value;
-                  });
-                },
-              ),
-            ],
-          ),
-          SettingsSection(
-            titlePadding: EdgeInsets.all(20),
-            title: 'Sicherheit und Datenschutz',
-            tiles: [
-              SettingsTile(
-                title: 'Sicherheit',
-                subtitle: 'Fingerabdruck',
-                leading: Icon(Icons.lock),
-                onPressed: (BuildContext context) {},
-              ),
-              SettingsTile.switchTile(
-                title: 'Fingerabdruck verwenden',
-                leading: Icon(Icons.fingerprint),
-                switchValue: true,
-                onToggle: (value) {},
-              ),
-            ],
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text('Settings UI')),
+      body: buildSettingsList(),
+    );
+  }
+
+  Widget buildSettingsList() {
+    return SettingsList(
+      sections: [
+        SettingsSection(
+          title: Text('Common'),
+          tiles: [
+            SettingsTile(
+              title: Text('Environment'),
+              leading: Icon(Icons.cloud_queue),
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text('Account'),
+          tiles: [
+            SettingsTile(
+                title: Text('Phone number'), leading: Icon(Icons.phone)),
+            SettingsTile(title: Text('Email'), leading: Icon(Icons.email)),
+            SettingsTile(
+                title: Text('Sign out'), leading: Icon(Icons.exit_to_app)),
+          ],
+        ),
+        SettingsSection(
+          title: Text('Security'),
+          tiles: [
+            SettingsTile.switchTile(
+              title: Text('Lock app in background'),
+              leading: Icon(Icons.phonelink_lock),
+              initialValue: lockInBackground,
+              onToggle: (bool value) {
+                setState(() {
+                  lockInBackground = value;
+                  notificationsEnabled = value;
+                });
+              },
+            ),
+            SettingsTile.switchTile(
+              title: Text('Use fingerprint'),
+              // subtitle: 'Allow application to access stored fingerprint IDs.',
+              leading: Icon(Icons.fingerprint),
+              onToggle: (bool value) {},
+              initialValue: false,
+            ),
+            SettingsTile.switchTile(
+              title: Text('Change password'),
+              leading: Icon(Icons.lock),
+              initialValue: true,
+              onToggle: (bool value) {},
+            ),
+            SettingsTile.switchTile(
+              title: Text('Enable Notifications'),
+              //enabled: notificationsEnabled,
+              leading: Icon(Icons.notifications_active),
+              initialValue: true,
+              onToggle: (value) {},
+            ),
+          ],
+        ),
+        SettingsSection(
+          title: Text('Misc'),
+          tiles: [
+            SettingsTile(
+                title: Text('Terms of Service'),
+                leading: Icon(Icons.description)),
+            SettingsTile(
+                title: Text('Open source licenses'),
+                leading: Icon(Icons.collections_bookmark)),
+          ],
+        ),
+      ],
     );
   }
 }

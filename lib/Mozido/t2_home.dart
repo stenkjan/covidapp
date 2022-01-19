@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_dataModel.dart';
+import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 import 't2_amount.dart';
 import 't2_investment.dart';
@@ -18,14 +19,12 @@ class T2_home extends StatefulWidget {
 }
 
 class _T2_homeState extends State<T2_home> {
-
   @override
   void initState() {
     super.initState();
     if (Credentials.signed_in = false) {
       SignInScreen();
-    }
-    else {
+    } else {
       SignInScreen();
     }
   }
@@ -62,7 +61,7 @@ class _T2_homeState extends State<T2_home> {
                     options: CarouselOptions(
                       aspectRatio: 5 / 10,
                       autoPlay: false,
-                      autoPlayInterval: const Duration(seconds: 2000) ,
+                      autoPlayInterval: const Duration(seconds: 2000),
                       viewportFraction: 1.0,
                       height: 220.0,
                     ),
@@ -140,8 +139,7 @@ class _T2_homeState extends State<T2_home> {
                           _scaffoldKey.currentState!.openDrawer();
                           //Scaffold.of(this.context).openDrawer();
                         },
-                        child: Image.asset(
-                            "lib/Mozido/Assets/tabBar.png")),
+                        child: Image.asset("lib/Mozido/Assets/tabBar.png")),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 10.0),
@@ -175,7 +173,6 @@ class _T2_homeState extends State<T2_home> {
       ),
     );
   }
-
 
   Widget _card(Color _color, String _title, String _time, String _value) {
     return Padding(
@@ -283,8 +280,8 @@ class _T2_homeState extends State<T2_home> {
 class DrawerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Drawer(
-
         child: Container(
       color: Color(0xFF29303C),
       child: Column(
@@ -324,8 +321,14 @@ class DrawerLayout extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                     onTap: () {
-                   //   Navigator.of(context).push(PageRouteBuilder(
-                        //  pageBuilder: (_, __, ___) => new T2_Search()));
+                      Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => new T2_home()));
+                    },
+                    child: itemDrawer(Icons.home, "Übersicht")),
+                InkWell(
+                    onTap: () {
+                      //   Navigator.of(context).push(PageRouteBuilder(
+                      //  pageBuilder: (_, __, ___) => new T2_Search()));
                     },
                     child: itemDrawer(Icons.search, "Zustand")),
                 InkWell(
@@ -339,18 +342,31 @@ class DrawerLayout extends StatelessWidget {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => new T2Amount()));
                     },
-                    child: itemDrawer(
-                        Icons.insert_drive_file, "Kalender")),
+                    child: itemDrawer(Icons.calendar_today, "Kalender")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new SettingsUI()));
+                          pageBuilder: (_, __, ___) => new SettingsScreen()));
                     },
-                    child: itemDrawer(
-                        Icons.insert_drive_file, "Einstellungen")),
+                    child: itemDrawer(Icons.settings, "Einstellungen")),
+                SizedBox(
+                  height: 50.0,
+                ),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.logout_rounded, color: Colors.white10),
+                  label: Text("Ausloggen"),
+                  onPressed: () async {
+                    await authService.signOut();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Sie haben sich abgemeldet"),
+                    ));
+                    await authService.signOut().whenComplete(
+                        () => Navigator.pushNamed(context, "SignInScreen"));
+                  },
+                ),
                 SizedBox(
                   height: 3.0,
-                )
+                ),
               ],
             ),
           ),
@@ -454,7 +470,6 @@ Widget _cardHeader(lrmDataModel item) {
                         fontFamily: "Sans",
                         fontSize: 20.0),
                   ),
-
                 ],
               ),
               SizedBox(
@@ -480,7 +495,6 @@ Widget _cardHeader(lrmDataModel item) {
                           color: Colors.white,
                           fontWeight: FontWeight.w300,
                           fontFamily: "Sans",
-
                         ),
                       ),
                       Text(
@@ -513,5 +527,4 @@ Widget _cardHeader(lrmDataModel item) {
       ),
     ],
   );
-
 }
