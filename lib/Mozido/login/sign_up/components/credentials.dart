@@ -19,22 +19,6 @@ class Credentials extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /* TextField(
-            textAlign: TextAlign.center,
-            controller: emailController, 
-            decoration: InputDecoration(
-              icon: Icon(Icons.email_rounded, color: Colors.white10),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      filled: true,
-      hintStyle: TextStyle(color: Colors.grey[800]),
-      hintText: "Benutzername", 
-      fillColor: Colors.white70),
-          ), 
-          const SizedBox(
-            height: appPadding / 2,
-          ),*/
           TextField(
             textAlign: TextAlign.center,
             controller: emailController,
@@ -80,12 +64,14 @@ class Credentials extends StatelessWidget {
               ),
             ),
           ),
-          RectangularButton(
-              text: 'Registrieren',
-              press: () async {
-                await authService.createUserWithEmailAndPasswort(
-                    emailController.text, passwordController.text);
-              })
+          Center(
+            child: ElevatedButton(
+                child: Text('Registrieren'),
+                onPressed: () async {
+                  await authService.createUserWithEmailAndPasswort(
+                      emailController.text, passwordController.text);
+                }),
+          ),
         ],
       ),
     );

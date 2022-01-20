@@ -20,24 +20,10 @@ class Social extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: appPadding),
-          child:    RoundedButton(imageSrc: 'images/mail.png', press: () {}),
-
-          ),
+          child: RoundedButton(imageSrc: 'images/mail.png', press: () {}),
+        ),
         const SizedBox(
           height: appPadding,
-        ),
-        AccountCheck(
-          login: false,
-          press: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SignInScreen();
-                },
-              ),
-            );
-          },
         ),
       ],
     );

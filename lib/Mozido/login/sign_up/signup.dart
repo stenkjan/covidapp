@@ -14,13 +14,13 @@ class SignUpScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               colors: [
             /*  lightPrimary,
                 darkPrimary, */
             Color(0xFF31A1C9),
-            Color(0xFF3DB6D4),
+            Color(0xEA1F3F48),
           ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -30,7 +30,7 @@ class SignUpScreen extends StatelessWidget {
             children: const [
               HeadText(),
               Credentials(),
-              Contact(),
+              //  Contact(),
             ],
           ),
         ),

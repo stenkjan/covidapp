@@ -22,11 +22,11 @@ class _T2_homeState extends State<T2_home> {
   @override
   void initState() {
     super.initState();
-    if (Credentials.signed_in = false) {
+    /* if (Credentials.signed_in = false) {
       SignInScreen();
     } else {
       SignInScreen();
-    }
+    } */
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -360,8 +360,9 @@ class DrawerLayout extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Sie haben sich abgemeldet"),
                     ));
-                    await authService.signOut().whenComplete(
-                        () => Navigator.pushNamed(context, "SignInScreen"));
+                    await authService.signOut().whenComplete(() =>
+                        Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder: (_, __, ___) => new SignInScreen())));
                   },
                 ),
                 SizedBox(

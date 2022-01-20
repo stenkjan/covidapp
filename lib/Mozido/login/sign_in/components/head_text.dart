@@ -16,15 +16,21 @@ class HeadText extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: size.height * 0.05),
-          const Text('Long Covid App',style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-          ),),
-          const Text('Anmelden',style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-          ),),
+          SizedBox(height: size.height * 0.25),
+          const Text(
+            'Long Covid App',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const Text(
+            'Anmelden',
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
               // is not restarted.
               primarySwatch: Colors.blue,
             ),
-            routes: {
+            /*    routes: {
               "/": (context) => Wrapper(),
               "T2_Amount": (context) => T2Amount(),
               "T2_Investment": (context) => T2_Investment(),
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
               "PieChart": (context) => PieChart(),
               "SignInScreen": (context) => SignInScreen(),
               "SettingsUI": (context) => SettingsScreen(),
-            },
+            }, */
             home: FutureBuilder(
               future: _fbApp,
               builder: (context, snapshot) {
