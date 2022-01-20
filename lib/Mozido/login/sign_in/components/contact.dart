@@ -45,12 +45,25 @@ class Contact extends StatelessWidget {
     );
   }
 
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
+
   void _launchURL() async {
     final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'jan.stenk@edu.fh-joanneum.at',
-    );
+        scheme: 'mailto',
+        path: 'jan.stenk@edu.fh-joanneum.at',
+        query: encodeQueryParameters(
+            <String, String>{'Long Covid App Support': 'Ihr Anliegen:'}));
+    //  launch(emailLaunchUri.toString());
     // if (!await launch("mailto:")) throw 'Could not launch $_url';
-    if (!await launch(emailLaunchUri.toString())) throw 'Could not launch $Uri';
+    if (await canLaunch(emailLaunchUri.toString())) {
+      await launch(emailLaunchUri.toString());
+    } else {
+      throw 'Could not launch $Uri';
+    }
   }
 }

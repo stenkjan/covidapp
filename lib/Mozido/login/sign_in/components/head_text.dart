@@ -20,14 +20,16 @@ class HeadText extends StatelessWidget {
           const Text(
             'Long Covid App',
             style: TextStyle(
-              fontSize: 24,
+              color: Colors.white,
+              fontSize: 36,
               fontWeight: FontWeight.w600,
             ),
           ),
           const Text(
             'Anmelden',
             style: TextStyle(
-              fontSize: 36,
+              color: Colors.white,
+              fontSize: 48,
               fontWeight: FontWeight.bold,
             ),
           ),

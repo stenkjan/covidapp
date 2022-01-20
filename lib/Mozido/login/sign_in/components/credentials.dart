@@ -68,8 +68,17 @@ class Credentials extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
           Center(
             child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Color(0xFF31A1C9)),
+                  ),
+                ),
                 child: const Text('Anmelden'),
                 onPressed: () async {
                   await authService.signInWithEmailAndPassword(
@@ -80,6 +89,12 @@ class Credentials extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Color(0xFF31A1C9)),
+                  ),
+                ),
                 child: const Text('Registrieren'),
                 onPressed: () {
                   Navigator.push(
