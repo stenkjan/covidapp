@@ -16,18 +16,19 @@ class Social extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 30,
+          height: 2,
         ),
         Center(
-          child: TextButton(
-              child: const Text(
-                'oder kontaktieren Sie uns  \u{1F4E7}',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-              ),
-              onPressed: () {
-                _launchURL();
-              }),
-        ),
+            child: TextButton.icon(
+          label: const Text(
+            'oder kontaktieren Sie uns',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          icon: const Icon(Icons.mail_rounded, color: Colors.grey, size: 20),
+          onPressed: () {
+            _launchURL();
+          },
+        )),
         SizedBox(
           height: appPadding,
         ),

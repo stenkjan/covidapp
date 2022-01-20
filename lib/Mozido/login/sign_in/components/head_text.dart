@@ -18,18 +18,20 @@ class HeadText extends StatelessWidget {
         children: [
           SizedBox(height: size.height * 0.25),
           const Text(
-            'Long Covid App',
+            'LONG COVID APP',
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 36,
+              decorationThickness: 2.0,
+              color: Colors.white24,
+              fontSize: 40,
               fontWeight: FontWeight.w600,
             ),
           ),
           const Text(
             'Anmelden',
             style: TextStyle(
+              letterSpacing: 2.0,
               color: Colors.white,
-              fontSize: 48,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
             ),
           ),

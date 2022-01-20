@@ -16,15 +16,30 @@ class Contact extends StatelessWidget {
           height: 30,
         ),
         Center(
-          child: TextButton(
-              child: const Text(
-                'oder kontaktieren Sie uns  \u{1F4E7}',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
-              ),
-              onPressed: () {
-                _launchURL();
-              }),
-        ),
+            child:
+                // Column(
+                //   children: [
+                // TextButton(
+                //     child: const Text(
+                //       'oder kontaktieren Sie uns  \u{1F4E7}',
+                //       style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
+                //     ),
+                //     onPressed: () {
+
+                //     }),
+                TextButton.icon(
+          label: const Text(
+            'oder kontaktieren Sie uns',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          icon: const Icon(Icons.mail_rounded, color: Colors.grey, size: 20),
+          onPressed: () {
+            _launchURL();
+          },
+        )
+            // ],
+            // ),
+            ),
         SizedBox(
           height: appPadding,
         ),

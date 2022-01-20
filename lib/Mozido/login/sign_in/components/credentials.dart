@@ -19,7 +19,7 @@ class Credentials extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
     /* bool signed_in = Credentials.signed_in; */
     return Padding(
-      padding: const EdgeInsets.all(appPadding),
+      padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +27,7 @@ class Credentials extends StatelessWidget {
             textAlign: TextAlign.center,
             controller: emailController,
             decoration: InputDecoration(
-                icon: const Icon(Icons.email_rounded, color: Colors.white10),
+                icon: const Icon(Icons.email_rounded, color: Colors.white24),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -47,7 +47,7 @@ class Credentials extends StatelessWidget {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                icon: const Icon(Icons.lock, color: Colors.white10),
+                icon: const Icon(Icons.lock, color: Colors.white24),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
@@ -60,11 +60,15 @@ class Credentials extends StatelessWidget {
             height: appPadding / 2,
           ),
           const Center(
-            child: Text(
-              'Passwort vergessen?',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 17,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Text(
+                'Passwort vergessen?',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 17,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ),
           ),
@@ -72,40 +76,57 @@ class Credentials extends StatelessWidget {
             height: 20,
           ),
           Center(
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xFF31A1C9)),
-                  ),
-                ),
-                child: const Text('Anmelden'),
-                onPressed: () async {
-                  await authService.signInWithEmailAndPassword(
-                      emailController.text, passwordController.text);
-                  /* signed_in = true;
-                  signedIn(signed_in); */
-                }),
-          ),
-          Center(
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(color: Color(0xFF31A1C9)),
-                  ),
-                ),
-                child: const Text('Registrieren'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const SignUpScreen();
-                      },
-                    ),
-                  );
-                }),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 35.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(150, 30),
+                        primary: Color(0xFF029CF5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Color(0x815DDFDF)),
+                        ),
+                      ),
+                      child: const Text('Anmelden'),
+                      onPressed: () async {
+                        if (emailController.text != null &&
+                            passwordController.text != null) {
+                          await authService.signInWithEmailAndPassword(
+                              emailController.text, passwordController.text);
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                                "Sie müssen zuerst eine Email und ein Passwort angeben"),
+                          ));
+                        }
+                        /* signed_in = true;
+                          signedIn(signed_in); */
+                      }),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xE53EAF8A),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Color(0x815DDFDF)),
+                        ),
+                      ),
+                      child: const Text('Registrieren'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const SignUpScreen();
+                            },
+                          ),
+                        );
+                      }),
+                ],
+              ),
+            ),
           ),
         ],
       ),

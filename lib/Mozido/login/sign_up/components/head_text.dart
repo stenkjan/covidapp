@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/login/constants.dart';
 
@@ -17,25 +19,27 @@ class HeadText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: size.height * 0.25),
-          Center(
-            child: const Image(
-              image: AssetImage("images/long_covid_logo.png"),
-            ),
+          const Image(
+            image: AssetImage("images/long_covid_logo.png"),
+            width: 80,
+            height: 80,
           ),
-          SizedBox(height: 20),
+          // SizedBox(height: 5),
           const Text(
-            'Registrieren',
+            'LONG COVID APP',
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 36,
+              decorationThickness: 2.0,
+              color: Colors.white24,
+              fontSize: 40,
               fontWeight: FontWeight.w600,
             ),
           ),
           const Text(
-            'Long Covid App',
+            'Registrieren',
             style: TextStyle(
+              letterSpacing: 2.0,
               color: Colors.white,
-              fontSize: 48,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
             ),
           ),
