@@ -17,13 +17,12 @@ class Contact extends StatelessWidget {
         ),
         Center(
           child: TextButton(
-              child: Text(
+              child: const Text(
                 'oder kontaktieren Sie uns  \u{1F4E7}',
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400),
               ),
               onPressed: () {
-                // Android: Will open mail app or show native picker.
-                // iOS: Will open mail app if single mail app found.
+                _launchURL();
               }),
         ),
         SizedBox(
@@ -47,6 +46,11 @@ class Contact extends StatelessWidget {
   }
 
   void _launchURL() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'jan.stenk@edu.fh-joanneum.at',
+    );
     // if (!await launch("mailto:")) throw 'Could not launch $_url';
+    if (!await launch(emailLaunchUri.toString())) throw 'Could not launch $Uri';
   }
 }
