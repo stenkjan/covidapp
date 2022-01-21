@@ -3,96 +3,89 @@ import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/calendar_view/charts/pie_chart_cp.dart';
 
-
 import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
 
-
-  class PieChart extends StatefulWidget {
-    PieChart({Key? key}) : super(key: key);
+class PieChart extends StatefulWidget {
+  const PieChart({Key? key}) : super(key: key);
+  @override
   _PieChartState createState() => _PieChartState();
+}
+
+class _PieChartState extends State<PieChart>
+    with SingleTickerProviderStateMixin {
+  double total = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    for (var e in healthscore) {
+      total += e['amount'];
+    }
   }
 
-  class _PieChartState extends State<PieChart>
-  with SingleTickerProviderStateMixin {
-    double total = 0;
-
-    @override
-    void initState() {
-      super.initState();
-      healthscore.forEach((e) => total += e['amount']);
+  @override
+  Widget build(BuildContext context) {
+    var width = SizeConfig.getWidth(context);
+    double fontSize(double size) {
+      return size * width / 414;
     }
 
-    @override
-    Widget build(BuildContext context) {
-      // TODO: implement build
-      var width = SizeConfig.getWidth(context);
-      double fontSize(double size) {
-        return size * width / 414;
-      }
-
-      return LayoutBuilder(
-
-        builder: (context, constraint) {
-          return Container(
-            decoration: BoxDecoration(
-                color: AppColors.primaryWhite,
-                shape: BoxShape.circle,
-                boxShadow: AppColors.neumorpShadow),
-            child: Stack(
-              children: <Widget>[
-                Center(
-                  child: SizedBox(
-                    width: constraint.maxWidth * 0.6,
-                    child: CustomPaint(
-                      child: Container(),
-                      foregroundPainter: PieChartCustomPainter(
+    return LayoutBuilder(
+      builder: (context, constraint) {
+        return Container(
+          decoration: BoxDecoration(
+              color: AppColors.primaryWhite,
+              shape: BoxShape.circle,
+              boxShadow: AppColors.neumorpShadow),
+          child: Stack(
+            children: <Widget>[
+              Center(
+                child: SizedBox(
+                  width: constraint.maxWidth * 0.6,
+                  child: CustomPaint(
+                    child: Container(),
+                    foregroundPainter: PieChartCustomPainter(
                         width: constraint.maxWidth * 0.5,
-                        healthscore:  healthscore),
-
-                    ),
+                        healthscore: healthscore),
                   ),
                 ),
-                Center(
-                  child: Container(
-                    width: constraint.maxWidth * .5,
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryWhite,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: Offset(3, 3),
-                              color: Colors.black38)
-                        ]),
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 0, left: 72),
-                          child: Text(
-
-                            (total/5).toString(),
-                            style: TextStyle(
+              ),
+              Center(
+                child: Container(
+                  width: constraint.maxWidth * .5,
+                  decoration: BoxDecoration(
+                      color: AppColors.primaryWhite,
+                      shape: BoxShape.circle,
+                      boxShadow: const [
+                        BoxShadow(
+                            spreadRadius: 3,
+                            blurRadius: 5,
+                            offset: Offset(3, 3),
+                            color: Colors.black38)
+                      ]),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0, left: 72),
+                            child: Text(
+                              (total / 5).toString(),
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: fontSize(20),
-
-                                 shadows: [
-                                 Shadow(
-                                  offset: Offset(2.0, 2.0),
-                                  blurRadius: 20.0,
-                                  color: Color.fromRGBO(220,255,255, 30.0),
-
-
-
-                                ),
-                    ],
+                                shadows: const [
+                                  Shadow(
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 20.0,
+                                    color: Color.fromRGBO(220, 255, 255, 30.0),
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.end,
                             ),
-                            textAlign: TextAlign.end,
                           ),
-                        ),
 /*
                             Padding(
                               padding: const EdgeInsets.only(left:8.0),
@@ -114,21 +107,19 @@ import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
                          ),
                               ),
                             ),*/
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
+              ),
+            ],
           ),
-                ),
-          ],
-          ),
-                );
-
-
-        },
-      );
-    }
+        );
+      },
+    );
   }
+}
 
     /*
     return Padding(

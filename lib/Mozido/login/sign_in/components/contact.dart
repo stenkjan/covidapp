@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/login/constants.dart';
-import 'package:covidapp/Mozido/login/sign_up/signup.dart';
-import 'package:covidapp/Mozido/login/widgets/account_check.dart';
-import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Contact extends StatelessWidget {
@@ -12,7 +9,7 @@ class Contact extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Center(
@@ -40,7 +37,7 @@ class Contact extends StatelessWidget {
             // ],
             // ),
             ),
-        SizedBox(
+        const SizedBox(
           height: appPadding,
         ),
         /*  AccountCheck(

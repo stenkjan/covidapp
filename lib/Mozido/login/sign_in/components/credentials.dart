@@ -3,11 +3,7 @@ import 'package:covidapp/Mozido/services/auth_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/login/constants.dart';
-import 'package:covidapp/Mozido/login/widgets/rectangular_button.dart';
-import 'package:covidapp/Mozido/login/widgets/rectangular_input_field.dart';
 import 'package:provider/provider.dart';
-
-import '../signin.dart';
 
 class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
@@ -61,7 +57,7 @@ class Credentials extends StatelessWidget {
           ),
           const Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 30.0),
+              padding: EdgeInsets.only(left: 30.0),
               child: Text(
                 'Passwort vergessen?',
                 style: TextStyle(
@@ -83,23 +79,26 @@ class Credentials extends StatelessWidget {
                 children: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: Size(150, 30),
-                        primary: Color(0xFF029CF5),
+                        fixedSize: const Size(150, 30),
+                        primary: const Color(0xFF029CF5),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color(0x815DDFDF)),
+                          side: const BorderSide(color: Color(0x815DDFDF)),
                         ),
                       ),
                       child: const Text('Anmelden'),
                       onPressed: () async {
+                        // ignore: unnecessary_null_comparison
                         if (emailController.text != null &&
+                            // ignore: unnecessary_null_comparison
                             passwordController.text != null) {
                           await authService.signInWithEmailAndPassword(
                               emailController.text, passwordController.text);
                         } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                                "Sie müssen zuerst eine Email und ein Passwort angeben"),
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('''
+Sie müssen zuerst eine Email und ein Passwort angeben'''),
                           ));
                         }
                         /* signed_in = true;
@@ -107,10 +106,10 @@ class Credentials extends StatelessWidget {
                       }),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xE53EAF8A),
+                        primary: const Color(0xE53EAF8A),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Color(0x815DDFDF)),
+                          side: const BorderSide(color: Color(0x815DDFDF)),
                         ),
                       ),
                       child: const Text('Registrieren'),

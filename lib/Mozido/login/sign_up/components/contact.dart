@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/login/constants.dart';
-import 'package:covidapp/Mozido/login/sign_in/signin.dart';
-import 'package:covidapp/Mozido/login/sign_in/components/credentials.dart';
-import 'package:covidapp/Mozido/login/widgets/account_check.dart';
-import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'credentials.dart';
 
 class Social extends StatelessWidget {
   const Social({Key? key}) : super(key: key);
@@ -15,7 +9,7 @@ class Social extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 2,
         ),
         Center(
@@ -29,7 +23,7 @@ class Social extends StatelessWidget {
             _launchURL();
           },
         )),
-        SizedBox(
+        const SizedBox(
           height: appPadding,
         ),
         /*  AccountCheck(

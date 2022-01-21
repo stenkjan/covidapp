@@ -1,5 +1,5 @@
 class Global {
-  static final String title = "Long Covid App";
+  static const String title = "Long Covid App";
 
   /*  static final FirebaseAnalytics analytics = FIrebaseAnalytics();
 

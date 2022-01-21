@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:covidapp/Mozido/calendar_view/lrm_dataModel.dart';
+import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +8,16 @@ import 'package:provider/provider.dart';
 import 't2_amount.dart';
 import 't2_investment.dart';
 
-import 'login/sign_in/components/credentials.dart';
 import 'login/sign_in/signin.dart';
 
-class T2_home extends StatefulWidget {
-  T2_home({Key? key}) : super(key: key);
+class T2Home extends StatefulWidget {
+  const T2Home({Key? key}) : super(key: key);
 
   @override
-  _T2_homeState createState() => _T2_homeState();
+  _T2HomeState createState() => _T2HomeState();
 }
 
-class _T2_homeState extends State<T2_home> {
+class _T2HomeState extends State<T2Home> {
   @override
   void initState() {
     super.initState();
@@ -29,8 +28,9 @@ class _T2_homeState extends State<T2_home> {
     } */
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  @override
   Widget build(BuildContext context) {
     /*
     if (Credentials.signed_in = false) {
@@ -44,7 +44,7 @@ class _T2_homeState extends State<T2_home> {
       ///
       /// Drawer layout
       ///
-      drawer: DrawerLayout(),
+      drawer: const DrawerLayout(),
       body: Stack(
         children: <Widget>[
           //Login zwischenschieben
@@ -82,7 +82,7 @@ class _T2_homeState extends State<T2_home> {
                       left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Erfolge",
                         style: TextStyle(
@@ -113,7 +113,7 @@ class _T2_homeState extends State<T2_home> {
                 _card(Colors.lightBlueAccent, "30 Atemübungen", "28/7/2021",
                     "Fortschritt"),
 
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 )
               ],
@@ -124,7 +124,7 @@ class _T2_homeState extends State<T2_home> {
           /// Appbar Custom
           ///
           Container(
-            color: Color(0xFF313237),
+            color: const Color(0xFF313237),
             child: Padding(
               padding: const EdgeInsets.only(
                   top: 43.0, left: 20.0, right: 20.0, bottom: 10.0),
@@ -141,8 +141,8 @@ class _T2_homeState extends State<T2_home> {
                         },
                         child: Image.asset("lib/Mozido/Assets/tabBar.png")),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 10.0),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0, left: 10.0),
                     child: Text(
                       "Long Covid App",
                       style: TextStyle(
@@ -156,7 +156,7 @@ class _T2_homeState extends State<T2_home> {
                     child: Container(
                       height: 35.0,
                       width: 35.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.lightBlue,
                           borderRadius: BorderRadius.all(Radius.circular(50.0)),
                           image: DecorationImage(
@@ -180,7 +180,7 @@ class _T2_homeState extends State<T2_home> {
       child: Container(
         height: 120.0,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
             color: Color(0xFF363940),
             boxShadow: [
@@ -206,14 +206,14 @@ class _T2_homeState extends State<T2_home> {
                           width: 8.0,
                           decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  const BorderRadius.all(Radius.circular(20.0)),
                               color: _color),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Text(
                             _title,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Sans",
                                 fontWeight: FontWeight.w600,
@@ -222,7 +222,7 @@ class _T2_homeState extends State<T2_home> {
                         ),
                       ],
                     ),
-                    Icon(
+                    const Icon(
                       Icons.open_in_new,
                       size: 17.0,
                       color: Colors.white24,
@@ -238,7 +238,7 @@ class _T2_homeState extends State<T2_home> {
                   children: <Widget>[
                     Text(
                       _time,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontFamily: "Sans",
                           fontWeight: FontWeight.w100,
                           color: Colors.white54),
@@ -247,14 +247,14 @@ class _T2_homeState extends State<T2_home> {
                       children: <Widget>[
                         Text(
                           _value,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: "Sans",
                               color: Colors.white,
                               fontWeight: FontWeight.w800,
                               fontSize: 19.0),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4.0),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 4.0),
                           child: Icon(
                             Icons.check_circle,
                             size: 17.0,
@@ -278,12 +278,14 @@ class _T2_homeState extends State<T2_home> {
 /// Layout for drawer
 ///
 class DrawerLayout extends StatelessWidget {
+  const DrawerLayout({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
     return Drawer(
         child: Container(
-      color: Color(0xFF29303C),
+      color: const Color(0xFF29303C),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -293,7 +295,7 @@ class DrawerLayout extends StatelessWidget {
               Container(
                 height: 250.0,
                 width: 250.0,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius:
                       BorderRadius.only(bottomRight: Radius.circular(350.0)),
                   gradient: LinearGradient(
@@ -303,8 +305,8 @@ class DrawerLayout extends StatelessWidget {
                       colors: [Color(0xFF15EDED), Color(0xFF029CF5)]),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 70.0, left: 20.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 70.0, left: 20.0),
                 child: Text(
                   "Übersicht",
                   style: TextStyle(
@@ -317,12 +319,12 @@ class DrawerLayout extends StatelessWidget {
             ],
           ),
           Flexible(
-            child: new ListView(
+            child: ListView(
               children: <Widget>[
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new T2_home()));
+                          pageBuilder: (_, __, ___) => const T2Home()));
                     },
                     child: itemDrawer(Icons.home, "Übersicht")),
                 InkWell(
@@ -334,38 +336,39 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new T2_Investment()));
+                          pageBuilder: (_, __, ___) => const T2Investment()));
                     },
                     child: itemDrawer(Icons.style, "Übungen")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new T2Amount()));
+                          pageBuilder: (_, __, ___) => const T2Amount()));
                     },
                     child: itemDrawer(Icons.calendar_today, "Kalender")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => new SettingsScreen()));
+                          pageBuilder: (_, __, ___) => const SettingsScreen()));
                     },
                     child: itemDrawer(Icons.settings, "Einstellungen")),
-                SizedBox(
+                const SizedBox(
                   height: 50.0,
                 ),
                 ElevatedButton.icon(
-                  icon: Icon(Icons.logout_rounded, color: Colors.white10),
-                  label: Text("Ausloggen"),
+                  icon: const Icon(Icons.logout_rounded, color: Colors.white10),
+                  label: const Text("Ausloggen"),
                   onPressed: () async {
                     await authService.signOut();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Sie haben sich abgemeldet"),
                     ));
                     await authService.signOut().whenComplete(() =>
                         Navigator.of(context).push(PageRouteBuilder(
-                            pageBuilder: (_, __, ___) => new SignInScreen())));
+                            pageBuilder: (_, __, ___) =>
+                                const SignInScreen())));
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 3.0,
                 ),
               ],
@@ -382,7 +385,7 @@ Widget line(double width) {
   return Container(
     height: 0.5,
     width: width,
-    color: Color(0xFF86CBF9).withOpacity(0.6),
+    color: const Color(0xFF86CBF9).withOpacity(0.6),
   );
 }
 
@@ -407,10 +410,10 @@ Widget itemDrawer(IconData icon, String txt) {
             children: <Widget>[
               Text(
                 txt,
-                style: TextStyle(color: Colors.white70, fontSize: 15.5),
+                style: const TextStyle(color: Colors.white70, fontSize: 15.5),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
               )
             ],
           ),
@@ -420,13 +423,13 @@ Widget itemDrawer(IconData icon, String txt) {
   );
 }
 
-Widget _cardHeader(lrmDataModel item) {
+Widget _cardHeader(LrmDataModel item) {
   return Stack(
     children: <Widget>[
       Container(
         height: 220.0,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
             begin: Alignment.topLeft,
@@ -440,12 +443,12 @@ Widget _cardHeader(lrmDataModel item) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "Maximilian Stenk",
                     style: TextStyle(
@@ -457,12 +460,12 @@ Widget _cardHeader(lrmDataModel item) {
                   Icon(Icons.coronavirus)
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     "Männlich",
                     style: TextStyle(
@@ -473,13 +476,13 @@ Widget _cardHeader(lrmDataModel item) {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Erkrankungsdatum",
                     style: TextStyle(
                       color: Colors.white,
@@ -489,7 +492,7 @@ Widget _cardHeader(lrmDataModel item) {
                     ),
                   ),
                   Column(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         "Datum",
                         style: TextStyle(
@@ -521,7 +524,7 @@ Widget _cardHeader(lrmDataModel item) {
           width: 170.0,
           decoration: BoxDecoration(
               color: Colors.white10.withOpacity(0.1),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(200.0),
                   topRight: Radius.circular(20.0))),
         ),

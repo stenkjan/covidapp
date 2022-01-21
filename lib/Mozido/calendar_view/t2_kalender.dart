@@ -21,7 +21,7 @@ class T2Kalender extends StatefulWidget {
   @override
   // ignore: unnecessary_this
   T2KalenderState createState() => T2KalenderState(
-      itemSwitch: itemSwitch, questionChoiceString: this.questionChoiceString);
+      itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
 }
 
 class T2KalenderState extends State<T2Kalender> {
@@ -77,7 +77,7 @@ class T2KalenderState extends State<T2Kalender> {
             ),
             Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(width: 370, child: T2_Calendar())),
+                child: Container(width: 370, child: const T2Calendar())),
 
             ///
             /// Card under grafic line
@@ -359,7 +359,7 @@ class T2KalenderState extends State<T2Kalender> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           Row(
@@ -388,7 +388,7 @@ class T2KalenderState extends State<T2Kalender> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 0,
                           ),
                           Row(
@@ -403,18 +403,19 @@ class T2KalenderState extends State<T2Kalender> {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    side: BorderSide(color: Color(0xFF31A1C9)),
+                                    side: const BorderSide(
+                                        color: Color(0xFF31A1C9)),
                                   ),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   'Kommentar',
                                 ),
                               ),
-                              SizedBox(width: 15),
+                              const SizedBox(width: 15),
                               IconButton(
-                                  color: Color(0xB0E4DD09),
+                                  color: const Color(0xB0E4DD09),
                                   iconSize: 40,
-                                  icon: Icon(Icons.help),
+                                  icon: const Icon(Icons.help),
                                   onPressed: () {}),
                             ],
                           ),

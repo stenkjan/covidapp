@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -13,7 +15,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings UI')),
+      appBar: AppBar(title: const Text('Settings UI')),
       body: buildSettingsList(),
     );
   }
@@ -22,30 +24,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return SettingsList(
       sections: [
         SettingsSection(
-          title: Text('Common'),
+          title: const Text('Common'),
           tiles: [
             SettingsTile(
-              title: Text('Environment'),
-              leading: Icon(Icons.cloud_queue),
+              title: const Text('Environment'),
+              leading: const Icon(Icons.cloud_queue),
             ),
           ],
         ),
         SettingsSection(
-          title: Text('Account'),
+          title: const Text('Account'),
           tiles: [
             SettingsTile(
-                title: Text('Phone number'), leading: Icon(Icons.phone)),
-            SettingsTile(title: Text('Email'), leading: Icon(Icons.email)),
+                title: const Text('Phone number'),
+                leading: const Icon(Icons.phone)),
             SettingsTile(
-                title: Text('Sign out'), leading: Icon(Icons.exit_to_app)),
+                title: const Text('Email'), leading: const Icon(Icons.email)),
+            SettingsTile(
+                title: const Text('Sign out'),
+                leading: const Icon(Icons.exit_to_app)),
           ],
         ),
         SettingsSection(
-          title: Text('Security'),
+          title: const Text('Security'),
           tiles: [
             SettingsTile.switchTile(
-              title: Text('Lock app in background'),
-              leading: Icon(Icons.phonelink_lock),
+              title: const Text('Lock app in background'),
+              leading: const Icon(Icons.phonelink_lock),
               initialValue: lockInBackground,
               onToggle: (bool value) {
                 setState(() {
@@ -55,36 +60,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
             SettingsTile.switchTile(
-              title: Text('Use fingerprint'),
+              title: const Text('Use fingerprint'),
               // subtitle: 'Allow application to access stored fingerprint IDs.',
-              leading: Icon(Icons.fingerprint),
+              leading: const Icon(Icons.fingerprint),
               onToggle: (bool value) {},
               initialValue: false,
             ),
             SettingsTile.switchTile(
-              title: Text('Change password'),
-              leading: Icon(Icons.lock),
+              title: const Text('Change password'),
+              leading: const Icon(Icons.lock),
               initialValue: true,
               onToggle: (bool value) {},
             ),
             SettingsTile.switchTile(
-              title: Text('Enable Notifications'),
+              title: const Text('Enable Notifications'),
               //enabled: notificationsEnabled,
-              leading: Icon(Icons.notifications_active),
+              leading: const Icon(Icons.notifications_active),
               initialValue: true,
               onToggle: (value) {},
             ),
           ],
         ),
         SettingsSection(
-          title: Text('Misc'),
+          title: const Text('Misc'),
           tiles: [
             SettingsTile(
-                title: Text('Terms of Service'),
-                leading: Icon(Icons.description)),
+                title: const Text('Terms of Service'),
+                leading: const Icon(Icons.description)),
             SettingsTile(
-                title: Text('Open source licenses'),
-                leading: Icon(Icons.collections_bookmark)),
+                title: const Text('Open source licenses'),
+                leading: const Icon(Icons.collections_bookmark)),
           ],
         ),
       ],

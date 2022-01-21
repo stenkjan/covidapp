@@ -2,9 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
 
-
-
-
 class PieChartCustomPainter extends CustomPainter {
   final List healthscore;
   final double width;
@@ -18,10 +15,12 @@ class PieChartCustomPainter extends CustomPainter {
     var paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = width / 1.8;
-    healthscore.forEach((f) => total += f['amount']);
+    for (var f in healthscore) {
+      total += f['amount'];
+    }
     for (var i = 0; i < healthscore.length; i++) {
       final currentCategory = healthscore[i];
-      final sweepRadian = (currentCategory['amount'] / total ) * 2  * pi;
+      final sweepRadian = (currentCategory['amount'] / total) * 2 * pi;
       paint.color = AppColors.pieColors[i];
       canvas.drawArc(Rect.fromCircle(center: center, radius: radius),
           startRadian, sweepRadian, false, paint);

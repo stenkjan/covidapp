@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/login/constants.dart';
 import 'components/contact.dart';
 import 'components/credentials.dart';
 import 'components/head_text.dart';

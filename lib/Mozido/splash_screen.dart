@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 't2_home.dart';
@@ -31,16 +31,17 @@ class _SplashScreenMozidoState extends State<SplashScreenMozido> {
 
   /// Setting duration in splash screen
   startTime() async {
-    return new Timer(Duration(milliseconds: 4500), NavigatorPage);
+    return new Timer(const Duration(milliseconds: 4500), NavigatorPage);
   }
 
   /// Navigate user if already login or no
   void NavigatorPage() {
     Navigator.of(context).pushReplacement(
-        PageRouteBuilder(pageBuilder: (_, __, ___) => T2_home()));
+        PageRouteBuilder(pageBuilder: (_, __, ___) => T2Home()));
   }
 
   /// Code Create UI Splash Screen
+  @override
   Widget build(BuildContext context) {
     ///
     /// Check connectivity
@@ -53,46 +54,45 @@ class _SplashScreenMozidoState extends State<SplashScreenMozido> {
 
         Scaffold(
       backgroundColor: Colors.white,
+      //Removed unneccessary container
       body: Container(
-        child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    "lib/Screen/FullApps/Mozido/Assets/splashscreen.png",
-                  ),
-                  fit: BoxFit.cover)),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Container(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      children: [
-                        Image.asset(
-                          "lib/Screen/FullApps/AlliedWallet/Assets/icon_lnc.png",
-                          color: Colors.white,
-                          height: 29.0,
-                        ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        Text(
-                          "Mozido",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w200,
-                            fontSize: 36.0,
-                            letterSpacing: 1.5,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: const AssetImage(
+                  '''
+lib/Screen/FullApps/Mozido/Assets/splashscreen.png''',
                 ),
-              ),
+                fit: BoxFit.cover)),
+        child: Center(
+          child: SingleChildScrollView(
+            //Removed Container
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Image.asset(
+                      "lib/Screen/FullApps/AlliedWallet/Assets/icon_lnc.png",
+                      color: Colors.white,
+                      height: 29.0,
+                    ),
+                    const SizedBox(
+                      width: 20.0,
+                    ),
+                    const Text(
+                      "Mozido",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w200,
+                        fontSize: 36.0,
+                        letterSpacing: 1.5,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
@@ -100,3 +100,4 @@ class _SplashScreenMozidoState extends State<SplashScreenMozido> {
     );
   }
 }
+ */
