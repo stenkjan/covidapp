@@ -19,14 +19,9 @@ class T2Kalender extends StatefulWidget {
       : super(key: key);
 
   @override
-<<<<<<< HEAD
-  // ignore: unnecessary_this
+  // ignore: no_logic_in_create_state
   T2KalenderState createState() => T2KalenderState(
       itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
-=======
-  // ignore: no_logic_in_create_state
-  T2KalenderState createState() => T2KalenderState(itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
->>>>>>> 81d3a234a55b9b7c60ad089d6e30f86037b2c4ca
 }
 
 class T2KalenderState extends State<T2Kalender> {
@@ -209,12 +204,8 @@ class T2KalenderState extends State<T2Kalender> {
                         ),
                       ),
                     ),
-<<<<<<< HEAD
 
                     //new LOGIC here
-=======
-                    
->>>>>>> 81d3a234a55b9b7c60ad089d6e30f86037b2c4ca
                     Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
                       child: Column(
