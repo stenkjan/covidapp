@@ -71,7 +71,11 @@ class MyApp extends StatelessWidget {
                   return const Wrapper();
                 } else {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: SizedBox(
+                      child: CircularProgressIndicator(),
+                      height: 50.0,
+                      width: 50.0,
+                    ),
                   );
                 }
               },

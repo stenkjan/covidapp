@@ -19,7 +19,13 @@ class Wrapper extends StatelessWidget {
           return user == null ? const SignInScreen() : const T2Home();
         } else {
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+              child: SizedBox(
+                child: CircularProgressIndicator(),
+                height: 50.0,
+                width: 50.0,
+              ),
+            ),
           );
         }
       },
