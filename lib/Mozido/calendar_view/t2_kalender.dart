@@ -35,7 +35,6 @@ class T2KalenderState extends State<T2Kalender> {
     toggleHeadline();
   }
 
-  List<String> headline = const ["Zustand", "Härtefaelle", "Krankheitsgrad"];
   var questionChoices = <String>[];
   int arrowCount = 0;
   bool upToggle = false;
@@ -128,8 +127,7 @@ class T2KalenderState extends State<T2Kalender> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    calenderChoices[arrowCount]['name'] ??
-                                        'null',
+                                    headline[arrowCount]['tag'] ?? 'null',
                                     // headline[arrow_up_count],
                                     style: const TextStyle(
                                         fontFamily: "Sans",
@@ -423,180 +421,6 @@ class T2KalenderState extends State<T2Kalender> {
                       ),
                     ),
                     //new LOGIC ends here
-
-                    /* Padding(
-                      padding: const EdgeInsets.only(top: 25.0, right: 20.0),
-                        
-                     child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      calenderChoices[arrowCount]['item1'] ?? 'null',
-                                      style: const TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                    text: calenderChoices[arrowCount]['icon1'] ?? 'null', // emoji characters
-                                    style: const TextStyle(
-                                      fontFamily: 'EmojiOne',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        questionChoices.add(calenderChoices[arrowCount]['item1']);
-                                        questionChoice();
-                                        //method giving data to calendar;
-                                      }),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      calenderChoices[arrowCount]['item2'] ?? 'null',
-                                      style: const TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                    text: calenderChoices[arrowCount]['icon2'] ?? 'null', // emoji characters
-                                    style: const TextStyle(
-                                      fontFamily: 'EmojiOne',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        questionChoices.add(calenderChoices[arrowCount]['item2']);
-                                        questionChoice();
-                                        //method giving data to calendar;
-                                      }),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.yellow,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      calenderChoices[arrowCount]['item3'] ?? 'null',
-                                      style: const TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                    text: calenderChoices[arrowCount]['icon3'] ?? 'null', // emoji characters
-                                    style: const TextStyle(
-                                      fontFamily: 'EmojiOne',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        questionChoices.add(calenderChoices[arrowCount]['item3']);
-                                        questionChoice();
-                                        //method giving data to calendar;
-                                      }),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    height: 30.0,
-                                    width: 3.0,
-                                    color: Colors.white12,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Text(
-                                      calenderChoices[arrowCount]['item4'] ?? 'null',
-                                      style: const TextStyle(
-                                          fontFamily: "Sans",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 17.5,
-                                          letterSpacing: 1.5,
-                                          color: Colors.white70),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                    text: calenderChoices[arrowCount]['icon4'] ?? 'null', // emoji characters
-                                    style: const TextStyle(
-                                      fontFamily: 'EmojiOne',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        questionChoices.add(calenderChoices[arrowCount]['item4']);
-                                        questionChoice();
-                                        //method giving data to calendar;
-                                      }),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ), 
-                    ), */
                   ],
                 ),
               ),
