@@ -1,5 +1,5 @@
 name: covidapp
-description: A new Flutter project.
+description: Long Covid App.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -37,6 +37,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
+  flutter_localizations: 
+    sdk: flutter
+    version: ^0.0.0
   flutter_sparkline: ^0.1.0
   intl: ^0.17.0
   meta: ^1.2.3
@@ -49,12 +52,15 @@ dependencies:
   toast: ^0.1.5
   url_launcher: ^6.0.15
 
+flutter_localizations:
+  sdk: flutter
+  intl: ^0.17.0
+
 dev_dependencies:
   firebase_analytics: ^9.0.5
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

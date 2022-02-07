@@ -11,16 +11,16 @@ class HeadText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: appPadding,
-        vertical: appPadding / 2,
+        vertical: appPadding / 10,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: size.height * 0.25),
+          SizedBox(height: size.height * 0.1),
           const Image(
             image: AssetImage("images/long_covid_logo.png"),
             width: 80,
-            height: 80,
+            height: 40,
           ),
           // SizedBox(height: 5),
           const Text(

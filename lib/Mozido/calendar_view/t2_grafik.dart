@@ -52,135 +52,133 @@ class T2GrafikState extends State<T2Grafik> {
 
     /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
 
-    return Container(
-      child: Column(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  height: SizeConfig.getHeight(context) / 14,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                          height: 40,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              color: Colors.white70,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 20.0,
-                                  spreadRadius: 2.0,
-                                )
-                              ]),
-                          margin: EdgeInsets.only(
-                              left: SizeConfig.getWidth(context) / 20),
-                          child: Center(
-                            child: Text(
-                              "Woche " + week.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: fontSize(25),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      Container(
-                        width: SizeConfig.getWidth(context) / 3.7,
+    return Column(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: SizeConfig.getHeight(context) / 14,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                        height: 40,
+                        width: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 20.0,
+                                spreadRadius: 2.0,
+                              )
+                            ]),
                         margin: EdgeInsets.only(
-                            right: SizeConfig.getWidth(context) / 30),
-                        child: Row(
-                          children: <Widget>[
-                            ArrowButton(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 5),
-                                iconbutton: IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    size: fontSize(17),
-                                  ),
-                                  onPressed: () {
-                                    weekChange = false;
-                                    toggleWeek();
-                                  },
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: SizeConfig.getWidth(context) / 50)),
-                            ArrowButton(
+                            left: SizeConfig.getWidth(context) / 20),
+                        child: Center(
+                          child: Text(
+                            "Woche " + week.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: fontSize(25),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )),
+                    Container(
+                      width: SizeConfig.getWidth(context) / 3.7,
+                      margin: EdgeInsets.only(
+                          right: SizeConfig.getWidth(context) / 30),
+                      child: Row(
+                        children: <Widget>[
+                          ArrowButton(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 5),
                               iconbutton: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_forward_ios,
+                                  Icons.arrow_back_ios,
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  weekChange = true;
+                                  weekChange = false;
                                   toggleWeek();
-                                  if (kDebugMode) {
-                                    print(week);
-                                  }
                                 },
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  left: SizeConfig.getWidth(context) / 50)),
+                          ArrowButton(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 5),
+                            iconbutton: IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                                size: fontSize(17),
                               ),
+                              onPressed: () {
+                                weekChange = true;
+                                toggleWeek();
+                                if (kDebugMode) {
+                                  print(week);
+                                }
+                              },
                             ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Column(
-                  children: <Widget>[
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: healthscore.map((data) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                  margin: const EdgeInsets.only(right: 10),
-                                  width: 10,
-                                  height: 10,
-                                  decoration: BoxDecoration(
-                                      color: AppColors
-                                          .pieColors[healthscore.indexOf(data)],
-                                      shape: BoxShape.circle),
-                                ),
-                                Text(
-                                  data['name'],
-                                  style: TextStyle(
-                                    fontSize: fontSize(16),
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        }).toList(),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 120.0,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 5.0),
-                      height: SizeConfig.getHeight(context) / 9,
-                      child: const PieChart(),
-                    ),
+                    )
                   ],
                 ),
-              ],
-            ),
+              ),
+              Column(
+                children: <Widget>[
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: healthscore.map((data) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                margin: const EdgeInsets.only(right: 10),
+                                width: 10,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                    color: AppColors
+                                        .pieColors[healthscore.indexOf(data)],
+                                    shape: BoxShape.circle),
+                              ),
+                              Text(
+                                data['name'],
+                                style: TextStyle(
+                                  fontSize: fontSize(16),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 120.0,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(right: 5.0),
+                    height: SizeConfig.getHeight(context) / 9,
+                    child: const PieChart(),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

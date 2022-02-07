@@ -1,5 +1,7 @@
 import 'package:covidapp/Mozido/models/user_models.dart';
+import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/services.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
@@ -27,13 +29,29 @@ class AuthService {
   Future<User?> createUserWithEmailAndPasswort(
     String email,
     String password,
+    String firstname,
+    String lastname,
+    String birthday,
   ) async {
-    final credential = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-
-    return _userFromFirebase(credential.user);
+    try {
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      //create a new user doc with uid
+      await DatabaseService(uid: credential.user!.uid)
+          .updateUserData(email, firstname, lastname, birthday);
+      return _userFromFirebase(credential.user);
+    } catch (signUpError) {
+      if (signUpError is PlatformException) {
+        if (signUpError.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
+          /// Diese Email ist bereits registriert.
+        }
+        if (signUpError.code == 'ERROR_INVALID_EMAIL') {
+          /// Diese Email ist nicht korrekt.
+        }
+      }
+    }
   }
 
   Future<void> signOut() async {
