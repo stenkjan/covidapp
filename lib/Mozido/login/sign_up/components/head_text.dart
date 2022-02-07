@@ -17,12 +17,14 @@ class HeadText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: size.height * 0.1),
-          const Image(
-            image: AssetImage("images/long_covid_logo.png"),
-            width: 80,
-            height: 40,
+          Center(
+            child: const Image(
+              image: AssetImage("images/long_covid_logo.png"),
+              width: 30,
+              height: 30,
+            ),
           ),
-          // SizedBox(height: 5),
+          const SizedBox(height: 2),
           const Text(
             'LONG COVID APP',
             style: TextStyle(
