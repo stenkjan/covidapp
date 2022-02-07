@@ -362,10 +362,7 @@ class DrawerLayout extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Sie haben sich abgemeldet"),
                     ));
-                    await authService.signOut().whenComplete(() =>
-                        Navigator.of(context).push(PageRouteBuilder(
-                            pageBuilder: (_, __, ___) =>
-                                const SignInScreen())));
+                    await authService.signOut();
                   },
                 ),
                 const SizedBox(

@@ -149,7 +149,7 @@ class _CredentialsState extends State<Credentials> {
             ),
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           Center(
             child: Row(
