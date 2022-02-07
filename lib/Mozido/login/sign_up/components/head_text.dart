@@ -17,12 +17,11 @@ class HeadText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: size.height * 0.1),
-          Center(
-            child: const Image(
-              image: AssetImage("images/long_covid_logo.png"),
-              width: 30,
-              height: 30,
-            ),
+          const Image(
+            image: AssetImage("images/long_covid_logo.png"),
+            width: 30,
+            height: 30,
+            color: Color(0xE53EAF8A),
           ),
           const SizedBox(height: 2),
           const Text(

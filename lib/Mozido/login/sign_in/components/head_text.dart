@@ -20,8 +20,9 @@ class HeadText extends StatelessWidget {
           Center(
             child: const Image(
               image: AssetImage("images/long_covid_logo.png"),
-              width: 50,
-              height: 50,
+              color: Color(0xE53EAF8A),
+              width: 60,
+              height: 60,
             ),
           ),
           const SizedBox(height: 10),
