@@ -19,8 +19,13 @@ class T2Kalender extends StatefulWidget {
       : super(key: key);
 
   @override
+<<<<<<< HEAD
   T2KalenderState createState() => T2KalenderState(
       itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
+=======
+  // ignore: no_logic_in_create_state
+  T2KalenderState createState() => T2KalenderState(itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
+>>>>>>> master
 }
 
 class T2KalenderState extends State<T2Kalender> {
@@ -201,8 +206,12 @@ class T2KalenderState extends State<T2Kalender> {
                         ),
                       ),
                     ),
+<<<<<<< HEAD
 
                     //new LOGIC here
+=======
+                    
+>>>>>>> master
                     Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
                       child: Column(
