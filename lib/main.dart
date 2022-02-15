@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'Mozido/content/calendar_content.dart';
+import 'Mozido/services/calendar_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         providers: [
           Provider<AuthService>(
             create: (_) => AuthService(),
+
             //     StreamProvider<FirebaseUser>.value(stream: FirebaseAuth.instance.onAuthStateChanged),
             // //   //Provider(create: (context) => UserModel)
             //     ChangeNotifierProxyProvider<CatalogModel, CartModel>(
@@ -34,6 +37,12 @@ class MyApp extends StatelessWidget {
             //         cart.catalog = catalog;
             //         return cart;
             //       },
+          ),
+          Provider<CalendarService>(
+            create: (_) => CalendarService(),
+          ),
+          ChangeNotifierProvider<CalendarContent>(
+            create: (context) => CalendarContent(),
           ),
         ],
         child: MaterialApp(

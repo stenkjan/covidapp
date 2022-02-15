@@ -1,18 +1,18 @@
-import 'package:covidapp/Mozido/calendar_view/t2_grafik.dart';
-import 'package:covidapp/Mozido/calendar_view/t2_kalender.dart';
+import 'package:covidapp/Mozido/calendar_view/grafik.dart';
+import 'package:covidapp/Mozido/calendar_view/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'content/size.dart';
+import '../content/size.dart';
 
-class T2Amount extends StatefulWidget {
-  const T2Amount({Key? key}) : super(key: key);
+class CalendarTabBar extends StatefulWidget {
+  const CalendarTabBar({Key? key}) : super(key: key);
 
   @override
-  _T2AmountState createState() => _T2AmountState();
+  _CalendarTabBarState createState() => _CalendarTabBarState();
 }
 
-class _T2AmountState extends State<T2Amount> {
+class _CalendarTabBarState extends State<CalendarTabBar> {
   bool itemSwitch = false;
   String questionChoice = "";
   @override
@@ -104,7 +104,7 @@ class _T2AmountState extends State<T2Amount> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 5.0, right: 5.0, top: 5.0),
-                      child: T2Kalender(
+                      child: Calendar(
                           itemSwitch: itemSwitch,
                           questionChoiceString: questionChoice),
                     ),

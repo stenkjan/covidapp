@@ -7,6 +7,9 @@ class DatabaseService {
   //collection reference
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+  final CollectionReference calendarCollection =
+      FirebaseFirestore.instance.collection('calendar');
+
   //db reference
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
@@ -17,6 +20,19 @@ class DatabaseService {
       'firstname': firstname,
       'lastname': lastname,
       'birthday': birthday,
+    });
+  }
+
+  Future updateCalendarModel(String mood, String muedigkeit, String atemnot,
+      String sinne, String herz, String schlaf) async {
+    return await calendarCollection.doc(uid).set({
+      'id': uid,
+      'mood': mood,
+      'muedigkeit': muedigkeit,
+      'atemnot': atemnot,
+      'sinne': sinne,
+      'herz': herz,
+      'schlaf': schlaf,
     });
   }
   // Future<CalendarModel> getCalenderModel(String id) async {

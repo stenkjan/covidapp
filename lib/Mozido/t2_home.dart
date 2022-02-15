@@ -5,7 +5,7 @@ import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 't2_amount.dart';
+import 'calendar_view/calendar_tab_bar.dart';
 import 't2_investment.dart';
 
 import 'login/sign_in/signin.dart';
@@ -342,7 +342,7 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const T2Amount()));
+                          pageBuilder: (_, __, ___) => const CalendarTabBar()));
                     },
                     child: itemDrawer(Icons.calendar_today, "Kalender")),
                 InkWell(

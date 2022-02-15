@@ -57,7 +57,7 @@ List calenderChoices = [
   */
 ];
 
-final List mood = [
+final List moodList = [
   {"name": "Ausgezeichnet", "icon1": "😍️\u200d", "amount": 1},
   {"name": "Gut", "icon2": "☺\u200d", "amount": 2},
   {"name": "Neutral", "icon3": "😐️\u200d", "amount": 3},
@@ -65,6 +65,7 @@ final List mood = [
 ];
 
 final List headline = [
+  {"tag": "Zustand", "name": "Gefühlszustand"},
   {"tag": "Müdigkeit", "name": "Müdigkeit und Erschöpfung", "amount": 1},
   {"tag": "Atemnot", "name": "Kurzatmigkeit/Atemnot", "amount": 2},
   {"tag": "Sinne", "name": "Geschmacksverlust/Geruchsverlust", "amount": 3},
