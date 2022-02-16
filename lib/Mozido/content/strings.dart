@@ -66,19 +66,43 @@ final List moodList = [
 
 final List headline = [
   {"tag": "Zustand", "name": "Gefühlszustand"},
-  {"tag": "Müdigkeit", "name": "Müdigkeit und Erschöpfung", "amount": 1},
-  {"tag": "Atemnot", "name": "Kurzatmigkeit/Atemnot", "amount": 2},
-  {"tag": "Sinne", "name": "Geschmacksverlust/Geruchsverlust", "amount": 3},
-  {"tag": "Herz/Kreislauf", "name": "Herz-/Kreislaufprobleme", "amount": 4},
-  {"tag": "Schlaf", "name": "Schlafstörungen", "amount": 5},
+  {
+    "tag": "Müdigkeit",
+    "name": "Müdigkeit und Erschöpfung",
+    "desc": "Geben Sie Ihren allgemeinen Zustand an",
+    "min": 1,
+    "max": 10
+  },
+  {
+    "tag": "Atemnot",
+    "name": "Kurzatmigkeit/Atemnot",
+    "desc": "Wie oft verspüren Sie Kurzatmigkeit/Atemnot?"
+  },
+  {
+    "tag": "Sinne",
+    "name": "Geschmacksverlust/Geruchsverlust",
+    "desc": "Verspüren Sie Geruchs-/ und Geschmacksverlust?"
+  },
+  {
+    "tag": "Herz/Kreislauf",
+    "name": "Herz-/Kreislaufprobleme",
+    "desc": "Haben Sie Herz-/Kreislaufprobleme?"
+  },
+  {
+    "tag": "Schlaf",
+    "name": "Schlafstörungen",
+    "desc": "Geben Sie die Qualität Ihres Schlafes an",
+    "min": 1,
+    "max": 10
+  },
   {
     "tag": "Nerven",
     "name": "Kopfschmerzen und Konzentrationsschwäche",
-    "amount": 6
+    "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwäche?"
   },
   {
     "tag": "Andere Symptome",
     "name": "Immunstörungen und Angststörungen, etc.",
-    "amount": 7
+    "desc": "Bitte beschreiben Sie diese"
   },
 ];

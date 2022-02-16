@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 
 class PieChartCustomPainter extends CustomPainter {
   final List healthscore;

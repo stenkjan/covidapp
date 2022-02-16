@@ -1,24 +1,23 @@
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CalendarChoices extends StatefulWidget {
-  const CalendarChoices({Key? key}) : super(key: key);
+class CalendarMood extends StatefulWidget {
+  const CalendarMood({Key? key}) : super(key: key);
   @override
-  CalendarChoicesState createState() => CalendarChoicesState();
+  CalendarMoodState createState() => CalendarMoodState();
   // TODO: implement createState
 
 }
 
-class CalendarChoicesState extends State<CalendarChoices> {
+class CalendarMoodState extends State<CalendarMood> {
   var zustand = <String>[];
   @override
   Widget build(BuildContext context) {
-    final db_service = Provider.of<DatabaseService>(context);
-
+    final calContent = Provider.of<CalendarContent>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
       child: Column(
@@ -49,7 +48,7 @@ class CalendarChoicesState extends State<CalendarChoices> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(calenderChoices[0]['item1']);
+                            zustand.add(moodList[0]['item1']);
                             //method giving data to calendar;
                           }),
                   ),
@@ -71,14 +70,14 @@ class CalendarChoicesState extends State<CalendarChoices> {
                 child: Center(
                   child: RichText(
                     text: TextSpan(
-                        text: calenderChoices[0]['icon2'] ??
-                            'null', // emoji characters
+                        text:
+                            moodList[1]['icon2'] ?? 'null', // emoji characters
                         style: const TextStyle(
                           fontFamily: 'EmojiOne',
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(calenderChoices[0]['item2']);
+                            zustand.add(moodList[0]['item2']);
 
                             //method giving data to calendar;
                           }),
@@ -101,14 +100,14 @@ class CalendarChoicesState extends State<CalendarChoices> {
                 child: Center(
                   child: RichText(
                     text: TextSpan(
-                        text: calenderChoices[0]['icon3'] ??
-                            'null', // emoji characters
+                        text:
+                            moodList[2]['icon3'] ?? 'null', // emoji characters
                         style: const TextStyle(
                           fontFamily: 'EmojiOne',
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(calenderChoices[0]['item3']);
+                            zustand.add(moodList[0]['item3']);
 
                             //method giving data to calendar;
                           }),
@@ -131,14 +130,14 @@ class CalendarChoicesState extends State<CalendarChoices> {
                 child: Center(
                   child: RichText(
                     text: TextSpan(
-                        text: calenderChoices[0]['icon4'] ??
-                            'null', // emoji characters
+                        text:
+                            moodList[3]['icon4'] ?? 'null', // emoji characters
                         style: const TextStyle(
                           fontFamily: 'EmojiOne',
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(calenderChoices[0]['item4']);
+                            zustand.add(moodList[0]['item4']);
 
                             //method giving data to calendar;
                           }),
@@ -158,17 +157,17 @@ class CalendarChoicesState extends State<CalendarChoices> {
                 height: 25,
                 child: SizedBox(
                   child: Text(
-                      "moodList[0]['name'] " +
-                          ": " +
-                          calenderChoices[0]['item1'] +
-                          " - " +
-                          calenderChoices[0]['item4'],
+                      '${headline[0]['name']}'
+                      ": "
+                      '${moodList[0]['name']}'
+                      " - "
+                      '${moodList[3]['name']}',
                       maxLines: 1,
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontFamily: "Sans",
                           fontWeight: FontWeight.w400,
                           color: Colors.white70)),
@@ -209,5 +208,10 @@ class CalendarChoicesState extends State<CalendarChoices> {
         ],
       ),
     );
+  }
+
+  @override
+  Future<void> dispose() async {
+    super.dispose();
   }
 }

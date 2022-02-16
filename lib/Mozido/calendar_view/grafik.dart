@@ -1,4 +1,4 @@
-import 'package:covidapp/Mozido/calendar_view/charts/pie_chart.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/foundation.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 //import 'package:flutter_sparkline/flutter_sparkline.dart';
 
-import 'charts/arrow_button.dart';
-import 'charts/colors.dart';
+import 'widgets/arrow_button.dart';
+import 'widgets/colors.dart';
 
 class T2Grafik extends StatefulWidget {
   const T2Grafik({Key? key}) : super(key: key);

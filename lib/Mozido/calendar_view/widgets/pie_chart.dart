@@ -1,9 +1,9 @@
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/calendar_view/charts/pie_chart_cp.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart_cp.dart';
 
-import 'package:covidapp/Mozido/calendar_view/charts/colors.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 
 class PieChart extends StatefulWidget {
   const PieChart({Key? key}) : super(key: key);

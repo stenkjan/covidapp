@@ -104,9 +104,7 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 5.0, right: 5.0, top: 5.0),
-                      child: Calendar(
-                          itemSwitch: itemSwitch,
-                          questionChoiceString: questionChoice),
+                      child: Calendar(),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(

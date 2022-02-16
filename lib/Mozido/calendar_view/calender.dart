@@ -1,6 +1,12 @@
 // ignore_for_file: no_logic_in_create_state, sized_box_for_whitespace, unused_local_variable, unused_import, file_names
 
-import 'package:covidapp/Mozido/calendar_view/calendar_mood.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_atemnot.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_herz.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_muedigkeit.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_nerven.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_schlaf.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_sinne.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
@@ -11,31 +17,16 @@ import 'package:provider/provider.dart';
 // import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'calendar_form.dart';
-import 'charts/arrow_button.dart';
+import 'widgets/arrow_button.dart';
 
 class Calendar extends StatefulWidget {
-  final bool itemSwitch;
-  final String questionChoiceString;
-  const Calendar(
-      {Key? key, required this.itemSwitch, required this.questionChoiceString})
-      : super(key: key);
+  const Calendar({Key? key}) : super(key: key);
 
   @override
-  CalendarState createState() => CalendarState(
-      itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
+  CalendarState createState() => CalendarState();
 }
 
 class CalendarState extends State<Calendar> {
-  bool itemSwitch = false;
-  String questionChoiceString;
-
-  CalendarState({required this.itemSwitch, required this.questionChoiceString});
-  @override
-  void initState() {
-    super.initState();
-    toggleHeadline();
-  }
-
   var questionChoices = <String>[];
   int arrowCount = 0;
   bool upToggle = false;
@@ -67,193 +58,135 @@ class CalendarState extends State<Calendar> {
       return size * SizeConfig.getWidth(context) / 414;
     }
 
-    final muedigkeit = Provider.of<CalendarContent>(context);
-    final atemnot = Provider.of<CalendarContent>(context);
-    final sinne = Provider.of<CalendarContent>(context);
-    final herz = Provider.of<CalendarContent>(context);
-    final schlaf = Provider.of<CalendarContent>(context);
-    final nerven = Provider.of<CalendarContent>(context);
+    final calContent = Provider.of<CalendarContent>(context);
 
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 00.0,
-            ),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(width: 370, child: const CalendarForm())),
-            Expanded(
-              child: DefaultTabController(
-                length: 7,
-                child: Scaffold(
-                  backgroundColor: Colors.transparent,
-                  appBar: PreferredSize(
-                    preferredSize:
-                        const Size.fromHeight(42.0), // here the desired height
-                    child: AppBar(
-                      backgroundColor: Colors.transparent,
-                      elevation: 0.0,
-                      centerTitle: true,
-                      automaticallyImplyLeading: false,
-                      title: Container(
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15.0)),
-                            border: Border.all(color: Colors.black54),
-                            color: Colors.black26),
-                        child: TabBar(
-                          indicatorColor: const Color(0xFF31A1C9),
-                          labelColor: Colors.white,
-                          unselectedLabelColor: Colors.white54,
-                          indicator: ShapeDecoration.fromBoxDecoration(
-                              const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15.0)),
-                                  color: Color(0xFF31A1C9))),
-                          tabs: const [
-                            Tab(
-                              child: Icon(
-                                Icons.mood,
-                                size: 17.0,
-                              ),
+      body: Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 00.0,
+          ),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(width: 370, child: const CalendarForm())),
+          Expanded(
+            child: DefaultTabController(
+              length: 7,
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: PreferredSize(
+                  preferredSize:
+                      const Size.fromHeight(42.0), // here the desired height
+                  child: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
+                    centerTitle: true,
+                    automaticallyImplyLeading: false,
+                    title: Container(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15.0)),
+                          border: Border.all(color: Colors.black54),
+                          color: Colors.black26),
+                      child: TabBar(
+                        indicatorColor: const Color(0xFF31A1C9),
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.white54,
+                        indicator: ShapeDecoration.fromBoxDecoration(
+                            const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0)),
+                                color: Color(0xFF31A1C9))),
+                        tabs: const [
+                          Tab(
+                            child: Icon(
+                              Icons.mood,
+                              size: 17.0,
                             ),
-                            Tab(
-                                child: Icon(
-                              Icons.sentiment_very_dissatisfied,
-                              size: 17.0,
-                            )),
-                            Tab(
-                                child: Icon(
-                              Icons.air,
-                              size: 17.0,
-                            )),
-                            Tab(
-                                child: Icon(
-                              Icons.sensors,
-                              size: 17.0,
-                            )),
-                            Tab(
-                                child: Icon(
-                              Icons.monitor,
-                              size: 17.0,
-                            )),
-                            Tab(
-                                child: Icon(
-                              Icons.night_shelter,
-                              size: 17.0,
-                            )),
-                            Tab(
-                                child: Icon(
-                              Icons.psychology,
-                              size: 17.0,
-                            )),
-                          ],
-                        ),
+                          ),
+                          Tab(
+                              child: Icon(
+                            Icons.sentiment_very_dissatisfied,
+                            size: 17.0,
+                          )),
+                          Tab(
+                              child: Icon(
+                            Icons.air,
+                            size: 17.0,
+                          )),
+                          Tab(
+                              child: Icon(
+                            Icons.sensors,
+                            size: 17.0,
+                          )),
+                          Tab(
+                              child: Icon(
+                            Icons.monitor,
+                            size: 17.0,
+                          )),
+                          Tab(
+                              child: Icon(
+                            Icons.night_shelter,
+                            size: 17.0,
+                          )),
+                          Tab(
+                              child: Icon(
+                            Icons.psychology,
+                            size: 17.0,
+                          )),
+                        ],
                       ),
                     ),
                   ),
+                ),
 
-                  ///
-                  /// Body tabBar
-                  ///
-                  body: TabBarView(
-                    children: [
-                      const Padding(
-                        padding:
-                            EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
-                        child: CalendarMood(),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5.0, right: 5.0, top: 5.0),
-                        child: Container(
-                          width: SizeConfig.getWidth(context),
-                          decoration: BoxDecoration(boxShadow: [
-                            BoxShadow(
-                                color: Colors.blue[900]!.withOpacity(0.1),
-                                blurRadius: 50,
-                                spreadRadius: 40,
-                                offset: const Offset(40, 0)),
-                            const BoxShadow(
-                                color: Colors.white12,
-                                blurRadius: 30,
-                                spreadRadius: 20,
-                                offset: Offset(20, 0)),
-                          ], shape: BoxShape.circle, color: Colors.white30),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.getWidth(context) / 50,
-                              vertical: SizeConfig.getHeight(context) / 100),
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned.fill(
-                                top: 150,
-                                bottom: -100,
-                                left: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xFF31A1C9)
-                                                .withOpacity(0.6),
-                                            blurRadius: 50,
-                                            spreadRadius: 20,
-                                            offset: const Offset(20, 0)),
-                                        const BoxShadow(
-                                            color: Colors.white12,
-                                            blurRadius: 50,
-                                            spreadRadius: 20,
-                                            offset: Offset(0, 0)),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      color: Colors.white30),
-                                ),
-                              ),
-                              Positioned.fill(
-                                top: -100,
-                                bottom: -100,
-                                left: -300,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xFF31A1C9)
-                                                .withOpacity(0.2),
-                                            blurRadius: 300,
-                                            spreadRadius: 40,
-                                            offset: const Offset(10, 0)),
-                                        const BoxShadow(
-                                            color: Color(0xFF31A1C9),
-                                            blurRadius: 150,
-                                            spreadRadius: 80,
-                                            offset: Offset(20, 0)),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      color: Colors.white30),
-                                ),
-                              ),
-
-                              // const T2Grafik(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                ///
+                /// Body tabBar
+                ///
+                body: const TabBarView(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarMood(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarMuedigkeit(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarAtemnot(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarSinne(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarHerz(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarSchlaf(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      child: CalendarNerven(),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 
     ///
     /// Card under grafic line
     ///
-
+/* 
     Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -375,9 +308,9 @@ class CalendarState extends State<Calendar> {
                 ),
               ),
             ),
-
-            //new LOGIC here
-            /*     Padding(
+ */
+    //new LOGIC here
+    /*     Padding(
                       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
                       child: Column(
                         children: [
@@ -593,11 +526,11 @@ class CalendarState extends State<Calendar> {
                       ),
                     ),
                     */
-            //new LOGIC ends here
-          ],
+    //new LOGIC ends here
+    /*     ],
         ),
       ),
-    );
+    ); */
     const SizedBox(
       height: 30.0,
     );
@@ -607,7 +540,7 @@ class CalendarState extends State<Calendar> {
     );  */
   }
 
-  void toggleHeadline() {
+/*   void toggleHeadline() {
     setState(() {
       if (upToggle) {
         arrowCount++;
@@ -626,30 +559,9 @@ class CalendarState extends State<Calendar> {
       }
     });
   }
+ */
 
-  void calendarVisualizer() {
-    final calChoice = Provider.of<CalendarContent>(context);
-    if (arrowCount == 1) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-    if (arrowCount == 2) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-    if (arrowCount == 1) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-    if (arrowCount == 1) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-    if (arrowCount == 1) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-    if (arrowCount == 1) {
-      calChoice.calendarContentmood(arrowCount);
-    }
-  }
-
-  void questionChoice() {
+  /* void questionChoice() {
     String questionChoiceString = questionChoices.last;
     itemSwitch = true;
     if (widget.itemSwitch) {
@@ -659,5 +571,5 @@ class CalendarState extends State<Calendar> {
     }
     itemSwitch = false;
     //return  question_choice;
-  }
+  } */
 }

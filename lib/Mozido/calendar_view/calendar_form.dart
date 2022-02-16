@@ -13,8 +13,6 @@ class CalendarForm extends StatefulWidget {
 }
 
 class _CalendarFormState extends State<CalendarForm> {
-  late bool itemSwitch;
-  late String questionChoiceString;
   late CalendarController _controller;
   late Map<DateTime, List<dynamic>> _events;
   late List<dynamic> _selectedEvents;
@@ -29,11 +27,12 @@ class _CalendarFormState extends State<CalendarForm> {
     _events = {};
     _selectedEvents = [];
     prefsData();
-    itemSwitch = false;
-    questionChoiceString = "";
-    calendar = Calendar(
-        itemSwitch: itemSwitch, questionChoiceString: questionChoiceString);
+
     super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
   }
 
   prefsData() async {
@@ -198,7 +197,7 @@ class _CalendarFormState extends State<CalendarForm> {
                   //text: calenderChoices
                   TextField(
                 decoration: InputDecoration(
-                  labelText: calendar.questionChoiceString,
+                  labelText: "text",
                   hintText: "Bitte geben Sie einen Kommentar ein",
                 ),
                 controller: _eventController,
@@ -215,7 +214,6 @@ class _CalendarFormState extends State<CalendarForm> {
                     setState(() {
                       if (_events[_controller.selectedDay] != null) {
                         _events[_controller.selectedDay]!
-                          ..add(calendar.questionChoiceString)
                           ..add(_eventController.text);
                       } else {
                         _events[_controller.selectedDay] = [
