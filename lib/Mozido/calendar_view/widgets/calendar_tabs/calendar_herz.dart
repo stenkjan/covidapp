@@ -13,9 +13,21 @@ class CalendarHerz extends StatefulWidget {
 
 }
 
-class CalendarHerzState extends State<CalendarHerz> with ChangeNotifier {
+class CalendarHerzState extends State<CalendarHerz> {
   var zustand = <String>[];
   bool _switchValue = false;
+  List<String> list = ["Nein", "Ja"];
+  late int i;
+  @override
+  void initState() {
+    list;
+    i = 0;
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,34 +86,31 @@ class CalendarHerzState extends State<CalendarHerz> with ChangeNotifier {
           ),
           Center(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Ja/Nein",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
                 CupertinoSwitch(
                   value: _switchValue,
                   onChanged: (value) {
                     setState(() {
                       _switchValue = value;
+                      if (!value) i = 0;
+                      if (value) i = 1;
                       calContent.calendarContentsinne(_switchValue);
-                      dispose();
                     });
                   },
                 ),
+                Text(list[i],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
               ],
             ),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
   }
 }

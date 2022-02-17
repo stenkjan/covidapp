@@ -98,7 +98,7 @@ final List headline = [
   {
     "tag": "Nerven",
     "name": "Kopfschmerzen und Konzentrationsschwäche",
-    "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwäche?"
+    "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwächen?"
   },
   {
     "tag": "Andere Symptome",

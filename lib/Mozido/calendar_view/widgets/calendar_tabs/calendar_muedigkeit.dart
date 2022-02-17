@@ -13,8 +13,7 @@ class CalendarMuedigkeit extends StatefulWidget {
 
 }
 
-class CalendarMuedigkeitState extends State<CalendarMuedigkeit>
-    with ChangeNotifier {
+class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
   var zustand = <String>[];
   double _value = 1;
 
@@ -80,17 +79,10 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit>
               value: _value,
               onChanged: (value) {
                 _value = value;
-                notifyListeners();
                 calContent.calendarContentmuedigkeit(value);
-                dispose();
               })
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
   }
 }

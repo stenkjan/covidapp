@@ -13,7 +13,7 @@ class CalendarNerven extends StatefulWidget {
 
 }
 
-class CalendarNervenState extends State<CalendarNerven> with ChangeNotifier {
+class CalendarNervenState extends State<CalendarNerven> {
   var zustand = <String>[];
   bool _switchValue = false;
 
@@ -21,6 +21,8 @@ class CalendarNervenState extends State<CalendarNerven> with ChangeNotifier {
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
     final TextEditingController nervenController = TextEditingController();
+    final TextEditingController anderesymptomeController =
+        TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
@@ -43,10 +45,23 @@ class CalendarNervenState extends State<CalendarNerven> with ChangeNotifier {
               SizedBox(
                 width: 360,
                 height: 25,
-                child: Text(
-                    '${headline[6]['name']}' ": " "${headline[6]['desc']}",
+                child: Text('${headline[6]['name']}',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ),
+              SizedBox(
+                width: 360,
+                height: 40,
+                child: Text("${headline[6]['desc']}",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -58,55 +73,137 @@ class CalendarNervenState extends State<CalendarNerven> with ChangeNotifier {
             ],
           ),
           const SizedBox(
-            height: 0,
+            height: 10,
           ),
-          Row(
+          Column(
             children: [
-              TextField(
-                textAlign: TextAlign.center,
-                controller: nervenController,
-                decoration: InputDecoration(
-                    icon:
-                        const Icon(Icons.email_rounded, color: Colors.white24),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    filled: true,
-                    hintStyle: TextStyle(color: Colors.grey[800]),
-                    hintText: "Anzahl",
-                    fillColor: Colors.white70),
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(150, 30),
-                    primary: const Color(0xFF029CF5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: const BorderSide(color: Color(0x815DDFDF)),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 300,
+                    height: 50,
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      controller: nervenController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
+                          hintText: "Anzahl",
+                          fillColor: Colors.white70),
                     ),
                   ),
-                  child: const Text('Bestätigen'),
-                  onPressed: () async {
-                    // ignore: unnecessary_null_comparison
-                    if (nervenController.text != null) {
-                      calContent.calendarContentnerven(nervenController.text);
-                      dispose();
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('''
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(50, 50),
+                        primary: const Color(0xFF029CF5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: const BorderSide(color: Color(0x815DDFDF)),
+                        ),
+                      ),
+                      child: const Icon(Icons.confirmation_num),
+                      onPressed: () async {
+                        // ignore: unnecessary_null_comparison
+                        if (nervenController.text != null) {
+                          calContent
+                              .calendarContentnerven(nervenController.text);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('''
                           Bitte geben Sie einen Wert an'''),
-                      ));
-                    }
-                  }),
+                          ));
+                        }
+                      }),
+                ],
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              SizedBox(
+                width: 360,
+                height: 25,
+                child: Text("${headline[7]['tag']}",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ),
+              SizedBox(
+                width: 360,
+                height: 40,
+                child: Text("${headline[7]['name']}",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 300,
+                    height: 50,
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      controller: anderesymptomeController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
+                          hintText: "${headline[7]['desc']}",
+                          fillColor: Colors.white70),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(50, 50),
+                        primary: const Color(0xFF029CF5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: const BorderSide(color: Color(0x815DDFDF)),
+                        ),
+                      ),
+                      child: const Icon(Icons.comment),
+                      onPressed: () async {
+                        // ignore: unnecessary_null_comparison
+                        if (anderesymptomeController.text != null) {
+                          calContent.calendarContentnerven(
+                              anderesymptomeController.text);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('''
+                          Bitte geben Sie einen Kommentar an'''),
+                          ));
+                        }
+                      }),
+                ],
+              ),
             ],
           ),
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
   }
 }

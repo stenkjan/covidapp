@@ -12,7 +12,7 @@ class CalendarSchlaf extends StatefulWidget {
 
 }
 
-class CalendarSchlafState extends State<CalendarSchlaf> with ChangeNotifier {
+class CalendarSchlafState extends State<CalendarSchlaf> {
   var zustand = <String>[];
   double _value = 1;
 
@@ -34,7 +34,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> with ChangeNotifier {
           const SizedBox(
             height: 12,
           ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
@@ -67,28 +67,39 @@ class CalendarSchlafState extends State<CalendarSchlaf> with ChangeNotifier {
                         fontWeight: FontWeight.w400,
                         color: Colors.white70)),
               ),
+              const SizedBox(
+                width: 360,
+                height: 25,
+                child: Text('Skala 1-10',
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70)),
+              ),
             ],
           ),
           const SizedBox(
-            height: 0,
+            height: 10,
           ),
-          Slider(
-              min: 1,
-              max: 10,
-              value: _value,
-              onChanged: (value) {
-                _value = value;
-                notifyListeners();
-                calContent.calendarContentschlaf(value);
-                dispose();
-              })
+          SizedBox(
+            width: 250,
+            height: 25,
+            child: Slider(
+                min: 1,
+                max: 10,
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  calContent.calendarContentschlaf(value);
+                }),
+          )
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
   }
 }

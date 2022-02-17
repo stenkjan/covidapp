@@ -12,7 +12,7 @@ class CalendarAtemnot extends StatefulWidget {
 
 }
 
-class CalendarAtemnotState extends State<CalendarAtemnot> with ChangeNotifier {
+class CalendarAtemnotState extends State<CalendarAtemnot> {
   var zustand = <String>[];
   double _value = 1;
 
@@ -58,17 +58,21 @@ class CalendarAtemnotState extends State<CalendarAtemnot> with ChangeNotifier {
           const SizedBox(
             height: 20,
           ),
-          TextField(
-            textAlign: TextAlign.center,
-            controller: atemnotController,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                filled: true,
-                hintStyle: TextStyle(color: Colors.grey[800]),
-                hintText: "Anzahl",
-                fillColor: Colors.white70),
+          SizedBox(
+            width: 360,
+            height: 25,
+            child: TextField(
+              textAlign: TextAlign.center,
+              controller: atemnotController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  filled: true,
+                  hintStyle: TextStyle(color: Colors.grey[800]),
+                  hintText: "Anzahl",
+                  fillColor: Colors.white70),
+            ),
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -84,7 +88,6 @@ class CalendarAtemnotState extends State<CalendarAtemnot> with ChangeNotifier {
                 // ignore: unnecessary_null_comparison
                 if (atemnotController.text != null) {
                   calContent.calendarContentatemnot(atemnotController.text);
-                  dispose();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('''
@@ -95,10 +98,5 @@ class CalendarAtemnotState extends State<CalendarAtemnot> with ChangeNotifier {
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
   }
 }

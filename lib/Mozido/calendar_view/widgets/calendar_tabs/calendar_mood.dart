@@ -209,9 +209,4 @@ class CalendarMoodState extends State<CalendarMood> {
       ),
     );
   }
-
-  @override
-  Future<void> dispose() async {
-    super.dispose();
-  }
 }
