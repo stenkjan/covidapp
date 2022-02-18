@@ -4,13 +4,14 @@ import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_ate
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_herz.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_muedigkeit.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_nerven.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_nerven+com.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_schlaf.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_sinne.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
+import 'package:covidapp/Mozido/services/calendar_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,7 @@ class CalendarState extends State<Calendar> {
     }
 
     final calContent = Provider.of<CalendarContent>(context);
+    final calService = Provider.of<CalendarService>(context);
 
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
@@ -172,7 +174,7 @@ class CalendarState extends State<Calendar> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
-                      child: CalendarNerven(),
+                      child: CalendarNervCom(),
                     ),
                   ],
                 ),
@@ -180,6 +182,26 @@ class CalendarState extends State<Calendar> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: Visibility(
+        visible: calContent.increment(calContent.count),
+        child: FloatingActionButton(
+          onPressed: () {
+            calService.dailyTask(
+                calContent.mood,
+                calContent.muedigkeit,
+                calContent.atemnot,
+                calContent.sinne,
+                calContent.herz,
+                calContent.schlaf,
+                calContent.nerven,
+                calContent.comment);
+            calContent.clear();
+          },
+          tooltip: "Bestätigen",
+          foregroundColor: Color(0xFF31A1C9),
+          backgroundColor: Color(0xFF313237),
+        ),
       ),
     );
 

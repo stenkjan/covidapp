@@ -17,16 +17,27 @@ class T2Grafik extends StatefulWidget {
 }
 
 class T2GrafikState extends State<T2Grafik> {
-  bool weekChange = true;
-  int week = 0;
-  DateTime year = DateTime(DateTime.now().year);
-  int numOfWeeks(int year) {
+  bool dayChange = true;
+
+  String current_date = "";
+/*   DateTime year = DateTime(DateTime.now().year); */
+  /* int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
     int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
+  } */
+
+  initState() {
+    current_date = DateFormat('d').format(DateTime.now()).toString();
+    print(current_date);
+    super.initState();
   }
 
-  int weekNumber(DateTime date) {
+  dispose() {
+    super.dispose();
+  }
+
+  /*  int weekNumber(DateTime date) {
     int dayOfYear = int.parse(DateFormat("D").format(date));
     int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
     if (woy < 1) {
@@ -35,7 +46,7 @@ class T2GrafikState extends State<T2Grafik> {
       woy = 1;
     }
     return woy;
-  }
+  } */
 
   @override
 
@@ -65,7 +76,7 @@ class T2GrafikState extends State<T2Grafik> {
                   children: <Widget>[
                     Container(
                         height: 40,
-                        width: 150,
+                        width: 60,
                         decoration: BoxDecoration(
                             color: Colors.white70,
                             borderRadius: BorderRadius.circular(20),
@@ -80,7 +91,7 @@ class T2GrafikState extends State<T2Grafik> {
                             left: SizeConfig.getWidth(context) / 20),
                         child: Center(
                           child: Text(
-                            "Woche " + week.toString(),
+                            current_date,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: fontSize(25),
@@ -103,8 +114,8 @@ class T2GrafikState extends State<T2Grafik> {
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  weekChange = false;
-                                  toggleWeek();
+                                  dayChange = false;
+                                  currentDate();
                                 },
                               )),
                           Padding(
@@ -119,10 +130,10 @@ class T2GrafikState extends State<T2Grafik> {
                                 size: fontSize(17),
                               ),
                               onPressed: () {
-                                weekChange = true;
-                                toggleWeek();
+                                dayChange = true;
+                                currentDate();
                                 if (kDebugMode) {
-                                  print(week);
+                                  print(current_date);
                                 }
                               },
                             ),
@@ -138,7 +149,7 @@ class T2GrafikState extends State<T2Grafik> {
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: healthscore.map((data) {
+                      children: headline.map((data) {
                         return Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
@@ -149,8 +160,7 @@ class T2GrafikState extends State<T2Grafik> {
                                 width: 10,
                                 height: 10,
                                 decoration: BoxDecoration(
-                                    color: AppColors
-                                        .pieColors[healthscore.indexOf(data)],
+                                    color: AppColors.pieColors[5],
                                     shape: BoxShape.circle),
                               ),
                               Text(
@@ -182,16 +192,26 @@ class T2GrafikState extends State<T2Grafik> {
     );
   }
 
-  void toggleWeek() {
-    week = weekNumber(DateTime.now());
+  void currentDate() {
     setState(() {
-      if (weekChange) {
-        week += 1;
-        weekChange = false;
-      } else if (!weekChange) {
-        week -= 1;
-        weekChange = true;
+      int cur_date = int.parse(current_date);
+      if (dayChange) {
+        if (current_date == DateFormat('d').format(DateTime.now()).toString()) {
+          dayChange = false;
+        } else {
+          cur_date += 1;
+          dayChange = false;
+        }
+      } else if (!dayChange) {
+        cur_date = int.parse(current_date);
+        if (cur_date == 1) {
+          dayChange = true;
+        } else {
+          cur_date -= 1;
+          dayChange = true;
+        }
       }
+      current_date = cur_date.toString();
     });
   }
 }
