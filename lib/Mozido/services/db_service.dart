@@ -23,8 +23,15 @@ class DatabaseService {
     });
   }
 
-  Future updateCalendarModel(String mood, String muedigkeit, String atemnot,
-      String sinne, String herz, String schlaf) async {
+  Future updateCalendarModel(
+      String mood,
+      String muedigkeit,
+      String atemnot,
+      String sinne,
+      String herz,
+      String schlaf,
+      String nerven,
+      String comment) async {
     return await calendarCollection.doc(uid).set({
       'id': uid,
       'mood': mood,
@@ -33,6 +40,9 @@ class DatabaseService {
       'sinne': sinne,
       'herz': herz,
       'schlaf': schlaf,
+      'nerven': nerven,
+      'comment': comment,
+      'created_date': FieldValue.serverTimestamp(),
     });
   }
   // Future<CalendarModel> getCalenderModel(String id) async {
