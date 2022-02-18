@@ -15,6 +15,19 @@ class CalendarMood extends StatefulWidget {
 
 class CalendarMoodState extends State<CalendarMood> {
   var zustand = <String>[];
+  var firstPress;
+
+  @override
+  void initState() {
+    firstPress = false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
@@ -49,6 +62,12 @@ class CalendarMoodState extends State<CalendarMood> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             zustand.add(moodList[0]['item1']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
                             //method giving data to calendar;
                           }),
                   ),
@@ -78,6 +97,12 @@ class CalendarMoodState extends State<CalendarMood> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             zustand.add(moodList[0]['item2']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
 
                             //method giving data to calendar;
                           }),
@@ -108,6 +133,12 @@ class CalendarMoodState extends State<CalendarMood> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             zustand.add(moodList[0]['item3']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
 
                             //method giving data to calendar;
                           }),
@@ -138,6 +169,12 @@ class CalendarMoodState extends State<CalendarMood> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             zustand.add(moodList[0]['item4']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
 
                             //method giving data to calendar;
                           }),

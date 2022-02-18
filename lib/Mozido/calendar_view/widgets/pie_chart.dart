@@ -71,7 +71,7 @@ class _PieChartState extends State<PieChart>
                           Padding(
                             padding: const EdgeInsets.only(top: 0, left: 72),
                             child: Text(
-                              (total / 5).toString(),
+                              (total / 7).toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: fontSize(20),

@@ -88,6 +88,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                 // ignore: unnecessary_null_comparison
                 if (atemnotController.text != null) {
                   calContent.calendarContentatemnot(atemnotController.text);
+                  calContent.increment(calContent.count);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('''

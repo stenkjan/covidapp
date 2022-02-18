@@ -1,5 +1,7 @@
+import 'package:covidapp/Mozido/services/calendar_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:provider/provider.dart';
 
 class CalendarContent with ChangeNotifier {
   late String mood;
@@ -9,6 +11,8 @@ class CalendarContent with ChangeNotifier {
   late String herz;
   late String schlaf;
   late String nerven;
+  late String comment;
+  int count = 0;
 
 /*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
       this.herz, this.schlaf); */
@@ -53,6 +57,33 @@ class CalendarContent with ChangeNotifier {
     nerven = n.toString();
     return nerven;
     notifyListeners();
+  }
+
+  String calendarContentcomment(String com) {
+    comment = com.toString();
+    return comment;
+    notifyListeners();
+  }
+
+  bool increment(int count) {
+    count++;
+    this.count = count;
+    if (count == 3) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void clear() {
+    mood = "";
+    muedigkeit = "";
+    atemnot = "";
+    sinne = "";
+    herz = "";
+    schlaf = "";
+    nerven = "";
+    comment = "";
   }
 
   /*  String calenderContentmuedigkeit(int i){
