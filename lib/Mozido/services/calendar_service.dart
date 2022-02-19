@@ -18,11 +18,20 @@ class CalendarService {
       String herz,
       String schlaf,
       String nerven,
-      String comment) async {
+      String comment,
+      String createdDate) async {
     try {
       //create a new user doc with uid
       await DatabaseService(uid: user!.uid).updateCalendarModel(
-          mood, muedigkeit, atemnot, sinne, herz, schlaf, nerven, comment);
+          mood,
+          muedigkeit,
+          atemnot,
+          sinne,
+          herz,
+          schlaf,
+          nerven,
+          comment,
+          createdDate);
     } catch (collectionError) {
       if (collectionError is PlatformException) {
         if (collectionError.code == '') {
