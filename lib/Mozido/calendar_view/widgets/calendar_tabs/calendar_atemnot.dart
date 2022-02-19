@@ -62,6 +62,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
             width: 360,
             height: 25,
             child: TextField(
+              keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               controller: atemnotController,
               decoration: InputDecoration(

@@ -1,5 +1,6 @@
 // ignore_for_file: no_logic_in_create_state, sized_box_for_whitespace, unused_local_variable, unused_import, file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_atemnot.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_herz.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
@@ -14,6 +15,7 @@ import 'package:covidapp/Mozido/login/widgets/rounded_button.dart';
 import 'package:covidapp/Mozido/services/calendar_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_sparkline/flutter_sparkline.dart';
 
@@ -32,6 +34,18 @@ class CalendarState extends State<Calendar> {
   int arrowCount = 0;
   bool upToggle = false;
   bool downToggle = false;
+  String currentDate = "";
+  @override
+  initState() {
+    currentDate = DateFormat('d').format(DateTime.now()).toString();
+    print(currentDate);
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
 
   @override
 
@@ -187,16 +201,19 @@ class CalendarState extends State<Calendar> {
         visible: calContent.increment(calContent.count),
         child: FloatingActionButton(
           onPressed: () {
-            calService.dailyTask(
-                calContent.mood,
-                calContent.muedigkeit,
-                calContent.atemnot,
-                calContent.sinne,
-                calContent.herz,
-                calContent.schlaf,
-                calContent.nerven,
-                calContent.comment);
-            calContent.clear();
+            if (calContent.clear() == false) {
+              calService.dailyTask(
+                  calContent.mood,
+                  calContent.muedigkeit,
+                  calContent.atemnot,
+                  calContent.sinne,
+                  calContent.herz,
+                  calContent.schlaf,
+                  calContent.nerven,
+                  calContent.comment,
+                  currentDate);
+              calContent.clear();
+            }
           },
           tooltip: "Bestätigen",
           foregroundColor: Color(0xFF31A1C9),

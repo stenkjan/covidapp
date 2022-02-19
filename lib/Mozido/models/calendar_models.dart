@@ -7,11 +7,12 @@ class CalendarModel {
   final String? herz;
   final String? schlaf;
   final String? nerven;
-
+  final String? comment;
+  final String? createdDate;
   //
 
   CalendarModel(this.id, this.mood, this.muedigkeit, this.atemnot, this.sinne,
-      this.herz, this.schlaf, this.nerven);
+      this.herz, this.schlaf, this.nerven, this.comment, this.createdDate);
   // CalendarModel({required this.id, required this.fullName, required this.email, required this.CalendarModelRole});
   CalendarModel.fromData(Map<String, dynamic> data)
       : id = data['id'],
@@ -22,7 +23,9 @@ class CalendarModel {
         sinne = data['sinne'],
         herz = data['herz'],
         schlaf = data['schlaf'],
-        nerven = data['nerven'];
+        nerven = data['nerven'],
+        comment = data['comment'],
+        createdDate = data['create_date'];
   // CalendarModelRole = data['CalendarModelRole'];
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class CalendarModel {
       'herz': herz,
       'schlaf': schlaf,
       'nerven': nerven,
+      'cerate_date': createdDate,
       //'fullName': fullName,
 
       // 'CalendarModelRole': CalendarModelRole,

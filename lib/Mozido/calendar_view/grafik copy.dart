@@ -2,26 +2,52 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:covidapp/Mozido/content/grafik_content.dart';
+import 'package:covidapp/Mozido/services/db_service.dart';
+import 'package:covidapp/Mozido/services/grafik_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:provider/provider.dart';
 //import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'widgets/arrow_button.dart';
 import 'widgets/colors.dart';
 
 class T2Grafik extends StatefulWidget {
-  const T2Grafik({Key? key}) : super(key: key);
+  T2Grafik({Key? key}) : super(key: key);
 
   @override
   T2GrafikState createState() => T2GrafikState();
 }
 
 class T2GrafikState extends State<T2Grafik> {
-  bool dayChange = true;
+  late List<charts.Series<GrafikContent, String>> _seriesBarData;
+  late List<GrafikContent> grafikData;
+  _generateData(grafikData) {
+    _seriesBarData = <charts.Series<GrafikContent, String>>[];
+    _seriesBarData.add(
+      charts.Series(
+        domainFn: (GrafikContent graph, _) => graph.mood.toString(),
+        measureFn: (GrafikContent graph, _) => int.parse(graph.muedigkeit),
+        //grafikcolor
+        colorFn: (GrafikContent graph, _) =>
+            charts.ColorUtil.fromDartColor(Color(0xFF313237)),
+        id: 'Sales',
+        data: grafikData,
+        labelAccessorFn: (GrafikContent row, _) => "$row.create_date",
+      ),
+    );
+  }
 
+  bool dayChange = true;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  late final GrafikService dbS;
+  late final Future<List> docList;
   String current_date = "";
+  auth.User? user;
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
@@ -31,6 +57,8 @@ class T2GrafikState extends State<T2Grafik> {
 
   initState() {
     current_date = DateFormat('d').format(DateTime.now()).toString();
+    dbS = GrafikService(uid: user!.uid);
+    docList == dbS.docList;
     print(current_date);
     super.initState();
   }
@@ -56,6 +84,7 @@ class T2GrafikState extends State<T2Grafik> {
   /// Data for grafik line
   ///
   Widget build(BuildContext context) {
+    final grafService = Provider.of<GrafikService>(context);
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
@@ -134,6 +163,7 @@ class T2GrafikState extends State<T2Grafik> {
                               onPressed: () {
                                 dayChange = true;
                                 currentDate();
+                                grafService.dailyRead(current_date, dayChange);
                                 if (kDebugMode) {
                                   print(current_date);
                                 }
@@ -216,7 +246,7 @@ class T2GrafikState extends State<T2Grafik> {
       current_date = cur_date.toString();
     });
   }
-}
+} 
 /*
             ],
           ),

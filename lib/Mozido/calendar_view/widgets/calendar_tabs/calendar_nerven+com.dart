@@ -83,6 +83,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                     width: 300,
                     height: 50,
                     child: TextField(
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
                       controller: nervenController,
                       decoration: InputDecoration(
