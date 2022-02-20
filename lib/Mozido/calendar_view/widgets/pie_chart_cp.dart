@@ -5,6 +5,8 @@ import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 class PieChartCustomPainter extends CustomPainter {
   final List healthscore;
   final double width;
+   /* List <GrafikContent> docList;
+    GrafikModel grafModel; */
   PieChartCustomPainter({required this.healthscore, required this.width});
   @override
   void paint(Canvas canvas, Size size) {
@@ -12,6 +14,7 @@ class PieChartCustomPainter extends CustomPainter {
     double radius = min(size.width / 2, size.height / 2);
     double total = 0;
     double startRadian = -pi / 2;
+    
     var paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = width / 1.8;

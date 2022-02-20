@@ -5,7 +5,7 @@ class GrafikModel {
   late int? sinne;
   late int? herz;
   late int? schlaf;
-  late String? nerven;
+  late int? nerven;
   late String? comment;
   late String? createdDate;
   late final List<List> docList;
@@ -20,7 +20,7 @@ class GrafikModel {
         sinne = int.parse(docList[3].toString()),
         herz = int.parse(docList[4].toString()),
         schlaf = int.parse(docList[5].toString()),
-        nerven = docList[6].toString(),
+        nerven = int.parse(docList[6].toString()),
         comment = docList[7].toString(),
         createdDate = docList[8].toString();
 
