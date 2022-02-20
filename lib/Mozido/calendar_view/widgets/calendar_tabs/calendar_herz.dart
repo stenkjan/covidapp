@@ -15,9 +15,10 @@ class CalendarHerz extends StatefulWidget {
 
 class CalendarHerzState extends State<CalendarHerz> {
   var zustand = <String>[];
+  double _value = 1;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
-  late int i;
+  int i = 0;
   @override
   void initState() {
     list;
@@ -95,7 +96,7 @@ class CalendarHerzState extends State<CalendarHerz> {
                       _switchValue = value;
                       if (!value) i = 0;
                       if (value) i = 1;
-                      calContent.calendarContentsinne(_switchValue);
+                      /* calContent.calendarContentherz(_switchValue); */
                     });
                   },
                 ),
@@ -109,6 +110,23 @@ class CalendarHerzState extends State<CalendarHerz> {
               ],
             ),
           ),
+          const SizedBox(
+            height: 0,
+          ),
+          Opacity(
+            opacity: i.toDouble(),
+            child: Slider(
+                min: 1,
+                max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Herz",
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  calContent.calendarContentherz(_value.toString());
+                }),
+          )
         ],
       ),
     );

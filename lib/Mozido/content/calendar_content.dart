@@ -29,57 +29,57 @@ class CalendarContent with ChangeNotifier {
 
   String calendarContentmood(int i) {
     mood = moodList[i]['amount'];
-    notifyListeners();
+
     return mood;
   }
 
   String calendarContentmuedigkeit(double d) {
     muedigkeit = d.toString();
-    notifyListeners();
+
     return muedigkeit;
   }
 
   String calendarContentatemnot(String a) {
     atemnot = a;
-    notifyListeners();
+
     return atemnot;
   }
 
-  String calendarContentsinne(bool b) {
+  String calendarContentsinne(String b) {
     sinne = b.toString();
-    notifyListeners();
+
     return sinne;
   }
 
-  String calendarContentherz(bool c) {
+  String calendarContentherz(String c) {
     herz = c.toString();
-    notifyListeners();
+
     return herz;
   }
 
   String calendarContentschlaf(double s) {
     schlaf = s.toString();
-    notifyListeners();
+
     return schlaf;
   }
 
   String calendarContentnerven(String n) {
     nerven = n.toString();
-    notifyListeners();
+
     return nerven;
   }
 
   String calendarContentcomment(String com) {
     comment = com.toString();
-    notifyListeners();
+
     return comment;
   }
 
   bool increment(int count) {
     count++;
-    notifyListeners();
+
     this.count = count;
-    if (count == 3) {
+    if (count == 2) {
       return true;
     } else {
       return false;

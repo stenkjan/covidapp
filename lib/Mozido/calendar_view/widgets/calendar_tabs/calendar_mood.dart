@@ -1,6 +1,7 @@
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,10 @@ class CalendarMoodState extends State<CalendarMood> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
+    double _value = 1;
+    bool _switchValue = false;
+    List<String> list = ["Nein", "Ja"];
+    late int i;
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
       child: Column(
@@ -214,6 +219,48 @@ class CalendarMoodState extends State<CalendarMood> {
           ),
           const SizedBox(
             height: 0,
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CupertinoSwitch(
+                  value: _switchValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _switchValue = value;
+                      if (!value) i = 0;
+                      if (value) i = 1;
+                      // calContent.calendarContentmood(_switchValue);
+                    });
+                  },
+                ),
+                Text(list[i],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 0,
+          ),
+          Opacity(
+            opacity: i.toDouble(),
+            child: Slider(
+                min: 1,
+                max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Gefühlszustand",
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  // calContent.calendarContentmood(value.toString());
+                }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

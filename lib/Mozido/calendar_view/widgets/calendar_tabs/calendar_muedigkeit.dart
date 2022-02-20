@@ -76,6 +76,9 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
           Slider(
               min: 1,
               max: 10,
+              activeColor: const Color(0xFF31A1C9),
+              inactiveColor: Colors.orange,
+              label: "Müdigkeit",
               value: _value,
               onChanged: (value) {
                 _value = value;

@@ -15,7 +15,10 @@ class CalendarNervCom extends StatefulWidget {
 
 class CalendarNervComState extends State<CalendarNervCom> {
   var zustand = <String>[];
+  double _value = 1;
   bool _switchValue = false;
+  List<String> list = ["Nein", "Ja"];
+  int i = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -77,53 +80,30 @@ class CalendarNervComState extends State<CalendarNervCom> {
           ),
           Column(
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 300,
-                    height: 50,
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      controller: nervenController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: "Anzahl",
-                          fillColor: Colors.white70),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CupertinoSwitch(
+                      value: _switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchValue = value;
+                          if (!value) i = 0;
+                          if (value) i = 1;
+                          //calContent.calendarContentsinne(_switchValue);
+                        });
+                      },
                     ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(50, 50),
-                        primary: const Color(0xFF029CF5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: const BorderSide(color: Color(0x815DDFDF)),
-                        ),
-                      ),
-                      child: const Icon(Icons.confirmation_num),
-                      onPressed: () async {
-                        // ignore: unnecessary_null_comparison
-                        if (nervenController.text != null) {
-                          calContent
-                              .calendarContentnerven(nervenController.text);
-                          calContent.increment(calContent.count);
-                        } else {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text('''
-                          Bitte geben Sie einen Wert an'''),
-                          ));
-                        }
-                      }),
-                ],
+                    Text(list[i],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white70)),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 50,
@@ -196,7 +176,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text('''
-                          Bitte geben Sie einen Kommentar an'''),
+                      Bitte geben Sie einen Kommentar an'''),
                           ));
                         }
                       }),
