@@ -13,13 +13,15 @@ class PieChart extends StatefulWidget {
 
 class _PieChartState extends State<PieChart>
     with SingleTickerProviderStateMixin {
+      final List docList;
+      GrafiKModel grafModel = GrafikModel(docList);
   double total = 0;
 
   @override
   void initState() {
     super.initState();
-    for (var e in healthscore) {
-      total += e['amount'];
+    for (var e in docList) {
+      total += e[..];
     }
   }
 
