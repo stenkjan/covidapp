@@ -92,6 +92,9 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
             child: Slider(
                 min: 1,
                 max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Schlaf",
                 value: _value,
                 onChanged: (value) {
                   _value = value;

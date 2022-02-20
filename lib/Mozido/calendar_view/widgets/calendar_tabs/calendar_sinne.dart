@@ -16,8 +16,9 @@ class CalendarSinne extends StatefulWidget {
 class CalendarSinneState extends State<CalendarSinne> {
   var zustand = <String>[];
   bool _switchValue = false;
+  double _value = 1;
   List<String> list = ["Nein", "Ja"];
-  late int i;
+  int i = 0;
   @override
   void initState() {
     list;
@@ -95,7 +96,7 @@ class CalendarSinneState extends State<CalendarSinne> {
                       _switchValue = value;
                       if (!value) i = 0;
                       if (value) i = 1;
-                      calContent.calendarContentsinne(_switchValue);
+                      //calContent.calendarContentsinne(_switchValue);
                     });
                   },
                 ),
@@ -109,6 +110,23 @@ class CalendarSinneState extends State<CalendarSinne> {
               ],
             ),
           ),
+          const SizedBox(
+            height: 0,
+          ),
+          Opacity(
+            opacity: i.toDouble(),
+            child: Slider(
+                min: 1,
+                max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Sinne",
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  calContent.calendarContentsinne(value.toString());
+                }),
+          )
         ],
       ),
     );
