@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/login/constants.dart';
-import 'package:covidapp/Mozido/login/sign_in/components/contact.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:flutter/material.dart';
+import 'package:covidapp/Mozido/login/sign_up/components/contact.dart';
 
 import 'components/credentials.dart';
 import 'components/head_text.dart';
@@ -13,16 +12,16 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               colors: [
-                lightPrimary,
-                darkPrimary,
-              ]
-          )
-      ),
+            /*  lightPrimary,
+                darkPrimary, */
+            Color(0xFF31A1C9),
+            Color(0xEA1F3F48),
+          ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -31,7 +30,7 @@ class SignUpScreen extends StatelessWidget {
             children: const [
               HeadText(),
               Credentials(),
-              Contact(),
+              Social(),
             ],
           ),
         ),

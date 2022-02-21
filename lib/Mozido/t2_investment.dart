@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class T2Investment extends StatefulWidget {
+  const T2Investment({Key? key}) : super(key: key);
 
-class T2_Investment extends StatefulWidget {
-  T2_Investment({Key? key}) : super(key: key);
-
-  _T2_InvestmentState createState() => _T2_InvestmentState();
+  @override
+  _T2InvestmentState createState() => _T2InvestmentState();
 }
 
-class _T2_InvestmentState extends State<T2_Investment> {
+class _T2InvestmentState extends State<T2Investment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF313237),
+      backgroundColor: const Color(0xFF313237),
 
       ///
       /// Appbar
       ///
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarBrightness: Brightness.dark
-        ),
-        backgroundColor: Color(0xFF313237),
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        backgroundColor: const Color(0xFF313237),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Übung wählen",
           style: TextStyle(
               color: Colors.white,
@@ -31,7 +30,7 @@ class _T2_InvestmentState extends State<T2_Investment> {
               fontSize: 17.0,
               fontWeight: FontWeight.w600),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
@@ -44,11 +43,9 @@ class _T2_InvestmentState extends State<T2_Investment> {
             _card(Icons.emoji_emotions, "Emotionaler Zustand",
                 "Wie fühlen Sie sich heute? Beatworten Sie ein paar Fragen! ")
           ],
-
         ),
       ),
     );
-
   }
 
   ///
@@ -64,7 +61,7 @@ class _T2_InvestmentState extends State<T2_Investment> {
         },
         child: Container(
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
               color: Color(0xFF363940),
               boxShadow: [
@@ -81,7 +78,7 @@ class _T2_InvestmentState extends State<T2_Investment> {
               Container(
                 height: 170.0,
                 width: 4.0,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color(0xFF15EDED),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20.0),
@@ -97,7 +94,7 @@ class _T2_InvestmentState extends State<T2_Investment> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 25.0),
-                child: Container(
+                child: SizedBox(
                   width: 250.0,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -105,18 +102,17 @@ class _T2_InvestmentState extends State<T2_Investment> {
                     children: <Widget>[
                       Text(
                         _title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontFamily: "Sans",
                             fontWeight: FontWeight.w800,
                             fontSize: 16.5),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, right: 15.0),
                         child: Text(
                           _desc,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white54,
                               fontFamily: "Popins",
                               fontSize: 13.5),

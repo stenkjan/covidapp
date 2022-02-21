@@ -1,0 +1,295 @@
+import 'package:covidapp/Mozido/content/calendar_content.dart';
+import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class CalendarMood extends StatefulWidget {
+  const CalendarMood({Key? key}) : super(key: key);
+  @override
+  CalendarMoodState createState() => CalendarMoodState();
+  // TODO: implement createState
+
+}
+
+class CalendarMoodState extends State<CalendarMood> {
+  var zustand = <String>[];
+  var firstPress;
+
+  @override
+  void initState() {
+    firstPress = false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final calContent = Provider.of<CalendarContent>(context);
+    double _value = 1;
+    bool _switchValue = false;
+    List<String> list = ["Nein", "Ja"];
+    late int i;
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                height: 50,
+                width: 50,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                        text:
+                            moodList[0]['icon1'] ?? 'null', // emoji characters
+                        style: const TextStyle(
+                          fontFamily: 'EmojiOne',
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            zustand.add(moodList[0]['item1']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
+                            //method giving data to calendar;
+                          }),
+                  ),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                        text:
+                            moodList[1]['icon2'] ?? 'null', // emoji characters
+                        style: const TextStyle(
+                          fontFamily: 'EmojiOne',
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            zustand.add(moodList[0]['item2']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
+
+                            //method giving data to calendar;
+                          }),
+                  ),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                        text:
+                            moodList[2]['icon3'] ?? 'null', // emoji characters
+                        style: const TextStyle(
+                          fontFamily: 'EmojiOne',
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            zustand.add(moodList[0]['item3']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
+
+                            //method giving data to calendar;
+                          }),
+                  ),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                        text:
+                            moodList[3]['icon4'] ?? 'null', // emoji characters
+                        style: const TextStyle(
+                          fontFamily: 'EmojiOne',
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            zustand.add(moodList[0]['item4']);
+                            if (firstPress == false) {
+                              calContent.increment(calContent.count);
+                            }
+                            setState(() {
+                              firstPress = true;
+                            });
+
+                            //method giving data to calendar;
+                          }),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 360,
+                height: 25,
+                child: SizedBox(
+                  child: Text(
+                      '${headline[0]['name']}'
+                      ": "
+                      '${moodList[0]['name']}'
+                      " - "
+                      '${moodList[3]['name']}',
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontFamily: "Sans",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white70)),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 0,
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CupertinoSwitch(
+                  value: _switchValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _switchValue = value;
+                      if (!value) i = 0;
+                      if (value) i = 1;
+                      // calContent.calendarContentmood(_switchValue);
+                    });
+                  },
+                ),
+                Text(list[i],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 0,
+          ),
+          Opacity(
+            opacity: i.toDouble(),
+            child: Slider(
+                min: 1,
+                max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Gefühlszustand",
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  // calContent.calendarContentmood(value.toString());
+                }),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  // Provider.of<T2_Calendar>(context,
+                  //         listen: false)
+                  //     .showAddDialog;
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: const BorderSide(color: Color(0xFF31A1C9)),
+                  ),
+                ),
+                child: const Text(
+                  'Kommentar',
+                ),
+              ),
+              const SizedBox(width: 15),
+              IconButton(
+                  color: const Color(0xB0E4DD09),
+                  iconSize: 40,
+                  icon: const Icon(Icons.help),
+                  onPressed: () {}),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

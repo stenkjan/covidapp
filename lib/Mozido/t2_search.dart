@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class T2_Search extends StatefulWidget {
-  T2_Search({Key? key}) : super(key: key);
+class T2Search extends StatefulWidget {
+  const T2Search({Key? key}) : super(key: key);
   @override
-  _T2_SearchState createState() => _T2_SearchState();
+  T2SearchState createState() => T2SearchState();
 }
 
-class _T2_SearchState extends State<T2_Search> {
+class T2SearchState extends State<T2Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF313237),
+      backgroundColor: const Color(0xFF313237),
 
       ///
       /// Appbar
       ///
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarBrightness: Brightness.dark
-        ),
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        // ignore: deprecated_member_use
         brightness: Brightness.dark,
-        backgroundColor: Color(0xFF313237),
+        backgroundColor: const Color(0xFF313237),
         title: Row(
           children: <Widget>[
             Container(
               height: 45.0,
               width: 200.0,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 color: Colors.black12,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
                 child: TextField(
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
@@ -50,14 +50,14 @@ class _T2_SearchState extends State<T2_Search> {
             ),
           ],
         ),
-        iconTheme: IconThemeData(color: Colors.white),
-        actions: <Widget>[
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: const <Widget>[
           Icon(
             Icons.keyboard_arrow_up,
             color: Colors.white70,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.keyboard_arrow_down,
               color: Colors.white70,
@@ -79,7 +79,7 @@ class _T2_SearchState extends State<T2_Search> {
             child: Container(
               height: 43.0,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -90,9 +90,9 @@ class _T2_SearchState extends State<T2_Search> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
+                children: const <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: EdgeInsets.only(left: 10.0),
                     child: Text(
                       " Emotionaler Zustand",
                       style: TextStyle(
@@ -102,32 +102,30 @@ class _T2_SearchState extends State<T2_Search> {
                           fontSize: 15.5),
                     ),
                   ),
-                  Padding(padding: const EdgeInsets.only(right : 14.0),
-                    child:Text(
-                    "Datum",
-                    style: TextStyle(
-                        fontFamily: "Roboto",
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 15.5),
-                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 14.0),
+                    child: Text(
+                      "Datum",
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 15.5),
+                    ),
                   )
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 300,
-
-
             child: Text(
-
               "Hallo",
               style: TextStyle(
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
-              fontSize: 15.5),
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontSize: 15.5),
             ),
           ),
           line(),
@@ -197,23 +195,32 @@ class _T2_SearchState extends State<T2_Search> {
   }
 }
 
-class card extends StatelessWidget {
-  @override
+// ignore: must_be_immutable
+class Card extends StatefulWidget {
   String img, name, price, increment, price2, increment2;
-  card(
-      {required this.img,
+  Card(
+      {Key? key,
+      required this.img,
       required this.name,
       required this.price,
       required this.increment,
       required this.price2,
-      required this.increment2});
+      required this.increment2})
+      : super(key: key);
+
+  @override
+  State<Card> createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
           left: 12.0, right: 15.0, top: 10.0, bottom: 10.0),
       child: InkWell(
         onTap: () {},
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -221,15 +228,15 @@ class card extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Image.network(
-                    img,
+                    widget.img,
                     height: 22.0,
                     width: 22.0,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 12.0),
                     child: Text(
-                      name,
-                      style: TextStyle(color: Colors.white),
+                      widget.name,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
@@ -239,13 +246,13 @@ class card extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    price,
-                    style: TextStyle(color: Colors.white),
+                    widget.price,
+                    style: const TextStyle(color: Colors.white),
                   ),
                   Row(children: <Widget>[
                     Text(
-                      increment,
-                      style: TextStyle(color: Colors.white),
+                      widget.increment,
+                      style: const TextStyle(color: Colors.white),
                     ),
 //                      Icon(Icons.keyboard_arrow_down,color: Colors.red,size: 15.0,)
                   ]),
@@ -256,13 +263,13 @@ class card extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    price2,
-                    style: TextStyle(color: Colors.white),
+                    widget.price2,
+                    style: const TextStyle(color: Colors.white),
                   ),
                   Row(children: <Widget>[
                     Text(
-                      increment2,
-                      style: TextStyle(color: Colors.white),
+                      widget.increment2,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ]),
                 ],

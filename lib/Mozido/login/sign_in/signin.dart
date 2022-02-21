@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/login/constants.dart';
 import 'components/contact.dart';
 import 'components/credentials.dart';
 import 'components/head_text.dart';
@@ -10,18 +8,18 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
               colors: [
+            /* 
                 lightPrimary,
-                darkPrimary,
-              ]
-          )
-      ),
+                darkPrimary, */
+            Color(0xFF31A1C9),
+            Color(0xEA1F3F48),
+          ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
