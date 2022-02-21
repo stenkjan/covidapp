@@ -124,7 +124,7 @@ class CalendarHerzState extends State<CalendarHerz> {
                 value: _value,
                 onChanged: (value) {
                   _value = value;
-                  calContent.calendarContentherz(_value.toString());
+                  calContent.calendarContentherz(_value);
                 }),
           )
         ],

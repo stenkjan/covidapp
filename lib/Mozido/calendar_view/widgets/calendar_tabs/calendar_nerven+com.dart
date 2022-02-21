@@ -91,7 +91,6 @@ class CalendarNervComState extends State<CalendarNervCom> {
                           _switchValue = value;
                           if (!value) i = 0;
                           if (value) i = 1;
-                          //calContent.calendarContentsinne(_switchValue);
                         });
                       },
                     ),
@@ -104,6 +103,23 @@ class CalendarNervComState extends State<CalendarNervCom> {
                             color: Colors.white70)),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 0,
+              ),
+              Opacity(
+                opacity: i.toDouble(),
+                child: Slider(
+                    min: 1,
+                    max: 10,
+                    activeColor: const Color(0xFF31A1C9),
+                    inactiveColor: Colors.orange,
+                    label: "Müdigkeit",
+                    value: _value,
+                    onChanged: (value) {
+                      _value = value;
+                      calContent.calendarContentnerven(_value);
+                    }),
               ),
               const SizedBox(
                 height: 50,
@@ -170,7 +186,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       onPressed: () async {
                         // ignore: unnecessary_null_comparison
                         if (anderesymptomeController.text != null) {
-                          calContent.calendarContentnerven(
+                          calContent.calendarContentcomment(
                               anderesymptomeController.text);
                         } else {
                           ScaffoldMessenger.of(context)

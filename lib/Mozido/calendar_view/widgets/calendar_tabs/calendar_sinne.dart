@@ -124,7 +124,7 @@ class CalendarSinneState extends State<CalendarSinne> {
                 value: _value,
                 onChanged: (value) {
                   _value = value;
-                  calContent.calendarContentsinne(value.toString());
+                  calContent.calendarContentsinne(value);
                 }),
           )
         ],

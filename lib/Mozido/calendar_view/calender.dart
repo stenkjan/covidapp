@@ -34,11 +34,11 @@ class CalendarState extends State<Calendar> {
   int arrowCount = 0;
   bool upToggle = false;
   bool downToggle = false;
-  String currentDate = "";
+  int currentDate = 0;
   @override
   initState() {
-    currentDate = DateFormat('d').format(DateTime.now()).toString();
-    print(currentDate);
+    currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
+    print(currentDate.toString());
     super.initState();
   }
 

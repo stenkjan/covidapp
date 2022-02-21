@@ -29,19 +29,19 @@ class DatabaseService {
   }
 
   Future updateCalendarModel(
-      String mood,
-      String muedigkeit,
-      String atemnot,
-      String sinne,
-      String herz,
-      String schlaf,
-      String nerven,
+      int mood,
+      int muedigkeit,
+      int atemnot,
+      int sinne,
+      int herz,
+      int schlaf,
+      int nerven,
       String comment,
-      String createdDate) async {
+      int createdDate) async {
     return await userCollection
         .doc(uid)
         .collection('calendar')
-        .doc(createdDate)
+        .doc(createdDate.toString())
         .set({
       'id': uid,
       'mood': mood,
@@ -67,8 +67,8 @@ class DatabaseService {
     });
   }
 
-  Future readcalendarDocDaily(String createdDate, bool dayChange) async {
-    int createdDateInt = int.parse(createdDate);
+  Future readcalendarDocDaily(int createdDate, bool dayChange) async {
+    int createdDateInt = createdDate;
     if (dayChange == false) {
       createdDateInt - 1;
       return await calendarDoc

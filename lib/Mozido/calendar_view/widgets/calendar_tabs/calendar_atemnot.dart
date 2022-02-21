@@ -93,8 +93,8 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               onPressed: () async {
                 // ignore: unnecessary_null_comparison
                 if (atemnotController.text != null) {
-                  calContent.calendarContentatemnot(atemnotController.text);
-                  calContent.increment(calContent.count);
+                //  calContent.calendarContentatemnot(atemnotController.text);
+                //  calContent.increment(calContent.count);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('''
@@ -140,7 +140,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                 value: _value,
                 onChanged: (value) {
                   _value = value;
-                  calContent.calendarContentatemnot(_value.toString());
+                  calContent.calendarContentatemnot(_value);
                 }),
           )
         ],

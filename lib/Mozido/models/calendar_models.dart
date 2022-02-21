@@ -1,14 +1,14 @@
 class CalendarModel {
-  final String? id;
-  final String? mood;
-  final String? muedigkeit;
-  final String? atemnot;
-  final String? sinne;
-  final String? herz;
-  final String? schlaf;
-  final String? nerven;
+  final int id;
+  final int mood;
+  final int muedigkeit;
+  final int atemnot;
+  final int sinne;
+  final int herz;
+  final int schlaf;
+  final int nerven;
   final String? comment;
-  final String? createdDate;
+  final int createdDate;
   //
 
   CalendarModel(this.id, this.mood, this.muedigkeit, this.atemnot, this.sinne,

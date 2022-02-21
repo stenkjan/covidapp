@@ -7,13 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class CalendarContent with ChangeNotifier {
-  late String mood;
-  late String muedigkeit;
-  late String atemnot;
-  late String sinne;
-  late String herz;
-  late String schlaf;
-  late String nerven;
+  late int mood;
+  late int muedigkeit;
+  late int atemnot;
+  late int sinne;
+  late int herz;
+  late int schlaf;
+  late int nerven;
   late String comment;
   late String createdDate;
   late int createDateInt;
@@ -27,50 +27,50 @@ class CalendarContent with ChangeNotifier {
 /*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
       this.herz, this.schlaf); */
 
-  String calendarContentmood(int i) {
+  int calendarContentmood(int i) {
     mood = moodList[i]['amount'];
 
     return mood;
   }
 
-  String calendarContentmuedigkeit(double d) {
-    muedigkeit = d.toString();
+  int calendarContentmuedigkeit(double d) {
+    muedigkeit = d.round();
 
     return muedigkeit;
   }
 
-  String calendarContentatemnot(String a) {
-    atemnot = a;
+  int calendarContentatemnot(double a) {
+    atemnot = a.round();
 
     return atemnot;
   }
 
-  String calendarContentsinne(String b) {
-    sinne = b.toString();
+  int calendarContentsinne(double b) {
+    sinne = b.round();
 
     return sinne;
   }
 
-  String calendarContentherz(String c) {
-    herz = c.toString();
+  int calendarContentherz(double c) {
+    herz = c.round();
 
     return herz;
   }
 
-  String calendarContentschlaf(double s) {
-    schlaf = s.toString();
+  int calendarContentschlaf(double s) {
+    schlaf = s.round();
 
     return schlaf;
   }
 
-  String calendarContentnerven(String n) {
-    nerven = n.toString();
+  int calendarContentnerven(double n) {
+    nerven = n.round();
 
     return nerven;
   }
 
   String calendarContentcomment(String com) {
-    comment = com.toString();
+    comment = com;
 
     return comment;
   }
@@ -96,13 +96,13 @@ class CalendarContent with ChangeNotifier {
         .doc(createdDate)
         .get();
     if (docSnapshot.exists) {
-      mood = "";
-      muedigkeit = "";
-      atemnot = "";
-      sinne = "";
-      herz = "";
-      schlaf = "";
-      nerven = "";
+      mood = 0;
+      muedigkeit = 0;
+      atemnot = 0;
+      sinne = 0;
+      herz = 0;
+      schlaf = 0;
+      nerven = 0;
       comment = "";
       createdDate = "";
       return docExists = true;

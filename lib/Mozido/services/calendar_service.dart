@@ -11,15 +11,15 @@ class CalendarService {
   auth.User? user;
 
   Future<CalendarModel?> dailyTask(
-      String mood,
-      String muedigkeit,
-      String atemnot,
-      String sinne,
-      String herz,
-      String schlaf,
-      String nerven,
+      int mood,
+      int muedigkeit,
+      int atemnot,
+      int sinne,
+      int herz,
+      int schlaf,
+      int nerven,
       String comment,
-      String createdDate) async {
+      int createdDate) async {
     try {
       //create a new user doc with uid
       await DatabaseService(uid: user!.uid).updateCalendarModel(

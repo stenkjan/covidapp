@@ -14,7 +14,7 @@ class GrafikService {
   late Future<List> docList;
  
   Future<GrafikContent?> dailyRead(
-    String createdDate,
+    int createdDate,
     bool dayChange,
   ) async {
     try {

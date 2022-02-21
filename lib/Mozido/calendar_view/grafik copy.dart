@@ -46,7 +46,7 @@ class T2GrafikState extends State<T2Grafik> {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final GrafikService dbS;
   late final Future<List> docList;
-  String current_date = "";
+  int current_date = 0;
   auth.User? user;
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
@@ -56,7 +56,7 @@ class T2GrafikState extends State<T2Grafik> {
   } */
 
   initState() {
-    current_date = DateFormat('d').format(DateTime.now()).toString();
+    current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
     dbS = GrafikService(uid: user!.uid);
     docList == dbS.docList;
     print(current_date);
@@ -122,7 +122,7 @@ class T2GrafikState extends State<T2Grafik> {
                             left: SizeConfig.getWidth(context) / 20),
                         child: Center(
                           child: Text(
-                            current_date,
+                            current_date.toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: fontSize(25),
@@ -226,24 +226,24 @@ class T2GrafikState extends State<T2Grafik> {
 
   void currentDate() {
     setState(() {
-      int cur_date = int.parse(current_date);
+      String cur_date = current_date.toString();
       if (dayChange) {
-        if (current_date == DateFormat('d').format(DateTime.now()).toString()) {
+        if (cur_date == DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
-          cur_date += 1;
+          current_date += 1;
           dayChange = false;
         }
       } else if (!dayChange) {
-        cur_date = int.parse(current_date);
-        if (cur_date == 1) {
+        
+        if (current_date == 1) {
           dayChange = true;
         } else {
-          cur_date -= 1;
+          current_date -= 1;
           dayChange = true;
         }
       }
-      current_date = cur_date.toString();
+      cur_date = current_date.toString();
     });
   }
 } 
