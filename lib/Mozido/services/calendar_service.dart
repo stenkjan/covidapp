@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/models/calendar_models.dart';
-import 'package:covidapp/Mozido/models/user_models.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/services.dart';
