@@ -1,14 +1,16 @@
+import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
+import 'package:covidapp/Mozido/puls_analyse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class T2Investment extends StatefulWidget {
-  const T2Investment({Key? key}) : super(key: key);
+class Uebungen extends StatefulWidget {
+  const Uebungen({Key? key}) : super(key: key);
 
   @override
-  _T2InvestmentState createState() => _T2InvestmentState();
+  _UebungenState createState() => _UebungenState();
 }
 
-class _T2InvestmentState extends State<T2Investment> {
+class _UebungenState extends State<Uebungen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +59,22 @@ class _T2InvestmentState extends State<T2Investment> {
           top: 15.0, left: 15.0, right: 15.0, bottom: 5.0),
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___)=> new icoDetail()));
+           if (_title == "Puls Analyse") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Puls_Analyse(
+                        key: _Pulskey,
+                      )),
+            );
+          }
+          if (_title == "Atem Übung") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Uebungen()));
+          } else if (_title == "Emotionaler Zustand") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CalendarTabBar()));
+          }        
         },
         child: Container(
           width: double.infinity,

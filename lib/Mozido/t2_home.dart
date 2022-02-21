@@ -2,11 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
+import 'package:covidapp/Mozido/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'calendar_view/calendar_tab_bar.dart';
-import 't2_investment.dart';
+
 
 import 'login/sign_in/signin.dart';
 
@@ -336,7 +337,7 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const T2Investment()));
+                          pageBuilder: (_, __, ___) => const Uebungen()));
                     },
                     child: itemDrawer(Icons.style, "Übungen")),
                 InkWell(
