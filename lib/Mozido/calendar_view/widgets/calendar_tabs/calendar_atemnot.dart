@@ -16,7 +16,9 @@ class CalendarAtemnot extends StatefulWidget {
 class CalendarAtemnotState extends State<CalendarAtemnot> {
   var zustand = <String>[];
   double _value = 1;
-
+  bool _switchValue = false;
+  List<String> list = ["Nein", "Ja"];
+  int i = 0;
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
@@ -63,45 +65,6 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
           const SizedBox(
             height: 20,
           ),
-          SizedBox(
-            width: 360,
-            height: 25,
-            child: TextField(
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              controller: atemnotController,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  filled: true,
-                  hintStyle: TextStyle(color: Colors.grey[800]),
-                  hintText: "Anzahl",
-                  fillColor: Colors.white70),
-            ),
-          ),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(150, 30),
-                primary: const Color(0xFF029CF5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: const BorderSide(color: Color(0x815DDFDF)),
-                ),
-              ),
-              child: const Text('Bestätigen'),
-              onPressed: () async {
-                // ignore: unnecessary_null_comparison
-                if (atemnotController.text != null) {
-                //  calContent.calendarContentatemnot(atemnotController.text);
-                //  calContent.increment(calContent.count);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('''
-                          Bitte geben Sie einen Wert an'''),
-                  ));
-                }
-              }),
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

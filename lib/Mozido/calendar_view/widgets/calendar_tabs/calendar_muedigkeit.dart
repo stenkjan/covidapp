@@ -1,6 +1,7 @@
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,9 @@ class CalendarMuedigkeit extends StatefulWidget {
 class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
   var zustand = <String>[];
   double _value = 1;
+  bool _switchValue = false;
+  List<String> list = ["Nein", "Ja"];
+  int i = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +71,56 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                         fontWeight: FontWeight.w400,
                         color: Colors.white70)),
               ),
+               const SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CupertinoSwitch(
+                  value: _switchValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _switchValue = value;
+                      if (!value) i = 0;
+                      if (value) i = 1;
+                      /* calContent.calendarContentherz(_switchValue); */
+                    });
+                  },
+                ),
+                Text(list[i],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
+              ],
+            ),
+          ),
             ],
           ),
           const SizedBox(
             height: 0,
           ),
-          Slider(
-              min: 1,
-              max: 10,
-              activeColor: const Color(0xFF31A1C9),
-              inactiveColor: Colors.orange,
-              label: "Müdigkeit",
-              value: _value,
-              onChanged: (value) {
-                _value = value;
-                calContent.calendarContentmuedigkeit(value);
-              })
+          const SizedBox(
+            height: 0,
+          ),
+          Opacity(
+            opacity: i.toDouble(),
+            child: Slider(
+                min: 1,
+                max: 10,
+                activeColor: const Color(0xFF31A1C9),
+                inactiveColor: Colors.orange,
+                label: "Müdigkeit",
+                value: _value,
+                onChanged: (value) {
+                  _value = value;
+                  calContent.calendarContentmuedigkeit(value);
+                }),
+          )
         ],
       ),
     );

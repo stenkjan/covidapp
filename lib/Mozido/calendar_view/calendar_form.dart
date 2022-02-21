@@ -31,6 +31,7 @@ class _CalendarFormState extends State<CalendarForm> {
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }
@@ -196,7 +197,7 @@ class _CalendarFormState extends State<CalendarForm> {
                   //  Text(
                   //text: calenderChoices
                   TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "text",
                   hintText: "Bitte geben Sie einen Kommentar ein",
                 ),
@@ -214,7 +215,7 @@ class _CalendarFormState extends State<CalendarForm> {
                     setState(() {
                       if (_events[_controller.selectedDay] != null) {
                         _events[_controller.selectedDay]!
-                          ..add(_eventController.text);
+                          .add(_eventController.text);
                       } else {
                         _events[_controller.selectedDay] = [
                           _eventController.text

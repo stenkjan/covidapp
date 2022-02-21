@@ -6,15 +6,16 @@ import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart_cp.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 
 class PieChart extends StatefulWidget {
-  const PieChart({Key? key}) : super(key: key);
+  final Future<List> grafikData;
+  PieChart({required this.grafikData});
   @override
   _PieChartState createState() => _PieChartState();
 }
 
 class _PieChartState extends State<PieChart>
     with SingleTickerProviderStateMixin {
-      late final List docList;
-      
+  late final List docList;
+
   double total = 0;
 
   @override
@@ -47,8 +48,7 @@ class _PieChartState extends State<PieChart>
                   child: CustomPaint(
                     child: Container(),
                     foregroundPainter: PieChartCustomPainter(
-                        width: constraint.maxWidth * 0.5,
-                        healthscore: healthscore),
+                        width: constraint.maxWidth * 0.5, healthscore: docList),
                   ),
                 ),
               ),

@@ -11,6 +11,9 @@ class Uebungen extends StatefulWidget {
 }
 
 class _UebungenState extends State<Uebungen> {
+  final GlobalKey<ScaffoldState> _Pulskey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _Atem = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,9 +1,12 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/mood_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/hero_dialog_route';
+import '../colors.dart';
 
 class CalendarMood extends StatefulWidget {
   const CalendarMood({Key? key}) : super(key: key);
@@ -34,7 +37,7 @@ class CalendarMoodState extends State<CalendarMood> {
     double _value = 1;
     bool _switchValue = false;
     List<String> list = ["Nein", "Ja"];
-    late int i;
+    int i = 0;
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
       child: Column(
@@ -203,8 +206,8 @@ class CalendarMoodState extends State<CalendarMood> {
                       '${moodList[0]['name']}'
                       " - "
                       '${moodList[3]['name']}',
-                      maxLines: 1,
-                      overflow: TextOverflow.fade,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       softWrap: false,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -261,7 +264,34 @@ class CalendarMoodState extends State<CalendarMood> {
                   // calContent.calendarContentmood(value.toString());
                 }),
           ),
-          Row(
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  HeroDialogRoute(
+                      builder: (context) => Center(child: MoodDesc())),
+                );
+              },
+              child: Hero(
+                tag: "mood",
+                child: CircleAvatar(
+                  maxRadius: 100,
+                  backgroundImage: AssetImage("images/lcs_allgemein.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Material(
+                        color: Color(0xFFCADCED),
+                        borderRadius: BorderRadius.circular(12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                        )),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          /* Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
@@ -287,7 +317,7 @@ class CalendarMoodState extends State<CalendarMood> {
                   icon: const Icon(Icons.help),
                   onPressed: () {}),
             ],
-          ),
+          ), */
         ],
       ),
     );

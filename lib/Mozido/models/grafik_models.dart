@@ -7,8 +7,8 @@ class GrafikModel {
   late int? schlaf;
   late int? nerven;
   late String? comment;
-  late String? createdDate;
-  late final List<List> docList;
+  late int? createdDate;
+  late final List docList;
   GrafikModel(this.docList);
 
   GrafikModel.fromList(List<List> docList)
@@ -22,11 +22,22 @@ class GrafikModel {
         schlaf = int.parse(docList[5].toString()),
         nerven = int.parse(docList[6].toString()),
         comment = docList[7].toString(),
-        createdDate = docList[8].toString();
+        createdDate = int.parse(docList[8].toString());
 
   int? moodReturn() {
     if (mood != null) {
       return mood;
     }
+  }
+
+  int? listSum() {
+    int? sum =
+        mood! + muedigkeit! + atemnot! + sinne! + herz! + schlaf! + nerven!;
+    if (sum != 0) return sum;
+    if (sum == 0) {
+      print("no value in List!");
+      return sum;
+    }
+    
   }
 }
