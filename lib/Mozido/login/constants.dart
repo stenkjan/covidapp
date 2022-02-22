@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//constant Color values
 const Color lightPrimary = Color.fromRGBO(255, 208, 0, 1);
 const Color darkPrimary = Color.fromRGBO(255, 184, 0, 1);
 const Color black = Colors.black;
