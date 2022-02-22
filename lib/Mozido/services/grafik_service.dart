@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 
 class GrafikService {
   String? uid;
-
+  AuthService authService = AuthService();
   auth.User? user;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final DatabaseService dbS;
@@ -18,8 +18,8 @@ class GrafikService {
     bool dayChange,
   ) async {
     try {
+      uid = authService.getUser();
       dbS = DatabaseService(uid: user!.uid);
-      uid = user!.uid;
       docList = dbS.docList;
       print(uid! + ' db');
       //create a new user doc with uid

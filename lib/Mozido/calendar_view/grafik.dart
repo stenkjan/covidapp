@@ -50,8 +50,7 @@ class T2GrafikState extends State<T2Grafik> {
   late final GrafikContent grafC;
   late final Future<List> docList;
   int current_date = 0;
-  
-  AuthService authUser = AuthService();
+
 
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
@@ -63,7 +62,7 @@ class T2GrafikState extends State<T2Grafik> {
   @override
   initState() {
     current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
- 
+
     gS = GrafikService();
 
     // ignore: avoid_print

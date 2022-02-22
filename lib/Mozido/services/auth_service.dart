@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  String? id;
+  String id = "";
   late String email;
   late User userGet;
   /*  late String userUid; */
@@ -16,6 +16,7 @@ class AuthService {
     userGet = User(user.uid, user.email);
     print(user.uid + ' auth');
     id = user.uid;
+    
     print(id);
     return User(user.uid, user.email);
   }
@@ -23,7 +24,9 @@ class AuthService {
   Stream<User?>? get user {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
-
+ String getUser () {
+   return id = _firebaseAuth.currentUser!.uid;
+ }
 
   Future<User?> signInWithEmailAndPassword(
     String email,

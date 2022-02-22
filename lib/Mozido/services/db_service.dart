@@ -28,16 +28,8 @@ class DatabaseService {
     });
   }
 
-  Future updateCalendarModel(
-      int mood,
-      int muedigkeit,
-      int atemnot,
-      int sinne,
-      int herz,
-      int schlaf,
-      int nerven,
-      String comment,
-      int createdDate) async {
+  Future updateCalendarModel(int mood, int muedigkeit, int atemnot, int sinne,
+      int herz, int schlaf, int nerven, String comment, int createdDate) async {
     return await userCollection
         .doc(uid)
         .collection('calendar')
@@ -67,7 +59,7 @@ class DatabaseService {
     });
   }
 
-  Future readcalendarDocDaily( int createdDate, bool dayChange) async {
+  Future readcalendarDocDaily(int createdDate, bool dayChange) async {
     int createdDateInt = createdDate;
     if (dayChange == false) {
       createdDateInt - 1;
@@ -79,14 +71,13 @@ class DatabaseService {
           .get()
           .then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-         docList =
-              calendarDoc
-                  .collection('users')
-                  .doc(uid)
-                  .collection('calendar')
-                  .where('created_date', isEqualTo: createdDateInt)
-                  .snapshots()
-                  .toList();
+          docList = calendarDoc
+              .collection('users')
+              .doc(uid)
+              .collection('calendar')
+              .where('created_date', isEqualTo: createdDateInt)
+              .snapshots()
+              .toList();
 
           return docList;
         } else {
@@ -104,14 +95,13 @@ class DatabaseService {
           .get()
           .then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          docList =
-              calendarDoc
-                  .collection('users')
-                  .doc(uid)
-                  .collection('calendar')
-                  .where('created_date', isEqualTo: createdDateInt)
-                  .snapshots()
-                  .toList();
+          docList = calendarDoc
+              .collection('users')
+              .doc(uid)
+              .collection('calendar')
+              .where('created_date', isEqualTo: createdDateInt)
+              .snapshots()
+              .toList();
 
           return docList;
         } else {

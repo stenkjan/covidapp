@@ -112,11 +112,11 @@ class CalendarContent with ChangeNotifier {
       nerven = 0;
       comment = "";
       createdDate = "";
-      print(docExists.toString() + ' doc exist');
+      print(docExists.toString() + ' : doc should exist');
       return docExists;
     } else {
       docExists = false;
-      print(docExists.toString() + ' doc exist');
+      print(docExists.toString() + ' : doc  not exist');
       notifyListeners();
       return docExists;
     }

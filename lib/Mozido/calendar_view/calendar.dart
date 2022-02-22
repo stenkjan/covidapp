@@ -199,10 +199,10 @@ class CalendarState extends State<Calendar> {
       ),
       floatingActionButton: Opacity(
         opacity: calContent.count.toDouble(),
-        child: FloatingActionButton(
+        child: FloatingActionButton.extended(
           onPressed: () {
-            if (calContent.docExists == false) {
-              calService.dailyTask(
+            if (calContent.docExists == false) {              
+                   calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
                   calContent.atemnot,
@@ -215,9 +215,14 @@ class CalendarState extends State<Calendar> {
               calContent.clear();
             }
           },
-          tooltip: "Bestätigen",
-          foregroundColor: Color(0xFF31A1C9),
-          backgroundColor: Color(0xFF31A1C9),
+          // tooltip: "Bestätigen",
+          //foregroundColor: const Color(0xFF31A1C9),
+          backgroundColor: const Color(0xFF31A1C9),
+          label: const Text(
+            "Speichern",
+            style: TextStyle(color: Colors.white),
+          ),
+          icon: const Icon(Icons.save_alt),
         ),
       ),
     );
