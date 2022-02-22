@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:covidapp/Mozido/calendar_view/calender.dart';
+import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:table_calendar/table_calendar.dart';

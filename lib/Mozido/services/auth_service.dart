@@ -5,11 +5,18 @@ import 'package:flutter/services.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
+  String? id;
+  late String email;
+  late User userGet;
   /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
       return null;
     }
+    userGet = User(user.uid, user.email);
+    print(user.uid + ' auth');
+    id = user.uid;
+    print(id);
     return User(user.uid, user.email);
   }
 
@@ -17,12 +24,14 @@ class AuthService {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
 
+
   Future<User?> signInWithEmailAndPassword(
     String email,
     String password,
   ) async {
     final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
+
     /* userUid = await (_firebaseAuth.currentUser!.uid); */
     return _userFromFirebase(credential.user);
   }

@@ -19,4 +19,7 @@ class User {
       // 'userRole': userRole,
     };
   }
+  String? getid() {
+    return id;
+  }
 }

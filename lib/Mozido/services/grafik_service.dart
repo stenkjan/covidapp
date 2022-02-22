@@ -6,22 +6,24 @@ import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:flutter/services.dart';
 
 class GrafikService {
-   final String uid;
-    GrafikService({required this.uid});
+  String? uid;
+
   auth.User? user;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final DatabaseService dbS;
   late Future<List> docList;
- 
+
   Future<GrafikContent?> dailyRead(
     int createdDate,
     bool dayChange,
   ) async {
     try {
       dbS = DatabaseService(uid: user!.uid);
+      uid = user!.uid;
+      docList = dbS.docList;
+      print(uid! + ' db');
       //create a new user doc with uid
       await dbS.readcalendarDocDaily(createdDate, dayChange);
-      docList == dbS.docList;
     } catch (collectionError) {
       if (collectionError is PlatformException) {
         if (collectionError.code == '') {

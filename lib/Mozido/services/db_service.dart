@@ -67,7 +67,7 @@ class DatabaseService {
     });
   }
 
-  Future readcalendarDocDaily(int createdDate, bool dayChange) async {
+  Future readcalendarDocDaily( int createdDate, bool dayChange) async {
     int createdDateInt = createdDate;
     if (dayChange == false) {
       createdDateInt - 1;
@@ -79,7 +79,7 @@ class DatabaseService {
           .get()
           .then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          docList ==
+         docList =
               calendarDoc
                   .collection('users')
                   .doc(uid)
@@ -104,7 +104,7 @@ class DatabaseService {
           .get()
           .then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          docList ==
+          docList =
               calendarDoc
                   .collection('users')
                   .doc(uid)

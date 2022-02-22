@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:covidapp/Mozido/login/wrapper.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
+import 'package:covidapp/Mozido/services/grafik_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<CalendarContent>(
             create: (context) => CalendarContent(),
+          ),
+          Provider<GrafikService>(
+            create: (_) => GrafikService(),
           ),
         ],
         child: MaterialApp(

@@ -1,4 +1,5 @@
 import 'package:covidapp/Mozido/login/sign_up/signup.dart';
+import 'package:covidapp/Mozido/models/user_models.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Credentials extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context);   
     /* bool signed_in = Credentials.signed_in; */
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),

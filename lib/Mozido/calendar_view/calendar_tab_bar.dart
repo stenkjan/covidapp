@@ -1,5 +1,5 @@
 import 'package:covidapp/Mozido/calendar_view/grafik.dart';
-import 'package:covidapp/Mozido/calendar_view/calender.dart';
+import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

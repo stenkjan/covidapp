@@ -38,7 +38,6 @@ class CalendarState extends State<Calendar> {
   @override
   initState() {
     currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
-    // ignore: avoid_print
     print(currentDate.toString());
     super.initState();
   }
@@ -198,11 +197,11 @@ class CalendarState extends State<Calendar> {
           ),
         ],
       ),
-      floatingActionButton: Visibility(
-        visible: calContent.increment(calContent.count),
+      floatingActionButton: Opacity(
+        opacity: calContent.count.toDouble(),
         child: FloatingActionButton(
           onPressed: () {
-            if (calContent.clear() == false) {
+            if (calContent.docExists == false) {
               calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
@@ -217,8 +216,8 @@ class CalendarState extends State<Calendar> {
             }
           },
           tooltip: "Bestätigen",
-          foregroundColor: const Color(0xFF31A1C9),
-          backgroundColor: const Color(0xFF313237),
+          foregroundColor: Color(0xFF31A1C9),
+          backgroundColor: Color(0xFF31A1C9),
         ),
       ),
     );
@@ -571,9 +570,9 @@ class CalendarState extends State<Calendar> {
         ),
       ),
     ); */
-    /* const SizedBox(
+    const SizedBox(
       height: 30.0,
-    ); */
+    );
     /*   ],
         ),
       ),

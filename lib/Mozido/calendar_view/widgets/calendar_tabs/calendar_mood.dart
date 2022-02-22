@@ -66,13 +66,19 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(moodList[0]['item1']);
+                            print(calContent.count.toString() +
+                                ' count ' );
                             if (firstPress == false) {
-                              calContent.increment(calContent.count);
+                              calContent.increment();
+                              calContent.calendarContentmood(
+                                  moodList[0]['amount'] * 100);
+                            
+                              setState(() {
+                                firstPress = true;
+                              });
+                            } else if (firstPress) {
+                              setState(() {});
                             }
-                            setState(() {
-                              firstPress = true;
-                            });
                             //method giving data to calendar;
                           }),
                   ),
@@ -101,14 +107,14 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(moodList[0]['item2']);
                             if (firstPress == false) {
-                              calContent.increment(calContent.count);
-                            }
-                            setState(() {
-                              firstPress = true;
-                            });
+                              calContent.increment();
+                              calContent.calendarContentmood(70);
 
+                              setState(() {
+                                firstPress = true;
+                              });
+                            }
                             //method giving data to calendar;
                           }),
                   ),
@@ -137,14 +143,14 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(moodList[0]['item3']);
                             if (firstPress == false) {
-                              calContent.increment(calContent.count);
-                            }
-                            setState(() {
-                              firstPress = true;
-                            });
+                              calContent.increment();
+                              calContent.calendarContentmood(50);
 
+                              setState(() {
+                                firstPress = true;
+                              });
+                            }
                             //method giving data to calendar;
                           }),
                   ),
@@ -173,14 +179,14 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            zustand.add(moodList[0]['item4']);
                             if (firstPress == false) {
-                              calContent.increment(calContent.count);
-                            }
-                            setState(() {
-                              firstPress = true;
-                            });
+                              calContent.increment();
+                              calContent.calendarContentmood(0);
 
+                              setState(() {
+                                firstPress = true;
+                              });
+                            }
                             //method giving data to calendar;
                           }),
                   ),
@@ -257,7 +263,7 @@ class CalendarMoodState extends State<CalendarMood> {
                 value: _value,
                 onChanged: (value) {
                   _value = value;
-                  // calContent.calendarContentmood(value.toString());
+                  calContent.calendarContentmood(_value.round());
                 }),
           ),
           Container(
