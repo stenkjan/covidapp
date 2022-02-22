@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
+  /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
       return null;
@@ -22,7 +23,7 @@ class AuthService {
   ) async {
     final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
-
+    /* userUid = await (_firebaseAuth.currentUser!.uid); */
     return _userFromFirebase(credential.user);
   }
 
@@ -38,6 +39,7 @@ class AuthService {
         email: email,
         password: password,
       );
+      /*  userUid = await (_firebaseAuth.currentUser!.uid); */
       //create a new user doc with uid
       await DatabaseService(uid: credential.user!.uid)
           .updateUserData(email, firstname, lastname, birthday);

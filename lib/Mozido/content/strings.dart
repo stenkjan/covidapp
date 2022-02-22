@@ -65,7 +65,7 @@ final List moodList = [
 ];
 
 final List headline = [
-  {"tag": "Zustand", "name": "Gefühlszustand"},
+  {"tag": "Zustand", "name": "Gefühlszustand", "desc": "Der allgemeine Gefühlszustand"},
   {
     "tag": "Müdigkeit",
     "name": "Müdigkeit und Erschöpfung",

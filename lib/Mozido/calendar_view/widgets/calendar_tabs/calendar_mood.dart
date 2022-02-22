@@ -208,7 +208,7 @@ class CalendarMoodState extends State<CalendarMood> {
                     softWrap: false,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontFamily: "Sans",
                         fontWeight: FontWeight.w400,
                         color: Colors.white70)),
@@ -271,7 +271,7 @@ class CalendarMoodState extends State<CalendarMood> {
               child: Hero(
                 tag: "mood",
                 child: CircleAvatar(
-                  maxRadius: 100,
+                  maxRadius: 70,
                   backgroundImage: AssetImage("images/lcs_allgemein.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

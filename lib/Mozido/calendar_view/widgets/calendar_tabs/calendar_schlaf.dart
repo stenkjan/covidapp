@@ -143,7 +143,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
               child: Hero(
                 tag: "schlaf",
                 child: CircleAvatar(
-                  maxRadius: 80,
+                  maxRadius: 70,
                   foregroundColor: Color(0xFF313237),
                   backgroundImage: AssetImage("images/lcs_schlaf.png"),
                   child: Padding(
@@ -151,11 +151,9 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                     child: Material(
                         color: Color(0xFF313237),
                         borderRadius: BorderRadius.circular(12),
-                         shadowColor: Color(0xFF2E4E57),
-                         
+                        shadowColor: Color(0xFF2E4E57),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                         
                         )),
                   ),
                 ),

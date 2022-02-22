@@ -15,34 +15,40 @@ class SinneDesc extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
-                  Container(
-                    width: 195,
-                    height: 269,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        color: Color(0xFF363940),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10.0,
-                            spreadRadius: 2.0,
-                          ),
-                        ],
-                        image: DecorationImage(
-                            image: AssetImage(
-                              "images/lcs_geschmack.png",
+                  Padding(
+                    padding: const EdgeInsets.only(top: 100.0),
+                    child: Container(
+                      width: 195,
+                      height: 269,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          color: Color(0xFF363940),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
                             ),
-                            fit: BoxFit.cover)),
+                          ],
+                          image: DecorationImage(
+                              image: AssetImage(
+                                "images/lcs_geschmack.png",
+                              ),
+                              fit: BoxFit.cover)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     width: 360,
-                    height: 25,
+                    height: 75,
                     child: Text(
                         '${headline[3]['name']}'
                         ": "
                         '${headline[3]['desc']}',
-                        maxLines: 2,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
                         textAlign: TextAlign.center,
@@ -52,17 +58,23 @@ class SinneDesc extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             color: Colors.white70)),
                   ),
+                  const Divider(
+                    color: Colors.blueGrey,
+                    thickness: 2.0,
+                    indent: 20.0,
+                    endIndent: 20.0,
+                  ),
                   const SizedBox(
                     width: 360,
-                    height: 25,
+                    height: 110,
                     child: Text(
                         'Ein SARS-CoV 2 typisches Erscheinungsbild ist die Einschränkung der Geschmacks- und Geruchsnerven. Wie sehr fühlen sich Ihre Sinne im Vergleich zum Normalzustand eingeschränkt?',
-                        maxLines: 3,
+                        maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontFamily: "Sans",
                             fontWeight: FontWeight.w400,
                             color: Colors.white70)),

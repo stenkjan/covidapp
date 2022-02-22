@@ -138,8 +138,8 @@ class CalendarSinneState extends State<CalendarSinne> {
               child: Hero(
                 tag: "sinne",
                 child: CircleAvatar(
-                  maxRadius: 100,
-                  backgroundImage: AssetImage("images/lcs_sinnne.png"),
+                  maxRadius: 70,
+                  backgroundImage: AssetImage("images/lcs_geschmack.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(

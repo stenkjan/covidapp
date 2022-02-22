@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/misc_desc.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/nerven_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
@@ -112,7 +113,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       child: Hero(
                         tag: "nerven",
                         child: CircleAvatar(
-                          maxRadius: 30,
+                          maxRadius: 25,
                           backgroundImage: AssetImage("images/lcs_nerven.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -190,14 +191,14 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => NervComDesc()),
+                              pageBuilder: (_, __, ___) => MiscDesc()),
                         );
                       },
                       child: Hero(
-                        tag: "nerven",
+                        tag: "misc",
                         child: CircleAvatar(
                           maxRadius: 25,
-                          backgroundImage: AssetImage("images/lcs_nerven.png"),
+                          backgroundImage: AssetImage("images/lcs_sonstige.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Material(

@@ -138,7 +138,7 @@ class CalendarHerzState extends State<CalendarHerz> {
               child: Hero(
                 tag: "herz",
                 child: CircleAvatar(
-                  maxRadius: 100,
+                  maxRadius: 70,
                   backgroundImage: AssetImage("images/lcs_herz.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

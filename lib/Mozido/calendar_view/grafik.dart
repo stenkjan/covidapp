@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
+import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/grafik_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class T2Grafik extends StatefulWidget {
 }
 
 class T2GrafikState extends State<T2Grafik> {
- /*  late List<charts.Series<GrafikContent, String>> _seriesBarData;
+  /*  late List<charts.Series<GrafikContent, String>> _seriesBarData;
   late List<GrafikContent> grafikData;
   _generateData(grafikData) {
     _seriesBarData = <charts.Series<GrafikContent, String>>[];
@@ -46,6 +47,7 @@ class T2GrafikState extends State<T2Grafik> {
   late final Future<List> docList;
   int current_date = 0;
   auth.User? user;
+  AuthService authUser = AuthService();
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
@@ -56,7 +58,9 @@ class T2GrafikState extends State<T2Grafik> {
   @override
   initState() {
     current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
+
     dbS = GrafikService(uid: user!.uid);
+
     docList == dbS.docList;
     // ignore: avoid_print
     print(current_date);
@@ -214,7 +218,7 @@ class T2GrafikState extends State<T2Grafik> {
                   Container(
                     margin: const EdgeInsets.only(right: 5.0),
                     height: SizeConfig.getHeight(context) / 9,
-                    child: PieChart( grafikData: docList),
+                    child: PieChart(grafikData: docList),
                   ),
                 ],
               ),
@@ -236,7 +240,6 @@ class T2GrafikState extends State<T2Grafik> {
           dayChange = false;
         }
       } else if (!dayChange) {
-        
         if (current_date == 1) {
           dayChange = true;
         } else {
