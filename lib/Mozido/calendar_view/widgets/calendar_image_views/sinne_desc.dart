@@ -1,14 +1,16 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_atemnot.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_sinne.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 
-class MoodDesc extends StatelessWidget {
+class SinneDesc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFF363940),
         body: Hero(
-          tag: "mood",
+          tag: "sinne",
           child: Expanded(
             child: Center(
               child: Column(
@@ -29,7 +31,7 @@ class MoodDesc extends StatelessWidget {
                         ],
                         image: DecorationImage(
                             image: AssetImage(
-                              "images/lcs_allgemein.png",
+                              "images/lcs_geschmack.png",
                             ),
                             fit: BoxFit.cover)),
                   ),
@@ -37,9 +39,9 @@ class MoodDesc extends StatelessWidget {
                     width: 360,
                     height: 25,
                     child: Text(
-                        '${headline[0]['name']}'
+                        '${headline[3]['name']}'
                         ": "
-                        '${headline[0]['desc']}',
+                        '${headline[3]['desc']}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
@@ -54,7 +56,7 @@ class MoodDesc extends StatelessWidget {
                     width: 360,
                     height: 25,
                     child: Text(
-                        'Bewerten Sie Ihren allgemeinen Zustand von "ausgezeichnet" bis "schlecht" anhand der Smileys.',
+                        'Ein SARS-CoV 2 typisches Erscheinungsbild ist die Einschränkung der Geschmacks- und Geruchsnerven. Wie sehr fühlen sich Ihre Sinne im Vergleich zum Normalzustand eingeschränkt?',
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,

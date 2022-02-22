@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/hero_dialog_route';
-import '../colors.dart';
 
 class CalendarMood extends StatefulWidget {
   const CalendarMood({Key? key}) : super(key: key);
@@ -39,7 +37,7 @@ class CalendarMoodState extends State<CalendarMood> {
     List<String> list = ["Nein", "Ja"];
     int i = 0;
     return Padding(
-      padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Column(
         children: [
           Row(
@@ -196,26 +194,24 @@ class CalendarMoodState extends State<CalendarMood> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: 360,
                 height: 25,
-                child: SizedBox(
-                  child: Text(
-                      '${headline[0]['name']}'
-                      ": "
-                      '${moodList[0]['name']}'
-                      " - "
-                      '${moodList[3]['name']}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontFamily: "Sans",
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white70)),
-                ),
+                child: Text(
+                    '${headline[0]['name']}'
+                    ": "
+                    '${moodList[0]['name']}'
+                    " - "
+                    '${moodList[3]['name']}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white70)),
               ),
             ],
           ),
@@ -269,8 +265,7 @@ class CalendarMoodState extends State<CalendarMood> {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
-                  HeroDialogRoute(
-                      builder: (context) => Center(child: MoodDesc())),
+                  PageRouteBuilder(pageBuilder: (_, __, ___) => MoodDesc()),
                 );
               },
               child: Hero(
@@ -281,7 +276,8 @@ class CalendarMoodState extends State<CalendarMood> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(
-                        color: Color(0xFFCADCED),
+                        color: Color(0xFF313237),
+                        shadowColor: Color(0xFF2E4E57),
                         borderRadius: BorderRadius.circular(12),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/schlaf_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +16,7 @@ class CalendarSchlaf extends StatefulWidget {
 class CalendarSchlafState extends State<CalendarSchlaf> {
   var zustand = <String>[];
   double _value = 1;
-bool _switchValue = false;
+  bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
   @override
@@ -83,35 +84,35 @@ bool _switchValue = false;
                         fontWeight: FontWeight.w500,
                         color: Colors.white70)),
               ),
-               const SizedBox(
-            height: 30,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CupertinoSwitch(
-                  value: _switchValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchValue = value;
-                      if (!value) i = 0;
-                      if (value) i = 1;
-                      /* calContent.calendarContentherz(_switchValue); */
-                    });
-                  },
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CupertinoSwitch(
+                      value: _switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchValue = value;
+                          if (!value) i = 0;
+                          if (value) i = 1;
+                          /* calContent.calendarContentherz(_switchValue); */
+                        });
+                      },
+                    ),
+                    Text(list[i],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white70)),
+                  ],
                 ),
-                Text(list[i],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
-              ],
-            ),
-          ),
-            ],            
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,
@@ -130,7 +131,37 @@ bool _switchValue = false;
                   _value = value;
                   calContent.calendarContentschlaf(value);
                 }),
-          )
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(pageBuilder: (_, __, ___) => SchlafDesc()),
+                );
+              },
+              child: Hero(
+                tag: "schlaf",
+                child: CircleAvatar(
+                  maxRadius: 80,
+                  foregroundColor: Color(0xFF313237),
+                  backgroundImage: AssetImage("images/lcs_schlaf.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Material(
+                        color: Color(0xFF313237),
+                        borderRadius: BorderRadius.circular(12),
+                         shadowColor: Color(0xFF2E4E57),
+                         
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                         
+                        )),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

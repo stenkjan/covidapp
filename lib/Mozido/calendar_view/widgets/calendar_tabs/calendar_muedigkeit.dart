@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/muedigkeit_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
@@ -71,34 +72,34 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                         fontWeight: FontWeight.w400,
                         color: Colors.white70)),
               ),
-               const SizedBox(
-            height: 30,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CupertinoSwitch(
-                  value: _switchValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchValue = value;
-                      if (!value) i = 0;
-                      if (value) i = 1;
-                      /* calContent.calendarContentherz(_switchValue); */
-                    });
-                  },
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CupertinoSwitch(
+                      value: _switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchValue = value;
+                          if (!value) i = 0;
+                          if (value) i = 1;
+                          /* calContent.calendarContentherz(_switchValue); */
+                        });
+                      },
+                    ),
+                    Text(list[i],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Sans",
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white70)),
+                  ],
                 ),
-                Text(list[i],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
-              ],
-            ),
-          ),
+              ),
             ],
           ),
           const SizedBox(
@@ -120,7 +121,35 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   _value = value;
                   calContent.calendarContentmuedigkeit(value);
                 }),
-          )
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => MuedigkeitDesc()),
+                );
+              },
+              child: Hero(
+                tag: "muedigkeit",
+                child: CircleAvatar(
+                  maxRadius: 80,
+                  backgroundImage: AssetImage("images/lcs_allgemein.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Material(
+                        color: Color(0xFF313237),
+                        shadowColor: Color(0xFF2E4E57),
+                        borderRadius: BorderRadius.circular(12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                        )),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

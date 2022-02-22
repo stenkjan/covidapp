@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/atem_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
@@ -105,7 +106,34 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                   _value = value;
                   calContent.calendarContentatemnot(_value);
                 }),
-          )
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(pageBuilder: (_, __, ___) => AtemDesc()),
+                );
+              },
+              child: Hero(
+                tag: "atem",
+                child: CircleAvatar(
+                  maxRadius: 100,
+                  backgroundImage: const AssetImage("images/lcs_atemwege.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Material(
+                        color: const Color(0xFF313237),
+                        shadowColor: Color(0xFF2E4E57),
+                        borderRadius: BorderRadius.circular(12),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                        )),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

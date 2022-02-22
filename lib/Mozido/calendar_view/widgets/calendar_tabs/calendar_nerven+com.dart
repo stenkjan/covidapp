@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/nerven_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -100,6 +101,31 @@ class CalendarNervComState extends State<CalendarNervCom> {
                             fontFamily: "Sans",
                             fontWeight: FontWeight.w400,
                             color: Colors.white70)),
+                    SizedBox(width: 30),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => NervComDesc()),
+                        );
+                      },
+                      child: Hero(
+                        tag: "nerven",
+                        child: CircleAvatar(
+                          maxRadius: 30,
+                          backgroundImage: AssetImage("images/lcs_nerven.png"),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Material(
+                                color: Color(0xFF313237),
+                                borderRadius: BorderRadius.circular(12),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -121,35 +147,72 @@ class CalendarNervComState extends State<CalendarNervCom> {
                     }),
               ),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
-              SizedBox(
-                width: 360,
-                height: 25,
-                child: Text("${headline[7]['tag']}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
-              ),
-              SizedBox(
-                width: 360,
-                height: 40,
-                child: Text("${headline[7]['name']}",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        height: 25,
+                        child: Text("${headline[7]['tag']}",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: "Sans",
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white70)),
+                      ),
+                      SizedBox(
+                        width: 300,
+                        height: 40,
+                        child: Text("${headline[7]['name']}",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: "Sans",
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white70)),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) => NervComDesc()),
+                        );
+                      },
+                      child: Hero(
+                        tag: "nerven",
+                        child: CircleAvatar(
+                          maxRadius: 25,
+                          backgroundImage: AssetImage("images/lcs_nerven.png"),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Material(
+                                color: Color(0xFF313237),
+                                borderRadius: BorderRadius.circular(12),
+                                shadowColor: Color(0xFF2E4E57),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [

@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/herz_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -125,7 +126,34 @@ class CalendarHerzState extends State<CalendarHerz> {
                   _value = value;
                   calContent.calendarContentherz(_value);
                 }),
-          )
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(pageBuilder: (_, __, ___) => HerzDesc()),
+                );
+              },
+              child: Hero(
+                tag: "herz",
+                child: CircleAvatar(
+                  maxRadius: 100,
+                  backgroundImage: AssetImage("images/lcs_herz.png"),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Material(
+                        color: Color(0xFF313237),
+                        shadowColor: Color(0xFF2E4E57),
+                        borderRadius: BorderRadius.circular(12),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                        )),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
