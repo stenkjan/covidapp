@@ -86,7 +86,7 @@ class DatabaseService {
                 .collection('users')
                 .doc(uid)
                 .collection('calendar')
-                .where('created_date', isEqualTo: createdDateInt - 1)
+                .where('created_date', isEqualTo: createdDateInt + 1)
                 .snapshots()
                 .toList() as List?;
             if (docList?.isEmpty == true) {

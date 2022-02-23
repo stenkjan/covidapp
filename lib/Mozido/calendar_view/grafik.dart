@@ -45,7 +45,7 @@ class T2GrafikState extends State<T2Grafik> {
     );
   } */
 
-  bool dayChange = false;
+  late bool dayChange;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final GrafikService gS;
   late final GrafikContent grafC;
@@ -66,7 +66,7 @@ class T2GrafikState extends State<T2Grafik> {
     gS = GrafikService();
     gS.dailyRead(current_date, dayChange);
     docList = gS.docList;
-
+dayChange = false;
     // ignore: avoid_print
     print(current_date);
     super.initState();
@@ -157,8 +157,12 @@ class T2GrafikState extends State<T2Grafik> {
                                     size: fontSize(17),
                                   ),
                                   onPressed: () {
+                                     setState(() {                                  
                                     dayChange = false;
                                     currentDate();
+                                     grafService.dailyRead(
+                                      current_date, dayChange);
+                                     });
                                   },
                                 )),
                             Padding(
@@ -173,6 +177,7 @@ class T2GrafikState extends State<T2Grafik> {
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
+                                  setState(() {                                  
                                   dayChange = true;
                                   currentDate();
                                   grafService.dailyRead(
@@ -180,6 +185,7 @@ class T2GrafikState extends State<T2Grafik> {
                                   if (kDebugMode) {
                                     print(current_date);
                                   }
+                                   });
                                 },
                               ),
                             ),
@@ -231,8 +237,10 @@ class T2GrafikState extends State<T2Grafik> {
                       ),
                     ),
                     const SizedBox(
-                      height: 40.0,
+                      height: 30.0,
                     ),
+
+
                     Container(
                       margin: const EdgeInsets.only(right: 5.0),
                       height: SizeConfig.getHeight(context) / 9,
