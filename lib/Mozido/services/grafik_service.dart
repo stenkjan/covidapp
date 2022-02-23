@@ -11,7 +11,7 @@ class GrafikService {
   auth.User? user;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final DatabaseService dbS;
-  late Future<List> docList;
+   List? docList;
 
   Future<GrafikContent?> dailyRead(
     int createdDate,

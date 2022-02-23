@@ -16,6 +16,7 @@ class CalendarHerz extends StatefulWidget {
 class CalendarHerzState extends State<CalendarHerz> {
   var zustand = <String>[];
   double _value = 1;
+  late Color colorswitch;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
@@ -23,6 +24,7 @@ class CalendarHerzState extends State<CalendarHerz> {
   void initState() {
     list;
     i = 0;
+    colorswitch = Color(0xFF313237);
     super.initState();
   }
 
@@ -96,7 +98,12 @@ class CalendarHerzState extends State<CalendarHerz> {
                       _switchValue = value;
                       if (!value) i = 0;
                       if (value) i = 1;
-                      /* calContent.calendarContentherz(_switchValue); */
+                      if (_switchValue == true) {
+                        colorswitch = Colors.white;
+                      }
+                      if (_switchValue == false) {
+                        colorswitch = Color(0xFF313237);
+                      }
                     });
                   },
                 ),
@@ -113,19 +120,38 @@ class CalendarHerzState extends State<CalendarHerz> {
           const SizedBox(
             height: 0,
           ),
-          Opacity(
-            opacity: i.toDouble(),
-            child: Slider(
-                min: 1,
-                max: 10,
-                activeColor: const Color(0xFF31A1C9),
-                inactiveColor: Colors.orange,
-                label: "Herz",
-                value: _value,
-                onChanged: (value) {
-                  _value = value;
-                  calContent.calendarContentherz(_value);
-                }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    10,
+                    (index) => Text((index + 1).toString(),
+                        style: TextStyle(
+                          color: colorswitch,
+                        )),
+                  ),
+                ),
+              ),
+              Opacity(
+                opacity: i.toDouble(),
+                child: Slider(
+                    min: 1,
+                    max: 10,
+                    divisions: 10,
+                    activeColor: const Color(0xFF31A1C9),
+                    inactiveColor: Colors.orange,
+                    label: "Herz",
+                    value: _value,
+                    onChanged: (value) {
+                      _value = value;
+                      calContent.calendarContentherz(_value);
+                    }),
+              ),
+            ],
           ),
           Container(
             alignment: Alignment.bottomCenter,

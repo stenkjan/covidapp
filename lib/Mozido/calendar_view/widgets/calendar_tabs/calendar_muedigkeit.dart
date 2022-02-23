@@ -17,9 +17,21 @@ class CalendarMuedigkeit extends StatefulWidget {
 class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
   var zustand = <String>[];
   double _value = 1;
+  late Color colorswitch;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
+  @override
+  void initState() {
+    list;
+    i = 0;
+    colorswitch = Color(0xFF313237);
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +98,12 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                           _switchValue = value;
                           if (!value) i = 0;
                           if (value) i = 1;
+                          if (_switchValue == true) {
+                            colorswitch = Colors.white;
+                          }
+                          if (_switchValue == false) {
+                            colorswitch = Color(0xFF313237);
+                          }
                           /* calContent.calendarContentherz(_switchValue); */
                         });
                       },
@@ -105,22 +123,38 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
           const SizedBox(
             height: 0,
           ),
-          const SizedBox(
-            height: 0,
-          ),
-          Opacity(
-            opacity: i.toDouble(),
-            child: Slider(
-                min: 1,
-                max: 10,
-                activeColor: const Color(0xFF31A1C9),
-                inactiveColor: Colors.orange,
-                label: "Müdigkeit",
-                value: _value,
-                onChanged: (value) {
-                  _value = value;
-                  calContent.calendarContentmuedigkeit(value);
-                }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    10,
+                    (index) => Text((index + 1).toString(),
+                        style: TextStyle(
+                          color: colorswitch,
+                        )),
+                  ),
+                ),
+              ),
+              Opacity(
+                opacity: i.toDouble(),
+                child: Slider(
+                    min: 1,
+                    max: 10,
+                    divisions: 10,
+                    activeColor: const Color(0xFF31A1C9),
+                    inactiveColor: Colors.orange,
+                    label: "Müdigkeit",
+                    value: _value,
+                    onChanged: (value) {
+                      _value = value;
+                      calContent.calendarContentmuedigkeit(_value);
+                    }),
+              ),
+            ],
           ),
           Container(
             alignment: Alignment.bottomCenter,

@@ -16,18 +16,29 @@ class CalendarAtemnot extends StatefulWidget {
 
 class CalendarAtemnotState extends State<CalendarAtemnot> {
   var zustand = <String>[];
+  CalendarContent calContent = CalendarContent();
   double _value = 1;
+  late Color colorswitch;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
   @override
+  void initState() {
+    list;
+    i = 0;
+    colorswitch = Color(0xFF313237);
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
     final TextEditingController atemnotController = TextEditingController();
-    double _value = 1;
-    bool _switchValue = false;
-    List<String> list = ["Nein", "Ja"];
-    int i = 0;
+
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
       child: Column(
@@ -77,6 +88,12 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                       _switchValue = value;
                       if (!value) i = 0;
                       if (value) i = 1;
+                      if (_switchValue == true) {
+                        colorswitch = Colors.white;
+                      }
+                      if (_switchValue == false) {
+                        colorswitch = Color(0xFF313237);
+                      }
                     });
                   },
                 ),
@@ -93,19 +110,39 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
           const SizedBox(
             height: 0,
           ),
-          Opacity(
-            opacity: i.toDouble(),
-            child: Slider(
-                min: 1,
-                max: 10,
-                activeColor: const Color(0xFF31A1C9),
-                inactiveColor: Colors.orange,
-                label: "Atemnot",
-                value: _value,
-                onChanged: (value) {
-                  _value = value;
-                  calContent.calendarContentatemnot(_value);
-                }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    10,
+                    (index) => Text((index + 1).toString(),
+                        style: TextStyle(
+                          color: colorswitch,
+                        )),
+                  ),
+                ),
+              ),
+              Opacity(
+                opacity: i.toDouble(),
+                child: Slider(
+                    min: 1,
+                    max: 10,
+                    divisions: 10,
+                    activeColor: const Color(0xFF31A1C9),
+                    inactiveColor: Colors.orange,
+                    label: "Atemnot",
+                    value: _value,
+                    onChanged: (value) {
+                      _value = value;
+
+                      calContent.calendarContentatemnot(_value);
+                    }),
+              ),
+            ],
           ),
           Container(
             alignment: Alignment.bottomCenter,

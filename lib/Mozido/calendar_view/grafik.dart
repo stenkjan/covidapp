@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
@@ -44,13 +45,12 @@ class T2GrafikState extends State<T2Grafik> {
     );
   } */
 
-  bool dayChange = true;
+  bool dayChange = false;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final GrafikService gS;
   late final GrafikContent grafC;
-  late final Future<List> docList;
+  List? docList;
   int current_date = 0;
-
 
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
@@ -64,6 +64,8 @@ class T2GrafikState extends State<T2Grafik> {
     current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
 
     gS = GrafikService();
+    gS.dailyRead(current_date, dayChange);
+    docList = gS.docList;
 
     // ignore: avoid_print
     print(current_date);
@@ -93,6 +95,7 @@ class T2GrafikState extends State<T2Grafik> {
   ///
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
+    final calContent = Provider.of<CalendarContent>(context);
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
@@ -105,127 +108,140 @@ class T2GrafikState extends State<T2Grafik> {
     return Column(
       children: [
         SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: SizeConfig.getHeight(context) / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                        height: 40,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 20.0,
-                                spreadRadius: 2.0,
-                              )
-                            ]),
-                        margin: EdgeInsets.only(
-                            left: SizeConfig.getWidth(context) / 20),
-                        child: Center(
-                          child: Text(
-                            current_date.toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSize(25),
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: SizeConfig.getHeight(context) / 14,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                          height: 40,
+                          width: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white70,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 20.0,
+                                  spreadRadius: 2.0,
+                                )
+                              ]),
+                          margin: EdgeInsets.only(
+                              left: SizeConfig.getWidth(context) / 20),
+                          child: Center(
+                            child: Text(
+                              current_date.toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize(25),
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                        )),
-                    Container(
-                      width: SizeConfig.getWidth(context) / 3.7,
-                      margin: EdgeInsets.only(
-                          right: SizeConfig.getWidth(context) / 30),
-                      child: Row(
-                        children: <Widget>[
-                          ArrowButton(
+                          )),
+                      Container(
+                        width: SizeConfig.getWidth(context) / 3.7,
+                        margin: EdgeInsets.only(
+                            right: SizeConfig.getWidth(context) / 30),
+                        child: Row(
+                          children: <Widget>[
+                            ArrowButton(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 5),
+                                iconbutton: IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    size: fontSize(17),
+                                  ),
+                                  onPressed: () {
+                                    dayChange = false;
+                                    currentDate();
+                                  },
+                                )),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    left: SizeConfig.getWidth(context) / 50)),
+                            ArrowButton(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 5),
                               iconbutton: IconButton(
                                 icon: Icon(
-                                  Icons.arrow_back_ios,
+                                  Icons.arrow_forward_ios,
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  dayChange = false;
+                                  dayChange = true;
                                   currentDate();
+                                  grafService.dailyRead(
+                                      current_date, dayChange);
+                                  if (kDebugMode) {
+                                    print(current_date);
+                                  }
                                 },
-                              )),
-                          Padding(
-                              padding: EdgeInsets.only(
-                                  left: SizeConfig.getWidth(context) / 50)),
-                          ArrowButton(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            iconbutton: IconButton(
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                size: fontSize(17),
                               ),
-                              onPressed: () {
-                                dayChange = true;
-                                currentDate();
-                                grafService.dailyRead(current_date, dayChange);
-                                if (kDebugMode) {
-                                  print(current_date);
-                                }
-                              },
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Column(
+                  children: <Widget>[
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: headline.map((data) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  margin: const EdgeInsets.only(right: 10),
+                                  width: 10,
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                      color: data['color'],
+                                      shape: BoxShape.circle),
+                                ),
+                                Text(
+                                  data['name'],
+                                  style: TextStyle(
+                                    fontSize: fontSize(14),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    data['value'],
+                                    style: TextStyle(
+                                      fontSize: fontSize(14),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 40.0,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 5.0),
+                      height: SizeConfig.getHeight(context) / 9,
+                      child: PieChart(grafikData: calContent.getCalendarList()),
+                    ),
                   ],
                 ),
-              ),
-              Column(
-                children: <Widget>[
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: headline.map((data) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                margin: const EdgeInsets.only(right: 10),
-                                width: 10,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                    color: AppColors.pieColors[5],
-                                    shape: BoxShape.circle),
-                              ),
-                              Text(
-                                data['name'],
-                                style: TextStyle(
-                                  fontSize: fontSize(16),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 120.0,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 5.0),
-                    height: SizeConfig.getHeight(context) / 9,
-                    child: PieChart(grafikData: gS.docList),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

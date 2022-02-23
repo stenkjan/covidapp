@@ -1,12 +1,15 @@
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart_cp.dart';
 
 import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
+import 'package:provider/provider.dart';
 
 class PieChart extends StatefulWidget {
-  final Future<List> grafikData;
+  final List? grafikData;
+
   PieChart({required this.grafikData});
   @override
   _PieChartState createState() => _PieChartState();
@@ -14,20 +17,29 @@ class PieChart extends StatefulWidget {
 
 class _PieChartState extends State<PieChart>
     with SingleTickerProviderStateMixin {
-  late final List docList;
+  late final CalendarContent calContent;
+  List? docList;
 
   double total = 0;
+  double answered = 0;
 
   @override
   void initState() {
+    total = calContent.listSum();
+    headline.forEach((e) => total += double.parse(e['value']));
+    docList = widget.grafikData;
+    calContent = CalendarContent();
     super.initState();
-    for (var e in docList) {
-      total += e[0];
+
+    answered = calContent.answeredSum();
+    if (docList!.isEmpty == true) {
+      print('no values in docList');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final CalendarContent calContent = Provider.of<CalendarContent>(context);
     var width = SizeConfig.getWidth(context);
     double fontSize(double size) {
       return size * width / 414;
@@ -48,7 +60,8 @@ class _PieChartState extends State<PieChart>
                   child: CustomPaint(
                     child: Container(),
                     foregroundPainter: PieChartCustomPainter(
-                        width: constraint.maxWidth * 0.5, healthscore: docList),
+                        width: constraint.maxWidth * 0.5,
+                        healthscore: headline),
                   ),
                 ),
               ),
@@ -73,7 +86,7 @@ class _PieChartState extends State<PieChart>
                           Padding(
                             padding: const EdgeInsets.only(top: 0, left: 72),
                             child: Text(
-                              (total / 7).toString(),
+                              (total / calContent.answeredSum()).toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: fontSize(20),

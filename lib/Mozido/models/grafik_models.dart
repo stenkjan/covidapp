@@ -30,7 +30,7 @@ class GrafikModel {
     }
   }
 
-  int? listSum() {
+  /* int? listSum() {
     int? sum =
         mood! + muedigkeit! + atemnot! + sinne! + herz! + schlaf! + nerven!;
     if (sum != 0) return sum;
@@ -39,5 +39,5 @@ class GrafikModel {
       return sum;
     }
     
-  }
+  } */
 }

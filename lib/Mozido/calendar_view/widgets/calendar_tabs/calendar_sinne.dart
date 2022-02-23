@@ -17,12 +17,14 @@ class CalendarSinneState extends State<CalendarSinne> {
   var zustand = <String>[];
   bool _switchValue = false;
   double _value = 1;
+  late Color colorswitch;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
   @override
   void initState() {
     list;
     i = 0;
+    colorswitch = Color(0xFF313237);
     super.initState();
   }
 
@@ -96,6 +98,12 @@ class CalendarSinneState extends State<CalendarSinne> {
                       _switchValue = value;
                       if (!value) i = 0;
                       if (value) i = 1;
+                      if (_switchValue == true) {
+                        colorswitch = Colors.white;
+                      }
+                      if (_switchValue == false) {
+                        colorswitch = Color(0xFF313237);
+                      }
                       //calContent.calendarContentsinne(_switchValue);
                     });
                   },
@@ -113,19 +121,38 @@ class CalendarSinneState extends State<CalendarSinne> {
           const SizedBox(
             height: 0,
           ),
-          Opacity(
-            opacity: i.toDouble(),
-            child: Slider(
-                min: 1,
-                max: 10,
-                activeColor: const Color(0xFF31A1C9),
-                inactiveColor: Colors.orange,
-                label: "Sinne",
-                value: _value,
-                onChanged: (value) {
-                  _value = value;
-                  calContent.calendarContentsinne(value);
-                }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    10,
+                    (index) => Text((index + 1).toString(),
+                        style: TextStyle(
+                          color: colorswitch,
+                        )),
+                  ),
+                ),
+              ),
+              Opacity(
+                opacity: i.toDouble(),
+                child: Slider(
+                    min: 1,
+                    max: 10,
+                    divisions: 10,
+                    activeColor: const Color(0xFF31A1C9),
+                    inactiveColor: Colors.orange,
+                    label: "Sinne",
+                    value: _value,
+                    onChanged: (value) {
+                      _value = value;
+                      calContent.calendarContentsinne(_value);
+                    }),
+              ),
+            ],
           ),
           Container(
             alignment: Alignment.bottomCenter,

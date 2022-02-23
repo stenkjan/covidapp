@@ -1,4 +1,6 @@
 import 'dart:core';
+import 'package:covidapp/Mozido/calendar_view/calendar.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/models/calendar_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';
@@ -13,11 +15,11 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('users');
   late CollectionReference calendarCollection;
   late DocumentReference calendarDoc;
-  late Future<List> docList;
+  late List? docList;
 
   //db reference
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-
+  final CalendarContent calContent = CalendarContent();
   Future updateUserData(
       String email, String firstname, String lastname, String birthday) async {
     return await userCollection.doc(uid).set({
@@ -61,6 +63,7 @@ class DatabaseService {
 
   Future readcalendarDocDaily(int createdDate, bool dayChange) async {
     int createdDateInt = createdDate;
+
     if (dayChange == false) {
       createdDateInt - 1;
       return await calendarDoc
@@ -77,7 +80,19 @@ class DatabaseService {
               .collection('calendar')
               .where('created_date', isEqualTo: createdDateInt)
               .snapshots()
-              .toList();
+              .toList() as List?;
+          if (documentSnapshot.exists == false) {
+            docList = calendarDoc
+                .collection('users')
+                .doc(uid)
+                .collection('calendar')
+                .where('created_date', isEqualTo: createdDateInt - 1)
+                .snapshots()
+                .toList() as List?;
+            if (docList?.isEmpty == true) {
+              docList = calContent.calList;
+            }
+          }
 
           return docList;
         } else {
@@ -101,7 +116,7 @@ class DatabaseService {
               .collection('calendar')
               .where('created_date', isEqualTo: createdDateInt)
               .snapshots()
-              .toList();
+              .toList() as List?;
 
           return docList;
         } else {

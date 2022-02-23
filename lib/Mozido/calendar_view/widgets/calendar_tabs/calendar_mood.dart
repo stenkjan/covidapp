@@ -66,13 +66,12 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print(calContent.count.toString() +
-                                ' count ' );
+                            print(calContent.count.toString() + ' count ');
                             if (firstPress == false) {
                               calContent.increment();
                               calContent.calendarContentmood(
-                                  moodList[0]['amount'] * 100);
-                            
+                                  moodList[0]['amount'] * 2);
+
                               setState(() {
                                 firstPress = true;
                               });
@@ -109,7 +108,7 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(70);
+                              calContent.calendarContentmood(moodList[1]['amount']*2);
 
                               setState(() {
                                 firstPress = true;
@@ -145,7 +144,7 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(50);
+                              calContent.calendarContentmood(moodList[2]['amount']*2);
 
                               setState(() {
                                 firstPress = true;
@@ -181,7 +180,7 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(0);
+                              calContent.calendarContentmood(moodList[3]['amount']*2);
 
                               setState(() {
                                 firstPress = true;
@@ -224,7 +223,7 @@ class CalendarMoodState extends State<CalendarMood> {
           const SizedBox(
             height: 0,
           ),
-          Center(
+          /*  Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -249,14 +248,12 @@ class CalendarMoodState extends State<CalendarMood> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 0,
-          ),
+         
           Opacity(
             opacity: i.toDouble(),
             child: Slider(
                 min: 1,
-                max: 10,
+                max: 10, divisions: 10,
                 activeColor: const Color(0xFF31A1C9),
                 inactiveColor: Colors.orange,
                 label: "Gefühlszustand",
@@ -265,6 +262,9 @@ class CalendarMoodState extends State<CalendarMood> {
                   _value = value;
                   calContent.calendarContentmood(_value.round());
                 }),
+          ), */
+          const SizedBox(
+            height: 50,
           ),
           Container(
             alignment: Alignment.bottomCenter,

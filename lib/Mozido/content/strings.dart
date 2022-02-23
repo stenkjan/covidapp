@@ -1,3 +1,6 @@
+import 'package:covidapp/Mozido/content/calendar_content.dart';
+
+CalendarContent calContent = CalendarContent();
 List healthscore = [
   {"name": "Krankheitsgrad", "amount": 30.0},
   {"name": "Härtefälle", "amount": 20.0},
@@ -65,44 +68,66 @@ final List moodList = [
 ];
 
 final List headline = [
-  {"tag": "Zustand", "name": "Gefühlszustand", "desc": "Der allgemeine Gefühlszustand"},
+  {
+    "tag": "Zustand",
+    "name": "Gefühlszustand",
+    "desc": "Der allgemeine Gefühlszustand",
+    "value": calContent.mood,
+    "valueString": calContent.mood.toString(),
+    "color": calContent.getCalendarColors(calContent.mood)
+  },
   {
     "tag": "Müdigkeit",
     "name": "Müdigkeit und Erschöpfung",
     "desc": "Geben Sie Ihren allgemeinen Zustand an",
-    "min": 1,
-    "max": 10
+    "value": calContent.muedigkeit,
+    "valueString": calContent.muedigkeit.toString(),
+    "color": calContent.getCalendarColors(calContent.muedigkeit)
   },
   {
     "tag": "Atemnot",
     "name": "Kurzatmigkeit/Atemnot",
-    "desc": "Wie oft verspüren Sie Kurzatmigkeit/Atemnot?"
+    "desc": "Wie oft verspüren Sie Kurzatmigkeit/Atemnot?",
+    "value": calContent.atemnot,
+    "valueString": calContent.atemnot.toString(),
+    "color": calContent.getCalendarColors(calContent.atemnot)
   },
   {
     "tag": "Sinne",
     "name": "Geschmacksverlust/Geruchsverlust",
-    "desc": "Verspüren Sie Geruchs-/ und Geschmacksverlust?"
+    "desc": "Verspüren Sie Geruchs-/ und Geschmacksverlust?",
+    "value": calContent.sinne,
+    "valueString": calContent.sinne.toString(),
+    "color": calContent.getCalendarColors(calContent.sinne)
   },
   {
     "tag": "Herz/Kreislauf",
     "name": "Herz-/Kreislaufprobleme",
-    "desc": "Haben Sie Herz-/Kreislaufprobleme?"
+    "desc": "Haben Sie Herz-/Kreislaufprobleme?",
+    "value": calContent.herz,
+    "valueString": calContent.herz.toString(),
+    "color": calContent.getCalendarColors(calContent.herz)
   },
   {
     "tag": "Schlaf",
     "name": "Schlafstörungen",
     "desc": "Geben Sie die Qualität Ihres Schlafes an",
-    "min": 1,
-    "max": 10
+    "value": calContent.schlaf,
+    "valueString": calContent.schlaf.toString(),
+    "color": calContent.getCalendarColors(calContent.schlaf)
   },
   {
     "tag": "Nerven",
     "name": "Kopfschmerzen und Konzentrationsschwäche",
-    "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwächen?"
+    "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwächen?",
+    "value": calContent.nerven,
+    "valueString": calContent.nerven.toString(),
+    "color": calContent.getCalendarColors(calContent.nerven)
   },
   {
     "tag": "Andere Symptome",
     "name": "Immunstörungen und Angststörungen, etc.",
-    "desc": "Bitte beschreiben Sie diese"
+    "desc": "Bitte beschreiben Sie diese",
+    "value": calContent.comment
   },
 ];
