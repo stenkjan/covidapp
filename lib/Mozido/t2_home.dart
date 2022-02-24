@@ -1,13 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
+import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:covidapp/Mozido/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'calendar_view/calendar_tab_bar.dart';
-
 
 import 'login/sign_in/signin.dart';
 
@@ -19,8 +19,12 @@ class T2Home extends StatefulWidget {
 }
 
 class _T2HomeState extends State<T2Home> {
+  late DatabaseService dbService;
+  late AuthService authService;
   @override
   void initState() {
+    authService = AuthService();
+    dbService = DatabaseService(uid: authService.getUser());
     super.initState();
     /* if (Credentials.signed_in = false) {
       SignInScreen();
@@ -284,6 +288,7 @@ class DrawerLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+
     return Drawer(
         child: Container(
       color: const Color(0xFF29303C),
@@ -422,6 +427,10 @@ Widget itemDrawer(IconData icon, String txt) {
 }
 
 Widget _cardHeader(LrmDataModel item) {
+  final AuthService auth = AuthService();
+  final DatabaseService dbService = DatabaseService(uid: auth.getUser());
+  dbService.readcalendarCollection();
+  print(auth.getUser().toString() + ' userid');
   return Stack(
     children: <Widget>[
       Container(
@@ -446,10 +455,10 @@ Widget _cardHeader(LrmDataModel item) {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
-                    "Maximilian Stenk",
-                    style: TextStyle(
+                    auth.getName(),
+                    style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                         fontFamily: "Sans",
@@ -459,14 +468,14 @@ Widget _cardHeader(LrmDataModel item) {
                 ],
               ),
               const SizedBox(
-                height: 30.0,
+                height: 60.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
-                    "Männlich",
-                    style: TextStyle(
+                    dbService.registeredDate.toString(),
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,
                         fontFamily: "Sans",
@@ -475,13 +484,13 @@ Widget _cardHeader(LrmDataModel item) {
                 ],
               ),
               const SizedBox(
-                height: 20.0,
+                height: 5.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   const Text(
-                    "Erkrankungsdatum",
+                    "Erkrankungstage",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w200,
@@ -490,7 +499,7 @@ Widget _cardHeader(LrmDataModel item) {
                     ),
                   ),
                   Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text(
                         "Datum",
                         style: TextStyle(
@@ -500,8 +509,8 @@ Widget _cardHeader(LrmDataModel item) {
                         ),
                       ),
                       Text(
-                        "20/07/21",
-                        style: TextStyle(
+                        dbService.calContent.fullDate,
+                        style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
                             fontFamily: "Sans",

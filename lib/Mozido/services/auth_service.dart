@@ -8,6 +8,7 @@ class AuthService {
   String id = "";
   late String email;
   late User userGet;
+  String name = "";
   /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
@@ -16,7 +17,7 @@ class AuthService {
     userGet = User(user.uid, user.email);
     print(user.uid + ' auth');
     id = user.uid;
-    
+
     print(id);
     return User(user.uid, user.email);
   }
@@ -24,9 +25,18 @@ class AuthService {
   Stream<User?>? get user {
     return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
- String getUser () {
-   return id = _firebaseAuth.currentUser!.uid;
- }
+
+  String getUser() {
+    return id = _firebaseAuth.currentUser!.uid;
+  }
+
+  String getName() {
+    if (name == "") {
+      return name = "Maximilian Stenk";
+    } else {
+      return name;
+    }
+  }
 
   Future<User?> signInWithEmailAndPassword(
     String email,
@@ -47,10 +57,13 @@ class AuthService {
     String birthday,
   ) async {
     try {
+      
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
+        
       );
+      name = firstname + lastname;
       /*  userUid = await (_firebaseAuth.currentUser!.uid); */
       //create a new user doc with uid
       await DatabaseService(uid: credential.user!.uid)

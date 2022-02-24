@@ -17,7 +17,7 @@ class PieChart extends StatefulWidget {
 
 class _PieChartState extends State<PieChart>
     with SingleTickerProviderStateMixin {
-  late final CalendarContent calContent;
+  late CalendarContent calContent;
   List? docList;
 
   double total = 0;
@@ -25,10 +25,11 @@ class _PieChartState extends State<PieChart>
 
   @override
   void initState() {
-    total = calContent.listSum();
-    headline.forEach((e) => total += double.parse(e['value']));
-    docList = widget.grafikData;
     calContent = CalendarContent();
+    total = calContent.listSum();
+  
+    docList = widget.grafikData;
+
     super.initState();
 
     answered = calContent.answeredSum();

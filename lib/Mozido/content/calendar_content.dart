@@ -25,6 +25,9 @@ class CalendarContent with ChangeNotifier {
   bool docExists = false;
   List? calList;
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
+  String fullDate = DateFormat(
+    'd/M/y',
+  ).format(DateTime.now());
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
   final FirebaseFirestore _db = FirebaseFirestore.instance;

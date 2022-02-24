@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:covidapp/Mozido/calendar_view/grafik_tab_bar.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart%20copy.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';
@@ -62,11 +64,11 @@ class T2GrafikState extends State<T2Grafik> {
   @override
   initState() {
     current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
-
+    dayChange = false;
     gS = GrafikService();
     gS.dailyRead(current_date, dayChange);
     docList = gS.docList;
-dayChange = false;
+
     // ignore: avoid_print
     print(current_date);
     super.initState();
@@ -96,6 +98,7 @@ dayChange = false;
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
+
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
@@ -157,12 +160,12 @@ dayChange = false;
                                     size: fontSize(17),
                                   ),
                                   onPressed: () {
-                                     setState(() {                                  
-                                    dayChange = false;
-                                    currentDate();
-                                     grafService.dailyRead(
-                                      current_date, dayChange);
-                                     });
+                                    setState(() {
+                                      dayChange = false;
+                                      currentDate();
+                                      grafService.dailyRead(
+                                          current_date, dayChange);
+                                    });
                                   },
                                 )),
                             Padding(
@@ -177,15 +180,15 @@ dayChange = false;
                                   size: fontSize(17),
                                 ),
                                 onPressed: () {
-                                  setState(() {                                  
-                                  dayChange = true;
-                                  currentDate();
-                                  grafService.dailyRead(
-                                      current_date, dayChange);
-                                  if (kDebugMode) {
-                                    print(current_date);
-                                  }
-                                   });
+                                  setState(() {
+                                    dayChange = true;
+                                    currentDate();
+                                    grafService.dailyRead(
+                                        current_date, dayChange);
+                                    if (kDebugMode) {
+                                      print(current_date);
+                                    }
+                                  });
                                 },
                               ),
                             ),
@@ -216,7 +219,7 @@ dayChange = false;
                                       shape: BoxShape.circle),
                                 ),
                                 Text(
-                                  data['name'],
+                                  data['name'].toString(),
                                   style: TextStyle(
                                     fontSize: fontSize(14),
                                   ),
@@ -224,7 +227,7 @@ dayChange = false;
                                 Container(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    data['value'],
+                                    data['value'].toString(),
                                     style: TextStyle(
                                       fontSize: fontSize(14),
                                     ),
@@ -239,12 +242,13 @@ dayChange = false;
                     const SizedBox(
                       height: 30.0,
                     ),
-
-
                     Container(
                       margin: const EdgeInsets.only(right: 5.0),
                       height: SizeConfig.getHeight(context) / 9,
-                      child: PieChart(grafikData: calContent.getCalendarList()),
+                      child: //const GrafikTabBar(),
+
+                      // PieChartNew(calContent.dataMap)
+                       PieChart(grafikData: calContent.getCalendarList()), 
                     ),
                   ],
                 ),

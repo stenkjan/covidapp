@@ -128,6 +128,6 @@ final List headline = [
     "tag": "Andere Symptome",
     "name": "Immunstörungen und Angststörungen, etc.",
     "desc": "Bitte beschreiben Sie diese",
-    "value": calContent.comment
+    
   },
 ];

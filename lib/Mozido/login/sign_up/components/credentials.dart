@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:covidapp/Mozido/login/constants.dart';
 import 'package:provider/provider.dart';
 
+import '../../../t2_home.dart';
+
 class Credentials extends StatefulWidget {
   const Credentials({Key? key}) : super(key: key);
 
@@ -195,6 +197,14 @@ class _CredentialsState extends State<Credentials> {
                             firstnameController.text,
                             lastnameController.text,
                             birthdayController.text);
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const T2Home();
+                            },
+                          ),
+                        ); 
                       } else {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
