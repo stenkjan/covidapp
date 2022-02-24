@@ -46,9 +46,9 @@ class MiscDesc extends StatelessWidget {
                     width: 360,
                     height: 75,
                     child: Text(
-                        '${headline[7]['name']}'
+                        '${andereSymptome[0]['name']}'
                         ": "
-                        '${headline[7]['desc']}'
+                        '${andereSymptome[0]['desc']}'
                         ' wenn möglich genauer',
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,

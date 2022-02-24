@@ -194,7 +194,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       SizedBox(
                         width: 300,
                         height: 25,
-                        child: Text("${headline[7]['tag']}",
+                        child: Text("${headline[7]['name']}",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
@@ -208,7 +208,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       SizedBox(
                         width: 300,
                         height: 40,
-                        child: Text("${headline[7]['name']}",
+                        child: Text("${andereSymptome[0]['tag']}",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,
@@ -266,7 +266,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                           ),
                           filled: true,
                           hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: "${headline[7]['desc']}",
+                          hintText: "${andereSymptome[0]['desc']}",
                           fillColor: Colors.white70),
                     ),
                   ),

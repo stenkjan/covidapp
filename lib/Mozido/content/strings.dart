@@ -67,6 +67,14 @@ final List moodList = [
   {"name": "Schlecht", "icon4": "😧\u200d", "amount": 4},
 ];
 
+final List andereSymptome = [
+  {
+    "tag": "Andere Symptome",
+    "name": "Immunstörungen und Angststörungen, etc.",
+    "desc": "Bitte beschreiben Sie diese",
+    "value": calContent.comment,
+  },
+];
 final List headline = [
   {
     "tag": "Zustand",
@@ -123,11 +131,5 @@ final List headline = [
     "value": calContent.nerven,
     "valueString": calContent.nerven.toString(),
     "color": calContent.getCalendarColors(calContent.nerven)
-  },
-  {
-    "tag": "Andere Symptome",
-    "name": "Immunstörungen und Angststörungen, etc.",
-    "desc": "Bitte beschreiben Sie diese",
-    
   },
 ];

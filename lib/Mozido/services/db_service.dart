@@ -13,7 +13,7 @@ class DatabaseService {
   //collection reference
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-  final CollectionReference userCollectionData =
+  final CollectionReference userCollectionData = 
       FirebaseFirestore.instance.collection('users');
   late CollectionReference calendarCollection;
   late DocumentReference calendarDoc;
