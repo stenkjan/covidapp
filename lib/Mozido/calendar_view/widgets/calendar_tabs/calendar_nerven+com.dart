@@ -18,7 +18,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
   var zustand = <String>[];
   double _value = 1;
   late Color colorswitch;
-  
+
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
@@ -195,7 +195,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       SizedBox(
                         width: 300,
                         height: 25,
-                        child: Text("${headline[7]['name']}",
+                        child: Text("${andereSymptome[0]['name']}",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             softWrap: false,

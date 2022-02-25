@@ -237,7 +237,7 @@ class T2GrafikState extends State<T2Grafik> {
                           Container(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              data['value'].toString(),
+                              (data['value'] * 10).toString(),
                               style: TextStyle(
                                 fontSize: fontSize(12),
                                 fontWeight: FontWeight.bold,

@@ -4,6 +4,7 @@ import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
 
 import '../../content/strings.dart';
+import '../../content/variable_colors.dart';
 
 class HeartGraph extends StatefulWidget {
   @override
@@ -19,27 +20,27 @@ class _HeartGraphState extends State<HeartGraph> {
     calContent.bpmWeekL();
     features = [
       Feature(
-        title: headline[0]['tag'],
-        color: Colors.blue,
+        title: headline[4]['tag'],
+        color: variableColors[4],
         data: [
-          calContent.herzL[0].toDouble() * 10,
-          calContent.herzL[1].toDouble() * 10,
-          calContent.herzL[2].toDouble() * 10,
-          calContent.herzL[3].toDouble() * 10,
-          calContent.herzL[4].toDouble() * 10,
-          calContent.herzL[5].toDouble() * 10
+          calContent.herzL[0].toDouble() / 10,
+          calContent.herzL[1].toDouble() / 10,
+          calContent.herzL[2].toDouble() / 10,
+          calContent.herzL[3].toDouble() / 10,
+          calContent.herzL[4].toDouble() / 10,
+          calContent.herzL[5].toDouble() / 10
         ],
       ),
       Feature(
-        title: headline[1]['tag'],
-        color: Colors.blue,
+        title: "BPM",
+        color: variableColors[5],
         data: [
-          calContent.bpm[0].toDouble(),
-          calContent.bpm[1].toDouble(),
-          calContent.bpm[2].toDouble(),
-          calContent.bpm[3].toDouble(),
-          calContent.bpm[4].toDouble(),
-          calContent.bpm[5].toDouble()
+          calContent.bpm[0].toDouble() / 100,
+          calContent.bpm[1].toDouble() / 100,
+          calContent.bpm[2].toDouble() / 100,
+          calContent.bpm[3].toDouble() / 100,
+          calContent.bpm[4].toDouble() / 100,
+          calContent.bpm[5].toDouble() / 100,
         ],
       ),
     ];
@@ -53,9 +54,11 @@ class _HeartGraphState extends State<HeartGraph> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
+    return Container(
+      alignment: Alignment.center,
+      height: 300,
+      width: 400,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -70,20 +73,24 @@ class _HeartGraphState extends State<HeartGraph> {
               ),
             ),
           ), */
+          SizedBox(
+            height: 30,
+          ),
           LineGraph(
             features: features,
-            size: Size(420, 450),
+            size: Size(350, 250),
             labelX: [
               calContent.dateL[0].toString(),
-              calContent.dateL[0].toString(),
-              calContent.dateL[0].toString(),
-              calContent.dateL[0].toString(),
-              calContent.dateL[0].toString(),
-              calContent.dateL[0].toString()
+              calContent.dateL[1].toString(),
+              calContent.dateL[2].toString(),
+              calContent.dateL[3].toString(),
+              calContent.dateL[4].toString(),
+              calContent.dateL[5].toString()
             ],
-            labelY: const ['20', '40', '60', '80', '100'],
+            labelY: const ['20%', '40%', '60%', '80%', '100%'],
             showDescription: true,
-            graphColor: Colors.black87,
+            graphColor: Colors.blueGrey,
+            descriptionHeight: 40,
           ),
           SizedBox(
             height: 0,
