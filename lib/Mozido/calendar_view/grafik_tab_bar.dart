@@ -1,6 +1,7 @@
 import 'package:covidapp/Mozido/calendar_view/grafik.dart';
 import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/heart_graph.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/weekly_graph.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
@@ -111,7 +112,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                           )),
                           Tab(
                               child: Text(
-                            "Monat",
+                            "BPM",
                             style: TextStyle(
                               fontSize: 15.0,
                               fontWeight: FontWeight.w300,
@@ -148,6 +149,12 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                       //calContent.dataMap,
                       //),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 5.0,
+                        right: 5.0,
+                      ),
+                      child: HeartGraph(),
                     /*  Padding(
                       padding: const EdgeInsets.only(
                         left: 5.0,
@@ -230,7 +237,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                       ),
                     ), */
                     //tab3 design
-                    Padding(
+                  /*   Padding(
                       padding: const EdgeInsets.only(
                           left: 5.0, right: 5.0, top: 5.0),
                       child: Container(
@@ -297,25 +304,21 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                                     shape: BoxShape.circle,
                                     color: Colors.white30),
                               ),
-                            ),
+                            ), */
 
                             //FormDesignScrollView(),
 
-                            DayPie(),
 
                             //FormDesignScrollView(),
-                          ],
+                          
                         ),
+                  ],
                       ),
                     ),
-                  ],
-                ),
-              ),
             ),
           ),
-        ],
-      ),
-      // ),
-    );
+                  ],
+                ),
+              );
   }
 }
