@@ -9,6 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
+import '../Puls_Messung/heart_bpm.dart';
+
 class CalendarContent with ChangeNotifier {
   bool saved = false;
   late int mood = 5;
@@ -35,12 +37,33 @@ class CalendarContent with ChangeNotifier {
 
 /*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
       this.herz, this.schlaf); */
+  List<int> dateL = [20, 21, 22, 23, 24, 25];
+  List<int> moodL = [5, 4, 3, 5, 7, 8];
+  List<int> muedigkeitL = [3, 0, 0, 1, 0, 3];
+  List<int> atemnotL = [0, 0, 1, 0, 0, 0];
+  List<int> sinneL = [0, 1, 3, 2, 4, 1];
+  List<int> herzL = [3, 4, 6, 8, 6, 5];
+  List<int> schlafL = [3, 2, 4, 2, 3, 2];
+  List<int> nervenL = [5, 6, 8, 5, 6, 4];
+  List<int> bpm = [70,80,85,70,90,100];
+  List bpmday = [];
+/*   List<int> bpmValues = [100, 120, 70, 80]; */
 
   int calendarContentmood(int i) {
     mood = i;
+    moodL.add(mood);
     createdDate = currentDate.toString();
     notifyListeners();
     return mood;
+  }
+
+  List<int> bpmWeekL() {
+    num sum = 0;
+    for(num e in bpmday) {
+      sum += e;
+    }
+    bpm.add(sum.round());
+    return bpm;
   }
 
   List? getCalendarList() {
@@ -117,36 +140,42 @@ class CalendarContent with ChangeNotifier {
 
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
+    muedigkeitL.add(muedigkeit);
     notifyListeners();
     return muedigkeit;
   }
 
   int calendarContentatemnot(double a) {
     atemnot = a.round();
+    atemnotL.add(atemnot);
     notifyListeners();
     return atemnot;
   }
 
   int calendarContentsinne(double b) {
     sinne = b.round();
+    sinneL.add(sinne);
     notifyListeners();
     return sinne;
   }
 
   int calendarContentherz(double c) {
     herz = c.round();
+    herzL.add(herz);
     notifyListeners();
     return herz;
   }
 
   int calendarContentschlaf(double s) {
     schlaf = s.round();
+    schlafL.add(schlaf);
     notifyListeners();
     return schlaf;
   }
 
   int calendarContentnerven(double n) {
     nerven = n.round();
+    nervenL.add(nerven);
     notifyListeners();
     return nerven;
   }
@@ -174,6 +203,7 @@ class CalendarContent with ChangeNotifier {
   Future<bool> clear() async {
     saved = true;
     createDateInt = int.parse(createdDate);
+    dateL.add(createDateInt);
     DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(gS.uid)

@@ -1,6 +1,8 @@
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'Puls_Messung/chart.dart';
 import 'Puls_Messung/heart_bpm.dart';
@@ -14,6 +16,7 @@ class Puls_Analyse extends StatefulWidget {
 class Puls_AnalyseState extends State<Puls_Analyse> {
   List<SensorValue> data = [];
   List<SensorValue> bpmValues = [];
+
   //  Widget chart = BPMChart(data);
 
   bool isBPMEnabled = false;
@@ -21,6 +24,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
 
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
     return Scaffold(
       backgroundColor: Color(0xFF313237),
 
@@ -60,6 +64,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     if (bpmValues.length >= 100) bpmValues.removeAt(0);
                     bpmValues.add(SensorValue(
                         value: value.toDouble(), time: DateTime.now()));
+                    calContent.bpmday.add(value);
                   }),
                   // sampleDelay: 1000 ~/ 20,
                   // child: Container(

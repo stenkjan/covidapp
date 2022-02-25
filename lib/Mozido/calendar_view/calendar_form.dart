@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:covidapp/Mozido/calendar_view/calendar.dart';
+import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:table_calendar/table_calendar.dart';
@@ -202,6 +203,7 @@ class _CalendarFormState extends State<CalendarForm> {
                   hintText: "Bitte geben Sie einen Kommentar ein",
                 ),
                 controller: _eventController,
+                //  controller: andereSymptomeController,
               ),
               actions: <Widget>[
                 TextButton(
@@ -215,7 +217,7 @@ class _CalendarFormState extends State<CalendarForm> {
                     setState(() {
                       if (_events[_controller.selectedDay] != null) {
                         _events[_controller.selectedDay]!
-                          .add(_eventController.text);
+                            .add(_eventController.text);
                       } else {
                         _events[_controller.selectedDay] = [
                           _eventController.text

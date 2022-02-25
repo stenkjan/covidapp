@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/grafik_tab_bar.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart%20copy.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';

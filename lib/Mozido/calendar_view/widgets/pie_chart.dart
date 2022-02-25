@@ -31,6 +31,11 @@ class _PieChartState extends State<PieChart>
     docList = widget.grafikData;
 
     super.initState();
+    
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
     answered = calContent.answeredSum();
     if (docList!.isEmpty == true) {

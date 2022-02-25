@@ -5,14 +5,14 @@ import 'package:pie_chart/pie_chart.dart';
 
 import '../../content/strings.dart';
 
-class PieChartNew extends StatefulWidget {
-  PieChartNew({Key? key}) : super(key: key);
+class DayPie extends StatefulWidget {
+  DayPie({Key? key}) : super(key: key);
 
   @override
-  _PieChartNewState createState() => _PieChartNewState();
+  _DayPieState createState() => _DayPieState();
 }
 
-class _PieChartNewState extends State<PieChartNew> {
+class _DayPieState extends State<DayPie> {
   late CalendarContent calContent;
   late Map<String, double> dataMap;
   @override

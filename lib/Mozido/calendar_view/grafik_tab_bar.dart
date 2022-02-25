@@ -1,7 +1,8 @@
 import 'package:covidapp/Mozido/calendar_view/grafik.dart';
 import 'package:covidapp/Mozido/calendar_view/calendar.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart%20copy.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/weekly_graph.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -117,12 +118,22 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                         left: 5.0,
                         right: 5.0,
                       ),
-                      child: PieChartNew(),
+                      child: DayPie(),
                       //PieChartNew(
                       //calContent.dataMap,
                       //),
                     ),
                     Padding(
+                      padding: const EdgeInsets.only(
+                        left: 5.0,
+                        right: 5.0,
+                      ),
+                      child: WeekGraph(),
+                      //PieChartNew(
+                      //calContent.dataMap,
+                      //),
+                    ),
+                    /*  Padding(
                       padding: const EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
@@ -202,7 +213,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                           ],
                         ),
                       ),
-                    ),
+                    ), */
                     //tab3 design
                     Padding(
                       padding: const EdgeInsets.only(
@@ -275,7 +286,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
 
                             //FormDesignScrollView(),
 
-                            PieChartNew(),
+                            DayPie(),
 
                             //FormDesignScrollView(),
                           ],
