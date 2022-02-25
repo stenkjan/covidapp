@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:covidapp/FAQ.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
@@ -335,10 +336,10 @@ class DrawerLayout extends StatelessWidget {
                     child: itemDrawer(Icons.home, "Übersicht")),
                 InkWell(
                     onTap: () {
-                      //   Navigator.of(context).push(PageRouteBuilder(
-                      //  pageBuilder: (_, __, ___) => new T2_Search()));
+                      Navigator.of(context).push(
+                          PageRouteBuilder(pageBuilder: (_, __, ___) => FAQ()));
                     },
-                    child: itemDrawer(Icons.search, "Zustand")),
+                    child: itemDrawer(Icons.search, "FAQ")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(

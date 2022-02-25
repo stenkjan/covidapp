@@ -1,6 +1,6 @@
 import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/Mozido/puls_analyse.dart';
-import 'package:covidapp/Uebungen_webview.dart';
+import 'package:covidapp/Mozido/Uebungen_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
