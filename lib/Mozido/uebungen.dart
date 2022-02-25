@@ -1,5 +1,6 @@
 import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/Mozido/puls_analyse.dart';
+import 'package:covidapp/Uebungen_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -62,7 +63,7 @@ class _UebungenState extends State<Uebungen> {
           top: 15.0, left: 15.0, right: 15.0, bottom: 5.0),
       child: InkWell(
         onTap: () {
-           if (_title == "Puls Analyse") {
+          if (_title == "Puls Analyse") {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -73,11 +74,11 @@ class _UebungenState extends State<Uebungen> {
           }
           if (_title == "Atem Übung") {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Uebungen()));
+                context, MaterialPageRoute(builder: (context) => Webview()));
           } else if (_title == "Emotionaler Zustand") {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CalendarTabBar()));
-          }        
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CalendarTabBar()));
+          }
         },
         child: Container(
           width: double.infinity,
