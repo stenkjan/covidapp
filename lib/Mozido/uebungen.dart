@@ -1,3 +1,6 @@
+import 'package:covidapp/Mozido/breathing/breathe_page.dart';
+import 'package:covidapp/Mozido/breathing/home_page.dart';
+import 'package:covidapp/Mozido/breathing/uebungen_main.dart';
 import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/Mozido/puls_analyse.dart';
 import 'package:covidapp/Mozido/Uebungen_webview.dart';
@@ -73,8 +76,8 @@ class _UebungenState extends State<Uebungen> {
             );
           }
           if (_title == "Atem Übung") {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Webview()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => uebungbreathing()));
           } else if (_title == "Emotionaler Zustand") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => CalendarTabBar()));
