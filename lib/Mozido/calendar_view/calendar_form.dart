@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:covidapp/Mozido/calendar_view/calendar.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -20,6 +21,7 @@ class _CalendarFormState extends State<CalendarForm> {
   late TextEditingController _eventController;
   late SharedPreferences prefs;
   late Calendar calendar;
+  late bool comBool;
 
   @override
   void initState() {
@@ -28,7 +30,7 @@ class _CalendarFormState extends State<CalendarForm> {
     _events = {};
     _selectedEvents = [];
     prefsData();
-
+    comBool = false;
     super.initState();
   }
 
@@ -87,14 +89,14 @@ class _CalendarFormState extends State<CalendarForm> {
             TableCalendar(
               events: _events,
               initialCalendarFormat: CalendarFormat.week,
-              calendarStyle: const CalendarStyle(
+              calendarStyle: CalendarStyle(
                 canEventMarkersOverflow: true,
-                todayColor: Color(0x9C2D00A7),
-                selectedColor: Color(0xFF31A1C9),
-                todayStyle: TextStyle(
+                todayColor: const Color(0x9C2D00A7),
+                selectedColor: calContent.getCalendarColorSum(),
+                todayStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
-                    color: Color(0xEA1F3F48)),
+                    color: Color.fromARGB(234, 212, 246, 255)),
               ),
               headerStyle: HeaderStyle(
                 centerHeaderTitle: true,
@@ -107,8 +109,24 @@ class _CalendarFormState extends State<CalendarForm> {
               ),
               startingDayOfWeek: StartingDayOfWeek.monday,
               onDaySelected: (date, events, holidays) {
+                _selectedEvents = events;
                 setState(() {
-                  _selectedEvents = events;
+                  if (calContent.comment.isEmpty) {
+                    return;
+                  }
+                  if (calContent.docExists) {
+                    comBool = true;
+                    calContent.pieLegendbool = false;
+                  }
+                  if (_events[_controller.selectedDay] != null) {
+                    _events[_controller.selectedDay]!.add(calContent.comment);
+                  } else {
+                    _events[_controller.selectedDay] = [calContent.comment];
+                  }
+                  prefs.setString(
+                      "Ereignisse", json.encode(encodeMap(_events)));
+                  _eventController.clear();
+                  Navigator.pop(context);
                 });
               },
               builders: CalendarBuilders(
@@ -158,14 +176,20 @@ class _CalendarFormState extends State<CalendarForm> {
                             spreadRadius: 2.0,
                           )
                         ]),
-                    child: Center(
-                        child: Text(
-                      event,
-                      style: const TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    )),
+                    child: Column(
+                      children: [
+                        Center(
+                            child: Text(
+                          event,
+                          style: const TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )),
+                        if (comBool == true)
+                          SizedBox(height: 20, width: 20, child: DayPie()),
+                      ],
+                    ),
                   ),
                 )),
           ],
@@ -187,7 +211,7 @@ class _CalendarFormState extends State<CalendarForm> {
       // ),
     );
   }
-
+/* 
   showAddDialog() async {
     await showDialog(
         context: context,
@@ -232,5 +256,5 @@ class _CalendarFormState extends State<CalendarForm> {
                 )
               ],
             ));
-  }
+  } */
 }

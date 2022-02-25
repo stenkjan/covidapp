@@ -2,12 +2,11 @@ import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:provider/provider.dart';
 
 import '../../content/strings.dart';
 
 class DayPie extends StatefulWidget {
-  DayPie({Key? key}) : super(key: key);
-
   @override
   _DayPieState createState() => _DayPieState();
 }
@@ -32,6 +31,7 @@ class _DayPieState extends State<DayPie> {
 
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
     return PieChart(
       dataMap: dataMap,
       animationDuration: const Duration(milliseconds: 800),
@@ -42,12 +42,12 @@ class _DayPieState extends State<DayPie> {
       chartType: ChartType.ring,
       ringStrokeWidth: 52,
       centerText: "Symptome",
-      legendOptions: const LegendOptions(
+      legendOptions:  LegendOptions(
         showLegendsInRow: true,
         legendPosition: LegendPosition.top,
-        showLegends: true,
+        showLegends: calContent.pieLegendbool,
         legendShape: BoxShape.circle,
-        legendTextStyle: TextStyle(
+        legendTextStyle: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 10,
         ),

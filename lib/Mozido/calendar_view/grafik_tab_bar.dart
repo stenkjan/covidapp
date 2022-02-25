@@ -18,8 +18,23 @@ class GrafikTabBar extends StatefulWidget {
 }
 
 class _GrafikTabBarState extends State<GrafikTabBar> {
-  bool itemSwitch = false;
-  String questionChoice = "";
+  late bool itemSwitch;
+  late String questionChoice;
+  late CalendarContent calContent;
+  @override
+  void initState() {
+    questionChoice = "";
+    itemSwitch = false;
+    calContent = CalendarContent();
+    calContent.pieLegendbool = true;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);

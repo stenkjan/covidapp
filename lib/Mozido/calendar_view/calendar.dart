@@ -201,6 +201,7 @@ class CalendarState extends State<Calendar> {
         opacity: calContent.count.toDouble(),
         child: FloatingActionButton.extended(
           onPressed: () {
+
             if (calContent.docExists == false) {              
                    calService.dailyTask(
                   calContent.mood,
@@ -213,7 +214,9 @@ class CalendarState extends State<Calendar> {
                   calContent.comment,
                   currentDate);
               calContent.clear();
+            
             }
+            
           },
           // tooltip: "Bestätigen",
           //foregroundColor: const Color(0xFF31A1C9),

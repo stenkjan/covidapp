@@ -25,6 +25,7 @@ class CalendarContent with ChangeNotifier {
   late int createDateInt;
   int count = 0;
   bool docExists = false;
+  bool pieLegendbool = true;
   List? calList;
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
   String fullDate = DateFormat(
@@ -45,7 +46,7 @@ class CalendarContent with ChangeNotifier {
   List<int> herzL = [3, 4, 6, 8, 6, 5];
   List<int> schlafL = [3, 2, 4, 2, 3, 2];
   List<int> nervenL = [5, 6, 8, 5, 6, 4];
-  List<int> bpm = [70,80,85,70,90,100];
+  List<int> bpm = [70, 80, 85, 70, 90, 100];
   List bpmday = [];
 /*   List<int> bpmValues = [100, 120, 70, 80]; */
 
@@ -59,7 +60,7 @@ class CalendarContent with ChangeNotifier {
 
   List<int> bpmWeekL() {
     num sum = 0;
-    for(num e in bpmday) {
+    for (num e in bpmday) {
       sum += e;
     }
     bpm.add(sum.round());
@@ -91,6 +92,29 @@ class CalendarContent with ChangeNotifier {
         calColorList!.add(AppColors.pieColors[2]);
         headline.where((i) => headline[i].add(category));
       } */
+
+    if (value >= 1 && value <= 2) {
+      return color = (AppColors.pieColors[2]);
+    }
+    if (value >= 3 && value <= 4) {
+      return color = (AppColors.pieColors[3]);
+    }
+    if (value >= 5 && value <= 7) {
+      return color = (AppColors.pieColors[4]);
+    }
+    if (value >= 7 && value <= 10) {
+      return color = (AppColors.pieColors[5]);
+    }
+    if (value == 0) {
+      print(color.toString() + " null");
+      return color;
+    }
+    return color;
+  }
+
+  Color getCalendarColorSum() {
+    double value = listSum();
+    Color color = Color(0xFF31A1C9);
 
     if (value >= 1 && value <= 2) {
       return color = (AppColors.pieColors[2]);
