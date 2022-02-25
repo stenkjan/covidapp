@@ -23,7 +23,7 @@ class Webviewpage extends StatelessWidget {
             SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
         backgroundColor: Color(0xFF313237),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Lungenkapazität/ Herztraining ",
           style: TextStyle(
               color: Colors.white,
