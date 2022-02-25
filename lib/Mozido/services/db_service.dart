@@ -13,11 +13,11 @@ class DatabaseService {
   //collection reference
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-  final CollectionReference userCollectionData = 
+  final CollectionReference userCollectionData =
       FirebaseFirestore.instance.collection('users');
   late CollectionReference calendarCollection;
   late DocumentReference calendarDoc;
-  late List? docList;
+  late List docList;
   late List nameData;
   int registeredDate = 0;
 
@@ -53,7 +53,6 @@ class DatabaseService {
       'created_date': createdDate,
     });
   }
-
 
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance
@@ -125,7 +124,7 @@ class DatabaseService {
               .collection('calendar')
               .where('created_date', isEqualTo: createdDateInt)
               .snapshots()
-              .toList() as List?;
+              .toList() as List;
           if (documentSnapshot.exists == false) {
             docList = calendarDoc
                 .collection('users')
@@ -133,9 +132,9 @@ class DatabaseService {
                 .collection('calendar')
                 .where('created_date', isEqualTo: createdDateInt + 1)
                 .snapshots()
-                .toList() as List?;
-            if (docList?.isEmpty == true) {
-              docList = calContent.calList;
+                .toList() as List;
+            if (docList.isEmpty == true) {
+              docList = calContent.getCalendarList();
             }
           }
 
@@ -161,7 +160,7 @@ class DatabaseService {
               .collection('calendar')
               .where('created_date', isEqualTo: createdDateInt)
               .snapshots()
-              .toList() as List?;
+              .toList() as List;
 
           return docList;
         } else {

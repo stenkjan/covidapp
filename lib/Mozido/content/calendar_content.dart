@@ -13,20 +13,22 @@ import '../Puls_Messung/heart_bpm.dart';
 
 class CalendarContent with ChangeNotifier {
   bool saved = false;
-  late int mood = 5;
-  int muedigkeit = 0;
-  int atemnot = 0;
-  int sinne = 0;
-  int herz = 0;
-  int schlaf = 0;
-  int nerven = 0;
+  late int mood = moodL.last;
+  late int muedigkeit = muedigkeitL.last;
+  late int atemnot = atemnotL.last;
+  late int sinne = sinneL.last;
+  late int herz = herzL.last;
+  late int schlaf = schlafL.last;
+  late int nerven = nervenL.last;
   String comment = "";
   late String createdDate;
   late int createDateInt;
   int count = 0;
+  int varCount = 0;
   bool docExists = false;
   bool pieLegendbool = true;
-  List? calList;
+  late List calList;
+  late List headlineupdate;
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
   String fullDate = DateFormat(
     'd/M/y',
@@ -35,13 +37,14 @@ class CalendarContent with ChangeNotifier {
       FirebaseFirestore.instance.collection('users');
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   GrafikService gS = GrafikService();
-
+  String? userId;
 /*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
       this.herz, this.schlaf); */
+
   List<int> dateL = [20, 21, 22, 23, 24, 25];
   List<int> moodL = [5, 4, 3, 5, 7, 8];
   List<int> muedigkeitL = [3, 0, 0, 1, 0, 3];
-  List<int> atemnotL = [0, 0, 1, 0, 0, 0];
+  List<int> atemnotL = [0, 0, 1, 5, 3, 0];
   List<int> sinneL = [0, 1, 3, 2, 4, 1];
   List<int> herzL = [3, 4, 6, 8, 6, 5];
   List<int> schlafL = [3, 2, 4, 2, 3, 2];
@@ -52,6 +55,7 @@ class CalendarContent with ChangeNotifier {
 
   int calendarContentmood(int i) {
     mood = i;
+    userId = gS.uid;
     moodL.add(mood);
     createdDate = currentDate.toString();
     notifyListeners();
@@ -67,19 +71,41 @@ class CalendarContent with ChangeNotifier {
     return bpm;
   }
 
-  List? getCalendarList() {
+  List getCalendarList() {
+    headlineupdate = headline;
+
+    print(count.toString() + " to varcount");
+    int index = dateL.indexWhere((varCount) => this.varCount.isEven);
+    print(index);
     createdDate = currentDate.toString();
-    calList = List.unmodifiable([
-      mood,
-      muedigkeit,
-      atemnot,
-      sinne,
-      herz,
-      schlaf,
-      nerven,
-      comment,
-      createdDate
-    ]);
+    mood = moodL[index];
+    muedigkeit = muedigkeitL[index];
+    atemnot = atemnotL[index];
+    sinne = sinneL[index];
+    herz = herzL[index];
+    schlaf = schlafL[index];
+    nerven = nervenL[index];
+
+    calList = [
+      dateL[index],
+      moodL[index],
+      muedigkeitL[index],
+      atemnotL[index],
+      sinneL[index],
+      herzL[index],
+      schlafL[index],
+      nervenL[index]
+    ];
+    headline[0]['value'] = calList[1];
+    headline[1]['value'] = calList[2];
+    headline[2]['value'] = calList[3];
+    headline[3]['value'] = calList[4];
+    headline[4]['value'] = calList[5];
+    headline[5]['value'] = calList[6];
+    headline[5]['value'] = calList[7];
+
+    notifyListeners();
+    print(index.toString() + " getCalenderListIndex");
     return calList;
   }
 
@@ -212,12 +238,17 @@ class CalendarContent with ChangeNotifier {
 
   bool increment() {
     if (count == 0) {
+      varCount--;
+      if (varCount < 0) {
+        varCount = 0;
+      }
       count++;
       notifyListeners();
       print(count);
     }
 
     if (count == 1) {
+      varCount += count;
       return true;
     } else {
       return false;

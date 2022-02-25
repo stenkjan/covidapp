@@ -11,7 +11,7 @@ class GrafikService {
   auth.User? user;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final DatabaseService dbS;
-   List? docList;
+  List? docList;
 
   Future<GrafikContent?> dailyRead(
     int createdDate,
@@ -26,7 +26,7 @@ class GrafikService {
       await dbS.readcalendarDocDaily(createdDate, dayChange);
     } catch (collectionError) {
       if (collectionError is PlatformException) {
-        if (collectionError.code == '') {
+        if (collectionError.code == 'Error') {
           /// Es ist ein Fehler aufgetreten
         }
       }
