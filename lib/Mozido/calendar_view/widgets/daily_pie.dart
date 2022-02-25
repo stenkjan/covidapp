@@ -35,20 +35,21 @@ class _DayPieState extends State<DayPie> {
     return PieChart(
       dataMap: dataMap,
       animationDuration: const Duration(milliseconds: 800),
-      chartLegendSpacing: 30,
-      chartRadius: MediaQuery.of(context).size.width / 3.2,
+      chartLegendSpacing: 18,
+      chartRadius: MediaQuery.of(context).size.width / 2.3,
       colorList: AppColors.pieColors.cast(),
-      initialAngleInDegree: 0,
+      initialAngleInDegree: 50,
       chartType: ChartType.ring,
-      ringStrokeWidth: 52,
+      ringStrokeWidth: 35,
       centerText: "Symptome",
-      legendOptions:  LegendOptions(
+      legendOptions: LegendOptions(
         showLegendsInRow: true,
-        legendPosition: LegendPosition.top,
+        legendPosition: LegendPosition.bottom,
         showLegends: calContent.pieLegendbool,
         legendShape: BoxShape.circle,
-        legendTextStyle: const TextStyle(
+        legendTextStyle: TextStyle(
           fontWeight: FontWeight.bold,
+          color: AppColors.primaryWhite,
           fontSize: 10,
         ),
       ),

@@ -2,26 +2,18 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/grafik_tab_bar.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
-import 'package:covidapp/Mozido/models/user_models.dart';
-import 'package:covidapp/Mozido/services/auth_service.dart';
-import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:covidapp/Mozido/services/grafik_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:provider/provider.dart';
 //import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'widgets/arrow_button.dart';
-import 'widgets/colors.dart';
 
 class T2Grafik extends StatefulWidget {
   const T2Grafik({Key? key}) : super(key: key);
@@ -55,7 +47,7 @@ class T2GrafikState extends State<T2Grafik> {
   late final GrafikContent grafC;
   List? docList;
   int current_date = 0;
-
+ 
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
@@ -70,7 +62,6 @@ class T2GrafikState extends State<T2Grafik> {
     gS = GrafikService();
     gS.dailyRead(current_date, dayChange);
     docList = gS.docList;
-
     // ignore: avoid_print
     print(current_date);
     super.initState();
@@ -175,6 +166,7 @@ class T2GrafikState extends State<T2Grafik> {
                               setState(() {
                                 dayChange = false;
                                 currentDate();
+                                calContent.getCalendarList();
                                 grafService.dailyRead(current_date, dayChange);
                               });
                             },
@@ -194,6 +186,7 @@ class T2GrafikState extends State<T2Grafik> {
                             setState(() {
                               dayChange = true;
                               currentDate();
+                              calContent.getCalendarList();
                               grafService.dailyRead(current_date, dayChange);
                               if (kDebugMode) {
                                 print(current_date);
