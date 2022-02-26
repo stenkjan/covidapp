@@ -25,6 +25,7 @@ class CalendarContent with ChangeNotifier {
   late int createDateInt;
   int count = 0;
   int varCount = 0;
+  int daycount = 0;
   bool docExists = false;
   bool pieLegendbool = true;
   late List calList;
@@ -71,11 +72,26 @@ class CalendarContent with ChangeNotifier {
     return bpm;
   }
 
-  List getCalendarList() {
+  List getCalendarList(bool daychange) {
+    if (daychange) {
+      varCount++;
+      daycount = currentDate + varCount;
+      if (daycount > currentDate) {
+        daycount--;
+      }
+    }
+
+    if (!daychange) {
+      varCount--;
+      daycount = currentDate - varCount;
+      if (daycount < 1) {
+        daycount++;
+      }
+    }
     headlineupdate = headline;
 
-    print(count.toString() + " to varcount");
-    int index = dateL.indexWhere((varCount) => this.varCount.isEven);
+    print(daycount.toString() + " to varcount");
+    int index = dateL.indexWhere((daycount) => this.daycount.isEven);
     print(index);
     createdDate = currentDate.toString();
     mood = moodL[index];
@@ -238,17 +254,12 @@ class CalendarContent with ChangeNotifier {
 
   bool increment() {
     if (count == 0) {
-      varCount--;
-      if (varCount < 0) {
-        varCount = 0;
-      }
       count++;
       notifyListeners();
       print(count);
     }
 
     if (count == 1) {
-      varCount += count;
       return true;
     } else {
       return false;

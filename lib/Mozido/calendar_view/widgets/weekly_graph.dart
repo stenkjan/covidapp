@@ -148,7 +148,7 @@ class _WeekGraphState extends State<WeekGraph> {
             ],
             labelY: const ['20%', '40%', '60%', '80%', '100%'],
             showDescription: true,
-            graphColor: Colors.white,
+            graphColor: Colors.white54,
             descriptionHeight: 40,
           ),
           SizedBox(

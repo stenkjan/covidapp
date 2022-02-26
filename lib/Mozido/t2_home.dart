@@ -352,12 +352,12 @@ class DrawerLayout extends StatelessWidget {
                           pageBuilder: (_, __, ___) => const CalendarTabBar()));
                     },
                     child: itemDrawer(Icons.calendar_today, "Kalender")),
-                InkWell(
+                /*   InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const SettingsScreen()));
                     },
-                    child: itemDrawer(Icons.settings, "Einstellungen")),
+                    child: itemDrawer(Icons.settings, "Einstellungen")), */
                 const SizedBox(
                   height: 50.0,
                 ),

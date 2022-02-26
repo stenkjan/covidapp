@@ -62,8 +62,7 @@ class T2GrafikState extends State<T2Grafik> {
     gS = GrafikService();
     gS.dailyRead(current_date, dayChange);
     docList = gS.docList;
-    // ignore: avoid_print
-    print(current_date);
+    // ignore: avoid_print  
     super.initState();
   }
 
@@ -166,7 +165,7 @@ class T2GrafikState extends State<T2Grafik> {
                               setState(() {
                                 dayChange = false;
                                 currentDate();
-                                calContent.getCalendarList();
+                                calContent.getCalendarList(dayChange);
                                 grafService.dailyRead(current_date, dayChange);
                               });
                             },
@@ -186,7 +185,7 @@ class T2GrafikState extends State<T2Grafik> {
                             setState(() {
                               dayChange = true;
                               currentDate();
-                              calContent.getCalendarList();
+                              calContent.getCalendarList(dayChange);
                               grafService.dailyRead(current_date, dayChange);
                               if (kDebugMode) {
                                 print(current_date);

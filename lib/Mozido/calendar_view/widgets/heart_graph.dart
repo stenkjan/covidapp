@@ -89,7 +89,7 @@ class _HeartGraphState extends State<HeartGraph> {
             ],
             labelY: const ['20%', '40%', '60%', '80%', '100%'],
             showDescription: true,
-            graphColor: Colors.blueGrey,
+            graphColor: Colors.white54,
             descriptionHeight: 40,
           ),
           SizedBox(
