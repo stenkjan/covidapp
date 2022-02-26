@@ -24,7 +24,7 @@ class Webviewpage extends StatelessWidget {
         backgroundColor: Color(0xFF313237),
         centerTitle: true,
         title: Text(
-          "Lungenkapazität/ Herztraining ",
+          "Atemübungen",
           style: TextStyle(
               color: Colors.white,
               fontFamily: "Sans",

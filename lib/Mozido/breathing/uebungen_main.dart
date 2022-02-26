@@ -26,15 +26,24 @@ class uebungbreathing extends GetView<ThemeController> {
               scaffoldBackgroundColor: c.backgroundColor(),
               iconTheme: const IconThemeData(color: Colors.white),
               textTheme: const TextTheme(
-                headline1: TextStyle(color: Colors.white, fontSize: 70),
+                headline1: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Sans",
+                    fontSize: 33.0,
+                    fontWeight: FontWeight.w600),
                 headline2: TextStyle(
                     fontWeight: FontWeight.w300,
                     color: Colors.white,
+                    fontFamily: "Sans",
                     fontSize: 28),
-                headline4:
-                    TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
-                headline5:
-                    TextStyle(fontWeight: FontWeight.w300, color: Colors.white),
+                headline4: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontFamily: "Sans",
+                    color: Colors.white),
+                headline5: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontFamily: "Sans",
+                    color: Colors.white),
               ),
               colorScheme:
                   ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
