@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
-
+import 'package:flutter/services.dart';
 import 'breathe_controller.dart';
+import 'dart:async';
 
 class BreathePage extends GetView<BreatheController> {
   @override
@@ -76,7 +77,7 @@ class BreathePage extends GetView<BreatheController> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      c.breathIn.value ? 'einatment' : 'ausatmen',
+                      c.breathIn.value ? 'Einatmen' : 'Ausatmen',
                       style: Theme.of(context).textTheme.headline5,
                       textAlign: TextAlign.center,
                     ),

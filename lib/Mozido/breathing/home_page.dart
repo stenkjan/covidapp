@@ -1,3 +1,4 @@
+import 'package:covidapp/Mozido/Uebungen_webview.dart';
 import 'package:covidapp/Mozido/breathing/breathe_page.dart';
 import 'package:covidapp/Mozido/breathing/settings_page.dart';
 import 'package:covidapp/Mozido/breathing/rive_speed_controller.dart';
@@ -42,6 +43,17 @@ class HomePage extends GetView<HomeController> {
                     MaterialPageRoute(builder: (context) => SettingsPage()));
               },
               icon: const Icon(Icons.settings)),
+          Text(
+            'Weitere Übungen sind auf der Website zu finden',
+            style: Theme.of(context).textTheme.bodyText1,
+            textAlign: TextAlign.center,
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Webview()));
+              },
+              icon: const Icon(Icons.web)),
           const SizedBox(height: 30),
           Container(
             height: 280,
