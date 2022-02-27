@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Webview extends StatelessWidget {
@@ -7,7 +8,7 @@ class Webview extends StatelessWidget {
 
   /**Widget build Webview on click Atemübungensymbol  */
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       // Remove the debug banner
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.amber),

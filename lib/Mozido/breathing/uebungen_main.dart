@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:covidapp/Mozido/breathing/home_page.dart';
 import 'package:covidapp/Mozido/breathing/theme_controller.dart';
-import 'package:covidapp/Mozido/breathing/themes.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 
 /** c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
 
@@ -16,7 +12,7 @@ class uebungbreathing extends GetView<ThemeController> {
     return GetX<ThemeController>(
         init: ThemeController(),
         builder: (c) {
-          return GetMaterialApp(
+          return MaterialApp(
             themeMode: ThemeMode.light,
             theme: ThemeData.light().copyWith(
               elevatedButtonTheme: ElevatedButtonThemeData(

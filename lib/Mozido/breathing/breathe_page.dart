@@ -20,8 +20,7 @@ class BreathePage extends GetView<BreatheController> {
   Widget build(BuildContext context) {
    
 
-    CalendarContent calContent = Provider.of<CalendarContent>(context);
-    bool breatheTrue = false;
+  
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle:
@@ -101,11 +100,7 @@ class BreathePage extends GetView<BreatheController> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                 /*  if (c.isClosed)
-                    Visibility(
-                      visible: false,
-                      child: calContent.getbreatheTrue(breatheTrue),
-                    ), */
+               
                     
                 ]);
           }),

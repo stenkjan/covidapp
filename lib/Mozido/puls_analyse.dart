@@ -69,7 +69,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     calContent.bpmday.add(value);
                     Visibility(
                         visible: false,
-                        child: calContent.getpulseTrue(calContent.pulseTrue));
+                        child: calContent.getpulseTrue());
                   }),
                   // sampleDelay: 1000 ~/ 20,
                   // child: Container(

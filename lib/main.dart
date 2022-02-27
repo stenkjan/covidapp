@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Mozido/content/calendar_content.dart';
 import 'Mozido/services/calendar_service.dart';
+import 'Mozido/t2_home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,15 +74,10 @@ class MyApp extends StatelessWidget {
               // is not restarted.
               primarySwatch: Colors.blue,
             ),
-            /*    routes: {
-              "/": (context) => Wrapper(),
-              "T2_Amount": (context) => T2Amount(),
-              "T2_Investment": (context) => T2_Investment(),
-              "T2_Search": (context) => T2_Search(),
-              "PieChart": (context) => PieChart(),
-              "SignInScreen": (context) => SignInScreen(),
-              "SettingsUI": (context) => SettingsScreen(),
-            }, */
+             /*   routes: {
+              "/": (context) =>  T2Home(),             
+              
+            },  */
             home: FutureBuilder(
               future: _fbApp,
               builder: (context, snapshot) {

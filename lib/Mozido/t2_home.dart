@@ -23,16 +23,33 @@ class T2Home extends StatefulWidget {
 class _T2HomeState extends State<T2Home> {
   late DatabaseService dbService;
   late AuthService authService;
+  late CalendarContent cal;
+  late Icon iconbreathe;
+  late Icon iconpulse;
+  late Icon iconcal;
+  late String breatheMin;
+  late String lastBPM;
   @override
   void initState() {
     authService = AuthService();
     dbService = DatabaseService(uid: authService.getUser());
+    cal = CalendarContent();
+    breatheMin = cal.returnBreatheMin();
+    iconbreathe = cal.getbreatheTrue();
+    iconpulse = cal.getpulseTrue();
+    iconcal = cal.getcalendarTrue();
+    lastBPM = cal.getlastBPM();
     super.initState();
     /* if (Credentials.signed_in = false) {
       SignInScreen();
     } else {
       SignInScreen();
     } */
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -53,7 +70,7 @@ class _T2HomeState extends State<T2Home> {
       ///
       /// Drawer layout
       ///
-      drawer: const DrawerLayout(),
+      drawer: DrawerLayout(),
       body: Stack(
         children: <Widget>[
           //Login zwischenschieben
@@ -91,8 +108,8 @@ class _T2HomeState extends State<T2Home> {
                       left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const <Widget>[
-                      Text(
+                    children: <Widget>[
+                      const Text(
                         "Erfolge",
                         style: TextStyle(
                             fontWeight: FontWeight.w800,
@@ -100,9 +117,24 @@ class _T2HomeState extends State<T2Home> {
                             fontFamily: "Sans",
                             fontSize: 17.0),
                       ),
-                      Icon(
-                        Icons.task_alt,
+                      IconButton(
+                        tooltip: "Check",
+                        focusColor: Colors.lightGreen,
+                        icon: const Icon(
+                          Icons.task_alt,
+                          semanticLabel: "Check",
+                        ),
                         color: Colors.white,
+                        onPressed: () {
+                          setState(() {
+                            print(cal.breatheTrue.toString() + " breathe");
+                            iconbreathe = cal.getbreatheTrue();
+                            iconpulse = cal.getpulseTrue();
+                            iconcal = cal.getcalendarTrue();
+                            breatheMin = cal.returnBreatheMin();
+                            lastBPM = cal.getlastBPM();
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -111,25 +143,21 @@ class _T2HomeState extends State<T2Home> {
                 ///
                 /// Card
                 ///
+
                 _card(
                     Colors.lightBlueAccent,
-                    calContent.getBreatheMin(calContent.breatheMin) +
-                        " Minuten Atemübungen",
+                    breatheMin + " Minuten Atemübungen",
                     dbService.calContent.fullDate,
                     "Fortschritt",
-                    calContent.getbreatheTrue(calContent.breatheTrue)),
-                _card(
-                    Colors.yellowAccent,
-                    "Tägliche Pulsmessung: " + calContent.getlastBPM(),
-                    dbService.calContent.fullDate,
-                    "Fortschritt",
-                    calContent.getpulseTrue(calContent.pulseTrue)),
+                    iconbreathe),
+                _card(Colors.yellowAccent, "Tägliche Pulsmessung: " + lastBPM,
+                    dbService.calContent.fullDate, "Fortschritt", iconpulse),
                 _card(
                     Colors.lightGreenAccent,
                     "Kalenderaktivitäten: " + calContent.getcalAnswer(),
                     dbService.calContent.fullDate,
                     "Fortschritt",
-                    calContent.getcalendarTrue(calContent.returnCalTrue())),
+                    iconcal),
 
                 const SizedBox(
                   height: 20.0,
@@ -190,6 +218,15 @@ class _T2HomeState extends State<T2Home> {
         ],
       ),
     );
+  }
+
+  void rebuildAllChildren(BuildContext context) {
+    void rebuild(Element el) {
+      el.markNeedsBuild();
+      el.visitChildren(rebuild);
+    }
+
+    (context as Element).visitChildren(rebuild);
   }
 
   Widget _card(
