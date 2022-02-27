@@ -1,3 +1,6 @@
+import 'package:covidapp/Mozido/breathing/breathe_page.dart';
+import 'package:covidapp/Mozido/breathing/home_page.dart';
+import 'package:covidapp/Mozido/breathing/uebungen_main.dart';
 import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/Mozido/puls_analyse.dart';
 import 'package:covidapp/Mozido/Uebungen_webview.dart';
@@ -43,9 +46,9 @@ class _UebungenState extends State<Uebungen> {
         child: Column(
           children: <Widget>[
             _card(Icons.air, "Atem Übung",
-                "Die minderbelüfteten Lungenabschnitte gilt es in der Atemtherapie wieder mit Sauerstoff zu versorgen , um Langzeitschäden zu verhindern. Die Mobilisation ist dabei die effektivste Methode."),
+                "Die unterversorgten Lungenteile gilt es in der Atemtherapie zu aktivieren, um Langzeitschäden zu verhindern. Die Aktivierung der Atmung ist dabei die effektivste Methode."),
             _card(Icons.favorite, "Puls Analyse",
-                "Patienten, die die COVID-19-Infektion scheinbar überstanden hatten, klagten darüber, dass sie körperlich nicht belastbar waren, schnell ermüdeten und Luftnot hatten – etwa beim Treppensteigen."),
+                "Die Überwachung der Pulsfrequenz ermöglicht ihnen, ihren Gesundheitszustand zu überwachen und Heilungsfortschritte zu erkennen."),
             _card(Icons.emoji_emotions, "Emotionaler Zustand",
                 "Wie fühlen Sie sich heute? Beatworten Sie ein paar Fragen! ")
           ],
@@ -73,8 +76,8 @@ class _UebungenState extends State<Uebungen> {
             );
           }
           if (_title == "Atem Übung") {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Webview()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => uebungbreathing()));
           } else if (_title == "Emotionaler Zustand") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => CalendarTabBar()));

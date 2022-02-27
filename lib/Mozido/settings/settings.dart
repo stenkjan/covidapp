@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:flutter/services.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -15,7 +16,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings UI')),
+      appBar: AppBar(
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        backgroundColor: const Color(0xFF313237),
+        centerTitle: true,
+        title: const Text(
+          "Einstellungen",
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: "Sans",
+              fontSize: 17.0,
+              fontWeight: FontWeight.w600),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0.0,
+      ),
       body: buildSettingsList(),
     );
   }
@@ -36,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           title: const Text('Account'),
           tiles: [
             SettingsTile(
-                title: const Text('Phone number'),
+                title: const Text('Telefonnummer'),
                 leading: const Icon(Icons.phone)),
             SettingsTile(
                 title: const Text('Email'), leading: const Icon(Icons.email)),
