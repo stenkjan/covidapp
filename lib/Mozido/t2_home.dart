@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/FAQ.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
@@ -430,6 +431,7 @@ Widget itemDrawer(IconData icon, String txt) {
 Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());
+  CalendarContent calContent = CalendarContent();
   dbService.readcalendarCollection();
   print(auth.getUser().toString() + ' userid');
   return Stack(
@@ -475,7 +477,8 @@ Widget _cardHeader(LrmDataModel item) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    dbService.registeredDate.toString(),
+                    /* dbService.registeredDate.toString() */
+                    calContent.dateL.length.toString(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,

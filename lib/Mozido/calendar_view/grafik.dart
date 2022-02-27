@@ -163,10 +163,9 @@ class T2GrafikState extends State<T2Grafik> {
                             ),
                             onPressed: () {
                               setState(() {
-                                dayChange = false;
-                                currentDate();
-                                calContent.getCalendarList(dayChange);
-                                grafService.dailyRead(current_date, dayChange);
+                                bool change = currentDate();
+                                calContent.getCalendarList(change);
+                                grafService.dailyRead(current_date, change);
                               });
                             },
                           )),
@@ -183,10 +182,9 @@ class T2GrafikState extends State<T2Grafik> {
                           ),
                           onPressed: () {
                             setState(() {
-                              dayChange = true;
-                              currentDate();
-                              calContent.getCalendarList(dayChange);
-                              grafService.dailyRead(current_date, dayChange);
+                              bool change = currentDate();
+                              calContent.getCalendarList(change);
+                              grafService.dailyRead(current_date, change);
                               if (kDebugMode) {
                                 print(current_date);
                               }
@@ -261,7 +259,7 @@ class T2GrafikState extends State<T2Grafik> {
     );
   }
 
-  void currentDate() {
+  bool currentDate() {
     setState(() {
       String cur_date = current_date.toString();
       if (dayChange) {
@@ -281,6 +279,7 @@ class T2GrafikState extends State<T2Grafik> {
       }
       cur_date = current_date.toString();
     });
+    return dayChange;
   }
 }
 /*

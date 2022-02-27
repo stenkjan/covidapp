@@ -73,16 +73,19 @@ class CalendarContent with ChangeNotifier {
   }
 
   List getCalendarList(bool daychange) {
-    if (daychange) {
+    if (daychange == true) {
       varCount++;
+
+      print(varCount.toString() + " :vC++");
       daycount = currentDate + varCount;
       if (daycount > currentDate) {
         daycount--;
       }
     }
 
-    if (!daychange) {
+    if (daychange == false) {
       varCount--;
+      print(varCount.toString() + " :vC--");
       daycount = currentDate - varCount;
       if (daycount < 1) {
         daycount++;
@@ -90,9 +93,14 @@ class CalendarContent with ChangeNotifier {
     }
     headlineupdate = headline;
 
-    print(daycount.toString() + " to varcount");
-    int index = dateL.indexWhere((daycount) => this.daycount.isEven);
-    print(index);
+    print(daycount.toString() + " :dC");
+
+    int index = dateL.indexOf(daycount);
+    if (index < 0 || index > dateL.length) {
+      index = dateL.indexOf(daycount - 1);
+      if (index < 0) index = dateL.indexOf(dateL.last);
+    }
+    print(index.toString() + " : index of dateL");
     createdDate = currentDate.toString();
     mood = moodL[index];
     muedigkeit = muedigkeitL[index];
