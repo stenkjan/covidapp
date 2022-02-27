@@ -47,7 +47,7 @@ class T2GrafikState extends State<T2Grafik> {
   late final GrafikContent grafC;
   List? docList;
   int current_date = 0;
- 
+
 /*   DateTime year = DateTime(DateTime.now().year); */
   /* int numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
@@ -62,7 +62,7 @@ class T2GrafikState extends State<T2Grafik> {
     gS = GrafikService();
     gS.dailyRead(current_date, dayChange);
     docList = gS.docList;
-    // ignore: avoid_print  
+    // ignore: avoid_print
     super.initState();
   }
 
