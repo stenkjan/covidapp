@@ -8,6 +8,8 @@ class NeumorphicTextFieldContainer extends StatelessWidget {
       : super(key: key);
 
   @override
+  /** Widget build Firebase authentification on Text Field*/
+
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -19,24 +21,22 @@ class NeumorphicTextFieldContainer extends StatelessWidget {
               colors: [
                 lightPrimary,
                 darkPrimary,
-              ]
-          ),
+              ]),
           borderRadius: BorderRadius.circular(12),
           boxShadow: const [
             BoxShadow(
-              offset: Offset(-2,-2),
+              offset: Offset(-2, -2),
               spreadRadius: 1,
               blurRadius: 4,
               color: darkShadow,
             ),
             BoxShadow(
-              offset: Offset(2,2),
+              offset: Offset(2, 2),
               spreadRadius: 1,
               blurRadius: 4,
               color: lightShadow,
             ),
-          ]
-      ),
+          ]),
       child: child,
     );
   }

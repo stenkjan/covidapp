@@ -15,6 +15,7 @@ class CalendarService {
 
   GrafikService grafService = GrafikService();
 
+/**Variables for Firebase */
   Future<CalendarContent?> dailyTask(
       int mood,
       int muedigkeit,
@@ -31,7 +32,7 @@ class CalendarService {
       await DatabaseService(uid: uid).updateCalendarModel(mood, muedigkeit,
           atemnot, sinne, herz, schlaf, nerven, comment, createdDate);
       print(uid + '  updateCalInitiated');
-      print(mood.toString() + ' mood value on DB');      
+      print(mood.toString() + ' mood value on DB');
     } catch (collectionError) {
       print(auth.getUser() + ' update CalendarModel uid exception');
       if (collectionError is PlatformException) {

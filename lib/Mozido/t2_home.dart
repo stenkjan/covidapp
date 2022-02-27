@@ -180,6 +180,7 @@ class _T2HomeState extends State<T2Home> {
     );
   }
 
+/** Cards Initalization with color,title,time and value  */
   Widget _card(Color _color, String _title, String _time, String _value) {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
@@ -427,6 +428,7 @@ Widget itemDrawer(IconData icon, String txt) {
   );
 }
 
+/** Widget build Card Header  */
 Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());

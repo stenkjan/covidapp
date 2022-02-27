@@ -33,6 +33,7 @@ class DatabaseService {
       'birthday': birthday,
     });
   }
+/** Model Updating  */
 
   Future updateCalendarModel(int mood, int muedigkeit, int atemnot, int sinne,
       int herz, int schlaf, int nerven, String comment, int createdDate) async {
@@ -54,6 +55,7 @@ class DatabaseService {
     });
   }
 
+/** Reads the Collection on the given User */
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance
         .collection('users')

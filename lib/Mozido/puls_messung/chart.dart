@@ -13,10 +13,10 @@ class BPMChart extends StatelessWidget {
   /// Generate the heart BPM graph from given list of [data] of type
   /// [SensorValue]
   BPMChart(
-    /// List of [SensorValue] data points to be plotted
+    /// List of Sensor Value data points to be plotted
     List<SensorValue> data, {
 
-    /// List of second series of [SensorValue] data points to be plotted
+    /// List of second series of Sensor Value data points to be plotted
     List<SensorValue>? data2,
   }) : _data = data2 == null
             ? [_updateChartData(data)]
@@ -72,9 +72,6 @@ class BPMChart extends StatelessWidget {
         // ),
         // tickProviderSpec: charts.AutoDateTimeTickProviderSpec(),
       ),
-      // Optionally pass in a [DateTimeFactory] used by the chart. The factory
-      // should create the same type of [DateTime] as the data provided. If none
-      // specified, the default creates local date time.
       dateTimeFactory: const charts.LocalDateTimeFactory(),
     );
   }

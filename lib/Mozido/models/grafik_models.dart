@@ -1,3 +1,4 @@
+/**Initialization Graphic Model */
 class GrafikModel {
   late int? mood;
   late int? muedigkeit;

@@ -5,6 +5,8 @@ import 'dart:math' as math;
 
 class FAQ extends StatelessWidget {
   @override
+
+  /**Widget build FAQ  */
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF313237),

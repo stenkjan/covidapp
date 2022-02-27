@@ -3,15 +3,21 @@ import 'package:covidapp/Mozido/login/constants.dart';
 import 'package:covidapp/Mozido/login/widgets/neumorphic_text_field_container.dart';
 
 class RectangularInputField extends StatelessWidget {
-
   final String hintText;
   final IconData icon;
   final bool obscureText;
 
-  const RectangularInputField({Key? key, required this.hintText, required this.icon, required this.obscureText}) : super(key: key);
+  const RectangularInputField(
+      {Key? key,
+      required this.hintText,
+      required this.icon,
+      required this.obscureText})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  /** Widget build Firebase authentification on Input field */
+  {
     return NeumorphicTextFieldContainer(
       child: TextField(
         cursorColor: black,
@@ -22,7 +28,11 @@ class RectangularInputField extends StatelessWidget {
             color: black.withOpacity(0.7),
             fontSize: 18,
           ),
-          prefixIcon: Icon(icon,color: black.withOpacity(0.7),size: 20,),
+          prefixIcon: Icon(
+            icon,
+            color: black.withOpacity(0.7),
+            size: 20,
+          ),
           border: InputBorder.none,
         ),
       ),

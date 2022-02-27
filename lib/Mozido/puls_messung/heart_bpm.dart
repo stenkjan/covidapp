@@ -65,16 +65,7 @@ class HeartBPMDialog extends StatefulWidget {
   /// over time. These variations are due to the blood flow in the arteries
   /// present below the skin of the fingertips.
   ///
-  /// This is a [Dialog] widget and hence needs to be displayer using [showDialog]
-  /// function. For example:
-  /// ```
-  /// await showDialog(
-  ///   context: context,
-  ///   builder: (context) => HeartBPMDialog(
-  ///     onData: (value) => print(value),
-  ///   ),
-  /// );
-  /// ```
+
   HeartBPMDialog({
     Key? key,
     required this.context,

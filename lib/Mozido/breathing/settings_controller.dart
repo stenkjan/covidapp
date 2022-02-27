@@ -7,12 +7,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/** Initialization of Settings page  */
+
 class SettingsController extends GetxController {
   List<BackgroundColors> themes = BackgroundColors.values;
   late RxList<bool> isSelected;
 
   final box = GetStorage();
 
+/** Time Adjustment */
   RxInt totalTimeSeconds = totalTimeSecondsDefault.obs;
   String get totalTimeString => Duration(seconds: totalTimeSeconds.value)
       .toString()
@@ -31,6 +34,7 @@ class SettingsController extends GetxController {
   RxBool hideBreathBar = false.obs;
 
   @override
+  /** On initalization */
   void onInit() {
     isSelected = List.generate(backgrounds.length, (index) => false).obs;
     isSelected[themes.indexOf(backgroundColorFromString(
@@ -44,6 +48,7 @@ class SettingsController extends GetxController {
     hideBreathBar.value = box.read(boxHideBreathBar) ?? false;
     super.onInit();
   }
+  /**Classes for Settings -- void   */
 
   void selectBackground(int index, BuildContext context) {
     isSelected.value = List.generate(themes.length, (index) => false);

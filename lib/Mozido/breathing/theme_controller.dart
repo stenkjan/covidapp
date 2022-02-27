@@ -6,6 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'constants.dart';
 import 'helpers.dart';
 
+/**Controller for the Theme selection  */
+
 class ThemeController extends GetxController {
   final box = GetStorage();
 

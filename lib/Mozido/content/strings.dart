@@ -1,5 +1,7 @@
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 
+/** Initializing of Variables */
+
 CalendarContent calContent = CalendarContent();
 List healthscore = [
   {"name": "Krankheitsgrad", "amount": 30.0},
@@ -145,7 +147,7 @@ List weekContent = [
     "Schlaf": calContent.schlafL[0].toDouble(),
     "Nerven": calContent.nervenL[0].toDouble(),
   },
-    {
+  {
     "Tag": calContent.dateL[1].toDouble(),
     "Zustand": calContent.moodL[1].toDouble(),
     'Muedigkeit': calContent.muedigkeitL[1].toDouble(),
@@ -155,7 +157,7 @@ List weekContent = [
     "Schlaf": calContent.schlafL[1].toDouble(),
     "Nerven": calContent.nervenL[1].toDouble(),
   },
-    {
+  {
     "Tag": calContent.dateL[2].toDouble(),
     "Zustand": calContent.moodL[2].toDouble(),
     'Muedigkeit': calContent.muedigkeitL[2].toDouble(),
@@ -165,7 +167,7 @@ List weekContent = [
     "Schlaf": calContent.schlafL[2].toDouble(),
     "Nerven": calContent.nervenL[2].toDouble(),
   },
-    {
+  {
     "Tag": calContent.dateL[3].toDouble(),
     "Zustand": calContent.moodL[3].toDouble(),
     'Muedigkeit': calContent.muedigkeitL[3].toDouble(),
@@ -175,7 +177,7 @@ List weekContent = [
     "Schlaf": calContent.schlafL[3].toDouble(),
     "Nerven": calContent.nervenL[3].toDouble(),
   },
-    {
+  {
     "Tag": calContent.dateL[4].toDouble(),
     "Zustand": calContent.moodL[4].toDouble(),
     'Muedigkeit': calContent.muedigkeitL[4].toDouble(),
@@ -185,7 +187,7 @@ List weekContent = [
     "Schlaf": calContent.schlafL[4].toDouble(),
     "Nerven": calContent.nervenL[4].toDouble(),
   },
-    {
+  {
     "Tag": calContent.dateL[5].toDouble(),
     "Zustand": calContent.moodL[5].toDouble(),
     'Muedigkeit': calContent.muedigkeitL[5].toDouble(),

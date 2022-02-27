@@ -9,11 +9,13 @@ class RoundedButton extends StatelessWidget {
       : super(key: key);
 
   @override
+  /** Widget build Firebase authentification Button */
+
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
       child: Padding(
-        padding: const EdgeInsets.only(top: appPadding,bottom: appPadding /2),
+        padding: const EdgeInsets.only(top: appPadding, bottom: appPadding / 2),
         child: Container(
           padding: const EdgeInsets.all(appPadding / 2),
           width: 100,
@@ -26,23 +28,21 @@ class RoundedButton extends StatelessWidget {
                   colors: [
                     darkPrimary,
                     lightPrimary,
-                  ]
-              ),
+                  ]),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(3,3),
+                  offset: Offset(3, 3),
                   spreadRadius: 1,
                   blurRadius: 4,
                   color: darkShadow,
                 ),
                 BoxShadow(
-                  offset: Offset(-5,-5),
+                  offset: Offset(-5, -5),
                   spreadRadius: 1,
                   blurRadius: 4,
                   color: lightShadow,
                 ),
-              ]
-          ),
+              ]),
           child: Image.asset(imageSrc),
         ),
       ),

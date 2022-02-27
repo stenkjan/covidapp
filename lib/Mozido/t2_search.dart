@@ -7,6 +7,7 @@ class T2Search extends StatefulWidget {
   T2SearchState createState() => T2SearchState();
 }
 
+/**Left Side Menu Widget Initialization with onclick() widgets. Redirection to Übungen, Kalender, FAQ */
 class T2SearchState extends State<T2Search> {
   @override
   Widget build(BuildContext context) {

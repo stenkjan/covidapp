@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'settings_controller.dart';
 
+/** Settingspage-- Widget build  */
 class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {

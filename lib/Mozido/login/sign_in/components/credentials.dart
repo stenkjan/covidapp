@@ -10,10 +10,11 @@ class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
   /* static bool signed_in = false; */
   @override
+  /** Widget build --- Email, Password fields, Reset Passord  */
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final authService = Provider.of<AuthService>(context);   
+    final authService = Provider.of<AuthService>(context);
     /* bool signed_in = Credentials.signed_in; */
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),

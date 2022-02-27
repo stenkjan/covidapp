@@ -9,11 +9,13 @@ class RectangularButton extends StatelessWidget {
       : super(key: key);
 
   @override
+  /** Widget build Firebase authentification on Button */
+
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
       child: Padding(
-        padding: const EdgeInsets.only(top: appPadding,bottom: appPadding /2),
+        padding: const EdgeInsets.only(top: appPadding, bottom: appPadding / 2),
         child: Container(
           width: double.infinity,
           height: 65,
@@ -25,28 +27,29 @@ class RectangularButton extends StatelessWidget {
                   colors: [
                     darkPrimary,
                     lightPrimary,
-                  ]
-              ),
+                  ]),
               boxShadow: const [
                 BoxShadow(
-                  offset: Offset(3,3),
+                  offset: Offset(3, 3),
                   spreadRadius: 1,
                   blurRadius: 4,
                   color: darkShadow,
                 ),
                 BoxShadow(
-                  offset: Offset(-5,-5),
+                  offset: Offset(-5, -5),
                   spreadRadius: 1,
                   blurRadius: 4,
                   color: lightShadow,
                 ),
-              ]
-          ),
+              ]),
           child: Center(
-            child: Text(text,style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-            ),),
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
           ),
         ),
       ),

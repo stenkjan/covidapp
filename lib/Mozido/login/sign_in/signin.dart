@@ -7,6 +7,8 @@ class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
+
+  /** Widget build Sign in Page*/
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(

@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 
 import 'home_controller.dart';
 
+/** Homepage-- Widget build */
+
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class HomePage extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
+                /**Navigation to Settings */
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SettingsPage()));
               },
@@ -50,6 +53,7 @@ class HomePage extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
+                /**navigation to Webview */
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Webview()));
               },
@@ -80,6 +84,7 @@ class HomePage extends GetView<HomeController> {
                 ],
               ),
               onPressed: () {
+                /** Navigation to Breathe Page */
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BreathePage()));
               },

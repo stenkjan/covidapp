@@ -1,6 +1,7 @@
 import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 
+/** Initializing Variables */
 class GrafikContent {
   final String mood;
   final String muedigkeit;

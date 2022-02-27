@@ -1,3 +1,5 @@
+/** Initialization Calendarmodel */
+
 class CalendarModel {
   final int id;
   final int mood;

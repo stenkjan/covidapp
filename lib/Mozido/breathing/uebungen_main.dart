@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+/** c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
+
 class uebungbreathing extends GetView<ThemeController> {
   @override
   Widget build(BuildContext context) {

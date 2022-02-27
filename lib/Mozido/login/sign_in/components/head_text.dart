@@ -5,6 +5,9 @@ class HeadText extends StatelessWidget {
   const HeadText({Key? key}) : super(key: key);
 
   @override
+
+  /**Widget build Headtext -- Login  */
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 

@@ -1,5 +1,7 @@
 import 'package:rive/rive.dart';
 
+/**Speed adjustment of lung.riv file to breathing speed */
+
 class SpeedController extends SimpleAnimation {
   final double speedMultiplier;
 

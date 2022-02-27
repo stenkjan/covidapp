@@ -67,14 +67,7 @@ class HeartBPMDialog extends StatefulWidget {
   ///
   /// This is a [Dialog] widget and hence needs to be displayer using [showDialog]
   /// function. For example:
-  /// ```
-  /// await showDialog(
-  ///   context: context,
-  ///   builder: (context) => HeartBPMDialog(
-  ///     onData: (value) => print(value),
-  ///   ),
-  /// );
-  /// ```
+
   HeartBPMDialog({
     Key? key,
     required this.context,

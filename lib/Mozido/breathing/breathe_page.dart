@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'breathe_controller.dart';
 import 'dart:async';
 
+/** Parameters are imported from the Breathecontroller / Widget is build  */
+
 class BreathePage extends GetView<BreatheController> {
   @override
   Widget build(BuildContext context) {

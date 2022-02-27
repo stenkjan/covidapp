@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import '../Puls_Messung/heart_bpm.dart';
 
 class CalendarContent with ChangeNotifier {
+  /** Variables Initizialisation  */
   bool saved = false;
   late int mood = moodL.last;
   late int muedigkeit = muedigkeitL.last;
@@ -41,7 +42,7 @@ class CalendarContent with ChangeNotifier {
   String? userId;
 /*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
       this.herz, this.schlaf); */
-
+  /** Initializing List for Variables*/
   List<int> dateL = [20, 21, 22, 23, 24, 25];
   List<int> moodL = [5, 4, 3, 5, 7, 8];
   List<int> muedigkeitL = [3, 0, 0, 1, 0, 3];
@@ -63,6 +64,7 @@ class CalendarContent with ChangeNotifier {
     return mood;
   }
 
+/** List for BPM   */
   List<int> bpmWeekL() {
     num sum = 0;
     for (num e in bpmday) {
@@ -72,6 +74,7 @@ class CalendarContent with ChangeNotifier {
     return bpm;
   }
 
+/** Get the current Date */
   List getCalendarList(bool daychange) {
     if (daychange) {
       varCount++;
@@ -80,7 +83,7 @@ class CalendarContent with ChangeNotifier {
         daycount--;
       }
     }
-
+    /** Initialize on new Day */
     if (!daychange) {
       varCount--;
       daycount = currentDate - varCount;
@@ -153,6 +156,7 @@ class CalendarContent with ChangeNotifier {
     }
     return color;
   }
+/** Initializing Calender Color */
 
   Color getCalendarColorSum() {
     double value = listSum();
@@ -204,6 +208,7 @@ class CalendarContent with ChangeNotifier {
     return sum;
   }
 
+/**  Calender Muedikeit */
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
     muedigkeitL.add(muedigkeit);
@@ -211,6 +216,7 @@ class CalendarContent with ChangeNotifier {
     return muedigkeit;
   }
 
+/** Calender Atemnot */
   int calendarContentatemnot(double a) {
     atemnot = a.round();
     atemnotL.add(atemnot);
@@ -218,6 +224,7 @@ class CalendarContent with ChangeNotifier {
     return atemnot;
   }
 
+/** Calender Sinne */
   int calendarContentsinne(double b) {
     sinne = b.round();
     sinneL.add(sinne);
@@ -225,6 +232,7 @@ class CalendarContent with ChangeNotifier {
     return sinne;
   }
 
+/** Calender Herz */
   int calendarContentherz(double c) {
     herz = c.round();
     herzL.add(herz);
@@ -232,6 +240,7 @@ class CalendarContent with ChangeNotifier {
     return herz;
   }
 
+/** Calender schlaf */
   int calendarContentschlaf(double s) {
     schlaf = s.round();
     schlafL.add(schlaf);
@@ -239,6 +248,7 @@ class CalendarContent with ChangeNotifier {
     return schlaf;
   }
 
+/** Calender Nerven */
   int calendarContentnerven(double n) {
     nerven = n.round();
     nervenL.add(nerven);
@@ -246,6 +256,7 @@ class CalendarContent with ChangeNotifier {
     return nerven;
   }
 
+/** Calender Comment */
   String calendarContentcomment(String com) {
     comment = com;
     notifyListeners();
@@ -266,6 +277,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/** Push to Firebase  */
   Future<bool> clear() async {
     saved = true;
     createDateInt = int.parse(createdDate);

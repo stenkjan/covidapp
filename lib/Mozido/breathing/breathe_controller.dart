@@ -28,6 +28,9 @@ class BreatheController extends GetxController {
   late bool soundOn, hideTimer, hideBreathBar;
 
   @override
+
+  /**  on initialization */
+
   void onInit() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     initTime = box.read(boxTotalTime) ?? totalTimeSecondsDefault;
@@ -42,12 +45,16 @@ class BreatheController extends GetxController {
   }
 
   @override
+  /** when ready the timer starts */
+
   void onReady() {
     super.onReady();
     startTimer();
   }
 
   @override
+  /**  when closed  */
+
   void onClose() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     _timer.cancel();
@@ -55,6 +62,7 @@ class BreatheController extends GetxController {
     Wakelock.disable();
     super.onClose();
   }
+/** Timer countdown */
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -65,6 +73,8 @@ class BreatheController extends GetxController {
         _timer.cancel();
       }
     });
+
+/** when the timer is not 0 and the breathTime value = the initial Time a sound is played */
 
     _breathTimer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       if (time.value != 0 && breathTime.value == 0) {
@@ -88,7 +98,7 @@ class BreatheController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           isDismissible: true,
           messageText: Container(),
-          titleText: Text('finished',
+          titleText: Text('Abgeschlossen',
               style:
                   Get.theme.textTheme.headline5?.copyWith(color: Colors.black)),
         );
