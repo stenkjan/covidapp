@@ -7,25 +7,17 @@ import 'package:provider/provider.dart';
 import '../../content/strings.dart';
 
 class DayPie extends StatefulWidget {
+  const DayPie({Key? key}) : super(key: key);
+
   @override
   _DayPieState createState() => _DayPieState();
 }
 
 class _DayPieState extends State<DayPie> {
   late CalendarContent calContent;
-  late Map<String, double> dataMap;
   @override
   void initState() {
     calContent = CalendarContent();
-    dataMap = {
-      headline[1]['tag']: calContent.muedigkeit.toDouble(),
-      headline[2]['tag']: calContent.atemnot.toDouble(),
-      headline[3]['tag']: calContent.sinne.toDouble(),
-      headline[4]['tag']: calContent.herz.toDouble(),
-      headline[5]['tag']: calContent.schlaf.toDouble(),
-      headline[6]['tag']: calContent.nerven.toDouble(),
-    };
-
     super.initState();
   }
 
@@ -33,7 +25,7 @@ class _DayPieState extends State<DayPie> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     return PieChart(
-      dataMap: dataMap,
+      dataMap: calContent.daypiedataMap(),
       animationDuration: const Duration(milliseconds: 800),
       chartLegendSpacing: 18,
       chartRadius: MediaQuery.of(context).size.width / 2.3,

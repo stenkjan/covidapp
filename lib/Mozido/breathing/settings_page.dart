@@ -1,19 +1,22 @@
 import 'package:covidapp/Mozido/breathing/constants.dart';
 import 'package:covidapp/Mozido/breathing/themes.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'settings_controller.dart';
 
 class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: const Color(0xFF313237),
+          backgroundColor: const Color(0xFF029CF5),
           centerTitle: true,
           title: const Text(
             "Einstellungen",
@@ -79,7 +82,8 @@ class SettingsPage extends GetView<SettingsController> {
                                   size: 32,
                                 )),
                             Text(
-                              '${c.totalTimeString} min',
+                              calContent.getBreatheMin(c.totalTimeString) +
+                                  ' min',
                               style: Theme.of(context).textTheme.headline6,
                             ),
                             IconButton(

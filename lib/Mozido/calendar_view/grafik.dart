@@ -163,9 +163,13 @@ class T2GrafikState extends State<T2Grafik> {
                             ),
                             onPressed: () {
                               setState(() {
-                                bool change = currentDate();
-                                calContent.getCalendarList(change);
-                                grafService.dailyRead(current_date, change);
+                                dayChange = false;
+                                currentDate();
+                                 calContent.getgrafikCurrentDate(current_date);
+                                calContent.getCalendarList();
+                                grafService.dailyRead(current_date, dayChange);
+                                
+                               
                               });
                             },
                           )),
@@ -182,9 +186,14 @@ class T2GrafikState extends State<T2Grafik> {
                           ),
                           onPressed: () {
                             setState(() {
-                              bool change = currentDate();
-                              calContent.getCalendarList(change);
-                              grafService.dailyRead(current_date, change);
+                              dayChange = true;
+                                 currentDate();
+                              calContent.getgrafikCurrentDate(current_date);
+                              calContent.getCalendarList();
+                              grafService.dailyRead(current_date, dayChange);
+                           
+                              
+
                               if (kDebugMode) {
                                 print(current_date);
                               }
@@ -262,14 +271,14 @@ class T2GrafikState extends State<T2Grafik> {
   bool currentDate() {
     setState(() {
       String cur_date = current_date.toString();
-      if (dayChange) {
+      if (dayChange == true) {
         if (cur_date == DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
           current_date += 1;
           dayChange = false;
         }
-      } else if (!dayChange) {
+      } else if (dayChange == false) {
         if (current_date == 1) {
           dayChange = true;
         } else {

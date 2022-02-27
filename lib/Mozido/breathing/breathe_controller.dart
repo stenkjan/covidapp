@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:covidapp/Mozido/breathing/home_page.dart';
 import 'package:covidapp/Mozido/breathing/constants.dart';
+import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -53,6 +54,7 @@ class BreatheController extends GetxController {
     _timer.cancel();
     _breathTimer.cancel();
     Wakelock.disable();
+    calContent.returnBreatheTrue();
     super.onClose();
   }
 
@@ -79,8 +81,10 @@ class BreatheController extends GetxController {
         breathTime.value -= 100;
         update();
       } else {
+        calContent.returnBreatheTrue();
         _breathTimer.cancel();
         Get.offAll(() => HomePage());
+
         Get.snackbar(
           'finished',
           '',
@@ -88,7 +92,7 @@ class BreatheController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           isDismissible: true,
           messageText: Container(),
-          titleText: Text('finished',
+          titleText: Text('Abgeschlossen',
               style:
                   Get.theme.textTheme.headline5?.copyWith(color: Colors.black)),
         );

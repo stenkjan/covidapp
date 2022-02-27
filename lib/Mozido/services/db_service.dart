@@ -134,7 +134,8 @@ class DatabaseService {
                 .snapshots()
                 .toList() as List;
             if (docList.isEmpty == true) {
-              docList = calContent.getCalendarList(true);
+              docList = calContent.getCalendarList();
+              print(" calList in db service is called");
             }
           }
 

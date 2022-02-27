@@ -22,84 +22,84 @@ class _WeekGraphState extends State<WeekGraph> {
         title: headline[0]['tag'],
         color: variableColors[0],
         data: [
-          calContent.moodL[0].toDouble() / 10,
-          calContent.moodL[1].toDouble() / 10,
-          calContent.moodL[2].toDouble() / 10,
-          calContent.moodL[3].toDouble() / 10,
-          calContent.moodL[4].toDouble() / 10,
-          calContent.moodL[5].toDouble() / 10
+          calContent.moodL[calContent.listIndex].toDouble() / 10,
+          calContent.moodL[calContent.listIndex+1].toDouble() / 10,
+          calContent.moodL[calContent.listIndex+2].toDouble() / 10,
+          calContent.moodL[calContent.listIndex+3].toDouble() / 10,
+          calContent.moodL[calContent.listIndex+4].toDouble() / 10,
+          calContent.moodL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[1]['tag'],
         color: variableColors[1],
         data: [
-          calContent.muedigkeitL[0].toDouble() / 10,
-          calContent.muedigkeitL[1].toDouble() / 10,
-          calContent.muedigkeitL[2].toDouble() / 10,
-          calContent.muedigkeitL[3].toDouble() / 10,
-          calContent.muedigkeitL[4].toDouble() / 10,
-          calContent.muedigkeitL[5].toDouble() / 10
+          calContent.muedigkeitL[calContent.listIndex].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex+1].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex+2].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex+3].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex+4].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[2]['tag'],
         color: variableColors[2],
         data: [
-          calContent.atemnotL[0].toDouble() / 10,
-          calContent.atemnotL[1].toDouble() / 10,
-          calContent.atemnotL[2].toDouble() / 10,
-          calContent.atemnotL[3].toDouble() / 10,
-          calContent.atemnotL[4].toDouble() / 10,
-          calContent.atemnotL[5].toDouble() / 10
+          calContent.atemnotL[calContent.listIndex].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex+1].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex+2].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex+3].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex+4].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[3]['tag'],
         color: variableColors[3],
         data: [
-          calContent.sinneL[0].toDouble() / 10,
-          calContent.sinneL[1].toDouble() / 10,
-          calContent.sinneL[2].toDouble() / 10,
-          calContent.sinneL[3].toDouble() / 10,
-          calContent.sinneL[4].toDouble() / 10,
-          calContent.sinneL[5].toDouble() / 10
+          calContent.sinneL[calContent.listIndex].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex+1].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex+2].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex+3].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex+4].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[4]['tag'],
         color: variableColors[4],
         data: [
-          calContent.herzL[0].toDouble() / 10,
-          calContent.herzL[1].toDouble() / 10,
-          calContent.herzL[2].toDouble() / 10,
-          calContent.herzL[3].toDouble() / 10,
-          calContent.herzL[4].toDouble() / 10,
-          calContent.herzL[5].toDouble() / 10
+          calContent.herzL[calContent.listIndex+0].toDouble() / 10,
+          calContent.herzL[calContent.listIndex+1].toDouble() / 10,
+          calContent.herzL[calContent.listIndex+2].toDouble() / 10,
+          calContent.herzL[calContent.listIndex+3].toDouble() / 10,
+          calContent.herzL[calContent.listIndex+4].toDouble() / 10,
+          calContent.herzL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[5]['tag'],
         color: variableColors[5],
         data: [
-          calContent.schlafL[0].toDouble() / 10,
-          calContent.schlafL[1].toDouble() / 10,
-          calContent.schlafL[2].toDouble() / 10,
-          calContent.schlafL[3].toDouble() / 10,
-          calContent.schlafL[4].toDouble() / 10,
-          calContent.schlafL[5].toDouble() / 10
+          calContent.schlafL[calContent.listIndex+0].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex+1].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex+2].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex+3].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex+4].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[6]['tag'],
         color: variableColors[6],
         data: [
-          calContent.nervenL[0].toDouble() / 10,
-          calContent.nervenL[1].toDouble() / 10,
-          calContent.nervenL[2].toDouble() / 10,
-          calContent.nervenL[3].toDouble() / 10,
-          calContent.nervenL[4].toDouble() / 10,
-          calContent.nervenL[5].toDouble() / 10
+          calContent.nervenL[calContent.listIndex+0].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex+1].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex+2].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex+3].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex+4].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex+5].toDouble() / 10
         ],
       ),
     ];
@@ -139,12 +139,12 @@ class _WeekGraphState extends State<WeekGraph> {
             features: features,
             size: const Size(350, 250),
             labelX: [
-              calContent.dateL[0].toString(),
-              calContent.dateL[1].toString(),
-              calContent.dateL[2].toString(),
-              calContent.dateL[3].toString(),
-              calContent.dateL[4].toString(),
-              calContent.dateL[5].toString()
+              calContent.dateL[calContent.listIndex].toString(),
+              calContent.dateL[calContent.listIndex].toString(),
+              calContent.dateL[calContent.listIndex].toString(),
+              calContent.dateL[calContent.listIndex].toString(),
+              calContent.dateL[calContent.listIndex].toString(),
+              calContent.dateL[calContent.listIndex].toString()
             ],
             labelY: const ['20%', '40%', '60%', '80%', '100%'],
             showDescription: true,
