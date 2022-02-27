@@ -5,6 +5,6 @@ import 'constants.dart';
 /** Backround colors with the 2 initalized Spots */
 
 final Map<BackgroundColors, dynamic> backgrounds = {
-  BackgroundColors.blue: Colors.blue[200],
-  BackgroundColors.black: Color(0xFF313237),
+  BackgroundColors.blue: Color(0xFF029CF5),
+  BackgroundColors.black: Color.fromARGB(214, 1, 32, 46),
 };

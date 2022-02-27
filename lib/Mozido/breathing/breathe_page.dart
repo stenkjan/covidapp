@@ -1,8 +1,10 @@
 import 'package:covidapp/Mozido/breathing/rive_speed_controller.dart';
 import 'package:covidapp/Mozido/breathing/settings_page.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
@@ -12,13 +14,28 @@ import 'dart:async';
 /** Parameters are imported from the Breathecontroller / Widget is build  */
 
 class BreathePage extends GetView<BreatheController> {
+   
+   
   @override
   Widget build(BuildContext context) {
+   
+
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
+    bool breatheTrue = false;
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
+          systemOverlayStyle:
+              const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+          backgroundColor: const Color(0xFF029CF5),
+          centerTitle: true,
+          title: const Text(
+            "Atemübung",
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: "Sans",
+                fontSize: 17.0,
+                fontWeight: FontWeight.w600),
+          )),
       body: GetX<BreatheController>(
           init: BreatheController(),
           builder: (c) {
@@ -84,6 +101,12 @@ class BreathePage extends GetView<BreatheController> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                 /*  if (c.isClosed)
+                    Visibility(
+                      visible: false,
+                      child: calContent.getbreatheTrue(breatheTrue),
+                    ), */
+                    
                 ]);
           }),
     );

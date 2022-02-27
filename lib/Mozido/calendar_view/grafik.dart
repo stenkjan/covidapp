@@ -165,8 +165,11 @@ class T2GrafikState extends State<T2Grafik> {
                               setState(() {
                                 dayChange = false;
                                 currentDate();
-                                calContent.getCalendarList(dayChange);
+                                 calContent.getgrafikCurrentDate(current_date);
+                                calContent.getCalendarList();
                                 grafService.dailyRead(current_date, dayChange);
+                                
+                               
                               });
                             },
                           )),
@@ -184,9 +187,13 @@ class T2GrafikState extends State<T2Grafik> {
                           onPressed: () {
                             setState(() {
                               dayChange = true;
-                              currentDate();
-                              calContent.getCalendarList(dayChange);
+                                 currentDate();
+                              calContent.getgrafikCurrentDate(current_date);
+                              calContent.getCalendarList();
                               grafService.dailyRead(current_date, dayChange);
+                           
+                              
+
                               if (kDebugMode) {
                                 print(current_date);
                               }
@@ -261,17 +268,17 @@ class T2GrafikState extends State<T2Grafik> {
     );
   }
 
-  void currentDate() {
+  bool currentDate() {
     setState(() {
       String cur_date = current_date.toString();
-      if (dayChange) {
+      if (dayChange == true) {
         if (cur_date == DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
           current_date += 1;
           dayChange = false;
         }
-      } else if (!dayChange) {
+      } else if (dayChange == false) {
         if (current_date == 1) {
           dayChange = true;
         } else {
@@ -281,6 +288,7 @@ class T2GrafikState extends State<T2Grafik> {
       }
       cur_date = current_date.toString();
     });
+    return dayChange;
   }
 }
 /*

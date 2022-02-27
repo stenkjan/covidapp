@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/FAQ.dart';
 import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
+import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:covidapp/Mozido/settings/settings.dart';
@@ -38,6 +39,8 @@ class _T2HomeState extends State<T2Home> {
 
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
+
     /*
     if (Credentials.signed_in = false) {
     return SignInScreen();
@@ -98,7 +101,7 @@ class _T2HomeState extends State<T2Home> {
                             fontSize: 17.0),
                       ),
                       Icon(
-                        Icons.more_horiz,
+                        Icons.task_alt,
                         color: Colors.white,
                       ),
                     ],
@@ -108,16 +111,25 @@ class _T2HomeState extends State<T2Home> {
                 ///
                 /// Card
                 ///
-                _card(Colors.lightBlueAccent, "10 Atemübungen", "24/7/2021",
-                    "Fortschritt"),
-                _card(Colors.yellowAccent, "Tägliche Pulsmessung", "25/7/2021",
-                    "Fortschritt"),
-                _card(Colors.lightGreenAccent, "I am Happy", "25/7/2021",
-                    "Fortschritt"),
-                _card(Colors.lightBlueAccent, "20 Atemübungen", "26/7/2021",
-                    "Fortschritt"),
-                _card(Colors.lightBlueAccent, "30 Atemübungen", "28/7/2021",
-                    "Fortschritt"),
+                _card(
+                    Colors.lightBlueAccent,
+                    calContent.getBreatheMin(calContent.breatheMin) +
+                        " Minuten Atemübungen",
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    calContent.getbreatheTrue(calContent.breatheTrue)),
+                _card(
+                    Colors.yellowAccent,
+                    "Tägliche Pulsmessung: " + calContent.getlastBPM(),
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    calContent.getpulseTrue(calContent.pulseTrue)),
+                _card(
+                    Colors.lightGreenAccent,
+                    "Kalenderaktivitäten: " + calContent.getcalAnswer(),
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    calContent.getcalendarTrue(calContent.returnCalTrue())),
 
                 const SizedBox(
                   height: 20.0,
@@ -180,8 +192,8 @@ class _T2HomeState extends State<T2Home> {
     );
   }
 
-/** Cards Initalization with color,title,time and value  */
-  Widget _card(Color _color, String _title, String _time, String _value) {
+  Widget _card(
+      Color _color, String _title, String _time, String _value, Icon _icon) {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
       child: Container(
@@ -260,14 +272,10 @@ class _T2HomeState extends State<T2Home> {
                               fontWeight: FontWeight.w800,
                               fontSize: 19.0),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 4.0),
-                          child: Icon(
-                            Icons.check_circle,
-                            size: 17.0,
-                            color: Colors.lightGreen,
-                          ),
-                        )
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0),
+                          child: _icon,
+                        ),
                       ],
                     )
                   ],
@@ -432,6 +440,7 @@ Widget itemDrawer(IconData icon, String txt) {
 Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());
+  CalendarContent calContent = CalendarContent();
   dbService.readcalendarCollection();
   print(auth.getUser().toString() + ' userid');
   return Stack(
@@ -467,7 +476,7 @@ Widget _cardHeader(LrmDataModel item) {
                         fontFamily: "Sans",
                         fontSize: 20.0),
                   ),
-                  Icon(Icons.coronavirus)
+                  const Icon(Icons.coronavirus)
                 ],
               ),
               const SizedBox(
@@ -477,7 +486,8 @@ Widget _cardHeader(LrmDataModel item) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    dbService.registeredDate.toString(),
+                    /* dbService.registeredDate.toString() */
+                    calContent.dateL.length.toString(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,
@@ -503,7 +513,7 @@ Widget _cardHeader(LrmDataModel item) {
                   ),
                   Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Datum",
                         style: TextStyle(
                           color: Colors.white,

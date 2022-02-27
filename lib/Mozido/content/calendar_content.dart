@@ -14,6 +14,7 @@ import '../Puls_Messung/heart_bpm.dart';
 class CalendarContent with ChangeNotifier {
   /** Variables Initizialisation  */
   bool saved = false;
+
   late int mood = moodL.last;
   late int muedigkeit = muedigkeitL.last;
   late int atemnot = atemnotL.last;
@@ -22,38 +23,52 @@ class CalendarContent with ChangeNotifier {
   late int schlaf = schlafL.last;
   late int nerven = nervenL.last;
   String comment = "";
+
   late String createdDate;
   late int createDateInt;
+
   int count = 0;
   int varCount = 0;
   int daycount = 0;
+  bool daychangeBool = false;
   bool docExists = false;
   bool pieLegendbool = true;
+
   late List calList;
   late List headlineupdate;
+
+  bool breatheTrue = false;
+
+  bool pulseTrue = false;
+  bool calTrue = false;
+
+  String breatheMin = "0";
+
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
+  int grafikcurrentDateCal = 0;
   String fullDate = DateFormat(
     'd/M/y',
   ).format(DateTime.now());
+
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   GrafikService gS = GrafikService();
   String? userId;
-/*   CalendarContent(this.mood, this.muedigkeit, this.atemnot, this.sinne,
-      this.herz, this.schlaf); */
-  /** Initializing List for Variables*/
-  List<int> dateL = [20, 21, 22, 23, 24, 25];
-  List<int> moodL = [5, 4, 3, 5, 7, 8];
-  List<int> muedigkeitL = [3, 0, 0, 1, 0, 3];
-  List<int> atemnotL = [0, 0, 1, 5, 3, 0];
-  List<int> sinneL = [0, 1, 3, 2, 4, 1];
-  List<int> herzL = [3, 4, 6, 8, 6, 5];
-  List<int> schlafL = [3, 2, 4, 2, 3, 2];
-  List<int> nervenL = [5, 6, 8, 5, 6, 4];
-  List<int> bpm = [70, 80, 85, 70, 90, 100];
+
+  int listIndex = 0;
+  int index = 0;
+  List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
+  List<int> moodL = [5, 4, 3, 5, 7, 8, 8, 2];
+  List<int> muedigkeitL = [3, 0, 0, 1, 0, 3, 4, 3];
+  List<int> atemnotL = [0, 0, 1, 5, 3, 0, 1, 0];
+  List<int> sinneL = [0, 1, 3, 2, 4, 1, 2, 1];
+  List<int> herzL = [3, 4, 6, 8, 6, 5, 0, 5];
+  List<int> schlafL = [3, 2, 4, 2, 3, 2, 0, 2];
+  List<int> nervenL = [5, 6, 8, 5, 6, 4, 5, 4];
+  List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [];
-/*   List<int> bpmValues = [100, 120, 70, 80]; */
 
   int calendarContentmood(int i) {
     mood = i;
@@ -64,46 +79,201 @@ class CalendarContent with ChangeNotifier {
     return mood;
   }
 
-/** List for BPM   */
+  bool returnBreatheTrue() {
+    breatheTrue = true;
+    return breatheTrue;
+  }
+
+  bool returnPulseTrue() {
+    pulseTrue = true;
+
+    return pulseTrue;
+  }
+
+  bool returnCalTrue() {
+    calTrue = true;
+    return saved;
+  }
+
+  String getlastBPM() {
+    if (pulseTrue == true) {
+      return bpm.last.toString();
+    } else {
+      return "";
+    }
+  }
+
+  Icon getpulseTrue(bool pulse) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (pulse == true) {
+      pulseTrue = true;
+      return iconDone;
+    } else {
+      pulseTrue = false;
+      return iconNotDone;
+    }
+  }
+
+  Icon getcalendarTrue(bool calendar) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (calendar == true) {
+      return iconDone;
+    } else {
+      calTrue = false;
+      return iconNotDone;
+    }
+  }
+
+  Icon getbreatheTrue(bool breathe) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (breathe == true) {
+      return iconDone;
+    } else {
+      return iconNotDone;
+    }
+  }
+
+  String getBreatheMin(String timeString) {
+    if (breatheTrue == true) {
+      breatheMin = timeString;
+    }
+    if (breatheMin.isEmpty) {
+      breatheMin = "0";
+    }
+
+    return breatheMin;
+  }
+
   List<int> bpmWeekL() {
     num sum = 0;
     for (num e in bpmday) {
       sum += e;
     }
     bpm.add(sum.round());
+    notifyListeners();
     return bpm;
   }
 
-/** Get the current Date */
-  List getCalendarList(bool daychange) {
-    if (daychange) {
-      varCount++;
-      daycount = currentDate + varCount;
-      if (daycount > currentDate) {
-        daycount--;
+  bool dayChanged() {
+    return daychangeBool;
+  }
+
+  bool getgrafikCurrentDate(int grafikcurrentDate) {
+    grafikcurrentDateCal = grafikcurrentDate;
+    bool curDateooRange = false;
+    if (grafikcurrentDateCal > dateL.last) {
+      curDateooRange = true;
+      return curDateooRange;
+    } else if (grafikcurrentDateCal < dateL.first) {
+      curDateooRange = true;
+      return curDateooRange;
+    }
+    return curDateooRange;
+  }
+
+  int getIndex() {
+    return index;
+  }
+
+  Map<String, double> daypiedataMap() {
+    int indexgetter = getIndex();
+    if (indexgetter > dateL.length - 1) {
+      indexgetter--;
+    }
+    if (indexgetter < 0) {
+      indexgetter++;
+    }
+
+    Map<String, double> daypiedataMap = {
+      headline[1]['tag']: calContent.muedigkeitL[indexgetter].toDouble(),
+      headline[2]['tag']: calContent.atemnotL[indexgetter].toDouble(),
+      headline[3]['tag']: calContent.sinneL[indexgetter].toDouble(),
+      headline[4]['tag']: calContent.herzL[indexgetter].toDouble(),
+      headline[5]['tag']: calContent.schlafL[indexgetter].toDouble(),
+      headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
+    };
+    return daypiedataMap;
+  }
+
+  List getCalendarList() {
+    /* print(daychange.toString() + " daychange");
+    if (daychange == true) {
+      daychangeBool = true;
+      varCount = grafikcurrentDateCal;
+
+      print(varCount.toString() + " :vC++");
+      daycount = grafikcurrentDateCal + varCount;
+      if (daycount > grafikcurrentDateCal) {
+        daycount = dateL.last;
       }
     }
-    /** Initialize on new Day */
-    if (!daychange) {
-      varCount--;
-      daycount = currentDate - varCount;
+
+    if (daychange == false) {
+      daychangeBool = false;
+      varCount = grafik;
+      print(varCount.toString() + " :vC--");
+      daycount = grafikcurrentDateCal - varCount;
       if (daycount < 1) {
         daycount++;
       }
-    }
-    headlineupdate = headline;
+    } */
 
-    print(daycount.toString() + " to varcount");
-    int index = dateL.indexWhere((daycount) => this.daycount.isEven);
-    print(index);
+    headlineupdate = headline;
+    daycount = grafikcurrentDateCal;
+    print(daycount.toString() + " :dC");
+
+    index = dateL.indexOf(daycount);
+    print(index.toString() + " index daycount");
+    if (index < 0 || index > dateL.length) {
+      index = dateL.indexOf(daycount - 1);
+      if (index < 0) index = dateL.indexOf(dateL.first);
+    }
+    print(index.toString() + " : index of dateL");
     createdDate = currentDate.toString();
-    mood = moodL[index];
-    muedigkeit = muedigkeitL[index];
-    atemnot = atemnotL[index];
-    sinne = sinneL[index];
-    herz = herzL[index];
-    schlaf = schlafL[index];
-    nerven = nervenL[index];
+    if (index <= moodL.length) {
+      mood = moodL[index];
+    } else {
+      mood = 0;
+    }
+    if (index <= muedigkeitL.length) {
+      muedigkeit = muedigkeitL[index];
+    } else {
+      muedigkeit = 0;
+    }
+    if (index <= atemnotL.length) {
+      atemnot = atemnotL[index];
+    } else {
+      atemnot = 0;
+    }
+    if (index <= sinneL.length) {
+      sinne = sinneL[index];
+    } else {
+      sinne = 0;
+    }
+    if (index <= herzL.length) {
+      herz = herzL[index];
+    } else {
+      herz = 0;
+    }
+    if (index <= schlafL.length) {
+      schlaf = schlafL[index];
+    } else {
+      schlaf = 0;
+    }
+    if (index <= nervenL.length) {
+      nerven = nervenL[index];
+    } else {
+      nerven = 0;
+    }
 
     calList = [
       dateL[index],
@@ -196,6 +366,14 @@ class CalendarContent with ChangeNotifier {
     return sum;
   }
 
+  String getcalAnswer() {
+    if (calTrue == true) {
+      return answeredSumInt().toString();
+    } else {
+      return "";
+    }
+  }
+
   double answeredSum() {
     double sum = 0;
     if (mood != 0) sum++;
@@ -208,7 +386,15 @@ class CalendarContent with ChangeNotifier {
     return sum;
   }
 
-/**  Calender Muedikeit */
+  int answeredSumInt() {
+    if (saved == true) {
+      int sum = answeredSum().toInt();
+      return sum;
+    } else {
+      return 0;
+    }
+  }
+
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
     muedigkeitL.add(muedigkeit);
@@ -279,9 +465,15 @@ class CalendarContent with ChangeNotifier {
 
 /** Push to Firebase  */
   Future<bool> clear() async {
-    saved = true;
     createDateInt = int.parse(createdDate);
-    dateL.add(createDateInt);
+    if (createDateInt > dateL.last.toInt()) {
+      dateL.add(createDateInt);
+      listIndex++;
+      if (listIndex >= 30) {
+        listIndex = 0;
+      }
+    }
+    saved = true;
     DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(gS.uid)
@@ -301,10 +493,13 @@ class CalendarContent with ChangeNotifier {
       comment = "";
       createdDate = "";
       print(docExists.toString() + ' : doc should exist');
+
+      notifyListeners();
       return docExists;
     } else {
       docExists = false;
       print(docExists.toString() + ' : doc  not exist');
+
       notifyListeners();
       return docExists;
     }

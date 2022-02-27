@@ -61,10 +61,15 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     // chart = BPMChart(data);
                   },
                   onBPM: (value) => setState(() {
+                    print(" on bpm" + calContent.pulseTrue.toString());
+                    calContent.returnPulseTrue();
                     if (bpmValues.length >= 100) bpmValues.removeAt(0);
                     bpmValues.add(SensorValue(
                         value: value.toDouble(), time: DateTime.now()));
                     calContent.bpmday.add(value);
+                    Visibility(
+                        visible: false,
+                        child: calContent.getpulseTrue(calContent.pulseTrue));
                   }),
                   // sampleDelay: 1000 ~/ 20,
                   // child: Container(
