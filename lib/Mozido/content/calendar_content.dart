@@ -79,49 +79,51 @@ class CalendarContent with ChangeNotifier {
   }
 
   bool returnBreatheTrue() {
-    breatheTrue = true;
+    bool breatheTrue = true;
+    this.breatheTrue = breatheTrue;
+    notifyListeners();
     return breatheTrue;
   }
 
   bool returnPulseTrue() {
-    pulseTrue = true;
+    bool pulseTrue = true;
+    this.pulseTrue = pulseTrue;
 
     return pulseTrue;
   }
 
   bool returnCalTrue() {
-    calTrue = true;
-    return saved;
+    bool calTrue = saved;
+    this.calTrue = calTrue;
+    return calTrue;
   }
 
   String getlastBPM() {
-    if (pulseTrue == true) {
+    if (returnPulseTrue() == true) {
       return bpm.last.toString();
     } else {
       return "";
     }
   }
 
-  Icon getpulseTrue(bool pulse) {
+  Icon getpulseTrue() {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (pulse == true) {
-      pulseTrue = true;
+    if (returnPulseTrue() == true) {
       return iconDone;
     } else {
-      pulseTrue = false;
       return iconNotDone;
     }
   }
 
-  Icon getcalendarTrue(bool calendar) {
+  Icon getcalendarTrue() {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (calendar == true) {
+    if (returnCalTrue() == true) {
       return iconDone;
     } else {
       calTrue = false;
@@ -129,12 +131,12 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-  Icon getbreatheTrue(bool breathe) {
+  Icon getbreatheTrue() {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (breathe == true) {
+    if (returnBreatheTrue() == true || breatheMin.isNotEmpty) {
       return iconDone;
     } else {
       return iconNotDone;
@@ -142,13 +144,17 @@ class CalendarContent with ChangeNotifier {
   }
 
   String getBreatheMin(String timeString) {
-    if (breatheTrue == true) {
+    if (returnBreatheTrue() == true) {
       breatheMin = timeString;
     }
     if (breatheMin.isEmpty) {
       breatheMin = "0";
     }
 
+    return breatheMin;
+  }
+
+  String returnBreatheMin() {
     return breatheMin;
   }
 
