@@ -3,7 +3,6 @@ import 'package:covidapp/Mozido/breathing/home_page.dart';
 import 'package:covidapp/Mozido/breathing/theme_controller.dart';
 import 'package:get/get.dart';
 
-
 /** c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
 
 class uebungbreathing extends GetView<ThemeController> {
@@ -17,10 +16,10 @@ class uebungbreathing extends GetView<ThemeController> {
             theme: ThemeData.light().copyWith(
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
+                      primary: Color(0xFF86CBF9),
+                      onPrimary: Colors.white,
                       textStyle: const TextStyle(
-                          fontWeight: FontWeight.w300, fontSize: 23))),
+                          fontWeight: FontWeight.w300, fontSize: 18))),
               scaffoldBackgroundColor: c.backgroundColor(),
               iconTheme: const IconThemeData(color: Colors.white),
               textTheme: const TextTheme(
