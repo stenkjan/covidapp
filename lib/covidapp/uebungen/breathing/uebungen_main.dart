@@ -11,7 +11,7 @@ class uebungbreathing extends GetView<ThemeController> {
     return GetX<ThemeController>(
         init: ThemeController(),
         builder: (c) {
-          return MaterialApp(
+          return GetMaterialApp(
             themeMode: ThemeMode.light,
             theme: ThemeData.light().copyWith(
               elevatedButtonTheme: ElevatedButtonThemeData(
