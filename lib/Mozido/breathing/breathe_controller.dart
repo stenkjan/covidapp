@@ -97,6 +97,7 @@ class BreatheController extends GetxController {
         _breathTimer.cancel();
         Get.offAll(() => const HomePage());
 
+/** Popup after timer = 0 */
         Get.snackbar(
           'finished',
           '',

@@ -70,6 +70,9 @@ class BreathePage extends GetView<BreatheController> {
                       ),
                     ),
                   ),
+
+                  /**Progress animation with c as Variable for initialization */
+
                   if (!c.hideBreathBar) ...[
                     const SizedBox(height: 50),
                     LinearPercentIndicator(

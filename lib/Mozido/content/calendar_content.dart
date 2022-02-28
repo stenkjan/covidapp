@@ -144,6 +144,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/** timestring gets the Brathing -- if empty -sets the String to 0 */
   String getBreatheMin(String timeString) {
     if (returnBreatheTrue() == true) {
       breatheMin = timeString;
@@ -173,6 +174,7 @@ class CalendarContent with ChangeNotifier {
     return daychangeBool;
   }
 
+  /** boolean for current Date */
   bool getgrafikCurrentDate(int grafikcurrentDate) {
     grafikcurrentDateCal = grafikcurrentDate;
     bool curDateooRange = false;
@@ -198,7 +200,7 @@ class CalendarContent with ChangeNotifier {
     if (indexgetter < 0) {
       indexgetter++;
     }
-
+/**Pie Map Initialization */
     Map<String, double> daypiedataMap = {
       headline[1]['tag']: calContent.muedigkeitL[indexgetter].toDouble(),
       headline[2]['tag']: calContent.atemnotL[indexgetter].toDouble(),
@@ -345,6 +347,7 @@ class CalendarContent with ChangeNotifier {
     return color;
   }
 
+/** Saving the Variables to double  */
   double listSum() {
     double sum = mood.toDouble() +
         muedigkeit.toDouble() +
@@ -374,6 +377,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/** Counter */
   double answeredSum() {
     double sum = 0;
     if (mood != 0) sum++;
@@ -395,6 +399,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/** Listener Database update */
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
     muedigkeitL.add(muedigkeit);

@@ -66,11 +66,6 @@ class BPMChart extends StatelessWidget {
       domainAxis: charts.DateTimeAxisSpec(
         renderSpec: charts.NoneRenderSpec(),
         showAxisLine: false,
-        // viewport: charts.DateTimeExtents(
-        //   start: _data[0].data.first.time,
-        //   end: _data[0].data.last.time,
-        // ),
-        // tickProviderSpec: charts.AutoDateTimeTickProviderSpec(),
       ),
       dateTimeFactory: const charts.LocalDateTimeFactory(),
     );
