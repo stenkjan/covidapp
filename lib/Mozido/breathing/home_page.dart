@@ -12,6 +12,8 @@ import 'home_controller.dart';
 /** Homepage-- Widget build */
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

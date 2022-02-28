@@ -82,7 +82,6 @@ class T2GrafikState extends State<T2Grafik> {
     return woy;
   } */
 
-  @override
 
   ///
   /// Data for grafik line
