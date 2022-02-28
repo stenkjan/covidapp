@@ -182,7 +182,7 @@ class _T2HomeState extends State<T2Home> {
                           _scaffoldKey.currentState!.openDrawer();
                           //Scaffold.of(this.context).openDrawer();
                         },
-                        child: Image.asset("lib/covidapp/Assets/tabBar.png")),
+                        child: Image.asset("lib/covidapp/images/tabBar.png")),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 8.0, left: 10.0),

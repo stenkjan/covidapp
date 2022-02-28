@@ -84,8 +84,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/covidapp/Assets/tabBar.png
-    - images/sound.mp3
+    - sounds/sound.mp3
     - images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see

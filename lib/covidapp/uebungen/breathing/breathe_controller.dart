@@ -83,7 +83,7 @@ class BreatheController extends GetxController {
         breathTime.value = initBreathTime;
         breathIn.value = !breathIn.value;
         if (soundOn) {
-          //player.play('images/sound.mp3');
+          // player.play('sound/sound.mp3');
         }
       }
       if (breathTime.value > 0) {
