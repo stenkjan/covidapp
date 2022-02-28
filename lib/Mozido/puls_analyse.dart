@@ -42,17 +42,17 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 49, 50, 55),
+      backgroundColor: const Color.fromARGB(255, 49, 50, 55),
 
       ///
       /// Appbar
       ///
       appBar: AppBar(
         systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-        backgroundColor: Color(0xFF313237),
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        backgroundColor: const Color(0xFF313237),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Puls Analyse",
           style: TextStyle(
               color: Colors.white,
@@ -60,7 +60,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               fontSize: 17.0,
               fontWeight: FontWeight.w600),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.0,
       ),
 
@@ -93,7 +93,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   //   child: BPMChart(data),
                   // ),
                 )
-              : SizedBox(
+              : const SizedBox(
                   height: 20,
                 ),
           isBPMEnabled && data.isNotEmpty
@@ -105,18 +105,18 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     ),
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
-                      BoxShadow(
+                      const BoxShadow(
                         color: Colors.black,
-                        offset: const Offset(
+                        offset: Offset(
                           5.0,
                           5.0,
                         ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
-                      BoxShadow(
+                      const BoxShadow(
                         color: Colors.white,
-                        offset: const Offset(0.0, 0.0),
+                        offset: Offset(0.0, 0.0),
                         blurRadius: 0.0,
                         spreadRadius: 0.0,
                       ),
@@ -125,8 +125,8 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   height: 180,
                   child: BPMChart(data),
                 )
-              : SizedBox(),
-          SizedBox(
+              : const SizedBox(),
+          const SizedBox(
             height: 10,
           ),
           isBPMEnabled && bpmValues.isNotEmpty
@@ -138,32 +138,32 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     ),
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
-                      BoxShadow(
+                      const BoxShadow(
                         color: Colors.black,
-                        offset: const Offset(
+                        offset: Offset(
                           5.0,
                           5.0,
                         ),
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
-                      BoxShadow(
+                      const BoxShadow(
                         color: Colors.white,
-                        offset: const Offset(0.0, 0.0),
+                        offset: Offset(0.0, 0.0),
                         blurRadius: 0.0,
                         spreadRadius: 0.0,
                       ),
                     ],
                   ),
-                  constraints: BoxConstraints.expand(height: 180),
+                  constraints: const BoxConstraints.expand(height: 180),
                   child: BPMChart(bpmValues),
                 )
-              : SizedBox(
+              : const SizedBox(
                   height: 10,
                 ),
           Center(
             child: ElevatedButton.icon(
-              icon: Icon(Icons.favorite_rounded),
+              icon: const Icon(Icons.favorite_rounded),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
                 onPrimary: Colors.white,
@@ -190,7 +190,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               height: imageSize,
               width: imageSize,
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: RiveAnimation.asset(
+              child: const RiveAnimation.asset(
                 'images/heartfinal.riv',
               ),
             ),
