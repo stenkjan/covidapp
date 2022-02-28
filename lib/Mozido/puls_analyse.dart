@@ -1,4 +1,5 @@
 import 'package:covidapp/Mozido/content/calendar_content.dart';
+import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
@@ -24,6 +25,18 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   bool isBPMEnabled = false;
   bool isvisible = true;
   Widget? dialog;
+  late double imageSize;
+
+  @override
+  initState() {
+    imageSize = 280;
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,30 +167,29 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               label:
                   Text(isBPMEnabled ? "Messung Anhalten" : "Puls Pro Minute"),
               onPressed: () => setState(() {
+                imageSize = 30;
                 if (isBPMEnabled) {
                   isBPMEnabled = false;
                   isvisible = false;
-                  // dialog.
-                }
-                if (isBPMEnabled) {
-                  // dialog.
-                } else
+                  Navigator.of(context).push(PageRouteBuilder(
+                      pageBuilder: (_, __, ___) => const T2Home()));
+                } else {
                   isBPMEnabled = true;
+                }
               }),
             ),
           ),
-          if (isvisible = true)
-            Container(
-              height: 280,
-              width: 280,
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: RiveAnimation.asset(
-                'images/lung.riv',
-                controllers: [
-                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
-                ],
-              ),
+          Container(
+            height: imageSize,
+            width: imageSize,
+            padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+            child: RiveAnimation.asset(
+              'images/lung.riv',
+              controllers: [
+                SpeedController('breathe', speedMultiplier: 1 / 5.5)
+              ],
             ),
+          ),
         ],
       ),
     );
