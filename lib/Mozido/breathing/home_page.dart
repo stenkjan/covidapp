@@ -16,17 +16,16 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "",
-          style: TextStyle(
-              color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
-        ),
-        centerTitle: true,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        backgroundColor: Color(0xFF313237),
-        elevation: 0.0,
-        iconTheme: const IconThemeData(color: Colors.lightBlue),
-      ),
+          title: const Text(
+            "",
+            style: TextStyle(
+                color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
+          ),
+          centerTitle: true,
+          systemOverlayStyle:
+              const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+          backgroundColor: Color(0xFF313237),
+          iconTheme: const IconThemeData(color: Color(0xFF029CF5))),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

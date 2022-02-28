@@ -220,13 +220,7 @@ class _T2HomeState extends State<T2Home> {
     );
   }
 
-  void rebuildAllChildren(BuildContext context) {
-    void rebuild(Element el) {
-      el.markNeedsBuild();
-      el.visitChildren(rebuild);
-    }
-
-    (context as Element).visitChildren(rebuild);
+  
   }
 
   Widget _card(
@@ -324,7 +318,7 @@ class _T2HomeState extends State<T2Home> {
       ),
     );
   }
-}
+
 
 ///
 /// Layout for drawer

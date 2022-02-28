@@ -82,7 +82,7 @@ class CalendarContent with ChangeNotifier {
   bool returnBreatheTrue() {
     bool breatheTrue = true;
     this.breatheTrue = breatheTrue;
-    notifyListeners();
+    
     return breatheTrue;
   }
 
