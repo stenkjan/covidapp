@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart';
 
 import 'Puls_Messung/chart.dart';
 import 'Puls_Messung/heart_bpm.dart';
+import 'breathing/rive_speed_controller.dart';
 
 class Puls_Analyse extends StatefulWidget {
   Puls_Analyse({required Key key}) : super(key: key);
@@ -20,6 +22,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   //  Widget chart = BPMChart(data);
 
   bool isBPMEnabled = false;
+  bool isvisible = true;
   Widget? dialog;
 
   @override
@@ -68,8 +71,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                         value: value.toDouble(), time: DateTime.now()));
                     calContent.bpmday.add(value);
                     Visibility(
-                        visible: false,
-                        child: calContent.getpulseTrue());
+                        visible: false, child: calContent.getpulseTrue());
                   }),
                   // sampleDelay: 1000 ~/ 20,
                   // child: Container(
@@ -154,12 +156,28 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               onPressed: () => setState(() {
                 if (isBPMEnabled) {
                   isBPMEnabled = false;
+                  isvisible = false;
+                  // dialog.
+                }
+                if (isBPMEnabled) {
                   // dialog.
                 } else
                   isBPMEnabled = true;
               }),
             ),
           ),
+          if (isvisible = true)
+            Container(
+              height: 280,
+              width: 280,
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: RiveAnimation.asset(
+                'images/lung.riv',
+                controllers: [
+                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
+                ],
+              ),
+            ),
         ],
       ),
     );
