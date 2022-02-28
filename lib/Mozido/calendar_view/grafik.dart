@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/grafik_tab_bar.dart';
+import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/grafik_content.dart';
 import 'package:covidapp/Mozido/content/size.dart';
@@ -82,7 +83,6 @@ class T2GrafikState extends State<T2Grafik> {
     return woy;
   } */
 
-
   ///
   /// Data for grafik line
   ///
@@ -142,10 +142,52 @@ class T2GrafikState extends State<T2Grafik> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: fontSize(25),
+                          color: calContent.getCalendarColorSum(),
                         ),
                         textAlign: TextAlign.center,
                       ),
                     )),
+                Container(
+                  width: 150,
+                  margin: EdgeInsets.only(
+                    right: 5,
+                    top: 10,
+                  ),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Ausgezeichnet      ",
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                        Divider(
+                          thickness: 1,
+                        ),
+                        Icon(
+                          Icons.rectangle,
+                          size: 15,
+                          color: AppColors.pieColors[2],
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Handlungsbedarf ",
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                        Divider(
+                          thickness: 1,
+                        ),
+                        Icon(
+                          Icons.rectangle,
+                          size: 15,
+                          color: AppColors.pieColors[5],
+                        )
+                      ],
+                    )
+                  ]),
+                ),
                 Container(
                   width: SizeConfig.getWidth(context) / 3.7,
                   margin:
@@ -164,11 +206,11 @@ class T2GrafikState extends State<T2Grafik> {
                               setState(() {
                                 dayChange = false;
                                 currentDate();
-                                 calContent.getgrafikCurrentDate(current_date);
+
+                                calContent.getgrafikCurrentDate(current_date);
                                 calContent.getCalendarList();
+                                calContent.getCalendarColorSum();
                                 grafService.dailyRead(current_date, dayChange);
-                                
-                               
                               });
                             },
                           )),
@@ -186,13 +228,12 @@ class T2GrafikState extends State<T2Grafik> {
                           onPressed: () {
                             setState(() {
                               dayChange = true;
-                                 currentDate();
+                              currentDate();
                               calContent.getgrafikCurrentDate(current_date);
                               calContent.getCalendarList();
+                              calContent.getCalendarColorSum();
                               grafService.dailyRead(current_date, dayChange);
-                           
-                              
-
+                              headline;
                               if (kDebugMode) {
                                 print(current_date);
                               }
@@ -229,7 +270,7 @@ class T2GrafikState extends State<T2Grafik> {
                             data['name'].toString(),
                             style: TextStyle(
                               fontSize: fontSize(12),
-                              color: Colors.white,
+                              color: data['level'],
                             ),
                           ),
                           Container(

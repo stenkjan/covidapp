@@ -11,6 +11,8 @@ class AppColors {
     Colors.amber,
     Color.fromARGB(255, 255, 133, 34),
     Color.fromARGB(255, 116, 9, 2),
+    Color.fromARGB(255, 0, 87, 4),
+    Color.fromARGB(255, 37, 0, 202),
   ];
   static List<BoxShadow> neumorpShadow = [
     BoxShadow(

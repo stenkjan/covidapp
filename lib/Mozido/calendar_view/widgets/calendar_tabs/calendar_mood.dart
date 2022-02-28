@@ -32,10 +32,7 @@ class CalendarMoodState extends State<CalendarMood> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
-    double _value = 1;
-    bool _switchValue = false;
-    List<String> list = ["Nein", "Ja"];
-    int i = 0;
+
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Column(
@@ -69,8 +66,8 @@ class CalendarMoodState extends State<CalendarMood> {
                             print(calContent.count.toString() + ' count ');
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(
-                                  moodList[0]['amount'] * 2);
+                              calContent
+                                  .calendarContentmood(moodList[0]['amount']);
 
                               setState(() {
                                 firstPress = true;
@@ -108,7 +105,8 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(moodList[1]['amount']*2);
+                              calContent.calendarContentmood(
+                                  moodList[1]['amount'] + 1);
 
                               setState(() {
                                 firstPress = true;
@@ -144,7 +142,8 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(moodList[2]['amount']*2);
+                              calContent.calendarContentmood(
+                                  moodList[2]['amount'] * 2);
 
                               setState(() {
                                 firstPress = true;
@@ -180,7 +179,8 @@ class CalendarMoodState extends State<CalendarMood> {
                           ..onTap = () {
                             if (firstPress == false) {
                               calContent.increment();
-                              calContent.calendarContentmood(moodList[3]['amount']*2);
+                              calContent.calendarContentmood(
+                                  moodList[3]['amount'] + 6);
 
                               setState(() {
                                 firstPress = true;
@@ -199,6 +199,7 @@ class CalendarMoodState extends State<CalendarMood> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: 5),
               SizedBox(
                 width: 360,
                 height: 25,
@@ -219,6 +220,21 @@ class CalendarMoodState extends State<CalendarMood> {
                         color: Colors.white70)),
               ),
             ],
+          ),
+          const SizedBox(
+            width: 360,
+            height: 50,
+            child: Text(
+                "In der Grafik bedeuet 10 Ausgezeichnet und 100 schlecht",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: "Italic",
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white24)),
           ),
           const SizedBox(
             height: 0,

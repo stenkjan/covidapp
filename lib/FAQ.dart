@@ -4,12 +4,14 @@ import 'package:expandable/expandable.dart';
 import 'dart:math' as math;
 
 class FAQ extends StatelessWidget {
+  const FAQ({Key? key}) : super(key: key);
+
   @override
 
-  /**Widget build FAQ  */
+  /*Widget build FAQ  */
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF313237),
+      backgroundColor: const Color(0xFF313237),
       appBar: AppBar(
         title: const Text(
           "Häufig gestellte Fragen",
@@ -18,7 +20,7 @@ class FAQ extends StatelessWidget {
         ),
         centerTitle: true,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
-        backgroundColor: Color(0xFF313237),
+        backgroundColor: const Color(0xFF313237),
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Colors.lightBlue),
       ),
@@ -69,14 +71,14 @@ class Card1 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -90,15 +92,15 @@ class Card1 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text(
+                    child: const Text(
                         "Warum ist es wichtig, längerfristige Auswirkungen einer SARS-CoV-2-Infektion besser zu verstehen?",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage1,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -109,7 +111,7 @@ class Card1 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage1,
@@ -121,7 +123,7 @@ class Card1 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -144,14 +146,14 @@ class Card2 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -165,16 +167,16 @@ class Card2 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text("Was ist Long COVID?",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage2,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -183,9 +185,9 @@ class Card2 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
+                          child: const Text(
                             frage2,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -195,7 +197,7 @@ class Card2 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -218,14 +220,14 @@ class Card3 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -239,15 +241,15 @@ class Card3 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                header: const Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                         "Welche Symptome haben Menschen mit gesundheitlichen Langzeitfolgen von COVID-19?",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage3,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -258,11 +260,11 @@ class Card3 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage3,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             softWrap: true,
                             overflow: TextOverflow.fade,
                           )),
@@ -270,7 +272,7 @@ class Card3 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -293,14 +295,14 @@ class Card4 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -314,15 +316,15 @@ class Card4 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
-                    child: Text(
+                    child: const Text(
                         "Wie häufig treten gesundheitliche Langzeitfolgen von COVID-19 auf? Sind auch Erkrankte mit milden Verläufen betroffen?",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage4,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -333,11 +335,11 @@ class Card4 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage4,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             softWrap: true,
                             overflow: TextOverflow.fade,
                           )),
@@ -345,7 +347,7 @@ class Card4 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -368,14 +370,14 @@ class Card5 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -389,15 +391,15 @@ class Card5 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Welche Menschen haben ein erhöhtes Risiko gesundheitliche Langzeitfolgen von COVID-19 zu entwickeln?",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage5,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -408,7 +410,7 @@ class Card5 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage5,
@@ -420,7 +422,7 @@ class Card5 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -443,14 +445,14 @@ class Card6 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -464,15 +466,15 @@ class Card6 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Können Kinder auch gesundheitlichen Langzeitfolgen von COVID-19 entwickeln?",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage6,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -483,9 +485,9 @@ class Card6 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
+                      const Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: const Text(
                             frage6,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -495,7 +497,7 @@ class Card6 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -518,14 +520,14 @@ class Card7 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -539,17 +541,17 @@ class Card7 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Wie kann man als Einzelperson den gesundheitlichen Langzeitfolgen von COVID-19 vorbeugen?",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage7,
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -558,9 +560,9 @@ class Card7 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
+                          child: const Text(
                             frage7,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -570,7 +572,7 @@ class Card7 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -593,14 +595,14 @@ class Card8 extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Card(
-        color: Color(0xFF363940),
+        color: const Color(0xFF363940),
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.lightBlue,
                   shape: BoxShape.rectangle,
                 ),
@@ -614,7 +616,7 @@ class Card8 extends StatelessWidget {
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
                   tapBodyToCollapse: true,
                 ),
-                header: Padding(
+                header: const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Wie gut gesichert ist das aktuelle Wissen über die gesundheitlichen Langzeitfolgen von COVID-19?",
@@ -622,7 +624,7 @@ class Card8 extends StatelessWidget {
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
-                collapsed: Text(
+                collapsed: const Text(
                   frage8,
                   style: TextStyle(color: Colors.white),
                   softWrap: true,
@@ -633,11 +635,11 @@ class Card8 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
-                      Padding(
+                      const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage8,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             softWrap: true,
                             overflow: TextOverflow.fade,
                           )),
@@ -645,7 +647,7 @@ class Card8 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,

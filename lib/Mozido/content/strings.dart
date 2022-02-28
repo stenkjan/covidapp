@@ -84,7 +84,8 @@ List headline = [
     "desc": "Der allgemeine Gefühlszustand",
     "value": calContent.mood,
     "valueString": calContent.mood.toString(),
-    "color": calContent.getCalendarColors(calContent.mood)
+    "color": calContent.getCalendarColors(1),
+    "level": calContent.getLevel(calContent.mood),
   },
   {
     "tag": "Müdigkeit",
@@ -92,7 +93,7 @@ List headline = [
     "desc": "Geben Sie Ihren allgemeinen Zustand an",
     "value": calContent.muedigkeit,
     "valueString": calContent.muedigkeit.toString(),
-    "color": calContent.getCalendarColors(calContent.muedigkeit)
+    "color": calContent.getCalendarColors(2)
   },
   {
     "tag": "Atemnot",
@@ -100,7 +101,7 @@ List headline = [
     "desc": "Wie oft verspüren Sie Kurzatmigkeit/Atemnot?",
     "value": calContent.atemnot,
     "valueString": calContent.atemnot.toString(),
-    "color": calContent.getCalendarColors(calContent.atemnot)
+    "color": calContent.getCalendarColors(3)
   },
   {
     "tag": "Sinne",
@@ -108,7 +109,7 @@ List headline = [
     "desc": "Verspüren Sie Geruchs-/ und Geschmacksverlust?",
     "value": calContent.sinne,
     "valueString": calContent.sinne.toString(),
-    "color": calContent.getCalendarColors(calContent.sinne)
+    "color": calContent.getCalendarColors(4)
   },
   {
     "tag": "Herz/Kreislauf",
@@ -116,7 +117,7 @@ List headline = [
     "desc": "Haben Sie Herz-/Kreislaufprobleme?",
     "value": calContent.herz,
     "valueString": calContent.herz.toString(),
-    "color": calContent.getCalendarColors(calContent.herz)
+    "color": calContent.getCalendarColors(5)
   },
   {
     "tag": "Schlaf",
@@ -124,7 +125,7 @@ List headline = [
     "desc": "Geben Sie die Qualität Ihres Schlafes an",
     "value": calContent.schlaf,
     "valueString": calContent.schlaf.toString(),
-    "color": calContent.getCalendarColors(calContent.schlaf)
+    "color": calContent.getCalendarColors(6)
   },
   {
     "tag": "Nerven",
@@ -132,7 +133,7 @@ List headline = [
     "desc": "Wie oft haben Sie Kopfschmerzen/Konzentrationsschwächen?",
     "value": calContent.nerven,
     "valueString": calContent.nerven.toString(),
-    "color": calContent.getCalendarColors(calContent.nerven)
+    "color": calContent.getCalendarColors(7)
   },
 ];
 

@@ -1,20 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
-import 'package:covidapp/Mozido/services/calendar_service.dart';
 import 'package:covidapp/Mozido/services/grafik_service.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-import '../Puls_Messung/heart_bpm.dart';
+/*MasterClass of Variable Declaration and Methods for Value Exchange */
 
 class CalendarContent with ChangeNotifier {
-  /** Variables Initizialisation  */
+  /** Variables Inititialisation  */
   bool saved = false;
-
+/*calendar variables*/
   late int mood = moodL.last;
   late int muedigkeit = muedigkeitL.last;
   late int atemnot = atemnotL.last;
@@ -26,7 +23,7 @@ class CalendarContent with ChangeNotifier {
 
   late String createdDate;
   late int createDateInt;
-
+/*calendar variable initialisation*/
   int count = 0;
   int varCount = 0;
   int daycount = 0;
@@ -43,6 +40,7 @@ class CalendarContent with ChangeNotifier {
   bool calTrue = false;
 
   String breatheMin = "0";
+  double sum = 0;
 
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
   int grafikcurrentDateCal = 0;
@@ -56,7 +54,7 @@ class CalendarContent with ChangeNotifier {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   GrafikService gS = GrafikService();
   String? userId;
-
+/*calendar variables lists with initial data*/
   int listIndex = 0;
   int index = 0;
   List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
@@ -70,6 +68,7 @@ class CalendarContent with ChangeNotifier {
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [];
 
+/*calendar variable functions to send and retrieve calendar data*/
   int calendarContentmood(int i) {
     mood = i;
     userId = gS.uid;
@@ -212,30 +211,9 @@ class CalendarContent with ChangeNotifier {
   }
 
   List getCalendarList() {
-    /* print(daychange.toString() + " daychange");
-    if (daychange == true) {
-      daychangeBool = true;
-      varCount = grafikcurrentDateCal;
-
-      print(varCount.toString() + " :vC++");
-      daycount = grafikcurrentDateCal + varCount;
-      if (daycount > grafikcurrentDateCal) {
-        daycount = dateL.last;
-      }
-    }
-
-    if (daychange == false) {
-      daychangeBool = false;
-      varCount = grafik;
-      print(varCount.toString() + " :vC--");
-      daycount = grafikcurrentDateCal - varCount;
-      if (daycount < 1) {
-        daycount++;
-      }
-    } */
-
     headlineupdate = headline;
     daycount = grafikcurrentDateCal;
+    sum = listSum();
     print(daycount.toString() + " :dC");
 
     index = dateL.indexOf(daycount);
@@ -248,36 +226,43 @@ class CalendarContent with ChangeNotifier {
     createdDate = currentDate.toString();
     if (index <= moodL.length) {
       mood = moodL[index];
+      headline[0]["level"] = getLevel(mood);
     } else {
       mood = 0;
     }
     if (index <= muedigkeitL.length) {
       muedigkeit = muedigkeitL[index];
+      headline[1]["level"] = getLevel(muedigkeit);
     } else {
       muedigkeit = 0;
     }
     if (index <= atemnotL.length) {
       atemnot = atemnotL[index];
+      headline[2]["level"] = getLevel(atemnot);
     } else {
       atemnot = 0;
     }
     if (index <= sinneL.length) {
       sinne = sinneL[index];
+      headline[3]["level"] = getLevel(sinne);
     } else {
       sinne = 0;
     }
     if (index <= herzL.length) {
       herz = herzL[index];
+      headline[4]["level"] = getLevel(herz);
     } else {
       herz = 0;
     }
     if (index <= schlafL.length) {
       schlaf = schlafL[index];
+      headline[5]["level"] = getLevel(schlaf);
     } else {
       schlaf = 0;
     }
     if (index <= nervenL.length) {
       nerven = nervenL[index];
+      headline[6]["level"] = getLevel(nerven);
     } else {
       nerven = 0;
     }
@@ -305,16 +290,8 @@ class CalendarContent with ChangeNotifier {
     return calList;
   }
 
-  Color getCalendarColors(int value) {
+  Color getLevel(int value) {
     Color color = Colors.grey;
-    /*  List? calColorList;
-    for (var i = 0; i < calList!.length - 2; i++) {
-      final int category = headline[i];
-      if (category <= 2) {
-        calColorList!.add(AppColors.pieColors[2]);
-        headline.where((i) => headline[i].add(category));
-      } */
-
     if (value >= 1 && value <= 2) {
       return color = (AppColors.pieColors[2]);
     }
@@ -333,11 +310,21 @@ class CalendarContent with ChangeNotifier {
     }
     return color;
   }
+
+  Color getCalendarColors(int value) {
+    Color color = AppColors.pieColors[value];
+    if (value == 0) {
+      color = Colors.grey;
+      print(color.toString() + " null");
+      return color;
+    }
+    return color;
+  }
 /** Initializing Calender Color */
 
   Color getCalendarColorSum() {
-    double value = listSum();
-    Color color = Color(0xFF31A1C9);
+    double value = sum;
+    Color color = Colors.grey;
 
     if (value >= 1 && value <= 2) {
       return color = (AppColors.pieColors[2]);
@@ -368,7 +355,13 @@ class CalendarContent with ChangeNotifier {
         nerven.toDouble();
     if (sum != 0) return sum;
     if (sum == 0) {
-      print("no value in List!");
+      sum = moodL.last.toDouble() +
+          muedigkeitL.last.toDouble() +
+          atemnotL.last.toDouble() +
+          sinneL.last.toDouble() +
+          herzL.last.toDouble() +
+          schlafL.last.toDouble() +
+          nervenL.last.toDouble();
     }
     return sum;
   }
