@@ -144,31 +144,38 @@ class CalendarState extends State<Calendar> {
                 body: const TabBarView(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarMood(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarMuedigkeit(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarAtemnot(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarSinne(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarHerz(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarSchlaf(),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
+                      padding:
+                          EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: CalendarNervCom(),
                     ),
                   ],

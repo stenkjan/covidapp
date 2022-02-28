@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:covidapp/covidapp/calendar_view/calendar.dart';
-import 'package:covidapp/covidapp/calendar_view/widgets/daily_pie.dart';
+import 'package:covidapp/covidapp/calendar_view/widgets/daily_pie_peek.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -23,6 +23,8 @@ class _CalendarFormState extends State<CalendarForm> {
   late SharedPreferences prefs;
   late Calendar calendar;
   late bool comBool;
+  late int index;
+  Color colorsum = Colors.blue;
 
   @override
   void initState() {
@@ -32,6 +34,10 @@ class _CalendarFormState extends State<CalendarForm> {
     _selectedEvents = [];
     prefsData();
     comBool = false;
+    index = 0;
+
+    colorsum = calContent.getCalendarColorSum();
+    _eventController.clear();
     super.initState();
   }
 
@@ -88,7 +94,7 @@ class _CalendarFormState extends State<CalendarForm> {
               calendarStyle: CalendarStyle(
                 canEventMarkersOverflow: true,
                 todayColor: const Color(0x9C2D00A7),
-                selectedColor: calContent.getCalendarColorSum(),
+                selectedColor: colorsum,
                 todayStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
@@ -106,22 +112,36 @@ class _CalendarFormState extends State<CalendarForm> {
               startingDayOfWeek: StartingDayOfWeek.monday,
               onDaySelected: (date, events, holidays) {
                 _selectedEvents = events;
+
                 setState(() {
                   if (calContent.docExists) {
                     comBool = true;
                     calContent.pieLegendbool = false;
                   } else {
-                    comBool = true;
+                    if (calContent.dateL
+                        .contains(_controller.selectedDay.day.toInt())) {
+                      calContent.indexGrafik = calContent.dateL
+                          .indexOf(_controller.selectedDay.day.toInt());
+                      if (calContent.indexGrafik != 0) {
+                        index = calContent.indexGrafik;
+                      }
+                      comBool = true;
+                    }
                   }
                   if (_events[_controller.selectedDay] != null) {
-                    _events[_controller.selectedDay]!.add(calContent.comment);
+                    if (_events[_controller.selectedDay]?.last !=
+                        calContent.comment) {
+                      if (calContent.comment != "") {
+                        _events[_controller.selectedDay]!
+                            .add(calContent.comment);
+                      }
+                    }
                   } else {
-                    _events[_controller.selectedDay] = [calContent.comment];
+                    comBool = false;
                   }
                   prefs.setString(
                       "Ereignisse", json.encode(encodeMap(_events)));
                   _eventController.clear();
-                  Navigator.pop(context);
                 });
               },
               builders: CalendarBuilders(
@@ -155,7 +175,7 @@ class _CalendarFormState extends State<CalendarForm> {
             ..._selectedEvents.map((event) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: MediaQuery.of(context).size.height / 20,
+                    height: 20,
                     width: MediaQuery.of(context).size.width / 2,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -177,19 +197,15 @@ class _CalendarFormState extends State<CalendarForm> {
                             child: Text(
                           event,
                           style: const TextStyle(
-                              color: Colors.blue,
+                              color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         )),
-                        Visibility(
-                          visible: comBool,
-                          child:
-                              SizedBox(height: 20, width: 20, child: DayPie()),
-                        ),
                       ],
                     ),
                   ),
                 )),
+            Visibility(visible: comBool, child: DayPiePeek(index)),
           ],
         ),
       ),

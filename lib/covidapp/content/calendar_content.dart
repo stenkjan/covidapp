@@ -56,6 +56,7 @@ class CalendarContent with ChangeNotifier {
   String? userId;
 /*calendar variables lists with initial data*/
   int listIndex = 0;
+  int indexGrafik = 0;
   int index = 0;
   List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
   List<int> moodL = [5, 4, 3, 5, 7, 8, 8, 2];
@@ -190,6 +191,26 @@ class CalendarContent with ChangeNotifier {
 
   int getIndex() {
     return index;
+  }
+
+  Map<String, double> daypiedataMapCalendar(int day) {
+    int indexgetter = dateL.indexOf(day);
+    if (indexgetter > dateL.length - 1) {
+      indexgetter--;
+    }
+    if (indexgetter < 0) {
+      indexgetter++;
+    }
+/**Pie Map Initialization */
+    Map<String, double> daypiedataMapCal = {
+      headline[1]['tag']: calContent.muedigkeitL[indexgetter].toDouble(),
+      headline[2]['tag']: calContent.atemnotL[indexgetter].toDouble(),
+      headline[3]['tag']: calContent.sinneL[indexgetter].toDouble(),
+      headline[4]['tag']: calContent.herzL[indexgetter].toDouble(),
+      headline[5]['tag']: calContent.schlafL[indexgetter].toDouble(),
+      headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
+    };
+    return daypiedataMapCal;
   }
 
   Map<String, double> daypiedataMap() {
