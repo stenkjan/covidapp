@@ -182,7 +182,7 @@ class _T2HomeState extends State<T2Home> {
                           _scaffoldKey.currentState!.openDrawer();
                           //Scaffold.of(this.context).openDrawer();
                         },
-                        child: Image.asset("lib/covidapp/images/tabBar.png")),
+                        child: Image.asset("lib/images/tabBar.png")),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 8.0, left: 10.0),
@@ -387,12 +387,6 @@ class DrawerLayout extends StatelessWidget {
                           pageBuilder: (_, __, ___) => const CalendarTabBar()));
                     },
                     child: itemDrawer(Icons.calendar_today, "Kalender")),
-                /*   InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const SettingsScreen()));
-                    },
-                    child: itemDrawer(Icons.settings, "Einstellungen")), */
                 const SizedBox(
                   height: 50.0,
                 ),
