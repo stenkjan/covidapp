@@ -9,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-//import 'package:flutter_sparkline/flutter_sparkline.dart';
 
 import 'widgets/arrow_button.dart';
 
@@ -21,23 +20,7 @@ class T2Grafik extends StatefulWidget {
 }
 
 class T2GrafikState extends State<T2Grafik> {
-  /*  late List<charts.Series<GrafikContent, String>> _seriesBarData;
-  late List<GrafikContent> grafikData;
-  _generateData(grafikData) {
-    _seriesBarData = <charts.Series<GrafikContent, String>>[];
-    _seriesBarData.add(
-      charts.Series(
-        domainFn: (GrafikContent graph, _) => graph.mood.toString(),
-        measureFn: (GrafikContent graph, _) => int.parse(graph.muedigkeit),
-        //grafikcolor
-        colorFn: (GrafikContent graph, _) =>
-            charts.ColorUtil.fromDartColor(Color(0xFF313237)),
-        id: 'Sales',
-        data: grafikData,
-        labelAccessorFn: (GrafikContent row, _) => "$row.create_date",
-      ),
-    );
-  } */
+  
 
   late bool dayChange;
   late final GrafikService gS;
@@ -45,12 +28,7 @@ class T2GrafikState extends State<T2Grafik> {
   List? docList;
   int current_date = 0;
 
-/*   DateTime year = DateTime(DateTime.now().year); */
-  /* int numOfWeeks(int year) {
-    DateTime dec28 = DateTime(year, 12, 28);
-    int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
-    return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
-  } */
+
 
   @override
   initState() {
@@ -293,10 +271,10 @@ class T2GrafikState extends State<T2Grafik> {
               const SizedBox(
                 height: 320,
                 width: 400,
-                child: //const GrafikTabBar(),
+                child:  
                     GrafikTabBar(),
 
-                // PieChart(grafikData: calContent.getCalendarList()),
+                 
               ),
             ],
           ),

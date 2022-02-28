@@ -34,21 +34,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
     return SizedBox(
       height: 420,
       width: 400,
-      /* decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10.0),
-            topRight: Radius.circular(10.0),
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.circular(10.0)),
-        gradient: LinearGradient(
-          colors: [Color(0xFF31A1C9), Color.fromARGB(255, 6, 84, 104)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ), /* 
-      child: Scaffold(
-        backgroundColor: const Color(0xFF313237), */
-      ),
- */
+      
       ///z
 
       /// Custom tab bar
@@ -147,168 +133,15 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                         right: 5.0,
                       ),
                       child: HeartGraph(),
-                      /*  Padding(
-                      padding: const EdgeInsets.only(
-                        left: 5.0,
-                        right: 5.0,
-                      ),
-                      child: Container(
-                        width: SizeConfig.getWidth(context),
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              color: Colors.blue[900]!.withOpacity(0.1),
-                              blurRadius: 50,
-                              spreadRadius: 40,
-                              offset: const Offset(40, 0)),
-                          const BoxShadow(
-                              color: Colors.white12,
-                              blurRadius: 30,
-                              spreadRadius: 20,
-                              offset: Offset(20, 0)),
-                        ], shape: BoxShape.circle, color: Colors.white30),
-                        margin: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.getWidth(context) / 50,
-                            vertical: SizeConfig.getHeight(context) / 100),
-                        child: Stack(
-                          children: <Widget>[
-                            Positioned.fill(
-                              top: 150,
-                              bottom: -100,
-                              left: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: const Color(0xFF31A1C9)
-                                              .withOpacity(0.6),
-                                          blurRadius: 50,
-                                          spreadRadius: 20,
-                                          offset: const Offset(20, 0)),
-                                      const BoxShadow(
-                                          color: Colors.white12,
-                                          blurRadius: 50,
-                                          spreadRadius: 20,
-                                          offset: Offset(0, 0)),
-                                    ],
-                                    shape: BoxShape.circle,
-                                    color: Colors.white30),
-                              ),
-                            ),
-                            Positioned.fill(
-                              top: -100,
-                              bottom: -100,
-                              left: -300,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: const Color(0xFF31A1C9)
-                                              .withOpacity(0.2),
-                                          blurRadius: 300,
-                                          spreadRadius: 40,
-                                          offset: const Offset(10, 0)),
-                                      const BoxShadow(
-                                          color: Color(0xFF31A1C9),
-                                          blurRadius: 150,
-                                          spreadRadius: 80,
-                                          offset: Offset(20, 0)),
-                                    ],
-                                    shape: BoxShape.circle,
-                                    color: Colors.white30),
-                              ),
-                            ),
-
-                            //FormDesignScrollView(),
-
-                            PieChart(
-                              grafikData: calContent.getCalendarList(),
-                            ),
-                            //FormDesignScrollView(),
-                          ],
-                        ),
-                      ),
-                    ), */
-                      //tab3 design
-                      /*   Padding(
-                      padding: const EdgeInsets.only(
-                          left: 5.0, right: 5.0, top: 5.0),
-                      child: Container(
-                        width: SizeConfig.getWidth(context),
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                              color: Colors.blue[900]!.withOpacity(0.1),
-                              blurRadius: 50,
-                              spreadRadius: 40,
-                              offset: const Offset(40, 0)),
-                          const BoxShadow(
-                              color: Colors.white12,
-                              blurRadius: 30,
-                              spreadRadius: 20,
-                              offset: Offset(20, 0)),
-                        ], shape: BoxShape.circle, color: Colors.white30),
-                        margin: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.getWidth(context) / 50,
-                            vertical: SizeConfig.getHeight(context) / 100),
-                        child: Stack(
-                          children: <Widget>[
-                            Positioned.fill(
-                              top: 150,
-                              bottom: -100,
-                              left: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: const Color(0xFF31A1C9)
-                                              .withOpacity(0.6),
-                                          blurRadius: 50,
-                                          spreadRadius: 20,
-                                          offset: const Offset(20, 0)),
-                                      const BoxShadow(
-                                          color: Colors.white12,
-                                          blurRadius: 50,
-                                          spreadRadius: 20,
-                                          offset: Offset(0, 0)),
-                                    ],
-                                    shape: BoxShape.circle,
-                                    color: Colors.white30),
-                              ),
-                            ),
-                            Positioned.fill(
-                              top: -100,
-                              bottom: -100,
-                              left: -300,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: const Color(0xFF31A1C9)
-                                              .withOpacity(0.2),
-                                          blurRadius: 300,
-                                          spreadRadius: 40,
-                                          offset: const Offset(10, 0)),
-                                      const BoxShadow(
-                                          color: Color(0xFF31A1C9),
-                                          blurRadius: 150,
-                                          spreadRadius: 80,
-                                          offset: Offset(20, 0)),
-                                    ],
-                                    shape: BoxShape.circle,
-                                    color: Colors.white30),
-                              ),
-                            ), */
-
-                      //FormDesignScrollView(),
-
-                      //FormDesignScrollView(),
                     ),
-                  ],
+                    ],
                 ),
               ),
             ),
           ),
-        ],
+          ],
       ),
-    );
+                    );
   }
+  
 }

@@ -16,7 +16,6 @@ class DatabaseService {
   late List nameData;
   int registeredDate = 0;
 
-  //db reference
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final CalendarContent calContent = CalendarContent();
   Future updateUserData(
@@ -62,7 +61,6 @@ class DatabaseService {
       if (querySnapshot.docs.isEmpty) {
         registeredDate = 1;
       }
-      // querySnapshot.docs.forEach((doc) {});
     });
   }
 
@@ -209,9 +207,3 @@ class DatabaseService {
   } */
 
 }
-  // Future<CalendarModel> getCalenderModel(String id) async {
-  //   var snap = await _db.collection('calendar').document(id).get();
-
-  //return CalendarModel.fromMap(snap.data);
-  // }
-

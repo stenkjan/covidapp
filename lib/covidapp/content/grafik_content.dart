@@ -16,9 +16,7 @@ class GrafikContent {
       this.schlaf, this.nerven, this.comment, this.createdDate);
 
   GrafikContent.fromData(Map<String, dynamic> data)
-      :
-        //fullName = data['fullName'],
-        mood = data['mood'],
+      : mood = data['mood'],
         muedigkeit = data['muedgkeit'],
         atemnot = data['atemnot'],
         sinne = data['sinne'],

@@ -19,8 +19,6 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   List<SensorValue> data = [];
   List<SensorValue> bpmValues = [];
 
-  //  Widget chart = BPMChart(data);
-
   bool isBPMEnabled = false;
   bool isvisible = true;
   Widget? dialog;
@@ -73,7 +71,6 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                       if (data.length >= 100) data.removeAt(0);
                       data.add(value);
                     });
-                    // chart = BPMChart(data);
                   },
                   onBPM: (value) => setState(() {
                     print(" on bpm" + calContent.pulseTrue.toString());
@@ -85,12 +82,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                     Visibility(
                         visible: false, child: calContent.getpulseTrue());
                   }),
-                  // sampleDelay: 1000 ~/ 20,
-                  // child: Container(
-                  //   height: 50,
-                  //   width: 100,
-                  //   child: BPMChart(data),
-                  // ),
+                 
                 )
               : const SizedBox(
                   height: 20,

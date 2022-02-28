@@ -238,46 +238,7 @@ class CalendarMoodState extends State<CalendarMood> {
           const SizedBox(
             height: 0,
           ),
-          /*  Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CupertinoSwitch(
-                  value: _switchValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchValue = value;
-                      if (!value) i = 0;
-                      if (value) i = 1;
-                      // calContent.calendarContentmood(_switchValue);
-                    });
-                  },
-                ),
-                Text(list[i],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white70)),
-              ],
-            ),
-          ),
          
-          Opacity(
-            opacity: i.toDouble(),
-            child: Slider(
-                min: 1,
-                max: 10, divisions: 10,
-                activeColor: const Color(0xFF31A1C9),
-                inactiveColor: Colors.orange,
-                label: "Gefühlszustand",
-                value: _value,
-                onChanged: (value) {
-                  _value = value;
-                  calContent.calendarContentmood(_value.round());
-                }),
-          ), */
           const SizedBox(
             height: 50,
           ),

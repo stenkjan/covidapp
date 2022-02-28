@@ -54,7 +54,6 @@ class _DayPieState extends State<DayPie> {
         decimalPlaces: 1,
       ),
       // gradientList: ---To add gradient colors---
-      // emptyColorGradient: ---Empty Color gradient---
     );
   }
 }

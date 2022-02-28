@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static Color primaryWhite = const Color(0xFFCADCED);
-  // static Color primaryWhite = Colors.indigo[100];
 
   static List pieColors = [
     Colors.indigo[400],

@@ -65,11 +65,6 @@ class _CalendarFormState extends State<CalendarForm> {
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   resizeToAvoidBottomInset: true,
-    //   backgroundColor: Colors.white,
-    //   floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    // body:
     return Container(
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -197,6 +192,5 @@ class _CalendarFormState extends State<CalendarForm> {
         ),
       ),
     );
-    // ),
   }
 }

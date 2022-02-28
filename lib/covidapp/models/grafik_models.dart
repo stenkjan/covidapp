@@ -13,8 +13,6 @@ class GrafikModel {
   GrafikModel(this.docList);
 
   GrafikModel.fromList(List<List> docList)
-      // : id = docList[0].toString(),
-      //fullName = data['fullName'],
       : mood = int.parse(docList[0].toString()),
         muedigkeit = int.parse(docList[1].toString()),
         atemnot = int.parse(docList[2].toString()),
