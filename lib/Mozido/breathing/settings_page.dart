@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'settings_controller.dart';
 
 /** Settingspage-- Widget build  */
+
 class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class SettingsPage extends GetView<SettingsController> {
                 fontSize: 17.0,
                 fontWeight: FontWeight.w600),
           )),
+      /**c as Variable for implemtation on other Classes */
       body: GetX<SettingsController>(
           init: SettingsController(),
           builder: (c) {

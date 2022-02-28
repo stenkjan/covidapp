@@ -174,11 +174,6 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       growable: true);
 
   void _scanImage(CameraImage image) async {
-    // make system busy
-    // setState(() {
-    //   _processing = true;
-    // });
-
     // get the average value of the image
     double _avg =
         image.planes.first.bytes.reduce((value, element) => value + element) /
@@ -242,13 +237,10 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       _tempBPM = (1 - widget.alpha) * currentValue + widget.alpha * _tempBPM;
       setState(() {
         currentValue = _tempBPM.toInt();
-        // _bpm = _tempBPM;
       });
       widget.onBPM(currentValue);
     }
 
-    // double newOut = widget.alpha * newValue + (1 - widget.alpha) * _pastBPM;
-    // _pastBPM = newOut;
     return currentValue;
   }
 

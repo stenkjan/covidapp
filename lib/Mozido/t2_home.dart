@@ -219,106 +219,104 @@ class _T2HomeState extends State<T2Home> {
       ),
     );
   }
+}
+/** Card for Archievements initialization */
 
-  
-  }
-
-  Widget _card(
-      Color _color, String _title, String _time, String _value, Icon _icon) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
-      child: Container(
-        height: 120.0,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            color: Color(0xFF363940),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10.0,
-                spreadRadius: 2.0,
-              )
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 30.0),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          height: 8.0,
-                          width: 8.0,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20.0)),
-                              color: _color),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
-                          child: Text(
-                            _title,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: "Sans",
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16.0),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Icon(
-                      Icons.open_in_new,
-                      size: 17.0,
-                      color: Colors.white24,
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 45.0, right: 20.0, top: 13.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      _time,
-                      style: const TextStyle(
-                          fontFamily: "Sans",
-                          fontWeight: FontWeight.w100,
-                          color: Colors.white54),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          _value,
+Widget _card(
+    Color _color, String _title, String _time, String _value, Icon _icon) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
+    child: Container(
+      height: 120.0,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          color: Color(0xFF363940),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10.0,
+              spreadRadius: 2.0,
+            )
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 30.0),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        height: 8.0,
+                        width: 8.0,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20.0)),
+                            color: _color),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Text(
+                          _title,
                           style: const TextStyle(
-                              fontFamily: "Sans",
                               color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 19.0),
+                              fontFamily: "Sans",
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4.0),
-                          child: _icon,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const Icon(
+                    Icons.open_in_new,
+                    size: 17.0,
+                    color: Colors.white24,
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 45.0, right: 20.0, top: 13.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    _time,
+                    style: const TextStyle(
+                        fontFamily: "Sans",
+                        fontWeight: FontWeight.w100,
+                        color: Colors.white54),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        _value,
+                        style: const TextStyle(
+                            fontFamily: "Sans",
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 19.0),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 4.0),
+                        child: _icon,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
+    ),
+  );
+}
 
 ///
 /// Layout for drawer

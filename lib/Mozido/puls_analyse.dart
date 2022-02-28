@@ -177,12 +177,11 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               label:
                   Text(isBPMEnabled ? "Messung Anhalten" : "Puls Pro Minute"),
               onPressed: () => setState(() {
-                imageSize = 30;
+                imageSize = 20;
                 if (isBPMEnabled) {
                   isBPMEnabled = false;
                   isvisible = false;
-                  Navigator.of(context).push(PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => const T2Home()));
+                  Navigator.pop(context);
                 } else {
                   isBPMEnabled = true;
                 }
