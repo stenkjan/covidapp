@@ -14,18 +14,13 @@ import 'dart:async';
 /** Parameters are imported from the Breathecontroller / Widget is build  */
 
 class BreathePage extends GetView<BreatheController> {
-   
-   
   @override
   Widget build(BuildContext context) {
-   
-
-  
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: const Color(0xFF029CF5),
+          backgroundColor: Color.fromARGB(136, 0, 28, 44),
           centerTitle: true,
           title: const Text(
             "Atemübung",
@@ -100,8 +95,6 @@ class BreathePage extends GetView<BreatheController> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-               
-                    
                 ]);
           }),
     );

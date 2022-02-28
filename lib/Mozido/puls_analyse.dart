@@ -159,7 +159,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   child: BPMChart(bpmValues),
                 )
               : SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
           Center(
             child: ElevatedButton.icon(
@@ -171,23 +171,25 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                 if (isBPMEnabled) {
                   isBPMEnabled = false;
                   isvisible = false;
-                  Navigator.of(context).push(PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => const T2Home()));
+                  Navigator.pop(context);
                 } else {
                   isBPMEnabled = true;
                 }
               }),
             ),
           ),
-          Container(
-            height: imageSize,
-            width: imageSize,
-            padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-            child: RiveAnimation.asset(
-              'images/lung.riv',
-              controllers: [
-                SpeedController('breathe', speedMultiplier: 1 / 5.5)
-              ],
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              height: imageSize,
+              width: imageSize,
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: RiveAnimation.asset(
+                'images/lung.riv',
+                controllers: [
+                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
+                ],
+              ),
             ),
           ),
         ],

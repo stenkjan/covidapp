@@ -19,7 +19,7 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
-            "",
+            "Start",
             style: TextStyle(
                 color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
           ),

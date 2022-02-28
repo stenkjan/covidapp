@@ -82,7 +82,7 @@ class CalendarContent with ChangeNotifier {
   bool returnBreatheTrue() {
     bool breatheTrue = true;
     this.breatheTrue = breatheTrue;
-    
+
     return breatheTrue;
   }
 
@@ -94,7 +94,7 @@ class CalendarContent with ChangeNotifier {
   }
 
   bool returnCalTrue() {
-    bool calTrue = saved;
+    bool calTrue = true;
     this.calTrue = calTrue;
     return calTrue;
   }
@@ -115,6 +115,7 @@ class CalendarContent with ChangeNotifier {
     if (returnPulseTrue() == true) {
       return iconDone;
     } else {
+      calTrue = false;
       return iconNotDone;
     }
   }
