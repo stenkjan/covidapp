@@ -29,7 +29,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
 
   @override
   initState() {
-    imageSize = 280;
+    imageSize = 400;
     super.initState();
   }
 
@@ -94,7 +94,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   // ),
                 )
               : SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
           isBPMEnabled && data.isNotEmpty
               ? Container(
@@ -165,10 +165,11 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
             child: ElevatedButton.icon(
               icon: Icon(Icons.favorite_rounded),
               style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF86CBF9),
-                  onPrimary: Colors.white,
-                  textStyle: const TextStyle(
-                      fontWeight: FontWeight.w300, fontSize: 18)),
+                primary: Colors.blue,
+                onPrimary: Colors.white,
+                textStyle:
+                    const TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
+              ),
               label:
                   Text(isBPMEnabled ? "Messung Anhalten" : "Puls Pro Minute"),
               onPressed: () => setState(() {
@@ -190,10 +191,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               width: imageSize,
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
               child: RiveAnimation.asset(
-                'images/lung.riv',
-                controllers: [
-                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
-                ],
+                'images/heartfinal.riv',
               ),
             ),
           ),
