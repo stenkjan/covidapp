@@ -29,7 +29,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     return Scaffold(
-      backgroundColor: Color(0xFF313237),
+      backgroundColor: Color.fromARGB(255, 49, 50, 55),
 
       ///
       /// Appbar
@@ -145,12 +145,22 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   constraints: BoxConstraints.expand(height: 180),
                   child: BPMChart(bpmValues),
                 )
-              : SizedBox(
-                  height: 30,
+              : Container(
+                  height: 500,
+                  width: 500,
+                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                  child: RiveAnimation.asset(
+                    'images/heartfinal.riv',
+                  ),
                 ),
           Center(
             child: ElevatedButton.icon(
               icon: Icon(Icons.favorite_rounded),
+              style: ElevatedButton.styleFrom(
+                  primary: Color(0xFF86CBF9),
+                  onPrimary: Colors.white,
+                  textStyle: const TextStyle(
+                      fontWeight: FontWeight.w300, fontSize: 18)),
               label:
                   Text(isBPMEnabled ? "Messung Anhalten" : "Puls Pro Minute"),
               onPressed: () => setState(() {
@@ -166,18 +176,6 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               }),
             ),
           ),
-          if (isvisible = true)
-            Container(
-              height: 280,
-              width: 280,
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: RiveAnimation.asset(
-                'images/lung.riv',
-                controllers: [
-                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
-                ],
-              ),
-            ),
         ],
       ),
     );
