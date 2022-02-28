@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+import '../t2_home.dart';
 import 'breathe_controller.dart';
 import 'dart:async';
 
@@ -20,7 +21,7 @@ class BreathePage extends GetView<BreatheController> {
       appBar: AppBar(
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: Color.fromARGB(136, 0, 28, 44),
+          backgroundColor: Color(0xFF313237),
           centerTitle: true,
           title: const Text(
             "Atemübung",
@@ -93,8 +94,9 @@ class BreathePage extends GetView<BreatheController> {
                       c.breathIn.value ? 'Einatmen' : 'Ausatmen',
                       style: Theme.of(context).textTheme.headline5,
                       textAlign: TextAlign.center,
-                    ),
+                    ),                     
                   ),
+                  
                 ]);
           }),
     );
