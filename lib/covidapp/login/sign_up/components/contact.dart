@@ -27,19 +27,7 @@ class Social extends StatelessWidget {
         const SizedBox(
           height: appPadding,
         ),
-        /*  AccountCheck(
-          login: true,
-          press: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SignUpScreen();
-                },
-              ),
-            );
-          },
-        ), */
+        
       ],
     );
   }

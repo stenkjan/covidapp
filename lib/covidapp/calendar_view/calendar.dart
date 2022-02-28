@@ -47,26 +47,6 @@ class CalendarState extends State<Calendar> {
   }
 
   @override
-
-  ///
-  /// Data for grafik line
-  ///
-/*  var _data = [
-    0.0,
-    0.5,
-    0.9,
-    1.4,
-    2.2,
-    1.0,
-    3.3,
-    0.0,
-    -0.5,
-    -1.0,
-    -0.5,
-    0.0,
-    0.0
-  ];*/
-
   Widget build(BuildContext context) {
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;

@@ -46,16 +46,7 @@ class T2GrafikState extends State<T2Grafik> {
     super.dispose();
   }
 
-  /*  int weekNumber(DateTime date) {
-    int dayOfYear = int.parse(DateFormat("D").format(date));
-    int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
-    if (woy < 1) {
-      woy = numOfWeeks(date.year - 1);
-    } else if (woy > numOfWeeks(date.year)) {
-      woy = 1;
-    }
-    return woy;
-  } */
+  
 
   ///
   /// Data for grafik line

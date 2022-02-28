@@ -29,14 +29,5 @@ class GrafikModel {
     }
   }
 
-  /* int? listSum() {
-    int? sum =
-        mood! + muedigkeit! + atemnot! + sinne! + herz! + schlaf! + nerven!;
-    if (sum != 0) return sum;
-    if (sum == 0) {
-      print("no value in List!");
-      return sum;
-    }
-    
-  } */
+ 
 }

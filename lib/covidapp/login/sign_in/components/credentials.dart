@@ -133,11 +133,4 @@ Sie müssen zuerst eine Email und ein Passwort angeben'''),
     );
   }
 
-  /* bool signedIn(bool signed) {
-    if (signed) {
-      return signed_in = true;
-    } else {
-      return signed_in = false;
-    }
-  } */
 }
