@@ -189,17 +189,6 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
               }),
             ),
           ),
-          Container(
-            height: imageSize,
-            width: imageSize,
-            padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-            child: RiveAnimation.asset(
-              'images/lung.riv',
-              controllers: [
-                SpeedController('breathe', speedMultiplier: 1 / 5.5)
-              ],
-            ),
-          ),
         ],
       ),
     );
