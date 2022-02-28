@@ -18,7 +18,7 @@ class SettingsPage extends GetView<SettingsController> {
       appBar: AppBar(
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: const Color(0xFF029CF5),
+          backgroundColor: Colors.blue,
           centerTitle: true,
           title: const Text(
             "Einstellungen",
@@ -41,10 +41,12 @@ class SettingsPage extends GetView<SettingsController> {
                   Container(
                     width: double.infinity,
                   ),
+                  SizedBox(height: 10),
                   Text(
                     'Hintergrund Farbe',
                     style: Theme.of(context).textTheme.headline5,
                   ),
+                  SizedBox(height: 10),
                   ToggleButtons(
                     children: [
                       for (BackgroundColors theme in c.themes) ...[
@@ -58,6 +60,7 @@ class SettingsPage extends GetView<SettingsController> {
                     borderWidth: 3,
                     selectedBorderColor: Colors.white,
                     borderColor: Colors.transparent,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     onPressed: (index) {
                       c.selectBackground(index, context);
                     },

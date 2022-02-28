@@ -158,13 +158,8 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   constraints: BoxConstraints.expand(height: 180),
                   child: BPMChart(bpmValues),
                 )
-              : Container(
-                  height: 500,
-                  width: 500,
-                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-                  child: RiveAnimation.asset(
-                    'images/heartfinal.riv',
-                  ),
+              : SizedBox(
+                  height: 10,
                 ),
           Center(
             child: ElevatedButton.icon(
@@ -186,6 +181,20 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                   isBPMEnabled = true;
                 }
               }),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              height: imageSize,
+              width: imageSize,
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: RiveAnimation.asset(
+                'images/lung.riv',
+                controllers: [
+                  SpeedController('breathe', speedMultiplier: 1 / 5.5)
+                ],
+              ),
             ),
           ),
         ],

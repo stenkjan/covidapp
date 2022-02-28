@@ -16,7 +16,7 @@ class uebungbreathing extends GetView<ThemeController> {
             theme: ThemeData.light().copyWith(
               elevatedButtonTheme: ElevatedButtonThemeData(
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF86CBF9),
+                      primary: Colors.blue,
                       onPrimary: Colors.white,
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.w300, fontSize: 18))),

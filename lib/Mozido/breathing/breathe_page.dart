@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+import '../t2_home.dart';
 import 'breathe_controller.dart';
 import 'dart:async';
 
@@ -96,8 +97,9 @@ class BreathePage extends GetView<BreatheController> {
                       c.breathIn.value ? 'Einatmen' : 'Ausatmen',
                       style: Theme.of(context).textTheme.headline5,
                       textAlign: TextAlign.center,
-                    ),
+                    ),                     
                   ),
+                  
                 ]);
           }),
     );

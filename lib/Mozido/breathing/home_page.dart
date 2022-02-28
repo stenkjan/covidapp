@@ -19,7 +19,7 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
-            "",
+            "Start",
             style: TextStyle(
                 color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
           ),
@@ -27,7 +27,7 @@ class HomePage extends GetView<HomeController> {
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
           backgroundColor: Color(0xFF313237),
-          iconTheme: const IconThemeData(color: Color(0xFF029CF5))),
+          iconTheme: const IconThemeData(color: Colors.blue)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,12 +75,26 @@ class HomePage extends GetView<HomeController> {
           SizedBox(
             width: 130,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(75, 50),
+                primary: Color(0xFF313237),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                  side: const BorderSide(color: Colors.white),
+                ),
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  Text('START'),
+                  Text('START',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold)),
                   Icon(
                     Icons.play_arrow_rounded,
+                    size: 35,
+                    color: Color(0xB444B2C5),
                   )
                 ],
               ),

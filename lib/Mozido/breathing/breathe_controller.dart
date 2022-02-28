@@ -79,6 +79,7 @@ class BreatheController extends GetxController {
 /** when the timer is not 0 and the breathTime value = the initial Time a sound is played */
 
     _breathTimer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      String value = breathTime.value.toString();
       if (time.value != 0 && breathTime.value == 0) {
         breathTime.value = initBreathTime;
         breathIn.value = !breathIn.value;
@@ -92,8 +93,9 @@ class BreatheController extends GetxController {
         update();
       } else {
         calContent.returnBreatheTrue();
+        calContent.getBreatheMin(value);
         _breathTimer.cancel();
-        Get.offAll(() => HomePage());
+        Get.offAll(() => const HomePage());
 
 /** Popup after timer = 0 */
         Get.snackbar(
