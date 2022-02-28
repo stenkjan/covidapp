@@ -509,16 +509,4 @@ class CalendarContent with ChangeNotifier {
       return docExists;
     }
   }
-  //database abfrage für createdDate = ""
 }
-  
-
-  /*  String calenderContentmuedigkeit(int i){
-    muedigkeit = headline[i]['name']
-  };
-  String calenderContentatemnot;
-  String calenderContentsinne;
-  String calenderContentherz;
-  String calenderContentschlaf; */
-
-//}
