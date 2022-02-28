@@ -20,15 +20,11 @@ class T2Grafik extends StatefulWidget {
 }
 
 class T2GrafikState extends State<T2Grafik> {
-  
-
   late bool dayChange;
   late final GrafikService gS;
   late final GrafikContent grafC;
   List? docList;
   int current_date = 0;
-
-
 
   @override
   initState() {
@@ -46,8 +42,6 @@ class T2GrafikState extends State<T2Grafik> {
     super.dispose();
   }
 
-  
-
   ///
   /// Data for grafik line
   ///
@@ -59,11 +53,6 @@ class T2GrafikState extends State<T2Grafik> {
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
-
-    //list of weeks here with different views in iconbutton on Click
-    /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
-
-    /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
 
     return Container(
       height: 500,
@@ -262,10 +251,7 @@ class T2GrafikState extends State<T2Grafik> {
               const SizedBox(
                 height: 320,
                 width: 400,
-                child:  
-                    GrafikTabBar(),
-
-                 
+                child: GrafikTabBar(),
               ),
             ],
           ),
