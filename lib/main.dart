@@ -1,15 +1,15 @@
 // @dart=2.9
-import 'package:covidapp/Mozido/login/wrapper.dart';
-import 'package:covidapp/Mozido/services/auth_service.dart';
-import 'package:covidapp/Mozido/services/grafik_service.dart';
+import 'package:covidapp/covidapp/login/wrapper.dart';
+import 'package:covidapp/covidapp/services/auth_service.dart';
+import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'Mozido/content/calendar_content.dart';
-import 'Mozido/services/calendar_service.dart';
+import 'covidapp/content/calendar_content.dart';
+import 'covidapp/services/calendar_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
