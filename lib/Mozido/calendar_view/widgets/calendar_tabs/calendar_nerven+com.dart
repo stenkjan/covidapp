@@ -26,7 +26,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
   void initState() {
     list;
     i = 0;
-    colorswitch = Color(0xFF313237);
+    colorswitch = const Color(0xFF313237);
     super.initState();
   }
 
@@ -109,7 +109,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                             colorswitch = Colors.white;
                           }
                           if (_switchValue == false) {
-                            colorswitch = Color(0xFF313237);
+                            colorswitch = const Color(0xFF313237);
                           }
                         });
                       },
@@ -121,7 +121,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                             fontFamily: "Sans",
                             fontWeight: FontWeight.w400,
                             color: Colors.white70)),
-                    SizedBox(width: 30),
+                    const SizedBox(width: 30),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
@@ -133,14 +133,15 @@ class CalendarNervComState extends State<CalendarNervCom> {
                         tag: "nerven",
                         child: CircleAvatar(
                           maxRadius: 25,
-                          backgroundImage: AssetImage("images/lcs_nerven.png"),
+                          backgroundImage:
+                              const AssetImage("images/lcs_nerven.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Material(
-                                color: Color(0xFF313237),
+                                color: const Color(0xFF313237),
                                 borderRadius: BorderRadius.circular(12),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
                                 )),
                           ),
                         ),
@@ -236,15 +237,15 @@ class CalendarNervComState extends State<CalendarNervCom> {
                         child: CircleAvatar(
                           maxRadius: 25,
                           backgroundImage:
-                              AssetImage("images/lcs_sonstige.png"),
+                              const AssetImage("images/lcs_sonstige.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Material(
-                                color: Color(0xFF313237),
+                                color: const Color(0xFF313237),
                                 borderRadius: BorderRadius.circular(12),
-                                shadowColor: Color(0xFF2E4E57),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                shadowColor: const Color(0xFF2E4E57),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
                                 )),
                           ),
                         ),

@@ -1,4 +1,3 @@
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 

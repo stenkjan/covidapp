@@ -1,15 +1,8 @@
-import 'package:covidapp/Mozido/calendar_view/grafik.dart';
-import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/daily_pie.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/heart_graph.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/pie_chart.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/weekly_graph.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-
-import '../content/size.dart';
 
 class GrafikTabBar extends StatefulWidget {
   const GrafikTabBar({Key? key}) : super(key: key);
@@ -38,8 +31,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    CalendarContent calContent = Provider.of<CalendarContent>(context);
-    return Container(
+    return SizedBox(
       height: 420,
       width: 400,
       /* decoration: const BoxDecoration(
@@ -129,8 +121,8 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                 ///
                 body: TabBarView(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    const Padding(
+                      padding: EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
                       ),
@@ -155,7 +147,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                         right: 5.0,
                       ),
                       child: HeartGraph(),
-                    /*  Padding(
+                      /*  Padding(
                       padding: const EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
@@ -236,8 +228,8 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                         ),
                       ),
                     ), */
-                    //tab3 design
-                  /*   Padding(
+                      //tab3 design
+                      /*   Padding(
                       padding: const EdgeInsets.only(
                           left: 5.0, right: 5.0, top: 5.0),
                       child: Container(
@@ -306,19 +298,17 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                               ),
                             ), */
 
-                            //FormDesignScrollView(),
+                      //FormDesignScrollView(),
 
-
-                            //FormDesignScrollView(),
-                          
-                        ),
-                  ],
-                      ),
+                      //FormDesignScrollView(),
                     ),
-            ),
-          ),
                   ],
                 ),
-              );
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

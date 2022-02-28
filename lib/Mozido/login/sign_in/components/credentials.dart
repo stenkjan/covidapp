@@ -1,5 +1,4 @@
 import 'package:covidapp/Mozido/login/sign_up/signup.dart';
-import 'package:covidapp/Mozido/models/user_models.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 
 import 'package:flutter/material.dart';

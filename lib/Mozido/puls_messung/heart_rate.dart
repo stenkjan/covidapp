@@ -86,12 +86,14 @@ class HeartBPMDialog extends StatefulWidget {
   /// $y_n = alpha * x_n + (1 - alpha) * y_{n-1}$
   /// ```
   void setAlpha(double a) {
-    if (a <= 0)
+    if (a <= 0) {
       throw Exception(
           "$HeartBPMDialog: smoothing factor cannot be 0 or negative");
-    if (a > 1)
+    }
+    if (a > 1) {
       throw Exception(
           "$HeartBPMDialog: smoothing factor cannot be greater than 1");
+    }
     alpha = a;
   }
 
@@ -150,7 +152,7 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       await _controller!.initialize();
 
       // 4. set torch to ON and start image stream
-      Future.delayed(Duration(milliseconds: 500))
+      Future.delayed(const Duration(milliseconds: 500))
           .then((value) => _controller!.setFlashMode(FlashMode.torch));
 
       // 5. register image streaming callback
@@ -166,7 +168,7 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       });
     } catch (e) {
       print(e);
-      throw e;
+      rethrow;
     }
   }
 
@@ -200,10 +202,11 @@ class _HeartBPPView extends State<HeartBPMDialog> {
 
       Future<void>.delayed(Duration(milliseconds: widget.sampleDelay))
           .then((onValue) {
-        if (mounted)
+        if (mounted) {
           setState(() {
             _processing = false;
           });
+        }
       });
     });
   }
@@ -261,14 +264,15 @@ class _HeartBPPView extends State<HeartBPMDialog> {
           ? Column(
               children: [
                 Container(
-                  constraints: BoxConstraints.tightFor(width: 100, height: 130),
+                  constraints:
+                      const BoxConstraints.tightFor(width: 100, height: 130),
                   child: _controller!.buildPreview(),
                 ),
                 Text(currentValue.toStringAsFixed(0)),
-                widget.child == null ? SizedBox() : widget.child!,
+                widget.child == null ? const SizedBox() : widget.child!,
               ],
             )
-          : Center(child: CircularProgressIndicator()),
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 }

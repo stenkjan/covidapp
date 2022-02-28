@@ -3,7 +3,6 @@ import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:covidapp/Mozido/models/grafik_models.dart';
 import 'package:flutter/material.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 
 class PieChartCustomPainter extends CustomPainter {
   final List healthscore;

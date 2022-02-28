@@ -5,7 +5,6 @@ import 'package:covidapp/Mozido/breathing/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /** Initialization of Settings page  */
 

@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'Mozido/content/calendar_content.dart';
 import 'Mozido/services/calendar_service.dart';
-import 'Mozido/t2_home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,7 +73,7 @@ class MyApp extends StatelessWidget {
               // is not restarted.
               primarySwatch: Colors.blue,
             ),
-             /*   routes: {
+            /*   routes: {
               "/": (context) =>  T2Home(),             
               
             },  */

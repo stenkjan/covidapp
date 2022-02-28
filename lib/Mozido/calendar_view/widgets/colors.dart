@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static Color primaryWhite = Color(0xFFCADCED);
+  static Color primaryWhite = const Color(0xFFCADCED);
   // static Color primaryWhite = Colors.indigo[100];
 
   static List pieColors = [
@@ -9,10 +9,10 @@ class AppColors {
     Colors.blue,
     Colors.green,
     Colors.amber,
-    Color.fromARGB(255, 255, 133, 34),
-    Color.fromARGB(255, 116, 9, 2),
-    Color.fromARGB(255, 0, 87, 4),
-    Color.fromARGB(255, 37, 0, 202),
+    const Color.fromARGB(255, 255, 133, 34),
+    const Color.fromARGB(255, 116, 9, 2),
+    const Color.fromARGB(255, 0, 87, 4),
+    const Color.fromARGB(255, 37, 0, 202),
   ];
   static List<BoxShadow> neumorpShadow = [
     BoxShadow(

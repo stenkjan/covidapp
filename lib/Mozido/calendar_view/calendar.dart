@@ -201,9 +201,8 @@ class CalendarState extends State<Calendar> {
         opacity: calContent.count.toDouble(),
         child: FloatingActionButton.extended(
           onPressed: () {
-
-            if (calContent.docExists == false) {              
-                   calService.dailyTask(
+            if (calContent.docExists == false) {
+              calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
                   calContent.atemnot,
@@ -214,9 +213,7 @@ class CalendarState extends State<Calendar> {
                   calContent.comment,
                   currentDate);
               calContent.clear();
-            
             }
-            
           },
           // tooltip: "Bestätigen",
           //foregroundColor: const Color(0xFF31A1C9),
@@ -578,9 +575,6 @@ class CalendarState extends State<Calendar> {
         ),
       ),
     ); */
-    const SizedBox(
-      height: 30.0,
-    );
     /*   ],
         ),
       ),

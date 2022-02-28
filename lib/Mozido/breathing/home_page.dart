@@ -26,7 +26,7 @@ class HomePage extends GetView<HomeController> {
           centerTitle: true,
           systemOverlayStyle:
               const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: Color(0xFF313237),
+          backgroundColor: const Color(0xFF313237),
           iconTheme: const IconThemeData(color: Colors.blue)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -76,8 +76,8 @@ class HomePage extends GetView<HomeController> {
             width: 130,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                fixedSize: Size(75, 50),
-                primary: Color(0xFF313237),
+                fixedSize: const Size(75, 50),
+                primary: const Color(0xFF313237),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                   side: const BorderSide(color: Colors.white),

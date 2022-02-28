@@ -1,7 +1,6 @@
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/mood_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -199,7 +198,7 @@ class CalendarMoodState extends State<CalendarMood> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               SizedBox(
                 width: 360,
                 height: 25,
@@ -294,15 +293,15 @@ class CalendarMoodState extends State<CalendarMood> {
                 tag: "mood",
                 child: CircleAvatar(
                   maxRadius: 70,
-                  backgroundImage: AssetImage("images/lcs_allgemein.png"),
+                  backgroundImage: const AssetImage("images/lcs_allgemein.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(
-                        color: Color(0xFF313237),
-                        shadowColor: Color(0xFF2E4E57),
+                        color: const Color(0xFF313237),
+                        shadowColor: const Color(0xFF2E4E57),
                         borderRadius: BorderRadius.circular(12),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                         )),
                   ),
                 ),

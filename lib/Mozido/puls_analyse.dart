@@ -1,5 +1,4 @@
 import 'package:covidapp/Mozido/content/calendar_content.dart';
-import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
@@ -8,11 +7,11 @@ import 'package:rive/rive.dart';
 
 import 'Puls_Messung/chart.dart';
 import 'Puls_Messung/heart_bpm.dart';
-import 'breathing/rive_speed_controller.dart';
 
 class Puls_Analyse extends StatefulWidget {
-  Puls_Analyse({required Key key}) : super(key: key);
+  const Puls_Analyse({required Key key}) : super(key: key);
 
+  @override
   Puls_AnalyseState createState() => Puls_AnalyseState();
 }
 
@@ -104,8 +103,8 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                       width: 5,
                     ),
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      const BoxShadow(
+                    boxShadow: const [
+                      BoxShadow(
                         color: Colors.black,
                         offset: Offset(
                           5.0,
@@ -114,7 +113,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
-                      const BoxShadow(
+                      BoxShadow(
                         color: Colors.white,
                         offset: Offset(0.0, 0.0),
                         blurRadius: 0.0,
@@ -137,8 +136,8 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                       width: 5,
                     ),
                     borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      const BoxShadow(
+                    boxShadow: const [
+                      BoxShadow(
                         color: Colors.black,
                         offset: Offset(
                           5.0,
@@ -147,7 +146,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                         blurRadius: 10.0,
                         spreadRadius: 2.0,
                       ),
-                      const BoxShadow(
+                      BoxShadow(
                         color: Colors.white,
                         offset: Offset(0.0, 0.0),
                         blurRadius: 0.0,

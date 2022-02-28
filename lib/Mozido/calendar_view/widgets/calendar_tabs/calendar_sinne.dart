@@ -24,10 +24,11 @@ class CalendarSinneState extends State<CalendarSinne> {
   void initState() {
     list;
     i = 0;
-    colorswitch = Color(0xFF313237);
+    colorswitch = const Color(0xFF313237);
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }
@@ -102,7 +103,7 @@ class CalendarSinneState extends State<CalendarSinne> {
                         colorswitch = Colors.white;
                       }
                       if (_switchValue == false) {
-                        colorswitch = Color(0xFF313237);
+                        colorswitch = const Color(0xFF313237);
                       }
                       //calContent.calendarContentsinne(_switchValue);
                     });
@@ -166,15 +167,15 @@ class CalendarSinneState extends State<CalendarSinne> {
                 tag: "sinne",
                 child: CircleAvatar(
                   maxRadius: 70,
-                  backgroundImage: AssetImage("images/lcs_geschmack.png"),
+                  backgroundImage: const AssetImage("images/lcs_geschmack.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(
-                        color: Color(0xFF313237),
+                        color: const Color(0xFF313237),
                         borderRadius: BorderRadius.circular(12),
-                        shadowColor: Color(0xFF2E4E57),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        shadowColor: const Color(0xFF2E4E57),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                         )),
                   ),
                 ),

@@ -1,6 +1,3 @@
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_atemnot.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
-import 'package:covidapp/Mozido/calendar_view/widgets/calendar_tabs/calendar_sinne.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +5,7 @@ class SinneDesc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF363940),
+        backgroundColor: const Color(0xFF363940),
         body: Hero(
           tag: "sinne",
           child: Expanded(
@@ -38,7 +35,7 @@ class SinneDesc extends StatelessWidget {
                               fit: BoxFit.cover)),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   SizedBox(

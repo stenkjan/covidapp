@@ -46,7 +46,7 @@ class uebungbreathing extends GetView<ThemeController> {
                   ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
             ),
             debugShowCheckedModeBanner: false,
-            home: HomePage(),
+            home: const HomePage(),
           );
         });
   }

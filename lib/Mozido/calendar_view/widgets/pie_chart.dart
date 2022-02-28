@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class PieChart extends StatefulWidget {
   final List? grafikData;
 
-  PieChart({required this.grafikData});
+  const PieChart({required this.grafikData});
   @override
   _PieChartState createState() => _PieChartState();
 }
@@ -27,15 +27,15 @@ class _PieChartState extends State<PieChart>
   void initState() {
     calContent = CalendarContent();
     total = calContent.listSum();
-  
+
     docList = widget.grafikData;
 
     super.initState();
-    
-  @override
-  void dispose() {
-    super.dispose();
-  }
+
+    @override
+    void dispose() {
+      super.dispose();
+    }
 
     answered = calContent.answeredSum();
     if (docList!.isEmpty == true) {

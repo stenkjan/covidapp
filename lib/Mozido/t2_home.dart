@@ -4,14 +4,11 @@ import 'package:covidapp/Mozido/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
-import 'package:covidapp/Mozido/settings/settings.dart';
 import 'package:covidapp/Mozido/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'calendar_view/calendar_tab_bar.dart';
-
-import 'login/sign_in/signin.dart';
 
 class T2Home extends StatefulWidget {
   const T2Home({Key? key}) : super(key: key);
@@ -70,7 +67,7 @@ class _T2HomeState extends State<T2Home> {
       ///
       /// Drawer layout
       ///
-      drawer: DrawerLayout(),
+      drawer: const DrawerLayout(),
       body: Stack(
         children: <Widget>[
           //Login zwischenschieben
@@ -374,8 +371,8 @@ class DrawerLayout extends StatelessWidget {
                     child: itemDrawer(Icons.home, "Übersicht")),
                 InkWell(
                     onTap: () {
-                      Navigator.of(context).push(
-                          PageRouteBuilder(pageBuilder: (_, __, ___) => FAQ()));
+                      Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const FAQ()));
                     },
                     child: itemDrawer(Icons.search, "FAQ")),
                 InkWell(

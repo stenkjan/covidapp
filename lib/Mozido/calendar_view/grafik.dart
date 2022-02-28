@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/Mozido/calendar_view/grafik_tab_bar.dart';
 import 'package:covidapp/Mozido/calendar_view/widgets/colors.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
@@ -43,7 +40,6 @@ class T2GrafikState extends State<T2Grafik> {
   } */
 
   late bool dayChange;
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final GrafikService gS;
   late final GrafikContent grafC;
   List? docList;
@@ -86,6 +82,7 @@ class T2GrafikState extends State<T2Grafik> {
   ///
   /// Data for grafik line
   ///
+  @override
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
@@ -149,18 +146,18 @@ class T2GrafikState extends State<T2Grafik> {
                     )),
                 Container(
                   width: 150,
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     right: 5,
                     top: 10,
                   ),
                   child: Column(children: [
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Ausgezeichnet      ",
                           style: TextStyle(fontSize: 12, color: Colors.white),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 1,
                         ),
                         Icon(
@@ -172,11 +169,11 @@ class T2GrafikState extends State<T2Grafik> {
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           "Handlungsbedarf ",
                           style: TextStyle(fontSize: 12, color: Colors.white),
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 1,
                         ),
                         Icon(
@@ -293,7 +290,7 @@ class T2GrafikState extends State<T2Grafik> {
               const SizedBox(
                 height: 5.0,
               ),
-              Container(
+              const SizedBox(
                 height: 320,
                 width: 400,
                 child: //const GrafikTabBar(),

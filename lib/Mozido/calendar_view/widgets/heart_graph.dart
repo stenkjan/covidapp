@@ -24,11 +24,11 @@ class _HeartGraphState extends State<HeartGraph> {
         color: variableColors[4],
         data: [
           calContent.herzL[calContent.listIndex].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+1].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+2].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+3].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+4].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+5].toDouble() / 10
+          calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
@@ -36,11 +36,11 @@ class _HeartGraphState extends State<HeartGraph> {
         color: variableColors[5],
         data: [
           calContent.bpm[calContent.listIndex].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex+1].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex+2].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex+3].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex+4].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex+5].toDouble() * 70 / 1000,
+          calContent.bpm[calContent.listIndex + 1].toDouble() * 70 / 1000,
+          calContent.bpm[calContent.listIndex + 2].toDouble() * 70 / 1000,
+          calContent.bpm[calContent.listIndex + 3].toDouble() * 70 / 1000,
+          calContent.bpm[calContent.listIndex + 4].toDouble() * 70 / 1000,
+          calContent.bpm[calContent.listIndex + 5].toDouble() * 70 / 1000,
         ],
       ),
     ];
@@ -73,26 +73,26 @@ class _HeartGraphState extends State<HeartGraph> {
               ),
             ),
           ), */
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           LineGraph(
             features: features,
-            size: Size(350, 250),
+            size: const Size(350, 250),
             labelX: [
               calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex+1].toString(),
-              calContent.dateL[calContent.listIndex+2].toString(),
-              calContent.dateL[calContent.listIndex+3].toString(),
-              calContent.dateL[calContent.listIndex+4].toString(),
-              calContent.dateL[calContent.listIndex+5].toString()
+              calContent.dateL[calContent.listIndex + 1].toString(),
+              calContent.dateL[calContent.listIndex + 2].toString(),
+              calContent.dateL[calContent.listIndex + 3].toString(),
+              calContent.dateL[calContent.listIndex + 4].toString(),
+              calContent.dateL[calContent.listIndex + 5].toString()
             ],
             labelY: const ['20%', '40%', '60%', '80%', '100%'],
             showDescription: true,
             graphColor: Colors.white54,
             descriptionHeight: 40,
           ),
-          SizedBox(
+          const SizedBox(
             height: 0,
           )
         ],

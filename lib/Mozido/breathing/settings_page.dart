@@ -41,12 +41,12 @@ class SettingsPage extends GetView<SettingsController> {
                   Container(
                     width: double.infinity,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     'Hintergrund Farbe',
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ToggleButtons(
                     children: [
                       for (BackgroundColors theme in c.themes) ...[

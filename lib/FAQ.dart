@@ -32,8 +32,8 @@ class FAQ extends StatelessWidget {
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: <Widget>[
-            Card1(),
-            Card2(),
+            const Card1(),
+            const Card2(),
             Card3(),
             Card4(),
             Card5(),
@@ -65,6 +65,8 @@ const frage8 =
     "Da das Virus SARS-CoV-2 und COVID-19 als Krankheitsbild erst seit Anfang 2020 bekannt sind, sind die Ursachen von COVID-19-Langzeitfolgen, das Risikoprofil der Betroffenen und die unterschiedlichen Symptomkomplexe und Krankheitsverläufe noch nicht vollständig erforscht. Es ist daher aktuell noch nicht möglich sicher abzuschätzen, wie häufig Langzeitfolgen einer SARS-CoV-2-Infektion bzw. COVID-19-Erkrankung auftreten, wie gut sie therapierbar sind und wie groß der Anteil der Betroffenen ist, der bleibende Auswirkungen mit sich tragen wird. Besonders über die gesundheitlichen Langzeitfolgen bei Kindern und Jugendlichen ist bisher wenig bekannt. \n \n International aber auch in Deutschland sind mittlerweile eine Vielzahl an wissenschaftlichen Studien angelaufen, um mögliche Langzeitfolgen nach einer COVID-19-Erkrankung oder SARS-CoV-2-Infektion besser zu verstehen und erkrankten Menschen eine gute gesundheitliche Versorgung und Unterstützung zu sichern (siehe Übersichtsarbeiten in BMJ und Science). So werden in Deutschland etwa über das Netzwerk Universitätsmedizin (NUM) im Rahmen des vom Bundesministerium für Bildung und Forschung (BMBF) geförderten Nationalen Pandemie Kohorten Netzes (NAPKON) Erwachsene mit SARS-CoV-2-Infektion im Hinblick auf Folgeerkrankungen und gesundheitsbezogene Lebensqualität weiter beobachtet. Zusätzliche Vorhaben zu Erforschung von Long COVID werden im Rahmen eines aktuellen BMBF-Förderungsschwerpunktes gefördert. Zu gesundheitlichen Langzeitfolgen von COVID-19 bei Kindern und Jugendlichen wird z.B. im Rahmen des Post COVID-19 Surveys der Deutschen Gesellschaft für Pädiatrische Infektiologie geforscht. Darüber hinaus gibt es eine internationale Arbeitsgruppe zu Post COVID-19 bei Kindern und Jugendlichen (Pediatric International Long COVID Care Collaboration), in der auch einige deutsche Forschungsgruppen vertreten sind.";
 
 class Card1 extends StatelessWidget {
+  const Card1({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -94,7 +96,7 @@ class Card1 extends StatelessWidget {
                 ),
                 header: const Padding(
                     padding: EdgeInsets.all(10),
-                    child: const Text(
+                    child: Text(
                         "Warum ist es wichtig, längerfristige Auswirkungen einer SARS-CoV-2-Infektion besser zu verstehen?",
                         style: TextStyle(
                             color: Colors.white,
@@ -123,7 +125,8 @@ class Card1 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -141,6 +144,8 @@ class Card1 extends StatelessWidget {
 }
 
 class Card2 extends StatelessWidget {
+  const Card2({Key? key}) : super(key: key);
+
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -176,7 +181,7 @@ class Card2 extends StatelessWidget {
                             fontWeight: FontWeight.bold))),
                 collapsed: const Text(
                   frage2,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -187,7 +192,7 @@ class Card2 extends StatelessWidget {
                     for (var _ in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
-                          child: const Text(
+                          child: Text(
                             frage2,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -197,7 +202,8 @@ class Card2 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -215,81 +221,7 @@ class Card2 extends StatelessWidget {
 }
 
 class Card3 extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return ExpandableNotifier(
-        child: Padding(
-      padding: const EdgeInsets.all(10),
-      child: Card(
-        color: const Color(0xFF363940),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.lightBlue,
-                  shape: BoxShape.rectangle,
-                ),
-              ),
-            ),
-            ScrollOnExpand(
-              scrollOnExpand: true,
-              scrollOnCollapse: false,
-              child: ExpandablePanel(
-                theme: const ExpandableThemeData(
-                  headerAlignment: ExpandablePanelHeaderAlignment.center,
-                  tapBodyToCollapse: true,
-                ),
-                header: const Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: const Text(
-                        "Welche Symptome haben Menschen mit gesundheitlichen Langzeitfolgen von COVID-19?",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold))),
-                collapsed: const Text(
-                  frage3,
-                  style: TextStyle(color: Colors.white),
-                  softWrap: true,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                expanded: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    for (var _ in Iterable.generate(1))
-                      const Padding(
-                          padding: EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            frage3,
-                            style: const TextStyle(color: Colors.white),
-                            softWrap: true,
-                            overflow: TextOverflow.fade,
-                          )),
-                  ],
-                ),
-                builder: (_, collapsed, expanded) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: Expandable(
-                      collapsed: collapsed,
-                      expanded: expanded,
-                      theme: const ExpandableThemeData(crossFadePoint: 0),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    ));
-  }
-}
-
-class Card4 extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -318,7 +250,84 @@ class Card4 extends StatelessWidget {
                 ),
                 header: const Padding(
                     padding: EdgeInsets.all(10),
-                    child: const Text(
+                    child: Text(
+                        "Welche Symptome haben Menschen mit gesundheitlichen Langzeitfolgen von COVID-19?",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold))),
+                collapsed: const Text(
+                  frage3,
+                  style: TextStyle(color: Colors.white),
+                  softWrap: true,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                expanded: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    for (var _ in Iterable.generate(1))
+                      const Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            frage3,
+                            style: TextStyle(color: Colors.white),
+                            softWrap: true,
+                            overflow: TextOverflow.fade,
+                          )),
+                  ],
+                ),
+                builder: (_, collapsed, expanded) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    child: Expandable(
+                      collapsed: collapsed,
+                      expanded: expanded,
+                      theme: const ExpandableThemeData(crossFadePoint: 0),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+}
+
+class Card4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+      padding: const EdgeInsets.all(10),
+      child: Card(
+        color: const Color(0xFF363940),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.lightBlue,
+                  shape: BoxShape.rectangle,
+                ),
+              ),
+            ),
+            ScrollOnExpand(
+              scrollOnExpand: true,
+              scrollOnCollapse: false,
+              child: ExpandablePanel(
+                theme: const ExpandableThemeData(
+                  headerAlignment: ExpandablePanelHeaderAlignment.center,
+                  tapBodyToCollapse: true,
+                ),
+                header: const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
                         "Wie häufig treten gesundheitliche Langzeitfolgen von COVID-19 auf? Sind auch Erkrankte mit milden Verläufen betroffen?",
                         style: TextStyle(
                             color: Colors.white,
@@ -339,7 +348,7 @@ class Card4 extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage4,
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white),
                             softWrap: true,
                             overflow: TextOverflow.fade,
                           )),
@@ -347,7 +356,8 @@ class Card4 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -365,6 +375,7 @@ class Card4 extends StatelessWidget {
 }
 
 class Card5 extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -395,7 +406,7 @@ class Card5 extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Welche Menschen haben ein erhöhtes Risiko gesundheitliche Langzeitfolgen von COVID-19 zu entwickeln?",
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
@@ -422,7 +433,8 @@ class Card5 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -440,6 +452,7 @@ class Card5 extends StatelessWidget {
 }
 
 class Card6 extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -470,7 +483,7 @@ class Card6 extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Können Kinder auch gesundheitlichen Langzeitfolgen von COVID-19 entwickeln?",
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
@@ -486,8 +499,8 @@ class Card6 extends StatelessWidget {
                   children: <Widget>[
                     for (var _ in Iterable.generate(1))
                       const Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: const Text(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Text(
                             frage6,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -497,7 +510,8 @@ class Card6 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -515,6 +529,7 @@ class Card6 extends StatelessWidget {
 }
 
 class Card7 extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -545,13 +560,13 @@ class Card7 extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text(
                         "Wie kann man als Einzelperson den gesundheitlichen Langzeitfolgen von COVID-19 vorbeugen?",
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold))),
                 collapsed: const Text(
                   frage7,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -562,7 +577,7 @@ class Card7 extends StatelessWidget {
                     for (var _ in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
-                          child: const Text(
+                          child: Text(
                             frage7,
                             style: TextStyle(color: Colors.white),
                             softWrap: true,
@@ -572,7 +587,8 @@ class Card7 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -590,6 +606,7 @@ class Card7 extends StatelessWidget {
 }
 
 class Card8 extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
         child: Padding(
@@ -639,7 +656,7 @@ class Card8 extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
                             frage8,
-                            style: const TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white),
                             softWrap: true,
                             overflow: TextOverflow.fade,
                           )),
@@ -647,7 +664,8 @@ class Card8 extends StatelessWidget {
                 ),
                 builder: (_, collapsed, expanded) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: Expandable(
                       collapsed: collapsed,
                       expanded: expanded,
@@ -676,7 +694,7 @@ Widget build(BuildContext context) {
   buildList() {
     return Column(
       children: <Widget>[
-        for (var i in [1, 2, 3, 4]) buildItem("Item ${i}"),
+        for (var i in [1, 2, 3, 4]) buildItem("Item $i"),
       ],
     );
   }

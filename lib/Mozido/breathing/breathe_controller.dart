@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:covidapp/Mozido/breathing/home_page.dart';
 import 'package:covidapp/Mozido/breathing/constants.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
@@ -84,7 +83,6 @@ class BreatheController extends GetxController {
         breathTime.value = initBreathTime;
         breathIn.value = !breathIn.value;
         if (soundOn) {
-          AudioCache player = AudioCache();
           //player.play('images/sound.mp3');
         }
       }

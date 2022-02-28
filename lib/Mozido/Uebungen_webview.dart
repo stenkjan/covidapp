@@ -20,14 +20,15 @@ class Webview extends StatelessWidget {
 }
 
 class Webviewpage extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-        backgroundColor: Color(0xFF313237),
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        backgroundColor: const Color(0xFF313237),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Atemübungen",
           style: TextStyle(
               color: Colors.white,
@@ -35,10 +36,10 @@ class Webviewpage extends StatelessWidget {
               fontSize: 17.0,
               fontWeight: FontWeight.w600),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0.0,
       ),
-      body: Container(
+      body: const SizedBox(
           width: double.infinity,
           // height: 600,
           // the most important part of this example

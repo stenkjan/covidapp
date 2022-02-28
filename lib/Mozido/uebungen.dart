@@ -1,9 +1,6 @@
-import 'package:covidapp/Mozido/breathing/breathe_page.dart';
-import 'package:covidapp/Mozido/breathing/home_page.dart';
 import 'package:covidapp/Mozido/breathing/uebungen_main.dart';
 import 'package:covidapp/Mozido/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/Mozido/puls_analyse.dart';
-import 'package:covidapp/Mozido/Uebungen_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,6 +18,7 @@ class _UebungenState extends State<Uebungen> {
   @override
 
   /**Widget build 3 Übungen Classes. On Card Click  */
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
@@ -81,8 +79,10 @@ class _UebungenState extends State<Uebungen> {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => uebungbreathing()));
           } else if (_title == "Emotionaler Zustand") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CalendarTabBar()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const CalendarTabBar()));
           }
         },
         child: Container(

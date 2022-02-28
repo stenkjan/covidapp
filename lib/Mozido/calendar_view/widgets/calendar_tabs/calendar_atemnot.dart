@@ -1,7 +1,6 @@
 import 'package:covidapp/Mozido/calendar_view/widgets/calendar_image_views/atem_desc.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
 import 'package:covidapp/Mozido/content/strings.dart';
-import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +9,6 @@ class CalendarAtemnot extends StatefulWidget {
   const CalendarAtemnot({Key? key}) : super(key: key);
   @override
   CalendarAtemnotState createState() => CalendarAtemnotState();
-  // TODO: implement createState
-
 }
 
 class CalendarAtemnotState extends State<CalendarAtemnot> {
@@ -26,10 +23,11 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
   void initState() {
     list;
     i = 0;
-    colorswitch = Color(0xFF313237);
+    colorswitch = const Color(0xFF313237);
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }
@@ -92,7 +90,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                         colorswitch = Colors.white;
                       }
                       if (_switchValue == false) {
-                        colorswitch = Color(0xFF313237);
+                        colorswitch = const Color(0xFF313237);
                       }
                     });
                   },
@@ -161,7 +159,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(
                         color: const Color(0xFF313237),
-                        shadowColor: Color(0xFF2E4E57),
+                        shadowColor: const Color(0xFF2E4E57),
                         borderRadius: BorderRadius.circular(12),
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),

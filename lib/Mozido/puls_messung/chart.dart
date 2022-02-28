@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -14,13 +16,15 @@ class BPMChart extends StatelessWidget {
   /// [SensorValue]
   BPMChart(
     /// List of Sensor Value data points to be plotted
-    List<SensorValue> data, {Key? key, 
+    List<SensorValue> data, {
+    Key? key,
 
     /// List of second series of Sensor Value data points to be plotted
     List<SensorValue>? data2,
-  }) : _data = data2 == null
+  })  : _data = data2 == null
             ? [_updateChartData(data)]
-            : [_updateChartData(data), _updateChartData(data2, 2)], super(key: key);
+            : [_updateChartData(data), _updateChartData(data2, 2)],
+        super(key: key);
 
   /// Function to convert as list of [SensorValue] to [Series] ready for
   /// plotting
@@ -55,7 +59,7 @@ class BPMChart extends StatelessWidget {
       _data,
       primaryMeasureAxis: charts.NumericAxisSpec(
         showAxisLine: false,
-        renderSpec: charts.NoneRenderSpec(),
+        renderSpec: const charts.NoneRenderSpec(),
         viewport: charts.NumericExtents(min, max),
         tickProviderSpec:
             charts.StaticNumericTickProviderSpec(<charts.TickSpec<num>>[

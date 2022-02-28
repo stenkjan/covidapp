@@ -187,7 +187,8 @@ class _CalendarFormState extends State<CalendarForm> {
                               fontSize: 16),
                         )),
                         if (comBool == true)
-                          SizedBox(height: 20, width: 20, child: DayPie()),
+                          const SizedBox(
+                              height: 20, width: 20, child: DayPie()),
                       ],
                     ),
                   ),

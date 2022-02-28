@@ -1,11 +1,6 @@
 import 'dart:core';
-import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
-import 'package:covidapp/Mozido/models/calendar_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidapp/Mozido/content/grafik_content.dart';
-
-import 'package:flutter/cupertino.dart';
 
 class DatabaseService {
   final String uid;

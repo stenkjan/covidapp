@@ -1,6 +1,5 @@
 import 'package:covidapp/Mozido/breathing/themes.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
-import 'package:covidapp/Mozido/t2_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

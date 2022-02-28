@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:covidapp/Mozido/content/calendar_content.dart';
-import 'package:covidapp/Mozido/models/calendar_models.dart';
 import 'package:covidapp/Mozido/services/auth_service.dart';
 import 'package:covidapp/Mozido/services/db_service.dart';
 import 'package:covidapp/Mozido/services/grafik_service.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class CalendarService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

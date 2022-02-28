@@ -3,8 +3,6 @@ import 'package:covidapp/Mozido/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../content/size.dart';
-
 class CalendarTabBar extends StatefulWidget {
   const CalendarTabBar({Key? key}) : super(key: key);
 
@@ -99,9 +97,10 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                 ///
                 /// Body tabBar
                 ///
-                body: TabBarView(
+                body: const TabBarView(
+                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: Calendar(),
                     ),
@@ -183,7 +182,7 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                               ),
  */
                     //FormDesignScrollView(),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: T2Grafik(),
                     ),

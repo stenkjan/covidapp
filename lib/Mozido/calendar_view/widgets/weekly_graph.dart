@@ -23,11 +23,11 @@ class _WeekGraphState extends State<WeekGraph> {
         color: variableColors[0],
         data: [
           calContent.moodL[calContent.listIndex].toDouble() / 10,
-          calContent.moodL[calContent.listIndex+1].toDouble() / 10,
-          calContent.moodL[calContent.listIndex+2].toDouble() / 10,
-          calContent.moodL[calContent.listIndex+3].toDouble() / 10,
-          calContent.moodL[calContent.listIndex+4].toDouble() / 10,
-          calContent.moodL[calContent.listIndex+5].toDouble() / 10
+          calContent.moodL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.moodL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.moodL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.moodL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.moodL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
@@ -35,11 +35,11 @@ class _WeekGraphState extends State<WeekGraph> {
         color: variableColors[1],
         data: [
           calContent.muedigkeitL[calContent.listIndex].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex+1].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex+2].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex+3].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex+4].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex+5].toDouble() / 10
+          calContent.muedigkeitL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.muedigkeitL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
@@ -47,11 +47,11 @@ class _WeekGraphState extends State<WeekGraph> {
         color: variableColors[2],
         data: [
           calContent.atemnotL[calContent.listIndex].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex+1].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex+2].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex+3].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex+4].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex+5].toDouble() / 10
+          calContent.atemnotL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.atemnotL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
@@ -59,47 +59,47 @@ class _WeekGraphState extends State<WeekGraph> {
         color: variableColors[3],
         data: [
           calContent.sinneL[calContent.listIndex].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex+1].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex+2].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex+3].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex+4].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex+5].toDouble() / 10
+          calContent.sinneL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.sinneL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[4]['tag'],
         color: variableColors[4],
         data: [
-          calContent.herzL[calContent.listIndex+0].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+1].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+2].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+3].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+4].toDouble() / 10,
-          calContent.herzL[calContent.listIndex+5].toDouble() / 10
+          calContent.herzL[calContent.listIndex + 0].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.herzL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[5]['tag'],
         color: variableColors[5],
         data: [
-          calContent.schlafL[calContent.listIndex+0].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex+1].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex+2].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex+3].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex+4].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex+5].toDouble() / 10
+          calContent.schlafL[calContent.listIndex + 0].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.schlafL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
       Feature(
         title: headline[6]['tag'],
         color: variableColors[6],
         data: [
-          calContent.nervenL[calContent.listIndex+0].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex+1].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex+2].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex+3].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex+4].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex+5].toDouble() / 10
+          calContent.nervenL[calContent.listIndex + 0].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex + 1].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex + 2].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex + 3].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex + 4].toDouble() / 10,
+          calContent.nervenL[calContent.listIndex + 5].toDouble() / 10
         ],
       ),
     ];
@@ -132,7 +132,7 @@ class _WeekGraphState extends State<WeekGraph> {
               ),
             ),
           ), */
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           LineGraph(
@@ -151,7 +151,7 @@ class _WeekGraphState extends State<WeekGraph> {
             graphColor: Colors.white54,
             descriptionHeight: 40,
           ),
-          SizedBox(
+          const SizedBox(
             height: 0,
           )
         ],
