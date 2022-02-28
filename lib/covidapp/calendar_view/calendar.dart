@@ -45,7 +45,8 @@ class CalendarState extends State<Calendar> {
   dispose() {
     super.dispose();
   }
-
+///
+/// build Calendar Widget and Variable input through calendar_tab_bar integration
   @override
   Widget build(BuildContext context) {
     double fontSize(double size) {

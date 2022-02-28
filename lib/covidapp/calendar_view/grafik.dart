@@ -43,7 +43,7 @@ class T2GrafikState extends State<T2Grafik> {
   }
 
   ///
-  /// Data for grafik line
+  /// Data for grafik variable list
   ///
   @override
   Widget build(BuildContext context) {
@@ -251,6 +251,7 @@ class T2GrafikState extends State<T2Grafik> {
               const SizedBox(
                 height: 320,
                 width: 400,
+                /// TabBar inclusion
                 child: GrafikTabBar(),
               ),
             ],

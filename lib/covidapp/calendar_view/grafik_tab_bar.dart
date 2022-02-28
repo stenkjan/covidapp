@@ -35,9 +35,8 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
       height: 420,
       width: 400,
       
-      ///z
-
-      /// Custom tab bar
+      ///
+      /// Custom tab bar for Grafik DayPie() WeekGraph() and HeartGraph()
       ///
       child: Column(
         children: [

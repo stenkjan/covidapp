@@ -12,7 +12,7 @@ class GrafikService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   late final DatabaseService dbS;
   List? docList;
-
+/// connector to DB for reading doc daily
   Future<GrafikContent?> dailyRead(
     int createdDate,
     bool dayChange,
@@ -34,18 +34,7 @@ class GrafikService {
   }
 }
 
-     /* final FirebaseFirestore.instance.collection('calendar').snapshots();
-
-  
-        snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> data =
-                document.data()! as Map<String, dynamic>;
-            return ListTile(
-              title: Text(data['full_name']),
-              subtitle: Text(data['company']),
-            );
-          }).toList(),
-        ); */
+     
       
     
 

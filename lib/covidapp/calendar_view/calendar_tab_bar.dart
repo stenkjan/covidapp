@@ -19,7 +19,7 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
       backgroundColor: const Color(0xFF313237),
 
       ///z
-      /// Appbar
+      /// Appbar for Calendar and Grafik
       ///
       appBar: AppBar(
         title: const Text(
@@ -118,10 +118,6 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
         ],
       ),
     );
-    /*  ),
-          ),
-        ],
-      ),
-    ); */
+  
   }
 }
