@@ -13,8 +13,6 @@ class GrafikModel {
   GrafikModel(this.docList);
 
   GrafikModel.fromList(List<List> docList)
-      // : id = docList[0].toString(),
-      //fullName = data['fullName'],
       : mood = int.parse(docList[0].toString()),
         muedigkeit = int.parse(docList[1].toString()),
         atemnot = int.parse(docList[2].toString()),
@@ -30,15 +28,4 @@ class GrafikModel {
       return mood;
     }
   }
-
-  /* int? listSum() {
-    int? sum =
-        mood! + muedigkeit! + atemnot! + sinne! + herz! + schlaf! + nerven!;
-    if (sum != 0) return sum;
-    if (sum == 0) {
-      print("no value in List!");
-      return sum;
-    }
-    
-  } */
 }

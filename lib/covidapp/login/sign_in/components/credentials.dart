@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 
 class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
-  /* static bool signed_in = false; */
+
   @override
   /** Widget build --- Email, Password fields, Reset Passord  */
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final authService = Provider.of<AuthService>(context);
-    /* bool signed_in = Credentials.signed_in; */
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),
       child: Column(
@@ -102,8 +102,6 @@ class Credentials extends StatelessWidget {
 Sie müssen zuerst eine Email und ein Passwort angeben'''),
                           ));
                         }
-                        /* signed_in = true;
-                          signedIn(signed_in); */
                       }),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -132,12 +130,4 @@ Sie müssen zuerst eine Email und ein Passwort angeben'''),
       ),
     );
   }
-
-  /* bool signedIn(bool signed) {
-    if (signed) {
-      return signed_in = true;
-    } else {
-      return signed_in = false;
-    }
-  } */
 }

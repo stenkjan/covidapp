@@ -27,25 +27,9 @@ class GrafikService {
     } catch (collectionError) {
       if (collectionError is PlatformException) {
         if (collectionError.code == 'Error') {
-          /// Es ist ein Fehler aufgetreten
+          /// Error ocurred
         }
       }
     }
   }
 }
-
-     /* final FirebaseFirestore.instance.collection('calendar').snapshots();
-
-  
-        snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> data =
-                document.data()! as Map<String, dynamic>;
-            return ListTile(
-              title: Text(data['full_name']),
-              subtitle: Text(data['company']),
-            );
-          }).toList(),
-        ); */
-      
-    
-

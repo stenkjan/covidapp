@@ -86,11 +86,6 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
                         visible: false, child: calContent.getpulseTrue());
                   }),
                   // sampleDelay: 1000 ~/ 20,
-                  // child: Container(
-                  //   height: 50,
-                  //   width: 100,
-                  //   child: BPMChart(data),
-                  // ),
                 )
               : const SizedBox(
                   height: 20,

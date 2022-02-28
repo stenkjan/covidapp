@@ -45,7 +45,6 @@ class _DayPieState extends State<DayPie> {
           fontSize: 10,
         ),
       ),
-
       chartValuesOptions: const ChartValuesOptions(
         showChartValueBackground: true,
         showChartValues: true,
@@ -53,8 +52,6 @@ class _DayPieState extends State<DayPie> {
         showChartValuesOutside: false,
         decimalPlaces: 1,
       ),
-      // gradientList: ---To add gradient colors---
-      // emptyColorGradient: ---Empty Color gradient---
     );
   }
 }

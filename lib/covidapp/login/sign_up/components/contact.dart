@@ -27,19 +27,6 @@ class Social extends StatelessWidget {
         const SizedBox(
           height: appPadding,
         ),
-        /*  AccountCheck(
-          login: true,
-          press: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return SignUpScreen();
-                },
-              ),
-            );
-          },
-        ), */
       ],
     );
   }
@@ -58,8 +45,7 @@ class Social extends StatelessWidget {
         path: 'jan.stenk@edu.fh-joanneum.at',
         query: encodeQueryParameters(
             <String, String>{'Long Covid App Support': 'Ihr Anliegen:'}));
-    //  launch(emailLaunchUri.toString());
-    // if (!await launch("mailto:")) throw 'Could not launch $_url';
+
     if (await canLaunch(emailLaunchUri.toString())) {
       await launch(emailLaunchUri.toString());
     } else {

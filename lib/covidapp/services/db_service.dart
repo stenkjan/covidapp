@@ -66,19 +66,6 @@ class DatabaseService {
     });
   }
 
-  /* String getName() {
-    getUserData();
-    List? userData = nameData;
-    String firstname = userData![0].toString();
-    String lastname = userData[1].toString();
-    if (firstname == "" && lastname == "") {
-      firstname = "Maximilian";
-      lastname = "Stenk";
-    }
-    String name = firstname + " " + lastname;
-    return name;
-  } */
-
   Future getUserData() async {
     String name = "Maximilian Stenk";
     return await userCollection
@@ -167,51 +154,4 @@ class DatabaseService {
       });
     }
   }
-/* Stream <List> getDoc (String createdDate){
-  final Stream<QuerySnapshot> documents = FirebaseFirestore.instance.collection('users').doc(uid).collection('calendar').snapshots();
-
-  return documents.map((querySnapshot) {
-    List listDoc;
-    final documents = querySnapshot.documents;
-
-    listDoc = documents.map((documentSnapshot) => documentSnapshot['create_date']);
-
-    return docList;
-  });
-
-} */ /* 
-  Future<GrafikContent> getGrafikModel(
-      String mood,
-      String muedigkeit,
-      String atemnot,
-      String sinne,
-      String herz,
-      String schlaf,
-      String nerven,
-      String comment,
-      String createdDate) async {
-    return await 
-        .doc(uid)
-        .collection('calendar')
-        .doc(createdDate)
-        .get({
-      'id': uid,
-      'mood': mood,
-      'muedigkeit': muedigkeit,
-      'atemnot': atemnot,
-      'sinne': sinne,
-      'herz': herz,
-      'schlaf': schlaf,
-      'nerven': nerven,
-      'comment': comment,
-      'created_date': createdDate,
-    });
-  } */
-
 }
-  // Future<CalendarModel> getCalenderModel(String id) async {
-  //   var snap = await _db.collection('calendar').document(id).get();
-
-  //return CalendarModel.fromMap(snap.data);
-  // }
-

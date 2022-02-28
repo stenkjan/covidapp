@@ -105,7 +105,6 @@ class CalendarSinneState extends State<CalendarSinne> {
                       if (_switchValue == false) {
                         colorswitch = const Color(0xFF313237);
                       }
-                      //calContent.calendarContentsinne(_switchValue);
                     });
                   },
                 ),

@@ -18,7 +18,7 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
 
-      ///z
+      ///
       /// Appbar
       ///
       appBar: AppBar(
@@ -104,89 +104,10 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: Calendar(),
                     ),
-                    /*  Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
-                            bottomRight: Radius.circular(10.0)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5.0, right: 5.0, top: 5.0),
-                        child: Container(
-                          width: SizeConfig.getWidth(context),
-                          decoration: BoxDecoration(boxShadow: [
-                            BoxShadow(
-                                color: Colors.blue[900]!.withOpacity(0.1),
-                                blurRadius: 50,
-                                spreadRadius: 40,
-                                offset: const Offset(40, 0)),
-                            const BoxShadow(
-                                color: Colors.white12,
-                                blurRadius: 30,
-                                spreadRadius: 20,
-                                offset: Offset(20, 0)),
-                          ], shape: BoxShape.circle, color: Colors.white30),
-                          margin: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.getWidth(context) / 50,
-                              vertical: SizeConfig.getHeight(context) / 100),
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned.fill(
-                                top: 150,
-                                bottom: -100,
-                                left: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xFF31A1C9)
-                                                .withOpacity(0.6),
-                                            blurRadius: 50,
-                                            spreadRadius: 20,
-                                            offset: const Offset(20, 0)),
-                                        const BoxShadow(
-                                            color: Colors.white12,
-                                            blurRadius: 50,
-                                            spreadRadius: 20,
-                                            offset: Offset(0, 0)),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      color: Colors.white30),
-                                ),
-                              ),
-                              Positioned.fill(
-                                top: -100,
-                                bottom: -100,
-                                left: -300,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xFF31A1C9)
-                                                .withOpacity(0.2),
-                                            blurRadius: 300,
-                                            spreadRadius: 40,
-                                            offset: const Offset(10, 0)),
-                                        const BoxShadow(
-                                            color: Color(0xFF31A1C9),
-                                            blurRadius: 150,
-                                            spreadRadius: 80,
-                                            offset: Offset(20, 0)),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      color: Colors.white30),
-                                ),
-                              ),
- */
-                    //FormDesignScrollView(),
                     Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: T2Grafik(),
                     ),
-                    //FormDesignScrollView(),
                   ],
                 ),
               ),
@@ -195,10 +116,5 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
         ],
       ),
     );
-    /*  ),
-          ),
-        ],
-      ),
-    ); */
   }
 }

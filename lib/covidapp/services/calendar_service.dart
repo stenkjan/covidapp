@@ -34,7 +34,7 @@ class CalendarService {
       if (collectionError is PlatformException) {
         print(auth.getUser() + ' update CalendarModel uid exception');
         if (collectionError.code == 'Collection Error') {
-          /// Es ist ein Fehler aufgetreten
+          /// Error occured
         }
       }
     }
