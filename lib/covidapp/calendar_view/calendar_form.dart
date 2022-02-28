@@ -13,6 +13,7 @@ class CalendarForm extends StatefulWidget {
   @override
   _CalendarFormState createState() => _CalendarFormState();
 }
+
 //build Calendar and display @calContent.comment
 class _CalendarFormState extends State<CalendarForm> {
   late CalendarController _controller;
@@ -106,12 +107,11 @@ class _CalendarFormState extends State<CalendarForm> {
               onDaySelected: (date, events, holidays) {
                 _selectedEvents = events;
                 setState(() {
-                  if (calContent.comment.isEmpty) {
-                    return;
-                  }
                   if (calContent.docExists) {
                     comBool = true;
                     calContent.pieLegendbool = false;
+                  } else {
+                    comBool = true;
                   }
                   if (_events[_controller.selectedDay] != null) {
                     _events[_controller.selectedDay]!.add(calContent.comment);
@@ -181,9 +181,11 @@ class _CalendarFormState extends State<CalendarForm> {
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         )),
-                        if (comBool == true)
-                          const SizedBox(
-                              height: 20, width: 20, child: DayPie()),
+                        Visibility(
+                          visible: comBool,
+                          child:
+                              SizedBox(height: 20, width: 20, child: DayPie()),
+                        ),
                       ],
                     ),
                   ),
