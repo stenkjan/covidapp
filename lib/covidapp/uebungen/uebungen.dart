@@ -79,7 +79,9 @@ class _UebungenState extends State<Uebungen> {
           }
           if (_title == "Atem Übung") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => uebungbreathing()));
+                MaterialPageRoute(builder: (context) => uebungbreathing(
+                  key: _Atemkey,
+                )));
           } else if (_title == "Emotionaler Zustand") {
             Navigator.push(
                 context,
