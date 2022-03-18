@@ -25,7 +25,7 @@ class Puls_AnalyseState extends State<Puls_Analyse> {
   late double imageSize;
 
   @override
-  initState() {
+  void initState() {
     imageSize = 400;
     super.initState();
   }

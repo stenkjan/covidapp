@@ -27,7 +27,7 @@ class T2GrafikState extends State<T2Grafik> {
   int current_date = 0;
 
   @override
-  initState() {
+  void initState() {
     current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
     dayChange = false;
     gS = GrafikService();

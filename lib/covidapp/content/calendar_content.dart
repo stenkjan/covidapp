@@ -58,7 +58,8 @@ class CalendarContent with ChangeNotifier {
   int listIndex = 0;
   int indexGrafik = 0;
   int index = 0;
-  List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
+  //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
+  List<int> dateL = [18, 19, 20, 21, 22, 23, 24, 25];
   List<int> moodL = [5, 4, 3, 5, 7, 8, 8, 2];
   List<int> muedigkeitL = [3, 0, 0, 1, 0, 3, 4, 3];
   List<int> atemnotL = [0, 0, 1, 5, 3, 0, 1, 0];

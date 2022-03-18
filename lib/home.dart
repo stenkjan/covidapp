@@ -6,6 +6,7 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
@@ -31,12 +32,14 @@ class _T2HomeState extends State<T2Home> {
     authService = AuthService();
     dbService = DatabaseService(uid: authService.getUser());
     cal = CalendarContent();
+
     breatheMin = cal.returnBreatheMin();
     iconbreathe = cal.getbreatheTrue();
     iconpulse = cal.getpulseTrue();
     iconcal = cal.getcalendarTrue();
     lastBPM = cal.getlastBPM();
     super.initState();
+
     /* if (Credentials.signed_in = false) {
       SignInScreen();
     } else {
@@ -49,7 +52,7 @@ class _T2HomeState extends State<T2Home> {
     super.dispose();
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKeyHome = GlobalKey<ScaffoldState>(debugLabel: "homeKey");
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,7 @@ class _T2HomeState extends State<T2Home> {
     return SignInScreen();
 */
     return Scaffold(
-      key: _scaffoldKey,
+      key: _scaffoldKeyHome,
 
       backgroundColor: const Color(0xFF313237),
 
@@ -179,7 +182,7 @@ class _T2HomeState extends State<T2Home> {
                     padding: const EdgeInsets.only(top: 12.0),
                     child: InkWell(
                         onTap: () {
-                          _scaffoldKey.currentState!.openDrawer();
+                          _scaffoldKeyHome.currentState!.openDrawer();
                         },
                         child: Image.asset("images/tabBar.png")),
                   ),
