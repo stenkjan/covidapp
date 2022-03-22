@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 /** c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
 
 class uebungbreathing extends GetView<ThemeController> {  
-  const uebungbreathing({required Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetX<ThemeController>(

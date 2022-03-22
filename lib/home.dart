@@ -52,7 +52,8 @@ class _T2HomeState extends State<T2Home> {
     super.dispose();
   }
 
-  GlobalKey<ScaffoldState> _scaffoldKeyHome = GlobalKey<ScaffoldState>(debugLabel: "homeKey");
+  final GlobalKey<ScaffoldState> _scaffoldKeyHome =
+      GlobalKey<ScaffoldState>(debugLabel: "homeKey");
 
   @override
   Widget build(BuildContext context) {

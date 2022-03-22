@@ -12,10 +12,8 @@ class Uebungen extends StatefulWidget {
 }
 
 class _UebungenState extends State<Uebungen> {
-  GlobalKey<ScaffoldState> _Pulskey =
-      new GlobalKey<ScaffoldState>(debugLabel: "pulsKey");
-  GlobalKey<ScaffoldState> _Atemkey =
-      new GlobalKey<ScaffoldState>(debugLabel: "atemKey");
+  final GlobalKey<FormState> _Pulskey =
+      GlobalKey<FormState>(debugLabel: "pulsKey");
 
   @override
 
@@ -79,9 +77,7 @@ class _UebungenState extends State<Uebungen> {
           }
           if (_title == "Atem Übung") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => uebungbreathing(
-                  key: _Atemkey,
-                )));
+                MaterialPageRoute(builder: (context) => uebungbreathing()));
           } else if (_title == "Emotionaler Zustand") {
             Navigator.push(
                 context,
