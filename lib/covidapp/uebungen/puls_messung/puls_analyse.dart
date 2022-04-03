@@ -8,14 +8,14 @@ import 'package:rive/rive.dart';
 import '../../../covidapp/uebungen/Puls_Messung/chart.dart';
 import '../../../covidapp/uebungen/Puls_Messung/heart_bpm.dart';
 
-class Puls_Analyse extends StatefulWidget {
-  const Puls_Analyse({required Key key}) : super(key: key);
+class PulsAnalyse extends StatefulWidget {
+  const PulsAnalyse({required Key key}) : super(key: key);
 
   @override
-  Puls_AnalyseState createState() => Puls_AnalyseState();
+  PulsAnalyseState createState() => PulsAnalyseState();
 }
 
-class Puls_AnalyseState extends State<Puls_Analyse> {
+class PulsAnalyseState extends State<PulsAnalyse> {
   List<SensorValue> data = [];
   List<SensorValue> bpmValues = [];
 

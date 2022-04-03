@@ -70,7 +70,7 @@ class _UebungenState extends State<Uebungen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Puls_Analyse(
+                  builder: (context) => PulsAnalyse(
                         key: _Pulskey,
                       )),
             );

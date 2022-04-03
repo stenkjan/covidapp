@@ -35,7 +35,6 @@ class CalendarContent with ChangeNotifier {
   late List headlineupdate;
 
   bool breatheTrue = false;
-
   bool pulseTrue = false;
   bool calTrue = false;
 
