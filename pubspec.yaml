@@ -29,9 +29,9 @@ environment:
 dependencies:
   get: ^4.6.1
   get_storage: ^2.0.3
-  percent_indicator: ^3.4.0
+  percent_indicator: ^4.0.0
   wakelock: ^0.6.0+1
-  rive: ^0.7.33
+  rive: ^0.8.4
   audioplayers: ^0.20.1
   expandable: ^5.0.1
   webview_flutter: ^3.0.0
@@ -59,7 +59,7 @@ dependencies:
   settings_ui: ^2.0.1
   share: ^2.0.4
   shared_preferences: ^2.0.9
-  table_calendar: ^2.2.1
+  table_calendar: ^3.0.5
   toast: ^0.1.5
   url_launcher: ^6.0.15
 
@@ -69,7 +69,7 @@ flutter_localizations:
 
 dev_dependencies:
   firebase_analytics: ^9.0.5
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 
