@@ -1,6 +1,7 @@
 import 'package:covidapp/covidapp/uebungen/breathing/uebungen_main.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,8 +13,15 @@ class Uebungen extends StatefulWidget {
 }
 
 class _UebungenState extends State<Uebungen> {
-  final GlobalKey<FormState> _Pulskey =
-      GlobalKey<FormState>(debugLabel: "pulsKey");
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+  }
 
   @override
 
@@ -31,6 +39,15 @@ class _UebungenState extends State<Uebungen> {
             const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
         backgroundColor: const Color(0xFF313237),
         centerTitle: true,
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).push(
+                PageRouteBuilder(pageBuilder: (_, __, ___) => const T2Home()));
+          },
+        ),
         title: const Text(
           "Übung wählen",
           style: TextStyle(
@@ -66,23 +83,19 @@ class _UebungenState extends State<Uebungen> {
           top: 15.0, left: 15.0, right: 15.0, bottom: 5.0),
       child: InkWell(
         onTap: () {
+          if (_title == "Atem Übung") {
+            Navigator.of(context).pushReplacement(PageRouteBuilder(
+                pageBuilder: (_, __, ___) => uebungbreathing()));
+          }
           if (_title == "Puls Analyse") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PulsAnalyse(
-                        key: _Pulskey,
-                      )),
+            Navigator.of(context).pushReplacement(
+              PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => const PulsAnalyse()),
             );
           }
-          if (_title == "Atem Übung") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => uebungbreathing()));
-          } else if (_title == "Emotionaler Zustand") {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const CalendarTabBar()));
+          if (_title == "Emotionaler Zustand") {
+            Navigator.of(context).pushReplacement(PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const CalendarTabBar()));
           }
         },
         child: Container(

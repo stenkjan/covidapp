@@ -61,6 +61,7 @@ class BreatheController extends GetxController {
     _breathTimer.cancel();
     Wakelock.disable();
     calContent.returnBreatheTrue();
+    Get.delete<BreatheController>();
     super.onClose();
   }
 /** Timer countdown */
@@ -93,7 +94,7 @@ class BreatheController extends GetxController {
         calContent.returnBreatheTrue();
         calContent.getBreatheMin(value);
         _breathTimer.cancel();
-        Get.offAll(() => const HomePage());
+        Get.offAll(() =>  HomePage());
 
 /** Popup after timer = 0 */
         Get.snackbar(

@@ -137,6 +137,7 @@ class _TableComplexExampleState extends State<TableComplexExample> {
             },
           ),
           TableCalendar<Event>(
+            locale: 'de_AT',
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: _focusedDay.value,
@@ -147,10 +148,10 @@ class _TableComplexExampleState extends State<TableComplexExample> {
             calendarFormat: _calendarFormat,
             rangeSelectionMode: _rangeSelectionMode,
             eventLoader: _getEventsForDay,
-            holidayPredicate: (day) {
+          /*   holidayPredicate: (day) {
               // Every 20th day of the month will be treated as a holiday
               return day.day == 20;
-            },
+            }, */
             onDaySelected: _onDaySelected,
             onRangeSelected: _onRangeSelected,
             onCalendarCreated: (controller) => _pageController = controller,

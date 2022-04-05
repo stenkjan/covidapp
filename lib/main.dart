@@ -5,7 +5,6 @@ import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'covidapp/content/calendar_content.dart';
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
             create: (_) => GrafikService(),
           ),
         ],
-        child: GetMaterialApp(
+        child: MaterialApp(
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

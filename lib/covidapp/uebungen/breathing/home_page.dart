@@ -2,6 +2,8 @@ import 'package:covidapp/covidapp/uebungen/Uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
+import 'package:covidapp/covidapp/uebungen/uebungen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
@@ -12,22 +14,31 @@ import 'home_controller.dart';
 /** Homepage-- Widget build */
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text(
-            "Start",
-            style: TextStyle(
-                color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
-          ),
-          centerTitle: true,
-          systemOverlayStyle:
-              const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-          backgroundColor: const Color(0xFF313237),
-          iconTheme: const IconThemeData(color: Colors.blue)),
+      /* appBar: AppBar(
+        title: const Text(
+          "Start",
+          style: TextStyle(
+              color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
+        ),
+        centerTitle: true,
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+        backgroundColor: const Color(0xFF313237),
+        iconTheme: const IconThemeData(color: Colors.blue),
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).push(PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const Uebungen()));
+          },
+        ),
+      ), */
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,8 +111,8 @@ class HomePage extends GetView<HomeController> {
               ),
               onPressed: () {
                 /** Navigation to Breathe Page */
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => BreathePage()));
+                Navigator.of(context).pushReplacement(PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => BreathePage()));
               },
             ),
           )

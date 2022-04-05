@@ -35,7 +35,7 @@ class CalendarState extends State<Calendar> {
   bool downToggle = false;
   int currentDate = 0;
   @override
-  initState() {
+  void initState() {
     currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
     print(currentDate.toString());
     super.initState();

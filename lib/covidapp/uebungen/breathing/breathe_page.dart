@@ -9,6 +9,8 @@ import 'breathe_controller.dart';
 /** Parameters are imported from the Breathecontroller / Widget is build  */
 
 class BreathePage extends GetView<BreatheController> {
+  
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +46,7 @@ class BreathePage extends GetView<BreatheController> {
                     const SizedBox(height: 50),
                   ],
                   CircularPercentIndicator(
-                    radius: 280,
+                    radius: 180,
                     lineWidth: 16,
                     backgroundColor: Colors.black12,
                     progressColor: Colors.white,
@@ -81,7 +83,7 @@ class BreathePage extends GetView<BreatheController> {
                       animation: true,
                       animationDuration: 100,
                       alignment: MainAxisAlignment.center,
-                      linearStrokeCap: LinearStrokeCap.roundAll,
+                      barRadius: const Radius.circular(10.0),
                     ),
                   ],
                   const SizedBox(height: 20),

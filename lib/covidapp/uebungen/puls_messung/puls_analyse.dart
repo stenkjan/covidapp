@@ -9,7 +9,7 @@ import '../../../covidapp/uebungen/Puls_Messung/chart.dart';
 import '../../../covidapp/uebungen/Puls_Messung/heart_bpm.dart';
 
 class PulsAnalyse extends StatefulWidget {
-  const PulsAnalyse({required Key key}) : super(key: key);
+  const PulsAnalyse({Key? key}) : super(key: key);
 
   @override
   PulsAnalyseState createState() => PulsAnalyseState();

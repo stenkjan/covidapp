@@ -19,7 +19,10 @@ class _DayPiePeekState extends State<DayPiePeek> {
     calContent = CalendarContent();
     super.initState();
   }
-
+ @override
+  dispose() {
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);

@@ -6,9 +6,7 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
 
 class T2Home extends StatefulWidget {
@@ -52,7 +50,7 @@ class _T2HomeState extends State<T2Home> {
     super.dispose();
   }
 
-  final GlobalKey<ScaffoldState> _scaffoldKeyHome =
+  GlobalKey<ScaffoldState> _scaffoldKeyHome =
       GlobalKey<ScaffoldState>(debugLabel: "homeKey");
 
   @override
