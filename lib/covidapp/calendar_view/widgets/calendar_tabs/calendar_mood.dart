@@ -238,7 +238,6 @@ class CalendarMoodState extends State<CalendarMood> {
           const SizedBox(
             height: 0,
           ),
-         
           const SizedBox(
             height: 50,
           ),

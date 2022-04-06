@@ -153,8 +153,9 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               child: Hero(
                 tag: "atem",
                 child: CircleAvatar(
-                  maxRadius: 70,
+                  radius: 70,
                   backgroundImage: const AssetImage("images/lcs_atemwege.png"),
+                  backgroundColor: Colors.transparent,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(

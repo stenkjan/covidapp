@@ -108,7 +108,7 @@ class T2GrafikState extends State<T2Grafik> {
                     right: 5,
                     top: 10,
                   ),
-                  child: Column(children: [
+                 /*  child: Column(children: [
                     Row(
                       children: [
                         const Text(
@@ -141,7 +141,7 @@ class T2GrafikState extends State<T2Grafik> {
                         )
                       ],
                     )
-                  ]),
+                  ]), */
                 ),
                 Container(
                   width: SizeConfig.getWidth(context) / 3.7,

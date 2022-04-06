@@ -7,6 +7,7 @@ import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
 
 class T2Home extends StatefulWidget {
