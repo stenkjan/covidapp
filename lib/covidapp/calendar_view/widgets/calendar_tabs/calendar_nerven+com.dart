@@ -134,7 +134,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                         child: CircleAvatar(
                           maxRadius: 25,
                           backgroundImage:
-                              const AssetImage("images/lcs_nerven.png"),
+                              const AssetImage("images/lcs_nerven_hero.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Material(
@@ -237,7 +237,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                         child: CircleAvatar(
                           maxRadius: 25,
                           backgroundImage:
-                              const AssetImage("images/lcs_sonstige.png"),
+                              const AssetImage("images/lcs_sonstige_hero.png"),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Material(

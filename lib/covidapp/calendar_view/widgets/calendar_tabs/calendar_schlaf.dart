@@ -183,7 +183,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                 child: CircleAvatar(
                   maxRadius: 70,
                   foregroundColor: const Color(0xFF313237),
-                  backgroundImage: const AssetImage("images/lcs_schlaf.png"),
+                  backgroundImage: const AssetImage("images/lcs_schlaf_hero.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(

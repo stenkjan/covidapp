@@ -166,7 +166,8 @@ class CalendarSinneState extends State<CalendarSinne> {
                 tag: "sinne",
                 child: CircleAvatar(
                   maxRadius: 70,
-                  backgroundImage: const AssetImage("images/lcs_geschmack.png"),
+                  backgroundImage:
+                      const AssetImage("images/lcs_geschmack_hero.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(

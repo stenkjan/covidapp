@@ -169,7 +169,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                 tag: "muedigkeit",
                 child: CircleAvatar(
                   maxRadius: 70,
-                  backgroundImage: const AssetImage("images/lcs_allgemein.png"),
+                  backgroundImage: const AssetImage("images/lcs_allgemein_hero.png"),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Material(
