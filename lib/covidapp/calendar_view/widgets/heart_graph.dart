@@ -54,49 +54,77 @@ class _HeartGraphState extends State<HeartGraph> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 300,
-      width: 400,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          /*   Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
-            child: Text(
-              "Woche",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2,
+    return Stack(
+      children: [
+        Container(
+          alignment: Alignment.topRight,
+          child: TextButton(
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                          backgroundColor: Colors.black12,
+                          title: const Text(""),
+                          content: const Text(
+                              "Die Grafik zeigt einen Vergleich zwischen Herz/-Kreislaufproblemen und der durch die Übung Puls Analyse gemessenen Herzrate (vergangene 7 Tage ab Auswahldatum).",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
+                          actions: [
+                            TextButton(
+                              child: const Text("Verstanden"),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                          ])),
+              child: const Icon(
+                Icons.info,
+                color: Colors.white,
+              )),
+        ),
+        Container(
+          alignment: Alignment.center,
+          height: 300,
+          width: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              /*   Padding(
+                padding: const EdgeInsets.symmetric(vertical: 64.0),
+                child: Text(
+                  "Woche",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2,
+                  ),
+                ),
+              ), */
+              const SizedBox(
+                height: 30,
               ),
-            ),
-          ), */
-          const SizedBox(
-            height: 30,
-          ),
-          LineGraph(
-            features: features,
-            size: const Size(350, 250),
-            labelX: [
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex + 1].toString(),
-              calContent.dateL[calContent.listIndex + 2].toString(),
-              calContent.dateL[calContent.listIndex + 3].toString(),
-              calContent.dateL[calContent.listIndex + 4].toString(),
-              calContent.dateL[calContent.listIndex + 5].toString()
+              LineGraph(
+                features: features,
+                size: const Size(350, 250),
+                labelX: [
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex + 1].toString(),
+                  calContent.dateL[calContent.listIndex + 2].toString(),
+                  calContent.dateL[calContent.listIndex + 3].toString(),
+                  calContent.dateL[calContent.listIndex + 4].toString(),
+                  calContent.dateL[calContent.listIndex + 5].toString()
+                ],
+                labelY: const ['20%', '40%', '60%', '80%', '100%'],
+                showDescription: true,
+                graphColor: Colors.white54,
+                descriptionHeight: 40,
+              ),
+              const SizedBox(
+                height: 0,
+              )
             ],
-            labelY: const ['20%', '40%', '60%', '80%', '100%'],
-            showDescription: true,
-            graphColor: Colors.white54,
-            descriptionHeight: 40,
           ),
-          const SizedBox(
-            height: 0,
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

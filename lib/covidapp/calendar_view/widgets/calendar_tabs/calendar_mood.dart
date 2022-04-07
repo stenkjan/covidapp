@@ -241,32 +241,46 @@ class CalendarMoodState extends State<CalendarMood> {
           const SizedBox(
             height: 50,
           ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(pageBuilder: (_, __, ___) => MoodDesc()),
-                );
-              },
-              child: Hero(
-                tag: "mood",
-                child: CircleAvatar(
-                  maxRadius: 70,
-                  backgroundImage: const AssetImage("images/lcs_allgemein_hero.png"),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Material(
-                        color: const Color(0xFF313237),
-                        shadowColor: const Color(0xFF2E4E57),
-                        borderRadius: BorderRadius.circular(12),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                        )),
+          Column(
+            children: [
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(pageBuilder: (_, __, ___) => MoodDesc()),
+                    );
+                  },
+                  child: Hero(
+                    tag: "mood",
+                    child: CircleAvatar(
+                      maxRadius: 70,
+                      backgroundImage: const AssetImage("images/lcs_allgemein_hero.png"),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Material(
+                            color: const Color(0xFF313237),
+                            shadowColor: const Color(0xFF2E4E57),
+                            borderRadius: BorderRadius.circular(12),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                            )),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+                const SizedBox(
+                height: 5,
+              ),
+              const Text("Für Beschreibung Bild anklicken",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Italic",
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white70)),
+            ],
           ),
         ],
       ),

@@ -55,7 +55,7 @@ class T2GrafikState extends State<T2Grafik> {
     }
 
     return Container(
-      height: 500,
+      height: 495,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10.0),
@@ -108,7 +108,7 @@ class T2GrafikState extends State<T2Grafik> {
                     right: 5,
                     top: 10,
                   ),
-                 /*  child: Column(children: [
+                  /*  child: Column(children: [
                     Row(
                       children: [
                         const Text(
@@ -249,8 +249,9 @@ class T2GrafikState extends State<T2Grafik> {
                 height: 5.0,
               ),
               const SizedBox(
-                height: 320,
+                height: 318,
                 width: 400,
+
                 /// TabBar inclusion
                 child: GrafikTabBar(),
               ),

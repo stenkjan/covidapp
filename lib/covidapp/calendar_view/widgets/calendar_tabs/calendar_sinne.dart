@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/sinne_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
@@ -154,33 +156,48 @@ class CalendarSinneState extends State<CalendarSinne> {
               ),
             ],
           ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(pageBuilder: (_, __, ___) => SinneDesc()),
-                );
-              },
-              child: Hero(
-                tag: "sinne",
-                child: CircleAvatar(
-                  maxRadius: 70,
-                  backgroundImage:
-                      const AssetImage("images/lcs_geschmack_hero.png"),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Material(
-                        color: const Color(0xFF313237),
-                        borderRadius: BorderRadius.circular(12),
-                        shadowColor: const Color(0xFF2E4E57),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                        )),
+          Column(
+            children: [
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => SinneDesc()),
+                    );
+                  },
+                  child: Hero(
+                    tag: "sinne",
+                    child: CircleAvatar(
+                      maxRadius: 70,
+                      backgroundImage:
+                          const AssetImage("images/lcs_geschmack_hero.png"),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Material(
+                            color: const Color(0xFF313237),
+                            borderRadius: BorderRadius.circular(12),
+                            shadowColor: const Color(0xFF2E4E57),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                            )),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text("Für Beschreibung Bild anklicken",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: "Italic",
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white70)),
+            ],
           ),
         ],
       ),

@@ -34,7 +34,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
     return SizedBox(
       height: 420,
       width: 400,
-      
+
       ///
       /// Custom tab bar for Grafik DayPie() WeekGraph() and HeartGraph()
       ///
@@ -133,14 +133,13 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                       ),
                       child: HeartGraph(),
                     ),
-                    ],
+                  ],
                 ),
               ),
             ),
           ),
-          ],
+        ],
       ),
-                    );
+    );
   }
-  
 }

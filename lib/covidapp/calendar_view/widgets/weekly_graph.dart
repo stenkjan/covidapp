@@ -113,38 +113,66 @@ class _WeekGraphState extends State<WeekGraph> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 300,
-      width: 400,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(
-            height: 5,
-          ),
-          LineGraph(
-            features: features,
-            size: const Size(350, 250),
-            labelX: [
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex].toString(),
-              calContent.dateL[calContent.listIndex].toString()
+    return Stack(
+      children: [
+        Container(
+          alignment: Alignment.topRight,
+          child: TextButton(
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                          backgroundColor: Colors.black12,
+                          title: const Text(""),
+                          content: const Text(
+                              "Die Grafik gibt an, wie stark die Symptome in den vergangenen 7 Tagen vom ausgewählten Tag an ausgeprägt waren.",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
+                          actions: [
+                            TextButton(
+                              child: const Text("Verstanden"),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                          ])),
+              child: const Icon(
+                Icons.info,
+                color: Colors.white,
+              )),
+        ),
+        Container(
+          alignment: Alignment.center,
+          height: 300,
+          width: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 5,
+              ),
+              LineGraph(
+                features: features,
+                size: const Size(350, 250),
+                labelX: [
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex].toString(),
+                  calContent.dateL[calContent.listIndex].toString()
+                ],
+                labelY: const ['20%', '40%', '60%', '80%', '100%'],
+                showDescription: true,
+                graphColor: Colors.white54,
+                descriptionHeight: 40,
+              ),
+              const SizedBox(
+                height: 0,
+              )
             ],
-            labelY: const ['20%', '40%', '60%', '80%', '100%'],
-            showDescription: true,
-            graphColor: Colors.white54,
-            descriptionHeight: 40,
           ),
-          const SizedBox(
-            height: 0,
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
