@@ -2,6 +2,8 @@ import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
 
 class MoodDesc extends StatelessWidget {
+  const MoodDesc({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,7 +9,7 @@ class RoundedButton extends StatelessWidget {
       : super(key: key);
 
   @override
-  /** Widget build Firebase authentification Button */
+  /// Widget build Firebase authentification Button */
 
   Widget build(BuildContext context) {
     return GestureDetector(

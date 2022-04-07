@@ -37,7 +37,7 @@ class CalendarState extends State<Calendar> {
   @override
   void initState() {
     currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
-    print(currentDate.toString());
+    //print(currentDate.toString());
     super.initState();
   }
 
@@ -50,9 +50,7 @@ class CalendarState extends State<Calendar> {
   /// build Calendar Widget and Variable input through calendar_tab_bar integration
   @override
   Widget build(BuildContext context) {
-    double fontSize(double size) {
-      return size * SizeConfig.getWidth(context) / 414;
-    }
+  
 
     final calContent = Provider.of<CalendarContent>(context);
     final calService = Provider.of<CalendarService>(context);

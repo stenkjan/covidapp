@@ -9,10 +9,10 @@ class Uebungen extends StatefulWidget {
   const Uebungen({Key? key}) : super(key: key);
 
   @override
-  _UebungenState createState() => _UebungenState();
+  UebungenState createState() => UebungenState();
 }
 
-class _UebungenState extends State<Uebungen> {
+class UebungenState extends State<Uebungen> {
   @override
   void initState() {
     super.initState();
@@ -25,7 +25,7 @@ class _UebungenState extends State<Uebungen> {
 
   @override
 
-  /**Widget build 3 Übungen Classes. On Card Click  */
+  /// Widget build 3 Übungen Classes. On Card Click  */
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,23 +77,23 @@ class _UebungenState extends State<Uebungen> {
   ///
   /// Widget for card
   ///
-  Widget _card(IconData _icon, String _title, String _desc) {
+  Widget _card(IconData icon, String title, String desc) {
     return Padding(
       padding: const EdgeInsets.only(
           top: 15.0, left: 15.0, right: 15.0, bottom: 5.0),
       child: InkWell(
         onTap: () {
-          if (_title == "Atem Übung") {
+          if (title == "Atem Übung") {
             Navigator.of(context).pushReplacement(PageRouteBuilder(
-                pageBuilder: (_, __, ___) => uebungbreathing()));
+                pageBuilder: (_, __, ___) => const UebungBreathing()));
           }
-          if (_title == "Puls Analyse") {
+          if (title == "Puls Analyse") {
             Navigator.of(context).pushReplacement(
               PageRouteBuilder(
                   pageBuilder: (_, __, ___) => const PulsAnalyse()),
             );
           }
-          if (_title == "Emotionaler Zustand") {
+          if (title == "Emotionaler Zustand") {
             Navigator.of(context).pushReplacement(PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const CalendarTabBar()));
           }
@@ -126,7 +126,7 @@ class _UebungenState extends State<Uebungen> {
               Padding(
                 padding: const EdgeInsets.only(top: 65.0),
                 child: Icon(
-                  _icon,
+                  icon,
                   color: Colors.white54,
                   size: 30.0,
                 ),
@@ -140,7 +140,7 @@ class _UebungenState extends State<Uebungen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        _title,
+                        title,
                         style: const TextStyle(
                             color: Colors.white,
                             fontFamily: "Sans",
@@ -150,7 +150,7 @@ class _UebungenState extends State<Uebungen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, right: 15.0),
                         child: Text(
-                          _desc,
+                          desc,
                           style: const TextStyle(
                               color: Colors.white54,
                               fontFamily: "Popins",

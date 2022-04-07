@@ -6,7 +6,7 @@ class Social extends StatelessWidget {
   const Social({Key? key}) : super(key: key);
 
   @override
-  /** Widget build  */
+  /// Widget build  */
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -39,7 +39,7 @@ class Social extends StatelessWidget {
         .join('&');
   }
 
-/**Redirection to Email Formular */
+/// Redirection to Email Formular */
   void _launchURL() async {
     final Uri emailLaunchUri = Uri(
         scheme: 'mailto',

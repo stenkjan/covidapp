@@ -10,7 +10,7 @@ class CalendarMuedigkeit extends StatefulWidget {
   const CalendarMuedigkeit({Key? key}) : super(key: key);
   @override
   CalendarMuedigkeitState createState() => CalendarMuedigkeitState();
-  // TODO: implement createState
+
 
 }
 
@@ -29,6 +29,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }
@@ -164,7 +165,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   onTap: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => MuedigkeitDesc()),
+                          pageBuilder: (_, __, ___) => const MuedigkeitDesc()),
                     );
                   },
                   child: Hero(

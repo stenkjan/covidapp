@@ -3,9 +3,11 @@ import 'package:covidapp/covidapp/uebungen/breathing/home_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/theme_controller.dart';
 import 'package:get/get.dart';
 
-/** c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
+/// c as variable for the initialization of colors,textstyle and Settings  -- Widget to breathing homepage*/
 
-class uebungbreathing extends GetView<ThemeController> {  
+class UebungBreathing extends GetView<ThemeController> {
+  const UebungBreathing({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return GetX<ThemeController>(
@@ -46,7 +48,7 @@ class uebungbreathing extends GetView<ThemeController> {
                   ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
             ),
             debugShowCheckedModeBanner: false,
-            home:  HomePage(),
+            home:  const HomePage(),
           );
         });
   }

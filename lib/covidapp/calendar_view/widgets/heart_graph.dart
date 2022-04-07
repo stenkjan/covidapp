@@ -7,11 +7,13 @@ import '../../content/strings.dart';
 import '../../content/variable_colors.dart';
 
 class HeartGraph extends StatefulWidget {
+  const HeartGraph({Key? key}) : super(key: key);
+
   @override
-  _HeartGraphState createState() => _HeartGraphState();
+  HeartGraphState createState() => HeartGraphState();
 }
 
-class _HeartGraphState extends State<HeartGraph> {
+class HeartGraphState extends State<HeartGraph> {
   late List<Feature> features;
   late CalendarContent calContent;
   @override

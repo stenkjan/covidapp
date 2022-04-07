@@ -8,9 +8,11 @@ import 'package:provider/provider.dart';
 
 import 'settings_controller.dart';
 
-/** Settingspage-- Widget build  */
+/// Settingspage-- Widget build  */
 
 class SettingsPage extends GetView<SettingsController> {
+  const SettingsPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
@@ -48,14 +50,6 @@ class SettingsPage extends GetView<SettingsController> {
                   ),
                   const SizedBox(height: 10),
                   ToggleButtons(
-                    children: [
-                      for (BackgroundColors theme in c.themes) ...[
-                        Container(
-                          color: backgrounds[theme],
-                          width: 50,
-                        )
-                      ]
-                    ],
                     isSelected: c.isSelected,
                     borderWidth: 3,
                     selectedBorderColor: Colors.white,
@@ -64,6 +58,14 @@ class SettingsPage extends GetView<SettingsController> {
                     onPressed: (index) {
                       c.selectBackground(index, context);
                     },
+                    children: [
+                      for (BackgroundColors theme in c.themes) ...[
+                        Container(
+                          color: backgrounds[theme],
+                          width: 50,
+                        )
+                      ]
+                    ],
                   ),
                   const SizedBox(
                     height: 30,
@@ -88,8 +90,7 @@ class SettingsPage extends GetView<SettingsController> {
                                   size: 32,
                                 )),
                             Text(
-                              calContent.getBreatheMin(c.totalTimeString) +
-                                  ' min',
+                              '${calContent.getBreatheMin(c.totalTimeString)} min',
                               style: Theme.of(context).textTheme.headline6,
                             ),
                             IconButton(

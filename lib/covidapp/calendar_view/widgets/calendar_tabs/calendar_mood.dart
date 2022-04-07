@@ -9,13 +9,13 @@ class CalendarMood extends StatefulWidget {
   const CalendarMood({Key? key}) : super(key: key);
   @override
   CalendarMoodState createState() => CalendarMoodState();
-  // TODO: implement createState
+
 
 }
 
 class CalendarMoodState extends State<CalendarMood> {
   var zustand = <String>[];
-  var firstPress;
+  late bool firstPress;
 
   @override
   void initState() {
@@ -62,7 +62,8 @@ class CalendarMoodState extends State<CalendarMood> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print(calContent.count.toString() + ' count ');
+                            // ignore: avoid_print
+                            print('${calContent.count} count ');
                             if (firstPress == false) {
                               calContent.increment();
                               calContent
@@ -248,7 +249,7 @@ class CalendarMoodState extends State<CalendarMood> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => MoodDesc()),
+                      PageRouteBuilder(pageBuilder: (_, __, ___) => const MoodDesc()),
                     );
                   },
                   child: Hero(

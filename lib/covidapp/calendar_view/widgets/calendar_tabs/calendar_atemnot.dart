@@ -35,7 +35,6 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
-    final TextEditingController atemnotController = TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
@@ -149,7 +148,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => AtemDesc()),
+                      PageRouteBuilder(pageBuilder: (_, __, ___) => const AtemDesc()),
                     );
                   },
                   child: Hero(

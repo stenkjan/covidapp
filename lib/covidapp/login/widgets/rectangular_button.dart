@@ -9,7 +9,7 @@ class RectangularButton extends StatelessWidget {
       : super(key: key);
 
   @override
-  /** Widget build Firebase authentification on Button */
+  /// Widget build Firebase authentification on Button */
 
   Widget build(BuildContext context) {
     return GestureDetector(

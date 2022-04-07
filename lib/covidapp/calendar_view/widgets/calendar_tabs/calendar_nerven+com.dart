@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/misc_desc.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/nerven_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
@@ -10,7 +12,7 @@ class CalendarNervCom extends StatefulWidget {
   const CalendarNervCom({Key? key}) : super(key: key);
   @override
   CalendarNervComState createState() => CalendarNervComState();
-  // TODO: implement createState
+
 
 }
 
@@ -30,6 +32,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
     super.initState();
   }
 
+  @override
   void dispose() {
     super.dispose();
   }
@@ -37,7 +40,6 @@ class CalendarNervComState extends State<CalendarNervCom> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
-    final TextEditingController nervenController = TextEditingController();
     final TextEditingController anderesymptomeController =
         TextEditingController();
 
@@ -126,7 +128,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => NervComDesc()),
+                              pageBuilder: (_, __, ___) => const NervComDesc()),
                         );
                       },
                       child: Hero(
@@ -229,7 +231,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                       onTap: () {
                         Navigator.of(context).push(
                           PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => MiscDesc()),
+                              pageBuilder: (_, __, ___) => const MiscDesc()),
                         );
                       },
                       child: Hero(

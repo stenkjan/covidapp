@@ -7,11 +7,13 @@ import 'package:flutter/material.dart';
 import '../../content/strings.dart';
 
 class WeekGraph extends StatefulWidget {
+  const WeekGraph({Key? key}) : super(key: key);
+
   @override
-  _WeekGraphState createState() => _WeekGraphState();
+  WeekGraphState createState() => WeekGraphState();
 }
 
-class _WeekGraphState extends State<WeekGraph> {
+class WeekGraphState extends State<WeekGraph> {
   late List<Feature> features;
   late CalendarContent calContent;
   @override

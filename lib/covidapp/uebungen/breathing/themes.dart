@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-/** Backround colors with the 2 initalized Spots */
+/// Backround colors with the 2 initalized Spots */
 
 final Map<BackgroundColors, dynamic> backgrounds = {
   BackgroundColors.blue: const Color(0xFF029CF5),

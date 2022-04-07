@@ -16,7 +16,6 @@ class DatabaseService {
   late List nameData;
   int registeredDate = 0;
 
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   final CalendarContent calContent = CalendarContent();
   Future updateUserData(
       String email, String firstname, String lastname, String birthday) async {
@@ -27,7 +26,7 @@ class DatabaseService {
       'birthday': birthday,
     });
   }
-/** Model Updating  */
+/// Model Updating  */
 
   Future updateCalendarModel(int mood, int muedigkeit, int atemnot, int sinne,
       int herz, int schlaf, int nerven, String comment, int createdDate) async {
@@ -49,7 +48,7 @@ class DatabaseService {
     });
   }
 
-/** Reads the Collection on the given User */
+/// Reads the Collection on the given User */
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance
         .collection('users')
@@ -118,6 +117,7 @@ class DatabaseService {
                 .toList() as List;
             if (docList.isEmpty == true) {
               docList = calContent.getCalendarList();
+              // ignore: avoid_print
               print(" calList in db service is called");
             }
           }

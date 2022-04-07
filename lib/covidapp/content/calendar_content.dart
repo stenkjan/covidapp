@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
@@ -9,7 +11,7 @@ import 'package:intl/intl.dart';
 /*MasterClass of Variable Declaration and Methods for Value Exchange */
 
 class CalendarContent with ChangeNotifier {
-  /** Variables Inititialisation  */
+  /// Variables Inititialisation
   bool saved = false;
 /*calendar variables*/
   late int mood = moodL.last;
@@ -50,7 +52,6 @@ class CalendarContent with ChangeNotifier {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   GrafikService gS = GrafikService();
   String? userId;
 /*calendar variables lists with initial data*/
@@ -145,7 +146,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/** timestring gets the Brathing -- if empty -sets the String to 0 */
+/// timestring gets the Brathing -- if empty -sets the String to 0 */
   String getBreatheMin(String timeString) {
     if (returnBreatheTrue() == true) {
       breatheMin = timeString;
@@ -175,7 +176,7 @@ class CalendarContent with ChangeNotifier {
     return daychangeBool;
   }
 
-  /** boolean for current Date */
+  /// boolean for current Date */
   bool getgrafikCurrentDate(int grafikcurrentDate) {
     grafikcurrentDateCal = grafikcurrentDate;
     bool curDateooRange = false;
@@ -237,15 +238,15 @@ class CalendarContent with ChangeNotifier {
     headlineupdate = headline;
     daycount = grafikcurrentDateCal;
     sum = listSum();
-    print(daycount.toString() + " :dC");
+    print("$daycount :dC");
 
     index = dateL.indexOf(daycount);
-    print(index.toString() + " index daycount");
+    print("$index index daycount");
     if (index < 0 || index > dateL.length) {
       index = dateL.indexOf(daycount - 1);
       if (index < 0) index = dateL.indexOf(dateL.first);
     }
-    print(index.toString() + " : index of dateL");
+    print("$index : index of dateL");
     createdDate = currentDate.toString();
     if (index <= moodL.length) {
       mood = moodL[index];
@@ -309,7 +310,7 @@ class CalendarContent with ChangeNotifier {
     headline[5]['value'] = calList[7];
 
     notifyListeners();
-    print(index.toString() + " getCalenderListIndex");
+    print("$index getCalenderListIndex");
     return calList;
   }
 
@@ -328,7 +329,7 @@ class CalendarContent with ChangeNotifier {
       return color = (AppColors.pieColors[5]);
     }
     if (value == 0) {
-      print(color.toString() + " null");
+      print("$color null");
       return color;
     }
     return color;
@@ -338,12 +339,12 @@ class CalendarContent with ChangeNotifier {
     Color color = AppColors.pieColors[value];
     if (value == 0) {
       color = Colors.grey;
-      print(color.toString() + " null");
+      print("$color null");
       return color;
     }
     return color;
   }
-/** Initializing Calender Color */
+/// Initializing Calender Color */
 
   Color getCalendarColorSum() {
     double value = sum;
@@ -362,13 +363,13 @@ class CalendarContent with ChangeNotifier {
       return color = (AppColors.pieColors[5]);
     }
     if (value == 0) {
-      print(color.toString() + " null");
+      print("$color null");
       return color;
     }
     return color;
   }
 
-/** Saving the Variables to double  */
+/// Saving the Variables to double  */
   double listSum() {
     double sum = mood.toDouble() +
         muedigkeit.toDouble() +
@@ -398,7 +399,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/** Counter */
+/// Counter */
   double answeredSum() {
     double sum = 0;
     if (mood != 0) sum++;
@@ -420,7 +421,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/** Listener Database update */
+/// Listener Database update */
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
     muedigkeitL.add(muedigkeit);
@@ -428,7 +429,7 @@ class CalendarContent with ChangeNotifier {
     return muedigkeit;
   }
 
-/** Calender Atemnot */
+/// Calender Atemnot */
   int calendarContentatemnot(double a) {
     atemnot = a.round();
     atemnotL.add(atemnot);
@@ -436,7 +437,7 @@ class CalendarContent with ChangeNotifier {
     return atemnot;
   }
 
-/** Calender Sinne */
+/// Calender Sinne */
   int calendarContentsinne(double b) {
     sinne = b.round();
     sinneL.add(sinne);
@@ -444,7 +445,7 @@ class CalendarContent with ChangeNotifier {
     return sinne;
   }
 
-/** Calender Herz */
+/// Calender Herz */
   int calendarContentherz(double c) {
     herz = c.round();
     herzL.add(herz);
@@ -452,7 +453,7 @@ class CalendarContent with ChangeNotifier {
     return herz;
   }
 
-/** Calender schlaf */
+/// Calender schlaf */
   int calendarContentschlaf(double s) {
     schlaf = s.round();
     schlafL.add(schlaf);
@@ -460,7 +461,7 @@ class CalendarContent with ChangeNotifier {
     return schlaf;
   }
 
-/** Calender Nerven */
+/// Calender Nerven */
   int calendarContentnerven(double n) {
     nerven = n.round();
     nervenL.add(nerven);
@@ -468,7 +469,7 @@ class CalendarContent with ChangeNotifier {
     return nerven;
   }
 
-/** Calender Comment */
+/// Calender Comment */
   String calendarContentcomment(String com) {
     comment = com;
     notifyListeners();
@@ -489,7 +490,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/** Push to Firebase  */
+/// Push to Firebase  */
   Future<bool> clear() async {
     createDateInt = int.parse(createdDate);
     if (createDateInt > dateL.last.toInt()) {
@@ -518,13 +519,13 @@ class CalendarContent with ChangeNotifier {
       nerven = 0;
       comment = "";
       createdDate = "";
-      print(docExists.toString() + ' : doc should exist');
+      print('$docExists : doc should exist');
 
       notifyListeners();
       return docExists;
     } else {
       docExists = false;
-      print(docExists.toString() + ' : doc  not exist');
+      print('$docExists : doc  not exist');
 
       notifyListeners();
       return docExists;

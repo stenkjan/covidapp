@@ -6,7 +6,7 @@ class HeadText extends StatelessWidget {
 
   @override
 
-  /**Widget build Headtext -- Login  */
+  /// Widget build Headtext -- Login  */
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -1,4 +1,4 @@
-/**Initialization Graphic Model */
+/// Initialization Graphic Model */
 class GrafikModel {
   late int? mood;
   late int? muedigkeit;
@@ -27,6 +27,7 @@ class GrafikModel {
     if (mood != null) {
       return mood;
     }
+    return null;
   }
 
  

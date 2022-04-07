@@ -13,7 +13,7 @@ const String boxHideTimer = 'hideTimer';
 const String boxHideBreathBar = 'hideBreathBar';
 
 // themes
-/**  initializing the Colors to 2 */
+/// initializing the Colors to 2 */
 enum BackgroundColors {
   blue,
   black,

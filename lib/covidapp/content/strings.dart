@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 
-/** Initializing of Variable Lists for Data Transfer*/
+/// Initializing of Variable Lists for Data Transfer*/
 
 CalendarContent calContent = CalendarContent();
 List healthscore = [

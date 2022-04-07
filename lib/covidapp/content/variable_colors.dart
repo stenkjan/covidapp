@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/** Initializing Colors */
+/// Initializing Colors */
 
 final List<Color> variableColors = [
   Colors.white, //mood

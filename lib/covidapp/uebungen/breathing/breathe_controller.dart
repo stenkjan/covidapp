@@ -29,7 +29,7 @@ class BreatheController extends GetxController {
 
   @override
 
-  /**  on initialization */
+  /// on initialization */
 
   void onInit() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
@@ -45,7 +45,7 @@ class BreatheController extends GetxController {
   }
 
   @override
-  /** when ready the timer starts */
+  /// when ready the timer starts */
 
   void onReady() {
     super.onReady();
@@ -53,7 +53,7 @@ class BreatheController extends GetxController {
   }
 
   @override
-  /**  when closed  */
+  /// when closed  */
 
   void onClose() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -64,7 +64,7 @@ class BreatheController extends GetxController {
     Get.delete<BreatheController>();
     super.onClose();
   }
-/** Timer countdown */
+/// Timer countdown */
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -94,7 +94,7 @@ class BreatheController extends GetxController {
         calContent.returnBreatheTrue();
         calContent.getBreatheMin(value);
         _breathTimer.cancel();
-        Get.offAll(() =>  HomePage());
+        Get.offAll(() =>  const HomePage());
 
 /** Popup after timer = 0 */
         Get.snackbar(
@@ -106,7 +106,7 @@ class BreatheController extends GetxController {
           messageText: Container(),
           titleText: Text('Abgeschlossen',
               style:
-                  Get.theme.textTheme.headline5?.copyWith(color: Colors.black)),
+                  Get.theme.textTheme.headline5!.copyWith(color: Colors.black)),
         );
       }
     });

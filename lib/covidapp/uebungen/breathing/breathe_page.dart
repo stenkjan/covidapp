@@ -6,9 +6,11 @@ import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import 'breathe_controller.dart';
 
-/** Parameters are imported from the Breathecontroller / Widget is build  */
+/// Parameters are imported from the Breathecontroller / Widget is build  */
 
 class BreathePage extends GetView<BreatheController> {
+  const BreathePage({Key? key}) : super(key: key);
+
   
  
   @override

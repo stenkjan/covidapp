@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:expandable/expandable.dart';
@@ -31,9 +33,9 @@ class FAQ extends StatelessWidget {
         ),
         child: ListView(
           physics: const BouncingScrollPhysics(),
-          children: <Widget>[
-            const Card1(),
-            const Card2(),
+          children: const <Widget>[
+            Card1(),
+            Card2(),
             Card3(),
             Card4(),
             Card5(),
@@ -112,7 +114,7 @@ class Card1 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -190,7 +192,7 @@ class Card2 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -222,6 +224,8 @@ class Card2 extends StatelessWidget {
 }
 
 class Card3 extends StatelessWidget {
+  const Card3({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -267,7 +271,7 @@ class Card3 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -299,6 +303,8 @@ class Card3 extends StatelessWidget {
 }
 
 class Card4 extends StatelessWidget {
+  const Card4({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -344,7 +350,7 @@ class Card4 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -376,6 +382,8 @@ class Card4 extends StatelessWidget {
 }
 
 class Card5 extends StatelessWidget {
+  const Card5({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -421,7 +429,7 @@ class Card5 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -453,6 +461,8 @@ class Card5 extends StatelessWidget {
 }
 
 class Card6 extends StatelessWidget {
+  const Card6({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -498,7 +508,7 @@ class Card6 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -530,6 +540,8 @@ class Card6 extends StatelessWidget {
 }
 
 class Card7 extends StatelessWidget {
+  const Card7({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -575,7 +587,8 @@ class Card7 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                   
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(
@@ -607,6 +620,8 @@ class Card7 extends StatelessWidget {
 }
 
 class Card8 extends StatelessWidget {
+  const Card8({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ExpandableNotifier(
@@ -652,7 +667,8 @@ class Card8 extends StatelessWidget {
                 expanded: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var _ in Iterable.generate(1))
+                  
+                    for (var i in Iterable.generate(1))
                       const Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: Text(

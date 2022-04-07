@@ -7,12 +7,26 @@ class CalendarTabBar extends StatefulWidget {
   const CalendarTabBar({Key? key}) : super(key: key);
 
   @override
-  _CalendarTabBarState createState() => _CalendarTabBarState();
+  CalendarTabBarState createState() => CalendarTabBarState();
 }
 
-class _CalendarTabBarState extends State<CalendarTabBar> {
-  bool itemSwitch = false;
+class CalendarTabBarState extends State<CalendarTabBar> {
+  late bool itemSwitch;
   String questionChoice = "";
+  late bool showInformation;
+
+  @override
+  void initState() {
+    itemSwitch = false;
+    showInformation = false;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,34 +76,139 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                           border: Border.all(color: Colors.black54),
                           color: Colors.black26),
                       child: TabBar(
-                        indicatorColor: const Color(0xFF31A1C9),
-                        labelColor: Colors.white,
-                        unselectedLabelColor: Colors.white54,
-                        indicator: ShapeDecoration.fromBoxDecoration(
-                            const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
-                                color: Color(0xFF31A1C9))),
-                        tabs: const [
-                          Tab(
-                            child: Text(
-                              "Kalender",
+                          indicatorColor: const Color(0xFF31A1C9),
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.white54,
+                          indicator: ShapeDecoration.fromBoxDecoration(
+                              const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15.0)),
+                                  color: Color(0xFF31A1C9))),
+                          tabs: const [
+                            Tab(
+                              child: Text(
+                                "Kalender",
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ),
+                            Tab(
+                                child: Text(
+                              "Grafik",
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.w300,
                               ),
-                            ),
-                          ),
-                          Tab(
-                              child: Text(
-                            "Grafik",
-                            style: TextStyle(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          )),
-                        ],
-                      ),
+                            )),
+                          ],
+                          onTap: (int i) {
+                            if (showInformation = false) {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 600,
+                                      width: 400,
+                                      child: AlertDialog(
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))),
+                                        backgroundColor: Colors.black12,
+                                        title: const Text("Anleitung"),
+                                        content: Builder(
+                                          builder: (context) {
+                                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                            var height = MediaQuery.of(context)
+                                                .size
+                                                .height;
+                                            var width = MediaQuery.of(context)
+                                                .size
+                                                .width;
+                                            return SizedBox(
+                                              height: height - 50,
+                                              width: width - 25,
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    width: 200,
+                                                    height: 300,
+                                                    alignment: Alignment.center,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        10.0)),
+                                                            color: Color(
+                                                                0xFF363940),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: Colors
+                                                                    .black12,
+                                                                blurRadius:
+                                                                    10.0,
+                                                                spreadRadius:
+                                                                    2.0,
+                                                              ),
+                                                            ],
+                                                            image:
+                                                                DecorationImage(
+                                                                    image:
+                                                                        AssetImage(
+                                                                      "images/grafik_helper_image.png",
+                                                                    ),
+                                                                    fit: BoxFit
+                                                                        .cover)),
+                                                  ),
+                                                  const Expanded(
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      child: SizedBox(
+                                                        width: 350,
+                                                        child: Text("""
+                                                                                          In der Grafik finden Sie oben links den aktuellen Tag, mit den Pfeilen können Sie vergangene Tage anzeigen. Darunter befindet sich eine Auflistung der Symptome und links davon die dazugehörige Farbe. Rechts davon wird der aktuelle Wert der Symptome je Tag angezeigt, wobei 10-1000 für leichte-schwere Symptome steht. Unterhalb können Sie mit einem Klick auf die Wörter Tag, Woche und BPM zwischen den verschiedenen grafischen Darstellungen der Symptome wechseln""",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                            )),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        actions: [
+                                          Row(
+                                            children: [
+                                              CheckboxListTile(
+                                                title: const Text(
+                                                    "Nicht wieder anzeigen"), //    <-- label
+                                                value: showInformation,
+                                                onChanged: (bool? newValue) {
+                                                  setState(() {
+                                                    showInformation = newValue!;
+                                                  });
+                                                },
+                                              ),
+                                              TextButton(
+                                                child: const Text("Verstanden"),
+                                                onPressed: () =>
+                                                    Navigator.pop(context),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
+                            }
+                          }),
                     ),
                   ),
                 ),
@@ -104,12 +223,10 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
                       child: Calendar(),
                     ),
-                   
                     Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
-                      child: T2Grafik(),
+                      child: Grafik(),
                     ),
-                
                   ],
                 ),
               ),
@@ -118,6 +235,5 @@ class _CalendarTabBarState extends State<CalendarTabBar> {
         ],
       ),
     );
-  
   }
 }

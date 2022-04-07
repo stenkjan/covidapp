@@ -1,5 +1,4 @@
 import 'package:covidapp/covidapp/calendar_view/grafik_tab_bar.dart';
-import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/grafik_content.dart';
 import 'package:covidapp/covidapp/content/size.dart';
@@ -12,26 +11,27 @@ import 'package:provider/provider.dart';
 
 import 'widgets/arrow_button.dart';
 
-class T2Grafik extends StatefulWidget {
-  const T2Grafik({Key? key}) : super(key: key);
+class Grafik extends StatefulWidget {
+  const Grafik({Key? key}) : super(key: key);
 
   @override
-  T2GrafikState createState() => T2GrafikState();
+  GrafikState createState() => GrafikState();
 }
 
-class T2GrafikState extends State<T2Grafik> {
+class GrafikState extends State<Grafik> {
   late bool dayChange;
   late final GrafikService gS;
   late final GrafikContent grafC;
   List? docList;
-  int current_date = 0;
+  int currentDateInt = 0;
 
   @override
   void initState() {
-    current_date = int.parse(DateFormat('d').format(DateTime.now()).toString());
+    currentDateInt =
+        int.parse(DateFormat('d').format(DateTime.now()).toString());
     dayChange = false;
     gS = GrafikService();
-    gS.dailyRead(current_date, dayChange);
+    gS.dailyRead(currentDateInt, dayChange);
     docList = gS.docList;
     // ignore: avoid_print
     super.initState();
@@ -93,7 +93,7 @@ class T2GrafikState extends State<T2Grafik> {
                         left: SizeConfig.getWidth(context) / 20),
                     child: Center(
                       child: Text(
-                        current_date.toString(),
+                        currentDateInt.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: fontSize(25),
@@ -162,10 +162,11 @@ class T2GrafikState extends State<T2Grafik> {
                                 dayChange = false;
                                 currentDate();
 
-                                calContent.getgrafikCurrentDate(current_date);
+                                calContent.getgrafikCurrentDate(currentDateInt);
                                 calContent.getCalendarList();
                                 calContent.getCalendarColorSum();
-                                grafService.dailyRead(current_date, dayChange);
+                                grafService.dailyRead(
+                                    currentDateInt, dayChange);
                               });
                             },
                           )),
@@ -184,13 +185,13 @@ class T2GrafikState extends State<T2Grafik> {
                             setState(() {
                               dayChange = true;
                               currentDate();
-                              calContent.getgrafikCurrentDate(current_date);
+                              calContent.getgrafikCurrentDate(currentDateInt);
                               calContent.getCalendarList();
                               calContent.getCalendarColorSum();
-                              grafService.dailyRead(current_date, dayChange);
+                              grafService.dailyRead(currentDateInt, dayChange);
                               headline;
                               if (kDebugMode) {
-                                print(current_date);
+                                print(currentDateInt);
                               }
                             });
                           },
@@ -264,23 +265,24 @@ class T2GrafikState extends State<T2Grafik> {
 
   bool currentDate() {
     setState(() {
-      String cur_date = current_date.toString();
+      String currentDateString = currentDateInt.toString();
       if (dayChange == true) {
-        if (cur_date == DateFormat('d').format(DateTime.now()).toString()) {
+        if (currentDateString ==
+            DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
-          current_date += 1;
+          currentDateInt += 1;
           dayChange = false;
         }
       } else if (dayChange == false) {
-        if (current_date == 1) {
+        if (currentDateInt == 1) {
           dayChange = true;
         } else {
-          current_date -= 1;
+          currentDateInt -= 1;
           dayChange = true;
         }
       }
-      cur_date = current_date.toString();
+      currentDateString = currentDateInt.toString();
     });
     return dayChange;
   }

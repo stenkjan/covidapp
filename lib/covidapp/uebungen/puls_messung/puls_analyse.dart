@@ -73,7 +73,8 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                     });
                   },
                   onBPM: (value) => setState(() {
-                    print(" on bpm" + calContent.pulseTrue.toString());
+                    // ignore: avoid_print
+                    print(" on bpm${calContent.pulseTrue}");
                     calContent.returnPulseTrue();
                     if (bpmValues.length >= 100) bpmValues.removeAt(0);
                     bpmValues.add(SensorValue(

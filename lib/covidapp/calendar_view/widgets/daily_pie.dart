@@ -1,20 +1,17 @@
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-
-import '../../content/strings.dart';
 
 class DayPie extends StatefulWidget {
   const DayPie({Key? key}) : super(key: key);
 
   @override
-  _DayPieState createState() => _DayPieState();
+  DayPieState createState() => DayPieState();
 }
 
-class _DayPieState extends State<DayPie> {
+class DayPieState extends State<DayPie> {
   late CalendarContent calContent;
   @override
   void initState() {

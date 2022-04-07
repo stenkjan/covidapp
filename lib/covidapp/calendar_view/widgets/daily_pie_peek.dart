@@ -8,10 +8,10 @@ class DayPiePeek extends StatefulWidget {
   final int index;
   const DayPiePeek( this.index, {Key? key}) : super(key: key);
   @override
-  _DayPiePeekState createState() => _DayPiePeekState();
+  DayPiePeekState createState() => DayPiePeekState();
 }
 
-class _DayPiePeekState extends State<DayPiePeek> {
+class DayPiePeekState extends State<DayPiePeek> {
   late CalendarContent calContent;
   
   @override

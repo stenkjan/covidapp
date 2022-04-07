@@ -15,7 +15,7 @@ class Credentials extends StatefulWidget {
 
 class _CredentialsState extends State<Credentials> {
   @override
-  /** Widget build --- Email, Password fields, Reset Passord,Name, Birthday  */
+  /// Widget build --- Email, Password fields, Reset Passord,Name, Birthday  */
 
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
@@ -199,14 +199,9 @@ class _CredentialsState extends State<Credentials> {
                             firstnameController.text,
                             lastnameController.text,
                             birthdayController.text);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const T2Home();
-                            },
-                          ),
-                        );
+                       // ignore: use_build_context_synchronously
+                       Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const T2Home()));
                       } else {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(

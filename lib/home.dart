@@ -1,5 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:covidapp/FAQ.dart';
+import 'package:covidapp/faq.dart';
 import 'package:covidapp/covidapp/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
@@ -7,17 +9,16 @@ import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
 
 class T2Home extends StatefulWidget {
   const T2Home({Key? key}) : super(key: key);
 
   @override
-  _T2HomeState createState() => _T2HomeState();
+  T2HomeState createState() => T2HomeState();
 }
 
-class _T2HomeState extends State<T2Home> {
+class T2HomeState extends State<T2Home> {
   late DatabaseService dbService;
   late AuthService authService;
   late CalendarContent cal;
@@ -51,7 +52,7 @@ class _T2HomeState extends State<T2Home> {
     super.dispose();
   }
 
-  GlobalKey<ScaffoldState> _scaffoldKeyHome =
+  final GlobalKey<ScaffoldState> _scaffoldKeyHome =
       GlobalKey<ScaffoldState>(debugLabel: "homeKey");
 
   @override
@@ -127,7 +128,7 @@ class _T2HomeState extends State<T2Home> {
                         color: Colors.white,
                         onPressed: () {
                           setState(() {
-                            print(cal.breatheTrue.toString() + " breathe");
+                            print("${cal.breatheTrue} breathe");
                             iconbreathe = cal.getbreatheTrue();
                             iconpulse = cal.getpulseTrue();
                             iconcal = cal.getcalendarTrue();
@@ -146,15 +147,15 @@ class _T2HomeState extends State<T2Home> {
 
                 _card(
                     Colors.lightBlueAccent,
-                    breatheMin + " Minuten Atemübungen",
+                    "$breatheMin Minuten Atemübungen",
                     dbService.calContent.fullDate,
                     "Fortschritt",
                     iconbreathe),
-                _card(Colors.yellowAccent, "Tägliche Pulsmessung: " + lastBPM,
+                _card(Colors.yellowAccent, "Tägliche Pulsmessung: $lastBPM",
                     dbService.calContent.fullDate, "Fortschritt", iconpulse),
                 _card(
                     Colors.lightGreenAccent,
-                    "Kalenderaktivitäten: " + calContent.getcalAnswer(),
+                    "Kalenderaktivitäten: ${calContent.getcalAnswer()}",
                     dbService.calContent.fullDate,
                     "Fortschritt",
                     iconcal),
@@ -219,10 +220,10 @@ class _T2HomeState extends State<T2Home> {
     );
   }
 }
-/** Card for Archievements initialization */
+/// Card for Archievements initialization */
 
 Widget _card(
-    Color _color, String _title, String _time, String _value, Icon _icon) {
+    Color color, String title, String time, String value, Icon icon) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
     child: Container(
@@ -255,12 +256,12 @@ Widget _card(
                         decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20.0)),
-                            color: _color),
+                            color: color),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15.0),
                         child: Text(
-                          _title,
+                          title,
                           style: const TextStyle(
                               color: Colors.white,
                               fontFamily: "Sans",
@@ -285,7 +286,7 @@ Widget _card(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    _time,
+                    time,
                     style: const TextStyle(
                         fontFamily: "Sans",
                         fontWeight: FontWeight.w100,
@@ -294,7 +295,7 @@ Widget _card(
                   Row(
                     children: <Widget>[
                       Text(
-                        _value,
+                        value,
                         style: const TextStyle(
                             fontFamily: "Sans",
                             color: Colors.white,
@@ -303,7 +304,7 @@ Widget _card(
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4.0),
-                        child: _icon,
+                        child: icon,
                       ),
                     ],
                   )
@@ -397,6 +398,7 @@ class DrawerLayout extends StatelessWidget {
                   label: const Text("Ausloggen"),
                   onPressed: () async {
                     await authService.signOut();
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Sie haben sich abgemeldet"),
                     ));
@@ -458,13 +460,12 @@ Widget itemDrawer(IconData icon, String txt) {
   );
 }
 
-/** Widget build Card Header  */
+/// Widget build Card Header  */
 Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());
   CalendarContent calContent = CalendarContent();
   dbService.readcalendarCollection();
-  print(auth.getUser().toString() + ' userid');
   return Stack(
     children: <Widget>[
       Container(

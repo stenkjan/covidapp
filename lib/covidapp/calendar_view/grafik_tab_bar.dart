@@ -8,10 +8,10 @@ class GrafikTabBar extends StatefulWidget {
   const GrafikTabBar({Key? key}) : super(key: key);
 
   @override
-  _GrafikTabBarState createState() => _GrafikTabBarState();
+  GrafikTabBarState createState() => GrafikTabBarState();
 }
 
-class _GrafikTabBarState extends State<GrafikTabBar> {
+class GrafikTabBarState extends State<GrafikTabBar> {
   late bool itemSwitch;
   late String questionChoice;
   late CalendarContent calContent;
@@ -104,9 +104,9 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                 ///
                 /// Body tabBar
                 ///
-                body: TabBarView(
+                body: const TabBarView(
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
@@ -117,7 +117,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                       //),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
                       ),
@@ -127,7 +127,7 @@ class _GrafikTabBarState extends State<GrafikTabBar> {
                       //),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 5.0,
                         right: 5.0,
                       ),

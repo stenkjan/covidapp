@@ -1,4 +1,4 @@
-/**Initialization User Model */
+/// Initialization User Model */
 
 class User {
   final String? id;

@@ -4,9 +4,11 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Webview extends StatelessWidget {
+  const Webview({Key? key}) : super(key: key);
+
   @override
 
-  /**Widget build Webview on click Atemübungensymbol  */
+  /// Widget build Webview on click Atemübungensymbol  */
 
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -14,12 +16,14 @@ class Webview extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.amber),
       title: "longcovidapp.at",
-      home: Webviewpage(),
+      home: const Webviewpage(),
     );
   }
 }
 
 class Webviewpage extends StatelessWidget {
+  const Webviewpage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

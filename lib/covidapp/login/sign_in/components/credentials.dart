@@ -9,7 +9,7 @@ class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
   /* static bool signed_in = false; */
   @override
-  /** Widget build --- Email, Password fields, Reset Passord  */
+  /// Widget build --- Email, Password fields, Reset Passord  */
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();

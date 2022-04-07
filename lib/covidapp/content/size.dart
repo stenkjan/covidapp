@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-/** Gets the Height and Width for the Widget */
+/// Gets the Height and Width for the Widget */
 class SizeConfig {
   static getHeight(context) {
     return MediaQuery.of(context).size.height;

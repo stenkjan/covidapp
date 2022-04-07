@@ -8,12 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
+// ignore: use_key_in_widget_constructors
 class TableMultiExample extends StatefulWidget {
   @override
-  _TableMultiExampleState createState() => _TableMultiExampleState();
+  TableMultiExampleState createState() => TableMultiExampleState();
 }
 
-class _TableMultiExampleState extends State<TableMultiExample> {
+class TableMultiExampleState extends State<TableMultiExample> {
   final ValueNotifier<List<Event>> _selectedEvents = ValueNotifier([]);
 
   // Using a `LinkedHashSet` is recommended due to equality comparison override
@@ -62,7 +63,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Multi'),
+        title: const Text('TableCalendar - Multi'),
       ),
       body: Column(
         children: [
@@ -90,7 +91,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
             },
           ),
           ElevatedButton(
-            child: Text('Clear selection'),
+            child: const Text('Clear selection'),
             onPressed: () {
               setState(() {
                 _selectedDays.clear();
@@ -116,6 +117,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: ListTile(
+                        // ignore: avoid_print
                         onTap: () => print('${value[index]}'),
                         title: Text('${value[index]}'),
                       ),

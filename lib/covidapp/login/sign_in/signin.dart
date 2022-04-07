@@ -8,7 +8,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
 
-  /** Widget build Sign in Page*/
+  /// Widget build Sign in Page*/
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(

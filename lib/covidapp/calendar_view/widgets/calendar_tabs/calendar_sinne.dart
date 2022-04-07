@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/sinne_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
@@ -11,7 +9,6 @@ class CalendarSinne extends StatefulWidget {
   const CalendarSinne({Key? key}) : super(key: key);
   @override
   CalendarSinneState createState() => CalendarSinneState();
-  // TODO: implement createState
 
 }
 
@@ -164,7 +161,7 @@ class CalendarSinneState extends State<CalendarSinne> {
                   onTap: () {
                     Navigator.of(context).push(
                       PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => SinneDesc()),
+                          pageBuilder: (_, __, ___) => const SinneDesc()),
                     );
                   },
                   child: Hero(

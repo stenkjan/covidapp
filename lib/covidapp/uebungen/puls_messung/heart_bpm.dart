@@ -66,6 +66,7 @@ class HeartBPMDialog extends StatefulWidget {
   /// present below the skin of the fingertips.
   ///
 
+  // ignore: use_key_in_widget_constructors
   HeartBPMDialog({
     Key? key,
     required this.context,
@@ -96,10 +97,10 @@ class HeartBPMDialog extends StatefulWidget {
   }
 
   @override
-  _HeartBPPView createState() => _HeartBPPView();
+  HeartBPPView createState() => HeartBPPView();
 }
 
-class _HeartBPPView extends State<HeartBPMDialog> {
+class HeartBPPView extends State<HeartBPMDialog> {
   /// Camera controller
   CameraController? _controller;
 
@@ -141,9 +142,9 @@ class _HeartBPPView extends State<HeartBPMDialog> {
     if (_controller != null) return;
     try {
       // 1. get list of all available cameras
-      List<CameraDescription> _cameras = await availableCameras();
+      List<CameraDescription> cameras = await availableCameras();
       // 2. assign the preferred camera with low resolution and disable audio
-      _controller = CameraController(_cameras.first, ResolutionPreset.low,
+      _controller = CameraController(cameras.first, ResolutionPreset.low,
           enableAudio: false, imageFormatGroup: ImageFormatGroup.yuv420);
 
       // 3. initialize the camera
@@ -165,6 +166,7 @@ class _HeartBPPView extends State<HeartBPMDialog> {
         isCameraInitialized = true;
       });
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       rethrow;
     }
@@ -177,19 +179,19 @@ class _HeartBPPView extends State<HeartBPMDialog> {
 
   void _scanImage(CameraImage image) async {
     // get the average value of the image
-    double _avg =
+    double avg =
         image.planes.first.bytes.reduce((value, element) => value + element) /
             image.planes.first.bytes.length;
 
     measureWindow.removeAt(0);
-    measureWindow.add(SensorValue(time: DateTime.now(), value: _avg));
+    measureWindow.add(SensorValue(time: DateTime.now(), value: avg));
 
-    _smoothBPM(_avg).then((value) {
+    _smoothBPM(avg).then((value) {
       widget.onRawData!(
         // call the provided function with the new data sample
         SensorValue(
           time: DateTime.now(),
-          value: _avg,
+          value: avg,
         ),
       );
 
@@ -211,23 +213,23 @@ class _HeartBPPView extends State<HeartBPMDialog> {
   /// $y_n = alpha * x_n + (1 - alpha) * y_{n-1}$
   /// ```
   Future<int> _smoothBPM(double newValue) async {
-    double maxVal = 0, _avg = 0;
+    double maxVal = 0, avg = 0;
 
-    measureWindow.forEach((element) {
-      _avg += element.value / measureWindow.length;
+    for (var element in measureWindow) {
+      avg += element.value / measureWindow.length;
       if (element.value > maxVal) maxVal = element.value as double;
-    });
+    }
 
-    double _threshold = (maxVal + _avg) / 2;
-    int _counter = 0, previousTimestamp = 0;
-    double _tempBPM = 0;
+    double threshold = (maxVal + avg) / 2;
+    int counter = 0, previousTimestamp = 0;
+    double tempBPM = 0;
     for (int i = 1; i < measureWindow.length; i++) {
       // find rising edge
-      if (measureWindow[i - 1].value < _threshold &&
-          measureWindow[i].value > _threshold) {
+      if (measureWindow[i - 1].value < threshold &&
+          measureWindow[i].value > threshold) {
         if (previousTimestamp != 0) {
-          _counter++;
-          _tempBPM += 60000 /
+          counter++;
+          tempBPM += 60000 /
               (measureWindow[i].time.millisecondsSinceEpoch -
                   previousTimestamp); // convert to per minute
         }
@@ -235,11 +237,11 @@ class _HeartBPPView extends State<HeartBPMDialog> {
       }
     }
 
-    if (_counter > 0) {
-      _tempBPM /= _counter;
-      _tempBPM = (1 - widget.alpha) * currentValue + widget.alpha * _tempBPM;
+    if (counter > 0) {
+      tempBPM /= counter;
+      tempBPM = (1 - widget.alpha) * currentValue + widget.alpha * tempBPM;
       setState(() {
-        currentValue = _tempBPM.toInt();
+        currentValue = tempBPM.toInt();
       });
       widget.onBPM(currentValue);
     }

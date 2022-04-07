@@ -1,19 +1,18 @@
-import 'package:covidapp/covidapp/uebungen/Uebungen_webview.dart';
+import 'package:covidapp/covidapp/uebungen/uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
-import 'package:covidapp/covidapp/uebungen/uebungen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
-import 'package:flutter/services.dart';
 
 import 'home_controller.dart';
 
-/** Homepage-- Widget build */
+/// Homepage-- Widget build */
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class HomePage extends GetView<HomeController> {
               onPressed: () {
                 /**Navigation to Settings */
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SettingsPage()));
+                    MaterialPageRoute(builder: (context) => const SettingsPage()));
               },
               icon: const Icon(Icons.settings)),
           Text(
@@ -67,7 +66,7 @@ class HomePage extends GetView<HomeController> {
               onPressed: () {
                 /**navigation to Webview */
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Webview()));
+                    MaterialPageRoute(builder: (context) => const Webview()));
               },
               icon: const Icon(Icons.web)),
           const SizedBox(height: 30),
@@ -112,7 +111,7 @@ class HomePage extends GetView<HomeController> {
               onPressed: () {
                 /** Navigation to Breathe Page */
                 Navigator.of(context).pushReplacement(PageRouteBuilder(
-                    pageBuilder: (_, __, ___) => BreathePage()));
+                    pageBuilder: (_, __, ___) => const BreathePage()));
               },
             ),
           )

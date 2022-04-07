@@ -5,12 +5,13 @@ import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+// ignore: use_key_in_widget_constructors
 class TableBasicsExample extends StatefulWidget {
   @override
-  _TableBasicsExampleState createState() => _TableBasicsExampleState();
+  TableBasicsExampleState createState() => TableBasicsExampleState();
 }
 
-class _TableBasicsExampleState extends State<TableBasicsExample> {
+class TableBasicsExampleState extends State<TableBasicsExample> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
@@ -19,7 +20,7 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Basics'),
+        title: const Text('TableCalendar - Basics'),
       ),
       body: TableCalendar(
         firstDay: kFirstDay,

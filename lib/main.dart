@@ -65,9 +65,9 @@ class MyApp extends StatelessWidget {
                 } else {
                   return const Center(
                     child: SizedBox(
-                      child: CircularProgressIndicator(),
                       height: 50.0,
                       width: 50.0,
+                      child: CircularProgressIndicator(),
                     ),
                   );
                 }

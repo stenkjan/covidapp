@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Contact extends StatelessWidget {
   const Contact({Key? key}) : super(key: key);
 
-/** Widget build  */
+/// Widget build  */
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +39,7 @@ class Contact extends StatelessWidget {
         .join('&');
   }
 
-/** Redirecting to Email */
+/// Redirecting to Email */
 
   void _launchURL() async {
     final Uri emailLaunchUri = Uri(

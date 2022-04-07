@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-/** Initialization of Settings page  */
+/// Initialization of Settings page  */
 
 class SettingsController extends GetxController {
   List<BackgroundColors> themes = BackgroundColors.values;
@@ -14,7 +14,7 @@ class SettingsController extends GetxController {
 
   final box = GetStorage();
 
-/** Time Adjustment */
+/// Time Adjustment */
   RxInt totalTimeSeconds = totalTimeSecondsDefault.obs;
   String get totalTimeString => Duration(seconds: totalTimeSeconds.value)
       .toString()
@@ -33,7 +33,7 @@ class SettingsController extends GetxController {
   RxBool hideBreathBar = false.obs;
 
   @override
-  /** On initalization */
+  /// On initalization */
   void onInit() {
     isSelected = List.generate(backgrounds.length, (index) => false).obs;
     isSelected[themes.indexOf(backgroundColorFromString(
@@ -47,7 +47,7 @@ class SettingsController extends GetxController {
     hideBreathBar.value = box.read(boxHideBreathBar) ?? false;
     super.onInit();
   }
-  /**Classes for Settings -- void   */
+  /// Classes for Settings -- void   */
 
   void selectBackground(int index, BuildContext context) {
     isSelected.value = List.generate(themes.length, (index) => false);
@@ -57,7 +57,7 @@ class SettingsController extends GetxController {
         backgrounds[themes[index]];
   }
 
-/** Total Time (increase) */
+/// Total Time (increase) */
   void increaseTotalTime() {
     if (totalTimeSeconds.value < 3570) {
       totalTimeSeconds.value += 30;
@@ -66,7 +66,7 @@ class SettingsController extends GetxController {
     box.write(boxTotalTime, totalTimeSeconds.value);
   }
 
-/** Total Time (deccrease) */
+/// Total Time (deccrease) */
   void decreaseTotalTime() {
     if (totalTimeSeconds.value > 0) {
       totalTimeSeconds.value -= 30;
@@ -74,7 +74,7 @@ class SettingsController extends GetxController {
     box.write(boxTotalTime, totalTimeSeconds.value);
   }
 
-/** Breath Time (increase) */
+/// Breath Time (increase) */
   void increaseBreathTime() {
     if (breathTimeMilliseconds.value < 59500) {
       breathTimeMilliseconds.value += 500;
@@ -82,7 +82,7 @@ class SettingsController extends GetxController {
     box.write(boxBreathTime, breathTimeMilliseconds.value);
   }
 
-/** Breath Time (decrease) */
+/// Breath Time (decrease) */
   void decreaseBreathTime() {
     if (breathTimeMilliseconds.value > 0) {
       breathTimeMilliseconds.value -= 500;

@@ -1,6 +1,7 @@
 import 'package:covidapp/covidapp/models/user_models.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class AuthService {
@@ -15,9 +16,12 @@ class AuthService {
       return null;
     }
     userGet = User(user.uid, user.email);
-    print(user.uid + ' auth');
+    if (kDebugMode) {
+      print('${user.uid} auth');
+    }
     id = user.uid;
 
+    // ignore: avoid_print
     print(id);
     return User(user.uid, user.email);
   }
@@ -77,14 +81,16 @@ class AuthService {
         }
       }
     }
+    return null;
   }
 
   Future<void> signOut() async {
     try {
       return await _firebaseAuth.signOut();
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
-      return null;
+      return;
     }
   }
 }

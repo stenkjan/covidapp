@@ -10,12 +10,13 @@ import 'package:table_calendar/table_calendar.dart';
 
 
 
+// ignore: use_key_in_widget_constructors
 class TableComplexExample extends StatefulWidget {
   @override
-  _TableComplexExampleState createState() => _TableComplexExampleState();
+  TableComplexExampleState createState() => TableComplexExampleState();
 }
 
-class _TableComplexExampleState extends State<TableComplexExample> {
+class TableComplexExampleState extends State<TableComplexExample> {
   late final PageController _pageController;
   late final ValueNotifier<List<Event>> _selectedEvents;
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
@@ -100,7 +101,7 @@ class _TableComplexExampleState extends State<TableComplexExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Complex'),
+        title: const Text('TableCalendar - Complex'),
       ),
       body: Column(
         children: [
@@ -123,13 +124,13 @@ class _TableComplexExampleState extends State<TableComplexExample> {
                 },
                 onLeftArrowTap: () {
                   _pageController.previousPage(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeOut,
                   );
                 },
                 onRightArrowTap: () {
                   _pageController.nextPage(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeOut,
                   );
                 },
@@ -180,6 +181,7 @@ class _TableComplexExampleState extends State<TableComplexExample> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: ListTile(
+                        // ignore: avoid_print
                         onTap: () => print('${value[index]}'),
                         title: Text('${value[index]}'),
                       ),
@@ -226,27 +228,27 @@ class _CalendarHeader extends StatelessWidget {
             width: 120.0,
             child: Text(
               headerText,
-              style: TextStyle(fontSize: 26.0),
+              style: const TextStyle(fontSize: 26.0),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.calendar_today, size: 20.0),
+            icon: const Icon(Icons.calendar_today, size: 20.0),
             visualDensity: VisualDensity.compact,
             onPressed: onTodayButtonTap,
           ),
           if (clearButtonVisible)
             IconButton(
-              icon: Icon(Icons.clear, size: 20.0),
+              icon: const Icon(Icons.clear, size: 20.0),
               visualDensity: VisualDensity.compact,
               onPressed: onClearButtonTap,
             ),
           const Spacer(),
           IconButton(
-            icon: Icon(Icons.chevron_left),
+            icon: const Icon(Icons.chevron_left),
             onPressed: onLeftArrowTap,
           ),
           IconButton(
-            icon: Icon(Icons.chevron_right),
+            icon: const Icon(Icons.chevron_right),
             onPressed: onRightArrowTap,
           ),
         ],

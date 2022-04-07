@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'constants.dart';
 import 'helpers.dart';
 
-/**Controller for the Theme selection  */
+/// Controller for the Theme selection  */
 
 class ThemeController extends GetxController {
   final box = GetStorage();
@@ -24,6 +24,7 @@ class ThemeController extends GetxController {
   @override
   void onClose() {
     calContent.returnBreatheTrue();
-    print(calContent.breatheTrue.toString() + " breathe in theme");
+    // ignore: avoid_print
+    print("${calContent.breatheTrue} breathe in theme");
   }
 }
