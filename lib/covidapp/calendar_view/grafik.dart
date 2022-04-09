@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/grafik_tab_bar.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/grafik_content.dart';
@@ -24,7 +25,18 @@ class GrafikState extends State<Grafik> {
   late final GrafikContent grafC;
   List? docList;
   int currentDateInt = 0;
+  final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
+      .collection('users')
+      .doc(GrafikService().uid)
+      .collection('calendar')
+      .snapshots();
 
+  final calDocStream = FirebaseFirestore.instance
+      .collection('users')
+      .doc("Hp3voKpg1hZE9uhfMHXjROc8lw72")
+      .collection('calendar')
+      .doc("20")
+      .snapshots();
   @override
   void initState() {
     currentDateInt =
@@ -204,8 +216,50 @@ class GrafikState extends State<Grafik> {
             ),
           ),
           Column(
-            children: <Widget>[
+            children: [
               Center(
+                  child: StreamBuilder<QuerySnapshot>(
+                stream: calStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshots) {
+                  if (!snapshots.hasData) {
+                    return const Center(
+                      child: Text(
+                        'Data not available',
+                      ),
+                    );
+                  }
+                  if (snapshots.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
+
+                  return ListView(
+                    shrinkWrap: true,
+                    children:
+                        snapshots.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(data['atemnot']),
+                        subtitle: Text(data['schlaf']),
+                      );
+                    }).toList(),
+                  );
+                },
+              )),
+            ],
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          const SizedBox(
+            height: 318,
+            width: 400,
+
+            /// TabBar inclusion
+            child: GrafikTabBar(),
+          ),
+          /* Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: headline.map((data) {
@@ -255,9 +309,7 @@ class GrafikState extends State<Grafik> {
 
                 /// TabBar inclusion
                 child: GrafikTabBar(),
-              ),
-            ],
-          ),
+              ), */
         ],
       ),
     );

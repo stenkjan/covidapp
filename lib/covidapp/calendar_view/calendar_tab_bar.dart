@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:covidapp/covidapp/calendar_view/grafik.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class CalendarTabBar extends StatefulWidget {
 class CalendarTabBarState extends State<CalendarTabBar> {
   late bool itemSwitch;
   String questionChoice = "";
-  late bool showInformation;
+  bool showInformation = false;
 
   @override
   void initState() {
@@ -104,7 +106,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                             )),
                           ],
                           onTap: (int i) {
-                            if (showInformation = false) {
+                            if (showInformation == false) {
                               showDialog(
                                   context: context,
                                   builder: (context) {
@@ -184,23 +186,87 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                                           },
                                         ),
                                         actions: [
-                                          Row(
+                                          Stack(
                                             children: [
-                                              CheckboxListTile(
-                                                title: const Text(
-                                                    "Nicht wieder anzeigen"), //    <-- label
-                                                value: showInformation,
-                                                onChanged: (bool? newValue) {
-                                                  setState(() {
-                                                    showInformation = newValue!;
-                                                  });
-                                                },
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                  left: 10,
+                                                  top: 3,
+                                                ),
+                                                alignment: Alignment.bottomLeft,
+                                                child: TextButton(
+                                                  child: const Text(
+                                                    "Verstanden",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontFamily: "sans",
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                ),
                                               ),
-                                              TextButton(
-                                                child: const Text("Verstanden"),
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                  left: 10,
+                                                  top: 3,
+                                                ),
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: TextButton(
+                                                    child: const Text(
+                                                      "Ausblenden",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14,
+                                                        fontFamily: "sans",
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        showInformation = true;
+                                                      });
+
+                                                      Navigator.pop(context);
+                                                    }),
                                               ),
+                                              /*  Container(
+                                                width: 50,
+                                                height: 25,
+                                                alignment: Alignment.bottomLeft,
+                                                margin: const EdgeInsets.only(
+                                                  bottom: 30,
+                                                ),
+                                                child: CheckboxListTile(
+                                                  checkColor: Colors.white,
+                                                  checkboxShape:
+                                                      const CircleBorder(),
+                                                  enableFeedback: true,
+                                                  title: const Text(
+                                                    "Ausblenden",
+                                                    textAlign: TextAlign.end,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: "sans",
+                                                    ),
+                                                  ), //    <-- label
+                                                  value: showInformation,
+                                                  onChanged: (bool? newValue) {
+                                                    setState(() {
+                                                      showInformation =
+                                                          newValue!;
+                                                    });
+                                                  },
+                                                ),
+                                              ), */
                                             ],
                                           ),
                                         ],

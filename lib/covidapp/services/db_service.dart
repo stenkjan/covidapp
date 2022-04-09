@@ -26,7 +26,8 @@ class DatabaseService {
       'birthday': birthday,
     });
   }
-/// Model Updating  */
+
+  /// Model Updating  */
 
   Future updateCalendarModel(int mood, int muedigkeit, int atemnot, int sinne,
       int herz, int schlaf, int nerven, String comment, int createdDate) async {
@@ -48,7 +49,7 @@ class DatabaseService {
     });
   }
 
-/// Reads the Collection on the given User */
+  /// Reads the Collection on the given User */
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance
         .collection('users')
@@ -62,7 +63,8 @@ class DatabaseService {
       }
     });
   }
-/// Get Data of User Class
+
+  /// Get Data of User Class
 
   Future getUserData() async {
     String name = "Maximilian Stenk";
@@ -86,7 +88,8 @@ class DatabaseService {
       return name;
     });
   }
-/// read the doc of the requested date for the issued User UID
+
+  /// read the doc of the requested date for the issued User UID
   Future readcalendarDocDaily(int createdDate, bool dayChange) async {
     int createdDateInt = createdDate;
 
@@ -153,6 +156,4 @@ class DatabaseService {
       });
     }
   }
-
-
 }
