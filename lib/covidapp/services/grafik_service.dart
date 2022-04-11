@@ -20,7 +20,7 @@ class GrafikService {
       dbS = DatabaseService(uid: user!.uid);
       docList = dbS.docList;
       // ignore: avoid_print
-      print('${uid!} db');
+      print('${uid!} GrafikServiceResponse');
       //create a new user doc with uid
       await dbS.readcalendarDocDaily(createdDate, dayChange);
     } catch (collectionError) {

@@ -344,7 +344,7 @@ class CalendarContent with ChangeNotifier {
     }
     return color;
   }
-/// Initializing Calender Color */
+/// Initializing Calendar Color */
 
   Color getCalendarColorSum() {
     double value = sum;

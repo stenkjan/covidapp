@@ -4,6 +4,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/grafik_content.dart';
 import 'package:covidapp/covidapp/content/size.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:covidapp/covidapp/services/grafik_data_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,6 @@ class GrafikState extends State<Grafik> {
   late final GrafikContent grafC;
   List? docList;
   int currentDateInt = 0;
-  final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
-      .collection('users')
-      .doc(GrafikService().uid)
-      .collection('calendar')
-      .snapshots();
 
   final calDocStream = FirebaseFirestore.instance
       .collection('users')
@@ -61,7 +57,11 @@ class GrafikState extends State<Grafik> {
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
-
+    final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
+        .collection('users')
+        .doc(grafService.uid)
+        .collection('calendar')
+        .snapshots();
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }
@@ -84,13 +84,13 @@ class GrafikState extends State<Grafik> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: SizeConfig.getHeight(context) / 14,
+            height: 30,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                    height: 40,
-                    width: 60,
+                    height: 25,
+                    width: 30,
                     decoration: BoxDecoration(
                         color: Colors.white70,
                         borderRadius: BorderRadius.circular(20),
@@ -108,7 +108,7 @@ class GrafikState extends State<Grafik> {
                         currentDateInt.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: fontSize(25),
+                          fontSize: fontSize(17),
                           color: calContent.getCalendarColorSum(),
                         ),
                         textAlign: TextAlign.center,
@@ -157,17 +157,19 @@ class GrafikState extends State<Grafik> {
                 ),
                 Container(
                   width: SizeConfig.getWidth(context) / 3.7,
+                  height: 30,
                   margin:
                       EdgeInsets.only(right: SizeConfig.getWidth(context) / 30),
                   child: Row(
                     children: <Widget>[
                       ArrowButton(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
+                          margin: const EdgeInsets.only(bottom: 5, top: 2),
                           iconbutton: IconButton(
+                            padding: const EdgeInsets.all(5),
                             icon: Icon(
                               Icons.arrow_back_ios,
-                              size: fontSize(17),
+                              size: fontSize(16),
+                              color: const Color.fromARGB(255, 6, 84, 104),
                             ),
                             onPressed: () {
                               setState(() {
@@ -186,12 +188,13 @@ class GrafikState extends State<Grafik> {
                           padding: EdgeInsets.only(
                               left: SizeConfig.getWidth(context) / 50)),
                       ArrowButton(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 5),
+                        margin: const EdgeInsets.only(bottom: 5, top: 2),
                         iconbutton: IconButton(
+                          padding: const EdgeInsets.all(5),
                           icon: Icon(
                             Icons.arrow_forward_ios,
-                            size: fontSize(17),
+                            size: fontSize(16),
+                            color: const Color.fromARGB(255, 6, 84, 104),
                           ),
                           onPressed: () {
                             setState(() {
@@ -215,7 +218,8 @@ class GrafikState extends State<Grafik> {
               ],
             ),
           ),
-          Column(
+          GrafikDataService("20", gS.uid!),
+          /*   Column( 
             children: [
               Center(
                   child: StreamBuilder<QuerySnapshot>(
@@ -248,7 +252,7 @@ class GrafikState extends State<Grafik> {
                 },
               )),
             ],
-          ),
+          ), */
           const SizedBox(
             height: 5.0,
           ),
@@ -257,7 +261,7 @@ class GrafikState extends State<Grafik> {
             width: 400,
 
             /// TabBar inclusion
-            child: GrafikTabBar(),
+            child: Expanded(child: GrafikTabBar()),
           ),
           /* Center(
                 child: Column(
