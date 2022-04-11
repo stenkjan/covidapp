@@ -1,3 +1,4 @@
+import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
@@ -23,7 +24,7 @@ class HeartGraphState extends State<HeartGraph> {
     features = [
       Feature(
         title: headline[4]['tag'],
-        color: variableColors[4],
+        color: AppColors.pieColors[3],
         data: [
           calContent.herzL[calContent.listIndex].toDouble() / 10,
           calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
@@ -35,7 +36,7 @@ class HeartGraphState extends State<HeartGraph> {
       ),
       Feature(
         title: "BPM",
-        color: variableColors[5],
+        color: AppColors.pieColors[5],
         data: [
           calContent.bpm[calContent.listIndex].toDouble() * 70 / 1000,
           calContent.bpm[calContent.listIndex + 1].toDouble() * 70 / 1000,

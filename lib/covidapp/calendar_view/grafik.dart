@@ -218,7 +218,7 @@ class GrafikState extends State<Grafik> {
               ],
             ),
           ),
-          GrafikDataService("20", gS.uid!),
+          GrafikDataService((currentDateInt + 10).toString(), gS.uid!),
           /*   Column( 
             children: [
               Center(

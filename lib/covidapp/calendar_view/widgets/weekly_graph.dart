@@ -1,3 +1,4 @@
+import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/variable_colors.dart';
 import 'package:draw_graph/draw_graph.dart';
@@ -22,7 +23,7 @@ class WeekGraphState extends State<WeekGraph> {
     features = [
       Feature(
         title: headline[0]['tag'],
-        color: variableColors[0],
+        color: AppColors.pieColors[7],
         data: [
           calContent.moodL[calContent.listIndex].toDouble() / 10,
           calContent.moodL[calContent.listIndex + 1].toDouble() / 10,
@@ -34,7 +35,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[1]['tag'],
-        color: variableColors[1],
+        color: AppColors.pieColors[0],
         data: [
           calContent.muedigkeitL[calContent.listIndex].toDouble() / 10,
           calContent.muedigkeitL[calContent.listIndex + 1].toDouble() / 10,
@@ -46,7 +47,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[2]['tag'],
-        color: variableColors[2],
+        color: AppColors.pieColors[1],
         data: [
           calContent.atemnotL[calContent.listIndex].toDouble() / 10,
           calContent.atemnotL[calContent.listIndex + 1].toDouble() / 10,
@@ -58,7 +59,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[3]['tag'],
-        color: variableColors[3],
+        color: AppColors.pieColors[2],
         data: [
           calContent.sinneL[calContent.listIndex].toDouble() / 10,
           calContent.sinneL[calContent.listIndex + 1].toDouble() / 10,
@@ -70,7 +71,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[4]['tag'],
-        color: variableColors[4],
+        color: AppColors.pieColors[3],
         data: [
           calContent.herzL[calContent.listIndex + 0].toDouble() / 10,
           calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
@@ -82,7 +83,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[5]['tag'],
-        color: variableColors[5],
+        color: AppColors.pieColors[4],
         data: [
           calContent.schlafL[calContent.listIndex + 0].toDouble() / 10,
           calContent.schlafL[calContent.listIndex + 1].toDouble() / 10,
@@ -94,7 +95,7 @@ class WeekGraphState extends State<WeekGraph> {
       ),
       Feature(
         title: headline[6]['tag'],
-        color: variableColors[6],
+        color: AppColors.pieColors[5],
         data: [
           calContent.nervenL[calContent.listIndex + 0].toDouble() / 10,
           calContent.nervenL[calContent.listIndex + 1].toDouble() / 10,
@@ -157,11 +158,11 @@ class WeekGraphState extends State<WeekGraph> {
                 size: const Size(350, 250),
                 labelX: [
                   calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex].toString()
+                  calContent.dateL[calContent.listIndex + 1].toString(),
+                  calContent.dateL[calContent.listIndex + 2].toString(),
+                  calContent.dateL[calContent.listIndex + 3].toString(),
+                  calContent.dateL[calContent.listIndex + 4].toString(),
+                  calContent.dateL[calContent.listIndex + 5].toString()
                 ],
                 labelY: const ['20%', '40%', '60%', '80%', '100%'],
                 showDescription: true,

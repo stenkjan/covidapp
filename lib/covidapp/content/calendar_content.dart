@@ -70,6 +70,8 @@ class CalendarContent with ChangeNotifier {
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [];
 
+  ///Map for PieChart
+  late Map<String, double> pieMap;
 /*calendar variable functions to send and retrieve calendar data*/
   int calendarContentmood(int i) {
     mood = i;
@@ -146,7 +148,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/// timestring gets the Brathing -- if empty -sets the String to 0 */
+  /// timestring gets the Brathing -- if empty -sets the String to 0 */
   String getBreatheMin(String timeString) {
     if (returnBreatheTrue() == true) {
       breatheMin = timeString;
@@ -212,6 +214,24 @@ class CalendarContent with ChangeNotifier {
       headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
     };
     return daypiedataMapCal;
+  }
+
+  void dayliepieMap(Map<String, dynamic> map) {
+    pieMap = {
+      headline[1]['tag']: map['muedigkeit'].toDouble(),
+      headline[2]['tag']: map['atemnot'].toDouble(),
+      headline[3]['tag']: map['sinne'].toDouble(),
+      headline[4]['tag']: map['herz'].toDouble(),
+      headline[5]['tag']: map['schlaf'].toDouble(),
+      headline[6]['tag']: map['nerven'].toDouble(),
+    };
+  }
+
+  Map<String, double> getpieMap() {
+    if (pieMap.isEmpty) {
+      pieMap = daypiedataMap();
+    }
+    return pieMap;
   }
 
   Map<String, double> daypiedataMap() {
@@ -344,7 +364,8 @@ class CalendarContent with ChangeNotifier {
     }
     return color;
   }
-/// Initializing Calendar Color */
+
+  /// Initializing Calendar Color */
 
   Color getCalendarColorSum() {
     double value = sum;
@@ -369,7 +390,7 @@ class CalendarContent with ChangeNotifier {
     return color;
   }
 
-/// Saving the Variables to double  */
+  /// Saving the Variables to double  */
   double listSum() {
     double sum = mood.toDouble() +
         muedigkeit.toDouble() +
@@ -399,7 +420,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/// Counter */
+  /// Counter */
   double answeredSum() {
     double sum = 0;
     if (mood != 0) sum++;
@@ -421,7 +442,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/// Listener Database update */
+  /// Listener Database update */
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
     muedigkeitL.add(muedigkeit);
@@ -429,7 +450,7 @@ class CalendarContent with ChangeNotifier {
     return muedigkeit;
   }
 
-/// Calender Atemnot */
+  /// Calender Atemnot */
   int calendarContentatemnot(double a) {
     atemnot = a.round();
     atemnotL.add(atemnot);
@@ -437,7 +458,7 @@ class CalendarContent with ChangeNotifier {
     return atemnot;
   }
 
-/// Calender Sinne */
+  /// Calender Sinne */
   int calendarContentsinne(double b) {
     sinne = b.round();
     sinneL.add(sinne);
@@ -445,7 +466,7 @@ class CalendarContent with ChangeNotifier {
     return sinne;
   }
 
-/// Calender Herz */
+  /// Calender Herz */
   int calendarContentherz(double c) {
     herz = c.round();
     herzL.add(herz);
@@ -453,7 +474,7 @@ class CalendarContent with ChangeNotifier {
     return herz;
   }
 
-/// Calender schlaf */
+  /// Calender schlaf */
   int calendarContentschlaf(double s) {
     schlaf = s.round();
     schlafL.add(schlaf);
@@ -461,7 +482,7 @@ class CalendarContent with ChangeNotifier {
     return schlaf;
   }
 
-/// Calender Nerven */
+  /// Calender Nerven */
   int calendarContentnerven(double n) {
     nerven = n.round();
     nervenL.add(nerven);
@@ -469,7 +490,7 @@ class CalendarContent with ChangeNotifier {
     return nerven;
   }
 
-/// Calender Comment */
+  /// Calender Comment */
   String calendarContentcomment(String com) {
     comment = com;
     notifyListeners();
@@ -490,7 +511,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-/// Push to Firebase  */
+  /// Push to Firebase  */
   Future<bool> clear() async {
     createDateInt = int.parse(createdDate);
     if (createDateInt > dateL.last.toInt()) {

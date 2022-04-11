@@ -56,7 +56,7 @@ class DayPieState extends State<DayPie> {
             Container(
               alignment: Alignment.bottomCenter,
               child: PieChart(
-                dataMap: calContent.daypiedataMap(),
+                dataMap: calContent.getpieMap(),
                 animationDuration: const Duration(milliseconds: 800),
                 chartLegendSpacing: 25,
                 chartRadius: MediaQuery.of(context).size.width / 2.8,

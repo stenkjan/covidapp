@@ -35,7 +35,7 @@ class GrafikDataService extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-
+            calContent.dayliepieMap(data);
             return SizedBox(
               width: 350,
               height: 230,
