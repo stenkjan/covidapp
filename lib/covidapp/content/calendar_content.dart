@@ -231,8 +231,10 @@ class CalendarContent with ChangeNotifier {
     if (pieMap.isEmpty) {
       pieMap = daypiedataMap();
     }
+
     return pieMap;
   }
+
 
   Map<String, double> daypiedataMap() {
     int indexgetter = getIndex();

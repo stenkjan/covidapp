@@ -6,16 +6,17 @@ import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class GrafikDataService extends StatelessWidget {
+class GrafikDataStream extends StatelessWidget {
   final String documentId;
   final String uid;
 
-  GrafikDataService(this.documentId, this.uid);
+  GrafikDataStream(this.documentId, this.uid);
 
   @override
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
+    grafService.uid = uid;
     final CollectionReference calCollection = FirebaseFirestore.instance
         .collection('users')
         .doc(uid)

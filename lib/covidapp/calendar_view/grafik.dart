@@ -4,7 +4,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/grafik_content.dart';
 import 'package:covidapp/covidapp/content/size.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:covidapp/covidapp/services/grafik_data_service.dart';
+import 'package:covidapp/covidapp/calendar_view/grafik_data_stream.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -181,6 +181,7 @@ class GrafikState extends State<Grafik> {
                                 calContent.getCalendarColorSum();
                                 grafService.dailyRead(
                                     currentDateInt, dayChange);
+                                grafService.docId = currentDateInt;
                               });
                             },
                           )),
@@ -205,6 +206,7 @@ class GrafikState extends State<Grafik> {
                               calContent.getCalendarColorSum();
                               grafService.dailyRead(currentDateInt, dayChange);
                               headline;
+                              grafService.docId = currentDateInt;
                               if (kDebugMode) {
                                 print(currentDateInt);
                               }
@@ -218,7 +220,7 @@ class GrafikState extends State<Grafik> {
               ],
             ),
           ),
-          GrafikDataService((currentDateInt + 10).toString(), gS.uid!),
+          GrafikDataStream((currentDateInt + 10).toString(), gS.uid!),
           /*   Column( 
             children: [
               Center(

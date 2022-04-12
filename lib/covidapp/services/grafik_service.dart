@@ -3,14 +3,17 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class GrafikService {
+   int docId = int.parse(DateFormat('d').format(DateTime.now()).toString());
   String? uid;
   AuthService authService = AuthService();
   auth.User? user;
   late final DatabaseService dbS;
   List? docList;
-/// connector to DB for reading doc daily
+
+  /// connector to DB for reading doc daily
   Future<GrafikContent?> dailyRead(
     int createdDate,
     bool dayChange,
@@ -33,8 +36,3 @@ class GrafikService {
     return null;
   }
 }
-
-     
-      
-    
-
