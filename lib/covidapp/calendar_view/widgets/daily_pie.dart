@@ -15,11 +15,11 @@ class DayPie extends StatefulWidget {
 
 class DayPieState extends State<DayPie> {
   late CalendarContent calContent;
-
+ 
   @override
   void initState() {
     calContent = CalendarContent();
-
+   
     super.initState();
   }
 
@@ -31,94 +31,74 @@ class DayPieState extends State<DayPie> {
         .collection('users')
         .doc(grafService.uid)
         .collection('calendar');
-    return FutureBuilder<DocumentSnapshot>(
-        future: calCollection.doc(grafService.docId.toString()).get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text("Something went wrong");
-          }
-
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return Text("Document does not exist");
-          }
-
-          if (snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> data =
-                snapshot.data!.data() as Map<String, dynamic>;
-            calContent.dayliepieMap(data);
-            return Column(
-              children: [
-                const SizedBox(
-                  height: 20,
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Stack(
+          children: [
+            Container(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                              backgroundColor: Colors.black12,
+                              title: const Text(""),
+                              content: const Text(
+                                  "Die Grafik gibt an, welche Symptome für den ausgewählten Tag zu welchem Anteil das Krankheitsbild prägen.",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              actions: [
+                                TextButton(
+                                  child: const Text("Verstanden"),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ])),
+                  child: const Icon(
+                    Icons.info,
+                    color: Colors.white,
+                  )),
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              child: PieChart(
+                dataMap: calContent.getpieMap(),
+                animationDuration: const Duration(milliseconds: 800),
+                chartLegendSpacing: 25,
+                chartRadius: MediaQuery.of(context).size.width / 2.8,
+                colorList: AppColors.pieColors.cast(),
+                initialAngleInDegree: 50,
+                chartType: ChartType.ring,
+                ringStrokeWidth: 35,
+                centerText: "Symptome",
+                legendOptions: LegendOptions(
+                  showLegendsInRow: true,
+                  legendPosition: LegendPosition.bottom,
+                  showLegends: calContent.pieLegendbool,
+                  legendShape: BoxShape.circle,
+                  legendTextStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryWhite,
+                    fontSize: 10,
+                  ),
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                          onPressed: () => showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                      backgroundColor: Colors.black12,
-                                      title: const Text(""),
-                                      content: const Text(
-                                          "Die Grafik gibt an, welche Symptome für den ausgewählten Tag zu welchem Anteil das Krankheitsbild prägen.",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          )),
-                                      actions: [
-                                        TextButton(
-                                          child: const Text("Verstanden"),
-                                          onPressed: () =>
-                                              Navigator.pop(context),
-                                        ),
-                                      ])),
-                          child: const Icon(
-                            Icons.info,
-                            color: Colors.white,
-                          )),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      child: PieChart(
-                        dataMap: calContent.getpieMap(),
-                        animationDuration: const Duration(milliseconds: 800),
-                        chartLegendSpacing: 25,
-                        chartRadius: MediaQuery.of(context).size.width / 2.8,
-                        colorList: AppColors.pieColors.cast(),
-                        initialAngleInDegree: 50,
-                        chartType: ChartType.ring,
-                        ringStrokeWidth: 35,
-                        centerText: "Symptome",
-                        legendOptions: LegendOptions(
-                          showLegendsInRow: true,
-                          legendPosition: LegendPosition.bottom,
-                          showLegends: calContent.pieLegendbool,
-                          legendShape: BoxShape.circle,
-                          legendTextStyle: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryWhite,
-                            fontSize: 10,
-                          ),
-                        ),
 
-                        chartValuesOptions: const ChartValuesOptions(
-                          showChartValueBackground: true,
-                          showChartValues: true,
-                          showChartValuesInPercentage: true,
-                          showChartValuesOutside: true,
-                          decimalPlaces: 1,
-                        ),
-                        // gradientList: ---To add gradient colors---
-                      ),
-                    ),
-                  ],
+                chartValuesOptions: const ChartValuesOptions(
+                  showChartValueBackground: true,
+                  showChartValues: true,
+                  showChartValuesInPercentage: true,
+                  showChartValuesOutside: true,
+                  decimalPlaces: 1,
                 ),
-              ],
-            );
-          }
-          return const Text("loading");
-        });
+                // gradientList: ---To add gradient colors---
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

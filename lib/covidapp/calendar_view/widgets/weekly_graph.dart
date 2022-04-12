@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/variable_colors.dart';
 import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../content/strings.dart';
+import '../../services/grafik_service.dart';
 
 class WeekGraph extends StatefulWidget {
   const WeekGraph({Key? key}) : super(key: key);
@@ -116,66 +119,93 @@ class WeekGraphState extends State<WeekGraph> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          alignment: Alignment.topRight,
-          child: TextButton(
-              onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                          backgroundColor: Colors.black12,
-                          title: const Text(""),
-                          content: const Text(
-                              "Die Grafik gibt an, wie stark die Symptome in den vergangenen 7 Tagen vom ausgewählten Tag an ausgeprägt waren.",
-                              style: TextStyle(
-                                color: Colors.white,
-                              )),
-                          actions: [
-                            TextButton(
-                              child: const Text("Verstanden"),
-                              onPressed: () => Navigator.pop(context),
-                            ),
-                          ])),
-              child: const Icon(
-                Icons.info,
-                color: Colors.white,
-              )),
-        ),
-        Container(
-          alignment: Alignment.center,
-          height: 300,
-          width: 400,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(
-                height: 5,
-              ),
-              LineGraph(
-                features: features,
-                size: const Size(350, 250),
-                labelX: [
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex + 1].toString(),
-                  calContent.dateL[calContent.listIndex + 2].toString(),
-                  calContent.dateL[calContent.listIndex + 3].toString(),
-                  calContent.dateL[calContent.listIndex + 4].toString(),
-                  calContent.dateL[calContent.listIndex + 5].toString()
-                ],
-                labelY: const ['20%', '40%', '60%', '80%', '100%'],
-                showDescription: true,
-                graphColor: Colors.white54,
-                descriptionHeight: 40,
-              ),
-              const SizedBox(
-                height: 0,
-              )
-            ],
-          ),
-        ),
-      ],
-    );
+    final grafService = Provider.of<GrafikService>(context);
+    final calContent = Provider.of<CalendarContent>(context);
+    final CollectionReference calCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(grafService.docId.toString())
+        .collection('calendar');
+    return FutureBuilder(
+        future:
+            calCollection.doc(calContent.grafikcurrentDateCal.toString()).get(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong");
+          }
+
+          if (snapshot.hasData && !snapshot.data!.exists) {
+            return Text("Document does not exist");
+          }
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data =
+                snapshot.data!.data() as Map<String, dynamic>;
+            calContent.dayliepieMap(data);
+
+            return Stack(
+              children: [
+                Container(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                      onPressed: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.black12,
+                                  title: const Text(""),
+                                  content: const Text(
+                                      "Die Grafik gibt an, wie stark die Symptome in den vergangenen 7 Tagen vom ausgewählten Tag an ausgeprägt waren.",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      )),
+                                  actions: [
+                                    TextButton(
+                                      child: const Text("Verstanden"),
+                                      onPressed: () => Navigator.pop(context),
+                                    ),
+                                  ])),
+                      child: const Icon(
+                        Icons.info,
+                        color: Colors.white,
+                      )),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 300,
+                  width: 400,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      LineGraph(
+                        features: features,
+                        size: const Size(350, 250),
+                        labelX: [
+                          calContent.dateL[calContent.listIndex].toString(),
+                          calContent.dateL[calContent.listIndex + 1].toString(),
+                          calContent.dateL[calContent.listIndex + 2].toString(),
+                          calContent.dateL[calContent.listIndex + 3].toString(),
+                          calContent.dateL[calContent.listIndex + 4].toString(),
+                          calContent.dateL[calContent.listIndex + 5].toString()
+                        ],
+                        labelY: const ['20%', '40%', '60%', '80%', '100%'],
+                        showDescription: true,
+                        graphColor: Colors.white54,
+                        descriptionHeight: 40,
+                      ),
+                      const SizedBox(
+                        height: 0,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }
+          return const Text("loading");
+        });
   }
 }
