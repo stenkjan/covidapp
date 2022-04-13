@@ -5,7 +5,6 @@ import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
 
 import '../../content/strings.dart';
-import '../../content/variable_colors.dart';
 
 class HeartGraph extends StatefulWidget {
   const HeartGraph({Key? key}) : super(key: key);

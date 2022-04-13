@@ -71,7 +71,7 @@ class CalendarContent with ChangeNotifier {
   List bpmday = [];
 
   ///Map for PieChart
-  late Map<String, double> pieMap;
+  Map<String, double> pieMap = {};
 /*calendar variable functions to send and retrieve calendar data*/
   int calendarContentmood(int i) {
     mood = i;
@@ -234,7 +234,6 @@ class CalendarContent with ChangeNotifier {
 
     return pieMap;
   }
-
 
   Map<String, double> daypiedataMap() {
     int indexgetter = getIndex();

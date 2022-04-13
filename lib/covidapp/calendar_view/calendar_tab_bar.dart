@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:covidapp/covidapp/calendar_view/grafik.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar.dart';

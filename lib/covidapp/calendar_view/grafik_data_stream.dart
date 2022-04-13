@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +9,8 @@ class GrafikDataStream extends StatelessWidget {
   final String documentId;
   final String uid;
 
-  GrafikDataStream(this.documentId, this.uid);
+  // ignore: use_key_in_widget_constructors
+  const GrafikDataStream(this.documentId, this.uid);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,11 @@ class GrafikDataStream extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong");
+            return const Text("Something went wrong");
           }
 
           if (snapshot.hasData && !snapshot.data!.exists) {
-            return Text("Document does not exist");
+            return const Text("Document does not exist");
           }
 
           if (snapshot.connectionState == ConnectionState.done) {

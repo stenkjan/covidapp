@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/content/variable_colors.dart';
 import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
@@ -125,22 +124,23 @@ class WeekGraphState extends State<WeekGraph> {
         .collection('users')
         .doc(grafService.docId.toString())
         .collection('calendar');
-    return FutureBuilder(
-        future:
-            calCollection.doc(calContent.grafikcurrentDateCal.toString()).get(),
+    return StreamBuilder(
+        stream:
+            calCollection.doc(calContent.grafikcurrentDateCal.toString()).snapshots(),
+           
         builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text("Something went wrong");
+            ( context,  snapshots) {
+          if (snapshots.hasError) {
+            return const Text("Something went wrong");
           }
 
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return Text("Document does not exist");
+          if (!snapshots.hasData) {
+            return const Text("Data not available");
           }
 
-          if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshots.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
-                snapshot.data!.data() as Map<String, dynamic>;
+                snapshots.data as Map<String, dynamic>;
             calContent.dayliepieMap(data);
 
             return Stack(

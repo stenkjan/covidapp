@@ -57,11 +57,11 @@ class GrafikState extends State<Grafik> {
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
-    final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
+   /*  final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
         .collection('users')
         .doc(grafService.uid)
         .collection('calendar')
-        .snapshots();
+        .snapshots(); */
     double fontSize(double size) {
       return size * SizeConfig.getWidth(context) / 414;
     }

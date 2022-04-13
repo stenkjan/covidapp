@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
@@ -26,11 +24,11 @@ class DayPieState extends State<DayPie> {
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
-    final grafService = Provider.of<GrafikService>(context);
-    final CollectionReference calCollection = FirebaseFirestore.instance
+    /* final grafService = Provider.of<GrafikService>(context); */
+   /*  final CollectionReference calCollection = FirebaseFirestore.instance
         .collection('users')
         .doc(grafService.uid)
-        .collection('calendar');
+        .collection('calendar'); */
     return Column(
       children: [
         const SizedBox(
