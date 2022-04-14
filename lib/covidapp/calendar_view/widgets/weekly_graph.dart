@@ -122,26 +122,25 @@ class WeekGraphState extends State<WeekGraph> {
     final calContent = Provider.of<CalendarContent>(context);
     final CollectionReference calCollection = FirebaseFirestore.instance
         .collection('users')
-        .doc(grafService.docId.toString())
+        .doc(grafService.uid.toString())
         .collection('calendar');
-    return StreamBuilder(
-        stream:
-            calCollection.doc(calContent.grafikcurrentDateCal.toString()).snapshots(),
-           
-        builder:
-            ( context,  snapshots) {
-          if (snapshots.hasError) {
+    return StreamBuilder<QuerySnapshot>(
+        stream: calCollection.snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
             return const Text("Something went wrong");
           }
 
-          if (!snapshots.hasData) {
+          if (!snapshot.hasData) {
             return const Text("Data not available");
           }
 
-          if (snapshots.connectionState == ConnectionState.done) {
-            Map<String, dynamic> data =
-                snapshots.data as Map<String, dynamic>;
-            calContent.dayliepieMap(data);
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data = snapshot.data as Map<String, dynamic>;
+            calContent.weekpiedataMap(data);
+            if (snapshot.hasData) {
+              return const Text("Data available");
+            }
 
             return Stack(
               children: [
