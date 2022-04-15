@@ -237,61 +237,61 @@ class CalendarContent with ChangeNotifier {
     return pieMap;
   }
 
-  void weekpiedataMap(Map<String, dynamic> map) {
-    map.forEach((key, value) {
+  void weekpiedataMap(List map) {
+    /* map.forEach((key, value) {
       if (kDebugMode) {
         print('Key: $key');
         print('Value: $value');
         print('------------------------------');
       }
-    });
-    moodL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    moodL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    moodL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    moodL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    moodL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    moodL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    moodL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    }); */
+    moodL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    moodL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    moodL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    moodL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    moodL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    moodL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    moodL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-    muedigkeitL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    muedigkeitL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    muedigkeitL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    muedigkeitL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    muedigkeitL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    muedigkeitL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    muedigkeitL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    muedigkeitL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    muedigkeitL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    muedigkeitL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    muedigkeitL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    muedigkeitL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    muedigkeitL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    muedigkeitL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-    atemnotL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    atemnotL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    atemnotL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    atemnotL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    atemnotL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    atemnotL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    atemnotL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    atemnotL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    atemnotL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    atemnotL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    atemnotL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    atemnotL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    atemnotL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    atemnotL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-    herzL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    herzL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    herzL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    herzL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    herzL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    herzL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    herzL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    herzL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    herzL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    herzL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    herzL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    herzL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    herzL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    herzL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-    schlafL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    schlafL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    schlafL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    schlafL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    schlafL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    schlafL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    schlafL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    schlafL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    schlafL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    schlafL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    schlafL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    schlafL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    schlafL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    schlafL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-    nervenL[calContent.listIndex] = (map[map.length - 6]['mood']);
-    nervenL[calContent.listIndex + 1] = (map[map.length - 5]['mood']);
-    nervenL[calContent.listIndex + 2] = (map[map.length - 4]['mood']);
-    nervenL[calContent.listIndex + 3] = (map[map.length - 3]['mood']);
-    nervenL[calContent.listIndex + 4] = (map[map.length - 2]['mood']);
-    nervenL[calContent.listIndex + 5] = (map[map.length - 1]['mood']);
-    nervenL[calContent.listIndex + 6] = (map[map.length]['mood']);
+    nervenL[calContent.listIndex] = (map[map.length - 7]['mood']);
+    nervenL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
+    nervenL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
+    nervenL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
+    nervenL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
+    nervenL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
+    nervenL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
   }
 
   Map<String, double> daypiedataMap() {
@@ -459,6 +459,7 @@ class CalendarContent with ChangeNotifier {
         herz.toDouble() +
         schlaf.toDouble() +
         nerven.toDouble();
+    sum = sum / 7;
     if (sum != 0) return sum;
     if (sum == 0) {
       sum = moodL.last.toDouble() +
@@ -468,6 +469,7 @@ class CalendarContent with ChangeNotifier {
           herzL.last.toDouble() +
           schlafL.last.toDouble() +
           nervenL.last.toDouble();
+      sum = sum / 7;
     }
     return sum;
   }

@@ -57,7 +57,7 @@ class GrafikState extends State<Grafik> {
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
     final calContent = Provider.of<CalendarContent>(context);
-   /*  final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
+    /*  final Stream<QuerySnapshot> calStream = FirebaseFirestore.instance
         .collection('users')
         .doc(grafService.uid)
         .collection('calendar')
@@ -92,7 +92,7 @@ class GrafikState extends State<Grafik> {
                     height: 25,
                     width: 30,
                     decoration: BoxDecoration(
-                        color: Colors.white70,
+                        color: calContent.getCalendarColorSum(),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(
@@ -102,14 +102,14 @@ class GrafikState extends State<Grafik> {
                           )
                         ]),
                     margin: EdgeInsets.only(
-                        left: SizeConfig.getWidth(context) / 20),
+                        left: SizeConfig.getWidth(context) / 45),
                     child: Center(
                       child: Text(
                         currentDateInt.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: fontSize(17),
-                          color: calContent.getCalendarColorSum(),
+                          color: Colors.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -158,8 +158,8 @@ class GrafikState extends State<Grafik> {
                 Container(
                   width: SizeConfig.getWidth(context) / 3.7,
                   height: 30,
-                  margin:
-                      EdgeInsets.only(right: SizeConfig.getWidth(context) / 30),
+                  margin: EdgeInsets.only(
+                      right: SizeConfig.getWidth(context) / 45, top: 1),
                   child: Row(
                     children: <Widget>[
                       ArrowButton(

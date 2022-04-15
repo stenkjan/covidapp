@@ -126,7 +126,7 @@ class WeekGraphState extends State<WeekGraph> {
         .collection('calendar');
     return StreamBuilder<QuerySnapshot>(
         stream: calCollection.snapshots(),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text("Something went wrong");
           }
@@ -134,75 +134,94 @@ class WeekGraphState extends State<WeekGraph> {
           if (!snapshot.hasData) {
             return const Text("Data not available");
           }
-
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Center(child: Text('No data'));
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+            case ConnectionState.active:
+              /*  Map<String, dynamic> data */
+              List dataList = snapshot.data!.docs as List;
+              /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
+            */
+              calContent.weekpiedataMap(dataList);
+              return
+                  /*   }
           if (snapshot.connectionState == ConnectionState.done) {
+            const Text("connection done");
             Map<String, dynamic> data = snapshot.data as Map<String, dynamic>;
             calContent.weekpiedataMap(data);
             if (snapshot.hasData) {
               return const Text("Data available");
             }
 
-            return Stack(
-              children: [
-                Container(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                      onPressed: () => showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                  backgroundColor: Colors.black12,
-                                  title: const Text(""),
-                                  content: const Text(
-                                      "Die Grafik gibt an, wie stark die Symptome in den vergangenen 7 Tagen vom ausgewählten Tag an ausgeprägt waren.",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      )),
-                                  actions: [
-                                    TextButton(
-                                      child: const Text("Verstanden"),
-                                      onPressed: () => Navigator.pop(context),
-                                    ),
-                                  ])),
-                      child: const Icon(
-                        Icons.info,
-                        color: Colors.white,
-                      )),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 300,
-                  width: 400,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      LineGraph(
-                        features: features,
-                        size: const Size(350, 250),
-                        labelX: [
-                          calContent.dateL[calContent.listIndex].toString(),
-                          calContent.dateL[calContent.listIndex + 1].toString(),
-                          calContent.dateL[calContent.listIndex + 2].toString(),
-                          calContent.dateL[calContent.listIndex + 3].toString(),
-                          calContent.dateL[calContent.listIndex + 4].toString(),
-                          calContent.dateL[calContent.listIndex + 5].toString()
-                        ],
-                        labelY: const ['20%', '40%', '60%', '80%', '100%'],
-                        showDescription: true,
-                        graphColor: Colors.white54,
-                        descriptionHeight: 40,
-                      ),
-                      const SizedBox(
-                        height: 0,
-                      )
-                    ],
+            return */
+                  Stack(
+                children: [
+                  Container(
+                    alignment: Alignment.topRight,
+                    child: TextButton(
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                    backgroundColor: Colors.black12,
+                                    title: const Text(""),
+                                    content: const Text(
+                                        "Die Grafik gibt an, wie stark die Symptome in den vergangenen 7 Tagen vom ausgewählten Tag an ausgeprägt waren.",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        )),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text("Verstanden"),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ])),
+                        child: const Icon(
+                          Icons.info,
+                          color: Colors.white,
+                        )),
                   ),
-                ),
-              ],
-            );
+                  Container(
+                    alignment: Alignment.center,
+                    height: 300,
+                    width: 400,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        LineGraph(
+                          features: features,
+                          size: const Size(350, 250),
+                          labelX: [
+                            calContent.dateL[calContent.listIndex].toString(),
+                            calContent.dateL[calContent.listIndex + 1]
+                                .toString(),
+                            calContent.dateL[calContent.listIndex + 2]
+                                .toString(),
+                            calContent.dateL[calContent.listIndex + 3]
+                                .toString(),
+                            calContent.dateL[calContent.listIndex + 4]
+                                .toString(),
+                            calContent.dateL[calContent.listIndex + 5]
+                                .toString()
+                          ],
+                          labelY: const ['20%', '40%', '60%', '80%', '100%'],
+                          showDescription: true,
+                          graphColor: Colors.white54,
+                          descriptionHeight: 40,
+                        ),
+                        const SizedBox(
+                          height: 0,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              );
           }
           return const Text("loading");
         });
