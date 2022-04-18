@@ -128,20 +128,20 @@ class WeekGraphState extends State<WeekGraph> {
         stream: calCollection.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text("Something went wrong");
+            return const Text("Es ist etwas schief gelaufen");
           }
 
           if (!snapshot.hasData) {
-            return const Text("Data not available");
+            return const Text("Daten nicht verfügbar");
           }
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              return Center(child: Text('No data'));
+              return const Center(child: Text('Keine Daten'));
             case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             case ConnectionState.active:
               /*  Map<String, dynamic> data */
-              List dataList = snapshot.data!.docs as List;
+              List dataList = snapshot.data!.docs;
               /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
             */
               calContent.weekpiedataMap(dataList);
@@ -222,6 +222,9 @@ class WeekGraphState extends State<WeekGraph> {
                   ),
                 ],
               );
+            case ConnectionState.done:
+              // TODO: Handle this case.
+              break;
           }
           return const Text("loading");
         });
