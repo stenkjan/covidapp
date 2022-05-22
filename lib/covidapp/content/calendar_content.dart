@@ -5,7 +5,6 @@ import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -70,6 +69,7 @@ class CalendarContent with ChangeNotifier {
   List<int> nervenL = [5, 6, 8, 5, 6, 4, 5, 4];
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [];
+  List introList = [];
 
   ///Map for PieChart
   Map<String, double> pieMap = {};

@@ -12,17 +12,20 @@ import 'covidapp/services/calendar_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
+
   MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+
     return MultiProvider(
         providers: [
           Provider<AuthService>(
@@ -61,16 +64,17 @@ class MyApp extends StatelessWidget {
                   }
                   return const Text("Etwas ist schief gelaufen");
                 } else if (snapshot.hasData) {
-                  return const Wrapper();
-                } else {
-                  return const Center(
-                    child: SizedBox(
-                      height: 50.0,
-                      width: 50.0,
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
+                  
+                    return const Wrapper();
+                  } else {
+                    return const Center(
+                      child: SizedBox(
+                        height: 50.0,
+                        width: 50.0,
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }                
               },
             )));
   }
