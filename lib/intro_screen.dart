@@ -1,11 +1,9 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'covidapp/login/wrapper.dart';
-
 
 class OnBoardingPage extends StatefulWidget {
   @override
@@ -16,7 +14,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
   void _onIntroEnd(context) {
-    
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => const Wrapper()),
     );
@@ -33,14 +30,21 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/$assetName', width: width);
+    return Container(
+      //implement fullscreen
+      child: Image.asset(
+        assetName,
+        width: width,
+        fit: BoxFit.fill,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 19.0);
 
-    const pageDecoration = const PageDecoration(
+    const pageDecoration = PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
@@ -50,13 +54,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: Color.fromARGB(255, 50, 37, 231),
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
+            child: _buildImage('images/long_covid_logo.png', 100),
           ),
         ),
       ),
@@ -65,7 +69,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           child: const Text(
-            'Let\'s go right away!',
+            'Überspringen',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           onPressed: () => _onIntroEnd(context),
@@ -75,28 +79,36 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Fractional shares",
           body:
-          "Instead of having to buy an entire share, invest any amount you want.",
-          image: _buildImage('img1.jpg'),
+              "Instead of having to buy an entire share, invest any amount you want.",
+          image: _buildImage("images/forest_foggy_above.jpeg", 100),
+
+          // ontop foggy forest avif
+
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Learn as you go",
           body:
-          "Download the Stockpile app and master the market with our mini-lesson.",
-          image: _buildImage('img2.jpg'),
+              "Download the Stockpile app and master the market with our mini-lesson.",
+          image:
+              _buildImage("images/inside_forest.gif", 100), // inside forest gif
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Kids and teens",
           body:
-          "Kids and teens can track their stocks 24/7 and place trades that you approve.",
-          image: _buildImage('img3.jpg'),
+              "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+          image: _buildImage(
+              "images/ontop_forest_river.gif", 100), // inside forest gif
+          // ontop forest river gif,
+
+          //_buildImage('img3.jpg'),
           decoration: pageDecoration,
         ),
-        PageViewModel(
+        /* PageViewModel(
           title: "Full Screen Page",
           body:
-          "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
+              "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
           image: _buildFullscreenImage(),
           decoration: pageDecoration.copyWith(
             contentMargin: const EdgeInsets.symmetric(horizontal: 16),
@@ -104,24 +116,25 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             bodyFlex: 2,
             imageFlex: 3,
           ),
-        ),
+        ), */
         PageViewModel(
           title: "Another title page",
           body: "Another beautiful body text for this example onboarding",
-          image: _buildImage('img2.jpg'),
+          image: _buildImage("images/sunset.gif", 100), // inside forest gif
+          // sunset gif
           footer: ElevatedButton(
             onPressed: () {
               introKey.currentState?.animateScroll(0);
             },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
             style: ElevatedButton.styleFrom(
               primary: Colors.lightBlue,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
+            ),
+            child: const Text(
+              'FooButton',
+              style: TextStyle(color: Colors.white),
             ),
           ),
           decoration: pageDecoration,
@@ -142,7 +155,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             bodyAlignment: Alignment.bottomCenter,
             imageAlignment: Alignment.topCenter,
           ),
-          image: _buildImage('img1.jpg'),
+          image: _buildImage("images/star_walk.gif", 100), // inside forest gif
+          //man walk on stars gif,
+
           reverse: true,
         ),
       ],
