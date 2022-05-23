@@ -29,13 +29,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     );
   }
 
-  Widget _buildImage(String assetName, [double width = 350]) {
-    return Container(
-      //implement fullscreen
-      child: Image.asset(
+  Widget _buildImage(String assetName) {
+    // [double width = 350]
+    return Scaffold(
+      body: Image.asset(
         assetName,
-        width: width,
-        fit: BoxFit.fill,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -59,9 +60,25 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         alignment: Alignment.topRight,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('images/long_covid_logo.png', 100),
-          ),
+              padding: const EdgeInsets.only(top: 16, right: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    'Long Covid App',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                  ),
+                  const SizedBox(width: 10),
+                  Image.asset(
+                    'images/long_covid_logo.png',
+                    height: 50,
+                    width: 50,
+                  ),
+                ],
+              )),
         ),
       ),
       globalFooter: SizedBox(
@@ -77,21 +94,24 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
       pages: [
         PageViewModel(
-          title: "Fractional shares",
-          body:
-              "Instead of having to buy an entire share, invest any amount you want.",
-          image: _buildImage("images/forest_foggy_above.jpeg", 100),
+          title: "Willkommen",
+          body: "Ihr Symptomtracker bei Verdacht auf Long Covid",
+          image: _buildImage("images/forest_foggy_above.jpeg"),
 
           // ontop foggy forest avif
 
-          decoration: pageDecoration,
+          decoration: pageDecoration.copyWith(
+            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
         ),
         PageViewModel(
           title: "Learn as you go",
           body:
               "Download the Stockpile app and master the market with our mini-lesson.",
-          image:
-              _buildImage("images/inside_forest.gif", 100), // inside forest gif
+          image: _buildImage("images/inside_forest.gif"), // inside forest gif
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -99,11 +119,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           body:
               "Kids and teens can track their stocks 24/7 and place trades that you approve.",
           image: _buildImage(
-              "images/ontop_forest_river.gif", 100), // inside forest gif
-          // ontop forest river gif,
+              "images/ontop_forest_river.gif"), // ontop forest river gif
 
-          //_buildImage('img3.jpg'),
-          decoration: pageDecoration,
+          decoration: pageDecoration.copyWith(
+            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
         ),
         /* PageViewModel(
           title: "Full Screen Page",
@@ -120,7 +143,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Another title page",
           body: "Another beautiful body text for this example onboarding",
-          image: _buildImage("images/sunset.gif", 100), // inside forest gif
+          image: _buildImage("images/sunset.gif"), // inside forest gif
           // sunset gif
           footer: ElevatedButton(
             onPressed: () {
@@ -137,7 +160,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          decoration: pageDecoration,
+          decoration: pageDecoration.copyWith(
+            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
         ),
         PageViewModel(
           title: "Title of last page - reversed",
@@ -150,12 +178,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ],
           ),
           decoration: pageDecoration.copyWith(
+            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            fullScreen: true,
             bodyFlex: 2,
-            imageFlex: 4,
-            bodyAlignment: Alignment.bottomCenter,
-            imageAlignment: Alignment.topCenter,
+            imageFlex: 3,
           ),
-          image: _buildImage("images/star_walk.gif", 100), // inside forest gif
+          image: _buildImage("images/star_walk.gif"), // inside forest gif
           //man walk on stars gif,
 
           reverse: true,
