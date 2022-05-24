@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'covidapp/login/wrapper.dart';
+import 'home.dart';
 
 class OnBoardingPage extends StatefulWidget {
   @override
@@ -43,13 +44,30 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
+    const bodyStyle = TextStyle(
+      fontSize: 19.0,
+      fontWeight: FontWeight.w500,
+      color: Colors.white,
+      letterSpacing: 1.0,
+      shadows: <Shadow>[
+        Shadow(color: Colors.black, offset: Offset(1, 2), blurRadius: 0.5),
+        Shadow(color: Colors.black12, offset: Offset(1, 2), blurRadius: 1.0),
+      ],
+    );
 
     const pageDecoration = PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+      titleTextStyle: TextStyle(
+        fontSize: 28.0,
+        fontWeight: FontWeight.w700,
+        color: Colors.white,
+        shadows: <Shadow>[
+          Shadow(color: Colors.black, offset: Offset(0, 3), blurRadius: 1.0),
+          Shadow(color: Colors.black12, offset: Offset(0, 3), blurRadius: 2.0),
+        ],
+      ),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
+      pageColor: Color.fromARGB(50, 123, 148, 160),
       imagePadding: EdgeInsets.zero,
     );
 
@@ -62,20 +80,58 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: Padding(
               padding: const EdgeInsets.only(top: 16, right: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Long Covid App',
-                    style: TextStyle(
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      'Long Covid App',
+                      style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                        fontStyle: FontStyle.italic,
+                        letterSpacing: 2.0,
+                        wordSpacing: 2.0,
+                        color: Colors.white,
+                        shadows: <Shadow>[
+                          Shadow(
+                              color: Colors.black,
+                              offset: Offset(2, 1),
+                              blurRadius: 1.0),
+                          Shadow(
+                              color: Colors.black12,
+                              offset: Offset(2, 1),
+                              blurRadius: 2.0),
+                        ],
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 10),
-                  Image.asset(
-                    'images/long_covid_logo.png',
-                    height: 50,
-                    width: 50,
+                  Container(
+                    margin: EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.greenAccent.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 10,
+                          offset:
+                              const Offset(0, 0), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      'images/long_covid_logo.png',
+                      height: 35,
+                      width: 35,
+                      color: const Color.fromRGBO(3, 169, 244, 1),
+                    ),
                   ),
                 ],
               )),
@@ -95,34 +151,43 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       pages: [
         PageViewModel(
           title: "Willkommen",
-          body: "Ihr Symptomtracker bei Verdacht auf Long Covid",
-          image: _buildImage("images/forest_foggy_above.jpeg"),
+          body:
+              "Einführung in die Long Covid App, Symptomtracking bei Verdacht auf Langzeitfolgen von Long Covid.",
+          image: _buildImage("images/forest_foggy_above.png"),
 
           // ontop foggy forest avif
 
           decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            contentMargin:
+                const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 10),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
           ),
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "Überwache den täglichen Verlauf deiner Long Covid Symptome",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Auf Basis des RKI-Klassifizierungsmodells von Long Covid Symptomen täglich Symptome aufzeichnen und grafisch visualisieren lassen.",
           image: _buildImage("images/inside_forest.gif"), // inside forest gif
-          decoration: pageDecoration,
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
+            fullScreen: true,
+            bodyFlex: 3,
+            imageFlex: 3,
+          ),
         ),
         PageViewModel(
-          title: "Kids and teens",
+          title: "Pulsschlag und Atemfrequenz",
           body:
-              "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+              "Mittels integriertem Kamera-Tool den Pulsschlag messen und mittels individuell einstellbarer Atemübung tägliche Fortschritte überwachen.",
           image: _buildImage(
-              "images/ontop_forest_river.gif"), // ontop forest river gif
+              "images/car_mountain_drive.gif"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
@@ -141,9 +206,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           ),
         ), */
         PageViewModel(
-          title: "Another title page",
-          body: "Another beautiful body text for this example onboarding",
-          image: _buildImage("images/sunset.gif"), // inside forest gif
+          title: "Übersicht",
+          body:
+              "Durch die neuesten Informationen rund um Long Covid die Genesung unterstützen. Treten Sie bei Fragen jederzeit mit uns in Kontakt.",
+          image:
+              _buildImage("images/ontop_forest_river.gif"), // inside forest gif
           // sunset gif
           footer: ElevatedButton(
             onPressed: () {
@@ -156,37 +223,34 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ),
             ),
             child: const Text(
-              'FooButton',
+              'Kontakt',
               style: TextStyle(color: Colors.white),
             ),
           ),
           decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
             fullScreen: true,
-            bodyFlex: 2,
+            bodyFlex: 3,
             imageFlex: 3,
           ),
         ),
         PageViewModel(
-          title: "Title of last page - reversed",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
-          ),
+          title: "Der Krankheit einen Schritt voraus",
+          body:
+              "Selbstständig auf den Weg der Besserung: Durch täglische Interaktionen im Gesesungsprozess involviert sein. Entwickeln Sie ein gesamtheitliches Verständnis über Ihre Symptome im Laufe eines Monats. ",
+
           decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
             fullScreen: true,
-            bodyFlex: 2,
+            bodyFlex: 3,
             imageFlex: 3,
           ),
           image: _buildImage("images/star_walk.gif"), // inside forest gif
           //man walk on stars gif,
 
-          reverse: true,
+          reverse: false,
         ),
       ],
       onDone: () => _onIntroEnd(context),

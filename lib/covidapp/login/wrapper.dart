@@ -1,3 +1,4 @@
+import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/login/sign_in/signin.dart';
 import 'package:covidapp/covidapp/models/user_models.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
@@ -13,16 +14,16 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
-
+    final calContent = Provider.of<CalendarContent>(context);
     final uid = authService.id;
-    final List introList = [];
+
     return StreamBuilder<User?>(
       stream: authService.user,
       builder: (_, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final User? user = snapshot.data;
-          if (!introList.contains(uid)) {
-            introList.add(uid);
+          if (!calContent.introList.contains(uid)) {
+            calContent.introList.add(uid);
             return OnBoardingPage();
           } else {
             return user == null ? const SignInScreen() : const T2Home();
