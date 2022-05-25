@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:covidapp/covidapp/uebungen/breathing/home_page.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/constants.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +45,7 @@ class BreatheController extends GetxController {
   }
 
   @override
+
   /// when ready the timer starts */
 
   void onReady() {
@@ -53,6 +54,7 @@ class BreatheController extends GetxController {
   }
 
   @override
+
   /// when closed  */
 
   void onClose() {
@@ -64,7 +66,8 @@ class BreatheController extends GetxController {
     Get.delete<BreatheController>();
     super.onClose();
   }
-/// Timer countdown */
+
+  /// Timer countdown */
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -94,7 +97,7 @@ class BreatheController extends GetxController {
         calContent.returnBreatheTrue();
         calContent.getBreatheMin(value);
         _breathTimer.cancel();
-        Get.offAll(() =>  const HomePage());
+        Get.offAll(() => const BreatheHome());
 
 /** Popup after timer = 0 */
         Get.snackbar(

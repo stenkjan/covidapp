@@ -217,7 +217,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               introKey.currentState?.animateScroll(0);
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
+              primary: const Color(0xFF15EDED),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -278,7 +278,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
       ),
       dotsContainerDecorator: const ShapeDecoration(
-        color: Colors.black87,
+        color: Color.fromARGB(153, 2, 37, 58),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),

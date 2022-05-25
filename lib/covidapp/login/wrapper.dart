@@ -16,14 +16,22 @@ class Wrapper extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
     final calContent = Provider.of<CalendarContent>(context);
     final uid = authService.id;
+    bool adminIDMode = false;
 
     return StreamBuilder<User?>(
       stream: authService.user,
       builder: (_, AsyncSnapshot<User?> snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final User? user = snapshot.data;
+          if (adminIDMode == true &&
+              calContent.introList.contains("Hp3voKpg1hZE9uhfMHXjROc8lw72")) {
+            calContent.introList
+                .removeWhere((item) => item == "Hp3voKpg1hZE9uhfMHXjROc8lw72");
+            adminIDMode = false;
+          } //surpassing one time intro screen
           if (!calContent.introList.contains(uid)) {
             calContent.introList.add(uid);
+            adminIDMode = true;
             return OnBoardingPage();
           } else {
             return user == null ? const SignInScreen() : const T2Home();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:covidapp/covidapp/uebungen/breathing/home_page.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/theme_controller.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class UebungBreathing extends GetView<ThemeController> {
   const UebungBreathing({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return GetX<ThemeController>(
@@ -48,7 +48,7 @@ class UebungBreathing extends GetView<ThemeController> {
                   ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
             ),
             debugShowCheckedModeBanner: false,
-            home:  const HomePage(),
+            home: const BreatheHome(),
           );
         });
   }

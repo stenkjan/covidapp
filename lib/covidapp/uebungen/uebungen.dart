@@ -84,7 +84,7 @@ class UebungenState extends State<Uebungen> {
       child: InkWell(
         onTap: () {
           if (title == "Atem Übung") {
-            Navigator.of(context).pushReplacement(PageRouteBuilder(
+            Navigator.of(context).push(PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const UebungBreathing()));
           }
           if (title == "Puls Analyse") {
