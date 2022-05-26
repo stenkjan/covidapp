@@ -1,4 +1,4 @@
-import 'package:covidapp/covidapp/uebungen/breathing/uebungen_main.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
 import 'package:covidapp/home.dart';
@@ -84,7 +84,7 @@ class UebungenState extends State<Uebungen> {
       child: InkWell(
         onTap: () {
           if (title == "Atem Übung") {
-            Navigator.of(context).push(PageRouteBuilder(
+            Navigator.of(context).pushReplacement(PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const UebungBreathing()));
           }
           if (title == "Puls Analyse") {

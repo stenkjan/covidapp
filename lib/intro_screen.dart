@@ -12,7 +12,8 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  final introKey = GlobalKey<IntroductionScreenState>();
+  final GlobalKey<IntroductionScreenState> introKey =
+      GlobalKey<IntroductionScreenState>(debugLabel: "introKey");
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(

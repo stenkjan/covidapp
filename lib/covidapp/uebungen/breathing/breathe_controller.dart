@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_widget.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/constants.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -96,8 +97,8 @@ class BreatheController extends GetxController {
       } else {
         calContent.returnBreatheTrue();
         calContent.getBreatheMin(value);
-        _breathTimer.cancel();
-        Get.offAll(() => const BreatheHome());
+        _breathTimer.cancel();        
+        Get.to(const Uebungen());
 
 /** Popup after timer = 0 */
         Get.snackbar(
