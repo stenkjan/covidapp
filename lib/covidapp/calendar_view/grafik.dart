@@ -92,7 +92,8 @@ class GrafikState extends State<Grafik> {
                     height: 25,
                     width: 30,
                     decoration: BoxDecoration(
-                        color: calContent.getCalendarColorSum(),
+                        color:
+                            calContent.getCalendarColorSum(calContent.sumColor),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(
@@ -178,7 +179,6 @@ class GrafikState extends State<Grafik> {
 
                                 calContent.getgrafikCurrentDate(currentDateInt);
                                 calContent.getCalendarList();
-                                calContent.getCalendarColorSum();
                                 grafService.dailyRead(
                                     currentDateInt, dayChange);
                                 grafService.docId = currentDateInt;
@@ -203,7 +203,6 @@ class GrafikState extends State<Grafik> {
                               currentDate();
                               calContent.getgrafikCurrentDate(currentDateInt);
                               calContent.getCalendarList();
-                              calContent.getCalendarColorSum();
                               grafService.dailyRead(currentDateInt, dayChange);
                               headline;
                               grafService.docId = currentDateInt;
@@ -220,7 +219,7 @@ class GrafikState extends State<Grafik> {
               ],
             ),
           ),
-          GrafikDataStream((currentDateInt + 10).toString(), gS.uid!),
+          GrafikDataStream((currentDateInt).toString(), gS.uid!),
           /*   Column( 
             children: [
               Center(

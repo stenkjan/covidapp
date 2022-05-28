@@ -140,7 +140,9 @@ class BreatheHome extends GetView<HomeController> {
                   ),
                   onPressed: () {
                     /** Navigation to Breathe Page */
-                    Get.to(const BreathePage());
+                    //Get.to(const BreathePage());
+                    Navigator.of(context).push(PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => const BreathePage()));
                   },
                 ),
               ),

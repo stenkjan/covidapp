@@ -137,7 +137,7 @@ class DatabaseService {
           .collection('users')
           .doc(uid)
           .collection('calendar')
-          .doc('createdDateInt')
+          .doc('$createdDateInt')
           .get()
           .then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {

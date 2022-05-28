@@ -37,6 +37,8 @@ class GrafikDataStream extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             calContent.dayliepieMap(data);
+            calContent.listSum(data);
+
             return SizedBox(
               width: 350,
               height: 230,

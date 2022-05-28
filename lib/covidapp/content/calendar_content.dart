@@ -42,6 +42,9 @@ class CalendarContent with ChangeNotifier {
 
   String breatheMin = "0";
   double sum = 0;
+  double sumColor = 0;
+
+  Color color = Colors.grey;
 
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
   int grafikcurrentDateCal = 0;
@@ -317,7 +320,6 @@ class CalendarContent with ChangeNotifier {
   List getCalendarList() {
     headlineupdate = headline;
     daycount = grafikcurrentDateCal;
-    sum = listSum();
     print("$daycount :dC");
 
     index = dateL.indexOf(daycount);
@@ -419,7 +421,6 @@ class CalendarContent with ChangeNotifier {
     Color color = AppColors.pieColors[value];
     if (value == 0) {
       color = Colors.grey;
-      print("$color null");
       return color;
     }
     return color;
@@ -427,9 +428,8 @@ class CalendarContent with ChangeNotifier {
 
   /// Initializing Calendar Color */
 
-  Color getCalendarColorSum() {
-    double value = sum;
-    Color color = Colors.grey;
+  Color getCalendarColorSum(double sumColor) {
+    double value = sumColor;
 
     if (value >= 1 && value <= 2) {
       return color = (AppColors.pieColors[2]);
@@ -443,15 +443,30 @@ class CalendarContent with ChangeNotifier {
     if (value >= 7 && value <= 10) {
       return color = (AppColors.pieColors[5]);
     }
-    if (value == 0) {
+    /* if (value == 0) {
       print("$color null");
       return color;
-    }
+    } */
     return color;
   }
 
   /// Saving the Variables to double  */
-  double listSum() {
+  double listSum(Map<String, dynamic> data) {
+    int sumInt = data['mood'] +
+        data['muedigkeit'] +
+        data['atemnot'] +
+        data['sinne'] +
+        data['herz'] +
+        data['schlaf'] +
+        data['nerven'];
+
+    if (sumInt != 0) {
+      sumColor = sumInt.toDouble() / 7;
+      return sumColor;
+    }
+    if (sumInt == 0) {
+      return sumColor;
+      /* 
     double sum = mood.toDouble() +
         muedigkeit.toDouble() +
         atemnot.toDouble() +
@@ -459,18 +474,18 @@ class CalendarContent with ChangeNotifier {
         herz.toDouble() +
         schlaf.toDouble() +
         nerven.toDouble();
-    sum = sum / 7;
-    if (sum != 0) return sum;
-    if (sum == 0) {
-      sum = moodL.last.toDouble() +
+    sum = sum / 7; */
+
+      /*  sum = moodL.last.toDouble() +
           muedigkeitL.last.toDouble() +
           atemnotL.last.toDouble() +
           sinneL.last.toDouble() +
           herzL.last.toDouble() +
           schlafL.last.toDouble() +
           nervenL.last.toDouble();
-      sum = sum / 7;
+      sum = sum / 7; */
     }
+
     return sum;
   }
 
