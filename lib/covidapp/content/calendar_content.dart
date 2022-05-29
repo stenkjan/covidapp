@@ -230,6 +230,14 @@ class CalendarContent with ChangeNotifier {
       headline[5]['tag']: map['schlaf'].toDouble(),
       headline[6]['tag']: map['nerven'].toDouble(),
     };
+    sumColor = (map['mood'].toDouble() +
+            map['muedigkeit'].toDouble() +
+            map['atemnot'].toDouble() +
+            map['sinne'].toDouble() +
+            map['herz'].toDouble() +
+            map['schlaf'].toDouble() +
+            map['nerven'].toDouble()) /
+        7;
   }
 
   Map<String, double> getpieMap() {
@@ -451,7 +459,7 @@ class CalendarContent with ChangeNotifier {
   }
 
   /// Saving the Variables to double  */
-  double listSum(Map<String, dynamic> data) {
+  /*  double listSum(Map<String, dynamic> data) {
     int sumInt = data['mood'] +
         data['muedigkeit'] +
         data['atemnot'] +
@@ -488,7 +496,7 @@ class CalendarContent with ChangeNotifier {
 
     return sum;
   }
-
+ */
   String getcalAnswer() {
     if (calTrue == true) {
       return answeredSumInt().toString();

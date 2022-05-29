@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
-
 // ignore: use_key_in_widget_constructors
 class TableComplexExample extends StatefulWidget {
   @override
@@ -24,7 +22,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
     equals: isSameDay,
     hashCode: getHashCode,
   );
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  CalendarFormat _calendarFormat = CalendarFormat.week;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
@@ -99,13 +97,22 @@ class TableComplexExampleState extends State<TableComplexExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('TableCalendar - Complex'),
-      ),
-      body: Column(
+    return Container(
+      width: 370,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
+              bottomRight: Radius.circular(10.0)),
+          gradient: LinearGradient(
+            colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          )),
+      child: Column(
         children: [
-          ValueListenableBuilder<DateTime>(
+          /*  ValueListenableBuilder<DateTime>(
             valueListenable: _focusedDay,
             builder: (context, value, _) {
               return _CalendarHeader(
@@ -114,6 +121,8 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 onTodayButtonTap: () {
                   setState(() => _focusedDay.value = DateTime.now());
                 },
+                
+               
                 onClearButtonTap: () {
                   setState(() {
                     _rangeStart = null;
@@ -136,20 +145,20 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 },
               );
             },
-          ),
+          ), */
           TableCalendar<Event>(
             locale: 'de_AT',
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: _focusedDay.value,
-            headerVisible: false,
+            headerVisible: true,
             selectedDayPredicate: (day) => _selectedDays.contains(day),
             rangeStartDay: _rangeStart,
             rangeEndDay: _rangeEnd,
             calendarFormat: _calendarFormat,
             rangeSelectionMode: _rangeSelectionMode,
             eventLoader: _getEventsForDay,
-          /*   holidayPredicate: (day) {
+            /*   holidayPredicate: (day) {
               // Every 20th day of the month will be treated as a holiday
               return day.day == 20;
             }, */
@@ -163,33 +172,33 @@ class TableComplexExampleState extends State<TableComplexExample> {
               }
             },
           ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        // ignore: avoid_print
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+          const SizedBox(height: 5.0),
+          ValueListenableBuilder<List<Event>>(
+            valueListenable: _selectedEvents,
+            builder: (context, value, _) {
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: value.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 4.0,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    child: ListTile(
+                      // ignore: avoid_print
+                      onTap: () => print('${value[index]}'),
+                      title: Text('${value[index]}'),
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
@@ -203,6 +212,7 @@ class _CalendarHeader extends StatelessWidget {
   final VoidCallback onRightArrowTap;
   final VoidCallback onTodayButtonTap;
   final VoidCallback onClearButtonTap;
+
   final bool clearButtonVisible;
 
   const _CalendarHeader({

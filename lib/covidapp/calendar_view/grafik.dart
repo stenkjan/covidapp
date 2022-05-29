@@ -93,7 +93,8 @@ class GrafikState extends State<Grafik> {
                     width: 30,
                     decoration: BoxDecoration(
                         color:
-                            calContent.getCalendarColorSum(calContent.sumColor),
+                            /* calContent.getCalendarColorSum(calContent.sumColor), */
+                            calContent.getLevel(calContent.sumColor.toInt()),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(

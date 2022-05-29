@@ -10,8 +10,6 @@ class CalendarMuedigkeit extends StatefulWidget {
   const CalendarMuedigkeit({Key? key}) : super(key: key);
   @override
   CalendarMuedigkeitState createState() => CalendarMuedigkeitState();
-
-
 }
 
 class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
@@ -53,7 +51,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
             height: 12,
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
                 width: SizeConfig.getWidth(context),
@@ -86,7 +84,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                         color: Colors.white70)),
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Center(
                 child: Row(
@@ -121,11 +119,8 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 0,
-          ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -160,7 +155,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
           Column(
             children: [
               Container(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.topCenter,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
@@ -172,7 +167,8 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                     tag: "muedigkeit",
                     child: CircleAvatar(
                       maxRadius: 70,
-                      backgroundImage: const AssetImage("images/lcs_allgemein_hero.png"),
+                      backgroundImage:
+                          const AssetImage("images/lcs_allgemein_hero.png"),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Material(
@@ -187,7 +183,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   ),
                 ),
               ),
-                const SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Text("Für Beschreibung Bild anklicken",

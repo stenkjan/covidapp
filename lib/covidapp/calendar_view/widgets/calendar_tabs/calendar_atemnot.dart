@@ -72,7 +72,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
             ],
           ),
           const SizedBox(
-            height: 20,
+            height: 0,
           ),
           Center(
             child: Row(
@@ -148,14 +148,16 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => const AtemDesc()),
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const AtemDesc()),
                     );
                   },
                   child: Hero(
                     tag: "atem",
                     child: CircleAvatar(
                       radius: 70,
-                      backgroundImage: const AssetImage("images/lcs_atemwege_hero.png"),
+                      backgroundImage:
+                          const AssetImage("images/lcs_atemwege_hero.png"),
                       backgroundColor: Colors.transparent,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -171,7 +173,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                   ),
                 ),
               ),
-                const SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Text("Für Beschreibung Bild anklicken",

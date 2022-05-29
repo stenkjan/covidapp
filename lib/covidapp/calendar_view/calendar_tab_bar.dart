@@ -1,4 +1,3 @@
-
 import 'package:covidapp/covidapp/calendar_view/grafik.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
@@ -286,7 +285,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),
-                      child: Calendar(),
+                      child: SizedBox(width: 370, child: Calendar()),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 5.0),

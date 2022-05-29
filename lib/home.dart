@@ -106,7 +106,7 @@ class T2HomeState extends State<T2Home> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
+                      left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -145,12 +145,8 @@ class T2HomeState extends State<T2Home> {
                 /// Card
                 ///
 
-                _card(
-                    Colors.lightBlueAccent,
-                    "$breatheMin Minuten Atemübungen",
-                    dbService.calContent.fullDate,
-                    "Fortschritt",
-                    iconbreathe),
+                _card(Colors.lightBlueAccent, "$breatheMin Minuten Atemübungen",
+                    dbService.calContent.fullDate, "Fortschritt", iconbreathe),
                 _card(Colors.yellowAccent, "Tägliche Pulsmessung: $lastBPM",
                     dbService.calContent.fullDate, "Fortschritt", iconpulse),
                 _card(
@@ -220,12 +216,12 @@ class T2HomeState extends State<T2Home> {
     );
   }
 }
+
 /// Card for Archievements initialization */
 
-Widget _card(
-    Color color, String title, String time, String value, Icon icon) {
+Widget _card(Color color, String title, String time, String value, Icon icon) {
   return Padding(
-    padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 19.0),
+    padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
     child: Container(
       height: 120.0,
       width: double.infinity,

@@ -9,8 +9,6 @@ class CalendarMood extends StatefulWidget {
   const CalendarMood({Key? key}) : super(key: key);
   @override
   CalendarMoodState createState() => CalendarMoodState();
-
-
 }
 
 class CalendarMoodState extends State<CalendarMood> {
@@ -35,6 +33,7 @@ class CalendarMoodState extends State<CalendarMood> {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -201,7 +200,7 @@ class CalendarMoodState extends State<CalendarMood> {
             children: [
               const SizedBox(height: 5),
               SizedBox(
-                width: 360,
+                width: 350,
                 height: 25,
                 child: Text(
                     '${headline[0]['name']}'
@@ -237,10 +236,7 @@ class CalendarMoodState extends State<CalendarMood> {
                     color: Colors.white24)),
           ),
           const SizedBox(
-            height: 0,
-          ),
-          const SizedBox(
-            height: 50,
+            height: 10,
           ),
           Column(
             children: [
@@ -249,14 +245,16 @@ class CalendarMoodState extends State<CalendarMood> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => const MoodDesc()),
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const MoodDesc()),
                     );
                   },
                   child: Hero(
                     tag: "mood",
                     child: CircleAvatar(
                       maxRadius: 70,
-                      backgroundImage: const AssetImage("images/lcs_allgemein_hero.png"),
+                      backgroundImage:
+                          const AssetImage("images/lcs_allgemein_hero.png"),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Material(
@@ -271,7 +269,7 @@ class CalendarMoodState extends State<CalendarMood> {
                   ),
                 ),
               ),
-                const SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Text("Für Beschreibung Bild anklicken",
