@@ -47,10 +47,11 @@ class Social extends StatelessWidget {
         query: encodeQueryParameters(
             <String, String>{'Long Covid App Support': 'Ihr Anliegen:'}));
   
-    if (await canLaunch(emailLaunchUri.toString())) {
-      await launch(emailLaunchUri.toString());
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
     } else {
       throw 'Could not launch $Uri';
     }
+    
   }
 }

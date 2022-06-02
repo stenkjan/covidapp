@@ -324,7 +324,7 @@ class CalendarContent with ChangeNotifier {
     };
     return daypiedataMap;
   }
-
+//TODO: maybe not in use
   List getCalendarList() {
     headlineupdate = headline;
     daycount = grafikcurrentDateCal;
@@ -332,9 +332,11 @@ class CalendarContent with ChangeNotifier {
 
     index = dateL.indexOf(daycount);
     print("$index index daycount");
-    if (index < 0 || index > dateL.length) {
-      index = dateL.indexOf(daycount - 1);
-      if (index < 0) index = dateL.indexOf(dateL.first);
+
+    if (index < 0) {
+      index = dateL.indexOf(dateL.last);
+    } else if (index > dateL.length) {
+      index = dateL.indexOf(dateL.first);
     }
     print("$index : index of dateL");
     createdDate = currentDate.toString();

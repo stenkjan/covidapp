@@ -18,7 +18,7 @@ class TableBasicsExampleState extends State<TableBasicsExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 370,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,

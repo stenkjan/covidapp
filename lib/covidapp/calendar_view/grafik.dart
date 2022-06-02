@@ -325,8 +325,8 @@ class GrafikState extends State<Grafik> {
     setState(() {
       String currentDateString = currentDateInt.toString();
       if (dayChange == true) {
-        if (currentDateString ==
-            DateFormat('d').format(DateTime.now()).toString()) {
+        if (currentDateString == "31") {
+          // DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
           currentDateInt += 1;

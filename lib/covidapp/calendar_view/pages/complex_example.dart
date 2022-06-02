@@ -5,7 +5,6 @@ import 'dart:collection';
 
 import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -15,6 +14,7 @@ class TableComplexExample extends StatefulWidget {
 }
 
 class TableComplexExampleState extends State<TableComplexExample> {
+  // ignore: unused_field
   late final PageController _pageController;
   late final ValueNotifier<List<Event>> _selectedEvents;
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
@@ -206,7 +206,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
   }
 }
 
-class _CalendarHeader extends StatelessWidget {
+/* class _CalendarHeader extends StatelessWidget {
   final DateTime focusedDay;
   final VoidCallback onLeftArrowTap;
   final VoidCallback onRightArrowTap;
@@ -265,4 +265,4 @@ class _CalendarHeader extends StatelessWidget {
       ),
     );
   }
-}
+} */

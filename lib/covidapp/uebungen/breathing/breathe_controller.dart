@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_widget.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/constants.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';

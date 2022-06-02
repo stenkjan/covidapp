@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Contact extends StatelessWidget {
   const Contact({Key? key}) : super(key: key);
 
-/// Widget build  */
+  /// Widget build  */
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +27,6 @@ class Contact extends StatelessWidget {
         const SizedBox(
           height: appPadding,
         ),
-      
       ],
     );
   }
@@ -39,7 +38,7 @@ class Contact extends StatelessWidget {
         .join('&');
   }
 
-/// Redirecting to Email */
+  /// Redirecting to Email */
 
   void _launchURL() async {
     final Uri emailLaunchUri = Uri(
@@ -49,8 +48,8 @@ class Contact extends StatelessWidget {
             <String, String>{'Long Covid App Support': 'Ihr Anliegen:'}));
     //  launch(emailLaunchUri.toString());
 
-    if (await canLaunch(emailLaunchUri.toString())) {
-      await launch(emailLaunchUri.toString());
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
     } else {
       throw 'Could not launch $Uri';
     }

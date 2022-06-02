@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import 'covidapp/login/wrapper.dart';
-import 'home.dart';
 
 class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({Key? key}) : super(key: key);
+
   @override
-  _OnBoardingPageState createState() => _OnBoardingPageState();
+  OnBoardingPageState createState() => OnBoardingPageState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
+class OnBoardingPageState extends State<OnBoardingPage> {
   final GlobalKey<IntroductionScreenState> introKey =
       GlobalKey<IntroductionScreenState>(debugLabel: "introKey");
 
@@ -21,7 +22,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     );
   }
 
-  Widget _buildFullscreenImage() {
+  /*  Widget _buildFullscreenImage() {
     return Image.asset(
       'assets/fullscreen.jpg',
       fit: BoxFit.cover,
@@ -29,7 +30,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       width: double.infinity,
       alignment: Alignment.center,
     );
-  }
+  } */
 
   Widget _buildImage(String assetName) {
     // [double width = 350]
@@ -74,7 +75,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: Color.fromARGB(255, 50, 37, 231),
+      globalBackgroundColor: const Color.fromARGB(255, 50, 37, 231),
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
@@ -138,9 +139,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               )),
         ),
       ),
-      globalFooter: SizedBox(
+      globalFooter: Container(
         width: double.infinity,
-        height: 60,
+        height: 40,
+        color: const Color(0xFF31A1C9),
         child: ElevatedButton(
           child: const Text(
             'Überspringen',
@@ -253,6 +255,130 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
           reverse: false,
         ),
+        PageViewModel(
+          title: "Tutorial",
+          body:
+              "Durch die neuesten Informationen rund um Long Covid die Genesung unterstützen. Treten Sie bei Fragen jederzeit mit uns in Kontakt.",
+          image:
+              _buildImage("images/Tutorial_Images/Bild1"), // inside forest gif
+          // sunset gif
+          footer: SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: ElevatedButton(
+              child: const Text(
+                'Überspringen',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () => _onIntroEnd(context),
+            ),
+          ),
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 3,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild2"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild3"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild4"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild5"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild6"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild7"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image: _buildImage(
+              "images/Tutorial_Images/Bild8"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 2,
+            imageFlex: 3,
+          ),
+        ),
       ],
       onDone: () => _onIntroEnd(context),
       //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
@@ -289,6 +415,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

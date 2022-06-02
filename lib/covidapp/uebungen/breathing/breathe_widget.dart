@@ -57,7 +57,9 @@ class BreatheHome extends GetView<HomeController> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SettingsPage())); */
-                Get.to(() => const SettingsPage());
+                Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const SettingsPage()));
+                //Get.to(() => const SettingsPage());
               },
               icon: const Icon(Icons.settings)),
           Text(
