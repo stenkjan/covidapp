@@ -71,7 +71,7 @@ class CalendarContent with ChangeNotifier {
   List<int> schlafL = [3, 2, 4, 2, 3, 2, 0, 2];
   List<int> nervenL = [5, 6, 8, 5, 6, 4, 5, 4];
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
-  List bpmday = [];
+  List bpmday = [100, 70, 75];
   List introList = [];
 
   ///Map for PieChart
@@ -88,28 +88,27 @@ class CalendarContent with ChangeNotifier {
   }
 
   bool returnBreatheTrue() {
-    bool breatheTrue = true;
-    this.breatheTrue = breatheTrue;
-
+    breatheTrue = true;
+    print("no way");
     return breatheTrue;
   }
 
   bool returnPulseTrue() {
-    bool pulseTrue = true;
-    this.pulseTrue = pulseTrue;
+    pulseTrue = true;
 
     return pulseTrue;
   }
 
   bool returnCalTrue() {
-    bool calTrue = true;
-    this.calTrue = calTrue;
+    calTrue = true;
+
     return calTrue;
   }
 
   String getlastBPM() {
-    if (returnPulseTrue() == true) {
-      return bpm.last.toString();
+    if (pulseTrue == true) {
+      //return bpm.last.toString();
+      return bpmday.last.toString();
     } else {
       return "";
     }
@@ -120,7 +119,7 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (returnPulseTrue() == true) {
+    if (pulseTrue == true) {
       return iconDone;
     } else {
       calTrue = false;
@@ -133,7 +132,7 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (returnCalTrue() == true) {
+    if (calTrue == true) {
       return iconDone;
     } else {
       calTrue = false;
@@ -146,7 +145,22 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (returnBreatheTrue() == true || breatheMin.isNotEmpty) {
+    if (breatheTrue == true && breatheMin.isNotEmpty) {
+      return iconDone;
+    } else {
+      return iconNotDone;
+    }
+  }
+
+  Icon getallTrue() {
+    Icon iconDone = const Icon(Icons.task_alt,
+        semanticLabel: "Check", color: Colors.lightGreen);
+    Icon iconNotDone =
+        const Icon(Icons.task_alt, semanticLabel: "Check", color: Colors.white);
+    if (breatheTrue == true &&
+        breatheMin.isNotEmpty &&
+        pulseTrue == true &&
+        calTrue == true) {
       return iconDone;
     } else {
       return iconNotDone;
@@ -155,7 +169,7 @@ class CalendarContent with ChangeNotifier {
 
   /// timestring gets the Brathing -- if empty -sets the String to 0 */
   String getBreatheMin(String timeString) {
-    if (returnBreatheTrue() == true) {
+    if (breatheTrue == true) {
       breatheMin = timeString;
     }
     if (breatheMin.isEmpty) {
@@ -324,6 +338,7 @@ class CalendarContent with ChangeNotifier {
     };
     return daypiedataMap;
   }
+
 //TODO: maybe not in use
   List getCalendarList() {
     headlineupdate = headline;

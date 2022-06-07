@@ -76,6 +76,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: const Color.fromARGB(255, 50, 37, 231),
+
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
@@ -259,8 +260,8 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "Tutorial",
           body:
               "Durch die neuesten Informationen rund um Long Covid die Genesung unterstützen. Treten Sie bei Fragen jederzeit mit uns in Kontakt.",
-          image:
-              _buildImage("images/Tutorial_Images/Bild1"), // inside forest gif
+          image: _buildImage(
+              "images/Tutorial_Images/Bild1.png"), // inside forest gif
           // sunset gif
           footer: SizedBox(
             width: double.infinity,
@@ -285,7 +286,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild2"), // ontop forest river gif
+              "images/Tutorial_Images/Bild2.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -299,7 +300,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild3"), // ontop forest river gif
+              "images/Tutorial_Images/Bild3.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -313,7 +314,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild4"), // ontop forest river gif
+              "images/Tutorial_Images/Bild4.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -327,7 +328,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild5"), // ontop forest river gif
+              "images/Tutorial_Images/Bild5.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -341,7 +342,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild6"), // ontop forest river gif
+              "images/Tutorial_Images/Bild6.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -355,7 +356,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild7"), // ontop forest river gif
+              "images/Tutorial_Images/Bild7.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -369,7 +370,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           title: "",
           body: "",
           image: _buildImage(
-              "images/Tutorial_Images/Bild8"), // ontop forest river gif
+              "images/Tutorial_Images/Bild8.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
@@ -385,7 +386,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       showSkipButton: false,
       skipOrBackFlex: 0,
       nextFlex: 0,
-      showBackButton: true,
+      showBackButton: false,
       //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
       skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
@@ -397,9 +398,9 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ? const EdgeInsets.all(12.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
-        size: Size(10.0, 10.0),
+        size: Size(7.0, 7.0),
         color: Color(0xFFBDBDBD),
-        activeSize: Size(22.0, 10.0),
+        activeSize: Size(20.0, 7.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
@@ -407,7 +408,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       dotsContainerDecorator: const ShapeDecoration(
         color: Color.fromARGB(153, 2, 37, 58),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderRadius: BorderRadius.all(Radius.circular(9.0)),
         ),
       ),
     );

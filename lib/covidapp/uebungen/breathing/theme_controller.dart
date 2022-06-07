@@ -23,10 +23,10 @@ class ThemeController extends GetxController {
 
   @override
   void onClose() {
-    calContent.returnBreatheTrue();
+    //calContent.returnBreatheTrue();
     Get.delete<ThemeController>();
     // ignore: avoid_print
-    print("${calContent.breatheTrue} breathe in theme");
+   // print("${calContent.breatheTrue} breathe in theme");
     super.onClose();
   }
 }

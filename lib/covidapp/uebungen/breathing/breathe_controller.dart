@@ -62,7 +62,7 @@ class BreatheController extends GetxController {
     _timer.cancel();
     _breathTimer.cancel();
     Wakelock.disable();
-    calContent.returnBreatheTrue();
+  //  calContent.returnBreatheTrue();
     Get.delete<BreatheController>();
     super.onClose();
   }
@@ -94,8 +94,11 @@ class BreatheController extends GetxController {
         breathTime.value -= 100;
         update();
       } else {
-        calContent.returnBreatheTrue();
+     
         calContent.getBreatheMin(value);
+        if (int.parse(value)>0){
+             calContent.returnBreatheTrue();
+        }
         _breathTimer.cancel();        
         Get.to(const Uebungen());
 

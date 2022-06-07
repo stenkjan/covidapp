@@ -121,11 +121,7 @@ class T2HomeState extends State<T2Home> {
                       IconButton(
                         tooltip: "Check",
                         focusColor: Colors.lightGreen,
-                        icon: const Icon(
-                          Icons.task_alt,
-                          semanticLabel: "Check",
-                        ),
-                        color: Colors.white,
+                        icon: calContent.getallTrue(),
                         onPressed: () {
                           setState(() {
                             print("${cal.breatheTrue} breathe");

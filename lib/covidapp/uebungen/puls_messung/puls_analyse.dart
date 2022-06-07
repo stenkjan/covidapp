@@ -80,10 +80,10 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                     bpmValues.add(SensorValue(
                         value: value.toDouble(), time: DateTime.now()));
                     calContent.bpmday.add(value);
+                    print("§value : bpm value added");
                     Visibility(
                         visible: false, child: calContent.getpulseTrue());
                   }),
-                 
                 )
               : const SizedBox(
                   height: 20,
