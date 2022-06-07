@@ -2,41 +2,45 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'dart:collection';
+import 'package:covidapp/covidapp/calendar_view/widgets/daily_pie_peek.dart';
+import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
 class Event {
-  final String title;
+  final int index;
+  final DayPiePeek daypiePeek;
+  //final String title;
   /* final Color eventColor; */
-  const Event(
-    this.title,
-  );
+  const Event(this.index, this.daypiePeek);
 
-  @override
-  String toString() => title;
+  /* @override
+  String toString() => title; */
 }
 
 /// Example events.
 ///
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
+int index = kToday.day;
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: getHashCode,
 )..addAll(_kEventSource);
+DayPiePeek daypiePeek = DayPiePeek(index);
+final DayPiePeek dayPiePeek = DayPiePeek(index);
 final _kEventSource = {
-  for (var item in List.generate(50, (index) => index))
-    DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5): List.generate(
-        item % 4 + 1, (index) => Event('Tageswert $item | ${index + 1}'))
+  DateTime.utc(kFirstDay.year, kFirstDay.month, kFirstDay.day): List.generate(
+      1, (index) => Event(index, dayPiePeek)), /* 'Event $index' */
 }
   /* converted from: final _kEventSource = {  Map.fromIterable(List.generate(50, (index) => index),
     key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
     value: (item) => List.generate(
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))} */
   ..addAll({
-    kToday: [
-      const Event('Today\'s Event 1'),
-      const Event('Today\'s Event 2'),
-    ],
+    /* kToday: [
+      const Event(),
+      const Event(),
+    ], */
   });
 
 int getHashCode(DateTime key) {

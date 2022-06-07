@@ -7,7 +7,6 @@ import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
 // ignore: use_key_in_widget_constructors
 class TableMultiExample extends StatefulWidget {
   @override
