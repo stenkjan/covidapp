@@ -6,28 +6,30 @@ import 'package:provider/provider.dart';
 
 class DayPiePeek extends StatefulWidget {
   final int index;
-  const DayPiePeek( this.index, {Key? key}) : super(key: key);
+  const DayPiePeek(this.index, {Key? key}) : super(key: key);
   @override
   DayPiePeekState createState() => DayPiePeekState();
 }
 
 class DayPiePeekState extends State<DayPiePeek> {
   late CalendarContent calContent;
-  
+
   @override
   void initState() {
     calContent = CalendarContent();
     super.initState();
   }
- @override
+
+  @override
   dispose() {
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
-    
-    return Column(
+
+    return Row(
       children: [
         PieChart(
           dataMap: calContent.daypiedataMapCalendar(widget.index),

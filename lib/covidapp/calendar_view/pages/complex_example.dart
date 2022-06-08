@@ -4,8 +4,11 @@
 import 'dart:collection';
 
 import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
+import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../widgets/daily_pie_peek.dart';
 
 // ignore: use_key_in_widget_constructors
 class TableComplexExample extends StatefulWidget {
@@ -23,9 +26,9 @@ class TableComplexExampleState extends State<TableComplexExample> {
     hashCode: getHashCode,
   );
   CalendarFormat _calendarFormat = CalendarFormat.week;
-  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
-  DateTime? _rangeStart;
-  DateTime? _rangeEnd;
+  /*  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff; */
+/*   DateTime? _rangeStart;
+  DateTime? _rangeEnd; */
 
   @override
   void initState() {
@@ -42,8 +45,8 @@ class TableComplexExampleState extends State<TableComplexExample> {
     super.dispose();
   }
 
-  bool get canClearSelection =>
-      _selectedDays.isNotEmpty || _rangeStart != null || _rangeEnd != null;
+  /* bool get canClearSelection =>
+      _selectedDays.isNotEmpty || _rangeStart != null || _rangeEnd != null; */
 
   List<Event> _getEventsForDay(DateTime day) {
     return kEvents[day] ?? [];
@@ -55,11 +58,11 @@ class TableComplexExampleState extends State<TableComplexExample> {
     ];
   }
 
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
+/*   List<Event> _getEventsForRange(DateTime start, DateTime end) {
     final days = daysInRange(start, end);
     return _getEventsForDays(days);
   }
-
+ */
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     setState(() {
       if (_selectedDays.contains(selectedDay)) {
@@ -69,31 +72,31 @@ class TableComplexExampleState extends State<TableComplexExample> {
       }
 
       _focusedDay.value = focusedDay;
-      _rangeStart = null;
+      /*   _rangeStart = null;
       _rangeEnd = null;
-      _rangeSelectionMode = RangeSelectionMode.toggledOff;
+      _rangeSelectionMode = RangeSelectionMode.toggledOff; */
     });
 
     _selectedEvents.value = _getEventsForDays(_selectedDays);
   }
 
-  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
+  /*  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
     setState(() {
       _focusedDay.value = focusedDay;
       _rangeStart = start;
       _rangeEnd = end;
       _selectedDays.clear();
       _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
+    }); */
 
-    if (start != null && end != null) {
+/*     if (start != null && end != null) {
       _selectedEvents.value = _getEventsForRange(start, end);
     } else if (start != null) {
       _selectedEvents.value = _getEventsForDay(start);
     } else if (end != null) {
       _selectedEvents.value = _getEventsForDay(end);
     }
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -152,18 +155,20 @@ class TableComplexExampleState extends State<TableComplexExample> {
             lastDay: kLastDay,
             focusedDay: _focusedDay.value,
             headerVisible: true,
-            selectedDayPredicate: (day) => _selectedDays.contains(day),
-            rangeStartDay: _rangeStart,
+            pageJumpingEnabled: false,
+            selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
+            // _selectedDays.contains(day),
+            /*  rangeStartDay: _rangeStart,
             rangeEndDay: _rangeEnd,
             calendarFormat: _calendarFormat,
-            rangeSelectionMode: _rangeSelectionMode,
+            rangeSelectionMode: _rangeSelectionMode, */
             eventLoader: _getEventsForDay,
             /*   holidayPredicate: (day) {
               // Every 20th day of the month will be treated as a holiday
               return day.day == 20;
             }, */
             onDaySelected: _onDaySelected,
-            onRangeSelected: _onRangeSelected,
+            /* onRangeSelected: _onRangeSelected, */
             onCalendarCreated: (controller) => _pageController = controller,
             onPageChanged: (focusedDay) => _focusedDay.value = focusedDay,
             onFormatChanged: (format) {
@@ -190,10 +195,26 @@ class TableComplexExampleState extends State<TableComplexExample> {
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    child: ListTile(
-                      // ignore: avoid_print
-                      onTap: () => print('${value[index]}'),
-                      title: Text('${value[index]}'),
+                    child: Container(
+                      height: 75,
+                      margin: const EdgeInsets.only(
+                        right: 12.0,
+                        top: 20.0,
+                      ),
+                      child: ListTile(
+                        title: Text(_focusedDay.value.day.toString(),
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: calContent.getLevel(calContent
+                                    .sumColorList[_focusedDay.value.day]))),
+                        trailing: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: DayPiePeek(_focusedDay.value.day)),
+                        // ignore: avoid_print
+                        onTap: () => print('${value[index]}'),
+                      ),
                     ),
                   );
                 },
