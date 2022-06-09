@@ -3,7 +3,6 @@
 
 import 'dart:collection';
 import 'package:covidapp/covidapp/calendar_view/widgets/daily_pie_peek.dart';
-import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
@@ -20,15 +19,15 @@ class Event {
 /// Example events.
 ///
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
-final DayPiePeek daypiePeek = DayPiePeek(kToday.day);
+
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: getHashCode,
 )..addAll(_kEventSource);
 
 final _kEventSource = {
-  for (var item in List.filled(50, (index) => index))
-    DateTime.utc(kFirstDay.year, kFirstDay.month, kFirstDay.day):
+  for (var item in List.generate(50, (index) => index))
+    DateTime.utc(kFirstDay.year, kFirstDay.month, item + 1):
         List.generate(1, (index) => Event('Event $item | ${index + 1}'))
 }..addAll({
     kToday: [],

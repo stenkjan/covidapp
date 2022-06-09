@@ -73,37 +73,7 @@ class CalendarContent with ChangeNotifier {
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [100, 70, 75];
   List introList = [];
-  List sumColorList = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-  ];
+  List sumColorList = List.generate(30, (index) => index);
 
   ///Map for PieChart
   Map<String, double> pieMap = {};
@@ -283,6 +253,7 @@ class CalendarContent with ChangeNotifier {
             map['schlaf'].toDouble() +
             map['nerven'].toDouble()) /
         7;
+
     sumColorList[map['created_date']] = sumColor;
   }
 
