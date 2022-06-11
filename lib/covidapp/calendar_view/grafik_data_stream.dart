@@ -3,6 +3,7 @@ import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class GrafikDataStream extends StatelessWidget {
@@ -26,17 +27,51 @@ class GrafikDataStream extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
-            return const Text("Something went wrong");
+            return Container(
+                height: 40,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 4.0,
+                ),
+                child: Neumorphic(
+                    style: NeumorphicStyle(
+                        shape: NeumorphicShape.concave,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        depth: 15,
+                        intensity: 3.0,
+                        shadowLightColor: Colors.transparent,
+                        /*  lightSource: LightSource.topLeft, */
+                        color: const Color(0xFF31A1C9)),
+                    child: const Text("Irgendwas ist schief gelaufen")));
           }
 
           if (snapshot.hasData && !snapshot.data!.exists) {
-            return const Text("Document does not exist");
+            return Container(
+                height: 40,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 4.0,
+                ),
+                child: Neumorphic(
+                    style: NeumorphicStyle(
+                        shape: NeumorphicShape.concave,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        depth: 15,
+                        intensity: 3.0,
+                        shadowLightColor: Colors.transparent,
+                        /*  lightSource: LightSource.topLeft, */
+                        color: const Color(0xFF31A1C9)),
+                    child: const Text("Dokument existiert nicht")));
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            calContent.dayliepieMap(data);
+            calContent.dayliepieMap(data, int.parse(documentId));
             /* calContent.listSum(data); */
 
             return SizedBox(
@@ -407,7 +442,7 @@ class GrafikDataStream extends StatelessWidget {
               ),
             );
           }
-          return const Text("loading");
+          return const Text("laden...");
         });
   }
 }

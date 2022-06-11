@@ -45,6 +45,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
     version: ^0.0.0
+  flutter_neumorphic: ^3.2.0
   flutter_sparkline: ^0.1.0
   get: ^4.6.1
   get_storage: ^2.0.3

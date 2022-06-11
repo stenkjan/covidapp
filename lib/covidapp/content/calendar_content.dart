@@ -62,14 +62,35 @@ class CalendarContent with ChangeNotifier {
   int indexGrafik = 0;
   int index = 0;
   //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
-  List<int> dateL = [18, 19, 20, 21, 22, 23, 24, 25];
-  List<int> moodL = [5, 4, 3, 5, 7, 8, 8, 2];
-  List<int> muedigkeitL = [3, 0, 0, 1, 0, 3, 4, 3];
-  List<int> atemnotL = [0, 0, 1, 5, 3, 0, 1, 0];
-  List<int> sinneL = [0, 1, 3, 2, 4, 1, 2, 1];
-  List<int> herzL = [3, 4, 6, 8, 6, 5, 0, 5];
-  List<int> schlafL = [3, 2, 4, 2, 3, 2, 0, 2];
-  List<int> nervenL = [5, 6, 8, 5, 6, 4, 5, 4];
+  List<int> dateL = [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ];
+  List<int> moodL = List.generate(30, (index) => index);
+  List<int> muedigkeitL = List.generate(30, (index) => index);
+  List<int> atemnotL = List.generate(30, (index) => index);
+  List<int> sinneL = List.generate(30, (index) => index);
+  List<int> herzL = List.generate(30, (index) => index);
+  List<int> schlafL = List.generate(30, (index) => index);
+  List<int> nervenL = List.generate(30, (index) => index);
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [100, 70, 75];
   List introList = [];
@@ -236,7 +257,7 @@ class CalendarContent with ChangeNotifier {
     return daypiedataMapCal;
   }
 
-  void dayliepieMap(Map<String, dynamic> map) {
+  void dayliepieMap(Map<String, dynamic> map, int day) {
     pieMap = {
       headline[1]['tag']: map['muedigkeit'].toDouble(),
       headline[2]['tag']: map['atemnot'].toDouble(),
@@ -245,6 +266,12 @@ class CalendarContent with ChangeNotifier {
       headline[5]['tag']: map['schlaf'].toDouble(),
       headline[6]['tag']: map['nerven'].toDouble(),
     };
+    calContent.muedigkeitL[day] = map['muedigkeit'];
+    calContent.atemnotL[day] = map['atemnot'];
+    calContent.sinneL[day] = map['sinne'];
+    calContent.herzL[day] = map['herz'];
+    calContent.schlafL[day] = map['schlaf'];
+    calContent.nervenL[day] = map['nerven'];
     sumColor = (map['mood'].toDouble() +
             map['muedigkeit'].toDouble() +
             map['atemnot'].toDouble() +
@@ -297,6 +324,14 @@ class CalendarContent with ChangeNotifier {
     atemnotL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
     atemnotL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
+       sinneL[calContent.listIndex] = (map[map.length - 7]['sinne']);
+    sinneL[calContent.listIndex + 1] = (map[map.length - 6]['sinne']);
+    sinneL[calContent.listIndex + 2] = (map[map.length - 5]['sinne']);
+    sinneL[calContent.listIndex + 3] = (map[map.length - 4]['sinne']);
+    sinneL[calContent.listIndex + 4] = (map[map.length - 3]['sinne']);
+    sinneL[calContent.listIndex + 5] = (map[map.length - 2]['sinne']);
+    sinneL[calContent.listIndex + 6] = (map[map.length - 1]['sinne']);
+
     herzL[calContent.listIndex] = (map[map.length - 7]['mood']);
     herzL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
     herzL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
@@ -320,6 +355,8 @@ class CalendarContent with ChangeNotifier {
     nervenL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
     nervenL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
     nervenL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+
+ 
   }
 
   Map<String, double> daypiedataMap() {

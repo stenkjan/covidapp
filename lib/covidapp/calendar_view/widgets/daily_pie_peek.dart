@@ -32,13 +32,15 @@ class DayPiePeekState extends State<DayPiePeek> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     Color color = widget.color;
+    int index = widget.index;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        /*  TextButton.icon(
-          label: const Text(
-            "Summe",
-            style: TextStyle(
-              fontSize: 22,
+        TextButton.icon(
+          label: Text(
+            "$index in Summe",
+            style: const TextStyle(
+              fontSize: 14,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.italic,
               color: Colors.black54,
@@ -46,12 +48,12 @@ class DayPiePeekState extends State<DayPiePeek> {
           ),
           icon: Icon(
             Icons.pie_chart,
-            size: 50,
+            size: 25,
             color: color,
           ),
           onPressed: () {},
         ),
-        const SizedBox(width: 20), */
+        const SizedBox(width: 20),
         PieChart(
           dataMap: calContent.daypiedataMapCalendar(widget.index),
           animationDuration: const Duration(milliseconds: 800),

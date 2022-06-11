@@ -3,11 +3,15 @@
 
 import 'dart:collection';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../services/grafik_service.dart';
 import '../widgets/daily_pie_peek.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -18,6 +22,7 @@ class TableComplexExample extends StatefulWidget {
 
 class TableComplexExampleState extends State<TableComplexExample> {
   // ignore: unused_field
+  late CollectionReference calCollection;
   late final PageController _pageController;
   late final ValueNotifier<List<Event>> _selectedEvents;
   final ValueNotifier<DateTime> _focusedDay = ValueNotifier(DateTime.now());
@@ -33,7 +38,10 @@ class TableComplexExampleState extends State<TableComplexExample> {
   @override
   void initState() {
     super.initState();
-
+    calCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(_focusedDay.value.day.toString())
+        .collection('calendar');
     _selectedDays.add(_focusedDay.value);
     _selectedEvents = ValueNotifier(_getEventsForDay(_focusedDay.value));
   }
@@ -70,7 +78,10 @@ class TableComplexExampleState extends State<TableComplexExample> {
       } else {
         _selectedDays.add(selectedDay);
       }
-
+      calCollection = FirebaseFirestore.instance
+          .collection('users')
+          .doc(_focusedDay.value.day.toString())
+          .collection('calendar');
       _focusedDay.value = focusedDay;
       /*   _rangeStart = null;
       _rangeEnd = null;
@@ -100,6 +111,12 @@ class TableComplexExampleState extends State<TableComplexExample> {
 
   @override
   Widget build(BuildContext context) {
+    final grafService = Provider.of<GrafikService>(context);
+
+    CollectionReference calCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(grafService.uid)
+        .collection('calendar');
     return Container(
       width: 370,
       decoration: const BoxDecoration(
@@ -116,39 +133,39 @@ class TableComplexExampleState extends State<TableComplexExample> {
       child: Column(
         children: [
           /*  ValueListenableBuilder<DateTime>(
-            valueListenable: _focusedDay,
-            builder: (context, value, _) {
-              return _CalendarHeader(
-                focusedDay: value,
-                clearButtonVisible: canClearSelection,
-                onTodayButtonTap: () {
-                  setState(() => _focusedDay.value = DateTime.now());
-                },
-                
-               
-                onClearButtonTap: () {
-                  setState(() {
-                    _rangeStart = null;
-                    _rangeEnd = null;
-                    _selectedDays.clear();
-                    _selectedEvents.value = [];
-                  });
-                },
-                onLeftArrowTap: () {
-                  _pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                },
-                onRightArrowTap: () {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                  );
-                },
-              );
-            },
-          ), */
+              valueListenable: _focusedDay,
+              builder: (context, value, _) {
+                return _CalendarHeader(
+                  focusedDay: value,
+                  clearButtonVisible: canClearSelection,
+                  onTodayButtonTap: () {
+                    setState(() => _focusedDay.value = DateTime.now());
+                  },
+                  
+                 
+                  onClearButtonTap: () {
+                    setState(() {
+                      _rangeStart = null;
+                      _rangeEnd = null;
+                      _selectedDays.clear();
+                      _selectedEvents.value = [];
+                    });
+                  },
+                  onLeftArrowTap: () {
+                    _pageController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOut,
+                    );
+                  },
+                  onRightArrowTap: () {
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOut,
+                    );
+                  },
+                );
+              },
+            ), */
           TableCalendar<Event>(
             locale: 'de_AT',
             firstDay: kFirstDay,
@@ -159,14 +176,14 @@ class TableComplexExampleState extends State<TableComplexExample> {
             selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
             // _selectedDays.contains(day),
             /*  rangeStartDay: _rangeStart,
-            rangeEndDay: _rangeEnd,
-            calendarFormat: _calendarFormat,
-            rangeSelectionMode: _rangeSelectionMode, */
+              rangeEndDay: _rangeEnd,
+              calendarFormat: _calendarFormat,
+              rangeSelectionMode: _rangeSelectionMode, */
             eventLoader: _getEventsForDay,
             /*   holidayPredicate: (day) {
-              // Every 20th day of the month will be treated as a holiday
-              return day.day == 20;
-            }, */
+                // Every 20th day of the month will be treated as a holiday
+                return day.day == 20;
+              }, */
             onDaySelected: _onDaySelected,
             /* onRangeSelected: _onRangeSelected, */
             onCalendarCreated: (controller) => _pageController = controller,
@@ -178,7 +195,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
             },
           ),
           const SizedBox(height: 5.0),
-          ValueListenableBuilder<List<Event>>(
+          (ValueListenableBuilder<List<Event>>(
             valueListenable: _selectedEvents,
             builder: (context, value, _) {
               return ListView.builder(
@@ -186,52 +203,185 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 4.0,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Container(
-                      height: 77,
-                      margin: const EdgeInsets.only(
-                        right: 12.0,
-                        top: 20.0,
-                      ),
-                      child: ListTile(
-                        title: Text('${_focusedDay.value.day}.',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                              /* calContent.getLevel(calContent
-                                    .sumColorList[_focusedDay.value.day]) */
-                            )),
-                        trailing: SizedBox(
-                          height: 60,
-                          width: 60,
-                          child: DayPiePeek(
-                              _focusedDay.value.day,
-                              calContent.getLevel(calContent
-                                  .sumColorList[_focusedDay.value.day])),
-                          // ignore: avoid_print
-                        ),
-                        onTap: () => print('${value[index]}'),
-                      ),
-                    ),
-                  );
+                  return FutureBuilder<DocumentSnapshot>(
+                      future: calCollection
+                          .doc(_focusedDay.value.day.toString())
+                          .get(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Container(
+                              height: 40,
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 12.0,
+                                vertical: 4.0,
+                              ),
+                              child: Neumorphic(
+                                  style: NeumorphicStyle(
+                                      shape: NeumorphicShape.concave,
+                                      boxShape: NeumorphicBoxShape.roundRect(
+                                          BorderRadius.circular(12)),
+                                      depth: 15,
+                                      intensity: 3.0,
+                                      shadowLightColor: Colors.transparent,
+                                      /*  lightSource: LightSource.topLeft, */
+                                      color: const Color(0xFF31A1C9)),
+                                  child: const Text(
+                                      "Irgendwas ist schief gelaufen")));
+                        }
+
+                        if (snapshot.hasData && !snapshot.data!.exists) {
+                          Map<String, dynamic> data = calContent
+                              .daypiedataMapCalendar(_focusedDay.value.day);
+                          calContent.dayliepieMap(data, _focusedDay.value.day);
+                          /* calContent.listSum(data); */
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                              vertical: 4.0,
+                            ),
+                            child: Neumorphic(
+                              style: NeumorphicStyle(
+                                  shape: NeumorphicShape.concave,
+                                  boxShape: NeumorphicBoxShape.roundRect(
+                                      BorderRadius.circular(12)),
+                                  depth: 15,
+                                  intensity: 3.0,
+                                  shadowLightColor: Colors.transparent,
+                                  /*  lightSource: LightSource.topLeft, */
+                                  color: const Color(0xFF31A1C9)),
+                              /*  decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ), */
+
+                              child: Container(
+                                height: 85,
+                                margin: const EdgeInsets.only(
+                                  right: 12.0,
+                                  top: 20.0,
+                                ),
+                                child: ListTile(
+                                  leading: Text('${_focusedDay.value.day}.',
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                        /* calContent.getLevel(calContent
+                                        .sumColorList[_focusedDay.value.day]) */
+                                      )),
+                                  subtitle: Container(
+                                    margin: const EdgeInsets.only(
+                                      bottom: 2,
+                                    ),
+                                    height: 60,
+                                    width: 60,
+                                    child: DayPiePeek(
+                                        _focusedDay.value.day,
+                                        calContent.getLevel(
+                                            calContent.sumColorList[
+                                                _focusedDay.value.day])),
+                                    // ignore: avoid_print
+                                  ),
+                                  onTap: () => print('${value[index]}'),
+                                ),
+                              ),
+                            ),
+                          );
+                          /* 
+                          return Container(
+                              height: 40,
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 12.0,
+                                vertical: 4.0,
+                              ),
+                              child: Neumorphic(
+                                  style: NeumorphicStyle(
+                                      shape: NeumorphicShape.concave,
+                                      boxShape: NeumorphicBoxShape.roundRect(
+                                          BorderRadius.circular(12)),
+                                      depth: 15,
+                                      intensity: 3.0,
+                                      shadowLightColor: Colors.transparent,
+                                      /*  lightSource: LightSource.topLeft, */
+                                      color: const Color(0xFF31A1C9)),
+                                  child:
+                                      const Text("Dokument existiert nicht"))); */
+                        }
+
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          Map<String, dynamic> data =
+                              snapshot.data!.data() as Map<String, dynamic>;
+                          calContent.dayliepieMap(data, _focusedDay.value.day);
+                          /* calContent.listSum(data); */
+                          Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                              vertical: 4.0,
+                            ),
+                            child: Neumorphic(
+                              style: NeumorphicStyle(
+                                  shape: NeumorphicShape.concave,
+                                  boxShape: NeumorphicBoxShape.roundRect(
+                                      BorderRadius.circular(12)),
+                                  depth: 15,
+                                  intensity: 3.0,
+                                  shadowLightColor: Colors.transparent,
+                                  /*  lightSource: LightSource.topLeft, */
+                                  color: const Color(0xFF31A1C9)),
+                              /*  decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ), */
+
+                              child: Container(
+                                height: 85,
+                                margin: const EdgeInsets.only(
+                                  right: 12.0,
+                                  top: 20.0,
+                                ),
+                                child: ListTile(
+                                  leading: Text('${_focusedDay.value.day}.',
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                        /* calContent.getLevel(calContent
+                                        .sumColorList[_focusedDay.value.day]) */
+                                      )),
+                                  subtitle: Container(
+                                    margin: const EdgeInsets.only(
+                                      bottom: 2,
+                                    ),
+                                    height: 60,
+                                    width: 60,
+                                    child: DayPiePeek(
+                                        _focusedDay.value.day,
+                                        calContent.getLevel(
+                                            calContent.sumColorList[
+                                                _focusedDay.value.day])),
+                                    // ignore: avoid_print
+                                  ),
+                                  onTap: () => print('${value[index]}'),
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        return const Text("laden...");
+                      });
                 },
               );
             },
-          ),
+          ))
         ],
       ),
     );
   }
 }
+
 
 /* class _CalendarHeader extends StatelessWidget {
   final DateTime focusedDay;
