@@ -442,7 +442,33 @@ class GrafikDataStream extends StatelessWidget {
               ),
             );
           }
-          return const Text("laden...");
+
+          return Container(
+              height: 40,
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 4.0,
+              ),
+              child: Neumorphic(
+                  margin: const EdgeInsets.all(1.0),
+                  style: NeumorphicStyle(
+                      shape: NeumorphicShape.concave,
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(12)),
+                      depth: 15,
+                      intensity: 3.0,
+                      shadowLightColor: Colors.transparent,
+                      /*  lightSource: LightSource.topLeft, */
+                      color: const Color(0xFF31A1C9)),
+                  child: Container(
+                      height: 35,
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 4.0,
+                      ),
+                      child: const Text("laden..."))));
         });
   }
 }

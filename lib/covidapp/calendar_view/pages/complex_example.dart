@@ -6,11 +6,13 @@ import 'dart:collection';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../content/calendar_content.dart';
 import '../../services/grafik_service.dart';
 import '../widgets/daily_pie_peek.dart';
 
@@ -38,12 +40,10 @@ class TableComplexExampleState extends State<TableComplexExample> {
   @override
   void initState() {
     super.initState();
-    calCollection = FirebaseFirestore.instance
-        .collection('users')
-        .doc(_focusedDay.value.day.toString())
-        .collection('calendar');
+
     _selectedDays.add(_focusedDay.value);
     _selectedEvents = ValueNotifier(_getEventsForDay(_focusedDay.value));
+    calContent.fireDate = _focusedDay.value.day.toString();
   }
 
   @override
@@ -78,11 +78,9 @@ class TableComplexExampleState extends State<TableComplexExample> {
       } else {
         _selectedDays.add(selectedDay);
       }
-      calCollection = FirebaseFirestore.instance
-          .collection('users')
-          .doc(_focusedDay.value.day.toString())
-          .collection('calendar');
       _focusedDay.value = focusedDay;
+      calContent.fireDate = _focusedDay.value.day.toString();
+
       /*   _rangeStart = null;
       _rangeEnd = null;
       _rangeSelectionMode = RangeSelectionMode.toggledOff; */
@@ -112,10 +110,14 @@ class TableComplexExampleState extends State<TableComplexExample> {
   @override
   Widget build(BuildContext context) {
     final grafService = Provider.of<GrafikService>(context);
-
-    CollectionReference calCollection = FirebaseFirestore.instance
+    AuthService auth = Provider.of<AuthService>(context);
+    final calContent = Provider.of<CalendarContent>(context);
+    if (calContent.fireDate == "") {
+      calContent.fireDate = _focusedDay.value.day.toString();
+    }
+    calCollection = FirebaseFirestore.instance
         .collection('users')
-        .doc(grafService.uid)
+        .doc(auth.getUser())
         .collection('calendar');
     return Container(
       width: 370,
@@ -130,9 +132,8 @@ class TableComplexExampleState extends State<TableComplexExample> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           )),
-      child: Column(
-        children: [
-          /*  ValueListenableBuilder<DateTime>(
+      child: Column(children: [
+        /*  ValueListenableBuilder<DateTime>(
               valueListenable: _focusedDay,
               builder: (context, value, _) {
                 return _CalendarHeader(
@@ -166,36 +167,36 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 );
               },
             ), */
-          TableCalendar<Event>(
-            locale: 'de_AT',
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay.value,
-            headerVisible: true,
-            pageJumpingEnabled: false,
-            selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
-            // _selectedDays.contains(day),
-            /*  rangeStartDay: _rangeStart,
+        TableCalendar<Event>(
+          locale: 'de_AT',
+          firstDay: kFirstDay,
+          lastDay: kLastDay,
+          focusedDay: _focusedDay.value,
+          headerVisible: true,
+          pageJumpingEnabled: false,
+          selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
+          // _selectedDays.contains(day),
+          /*  rangeStartDay: _rangeStart,
               rangeEndDay: _rangeEnd,
               calendarFormat: _calendarFormat,
               rangeSelectionMode: _rangeSelectionMode, */
-            eventLoader: _getEventsForDay,
-            /*   holidayPredicate: (day) {
+          eventLoader: _getEventsForDay,
+          /*   holidayPredicate: (day) {
                 // Every 20th day of the month will be treated as a holiday
                 return day.day == 20;
               }, */
-            onDaySelected: _onDaySelected,
-            /* onRangeSelected: _onRangeSelected, */
-            onCalendarCreated: (controller) => _pageController = controller,
-            onPageChanged: (focusedDay) => _focusedDay.value = focusedDay,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() => _calendarFormat = format);
-              }
-            },
-          ),
-          const SizedBox(height: 5.0),
-          (ValueListenableBuilder<List<Event>>(
+          onDaySelected: _onDaySelected,
+          /* onRangeSelected: _onRangeSelected, */
+          onCalendarCreated: (controller) => _pageController = controller,
+          onPageChanged: (focusedDay) => _focusedDay.value = focusedDay,
+          onFormatChanged: (format) {
+            if (_calendarFormat != format) {
+              setState(() => _calendarFormat = format);
+            }
+          },
+        ),
+        const SizedBox(height: 5.0),
+        /*   ValueListenableBuilder<List<Event>>(
             valueListenable: _selectedEvents,
             builder: (context, value, _) {
               return ListView.builder(
@@ -203,184 +204,235 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  return FutureBuilder<DocumentSnapshot>(
-                      future: calCollection
-                          .doc(_focusedDay.value.day.toString())
-                          .get(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<DocumentSnapshot> snapshot) {
-                        if (snapshot.hasError) {
-                          return Container(
-                              height: 40,
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 4.0,
-                              ),
-                              child: Neumorphic(
-                                  style: NeumorphicStyle(
-                                      shape: NeumorphicShape.concave,
-                                      boxShape: NeumorphicBoxShape.roundRect(
-                                          BorderRadius.circular(12)),
-                                      depth: 15,
-                                      intensity: 3.0,
-                                      shadowLightColor: Colors.transparent,
-                                      /*  lightSource: LightSource.topLeft, */
-                                      color: const Color(0xFF31A1C9)),
-                                  child: const Text(
-                                      "Irgendwas ist schief gelaufen")));
-                        }
+                  return */
+        FutureBuilder<DocumentSnapshot>(
+            future: calCollection.doc(_focusedDay.value.day.toString()).get(),
+            builder: (BuildContext context,
+                AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Container(
+                    height: 40,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 4.0,
+                    ),
+                    child: Neumorphic(
+                      style: NeumorphicStyle(
+                          shape: NeumorphicShape.concave,
+                          boxShape: NeumorphicBoxShape.roundRect(
+                              BorderRadius.circular(12)),
+                          depth: 15,
+                          intensity: 3.0,
+                          shadowLightColor: Colors.transparent,
+                          /*  lightSource: LightSource.topLeft, */
+                          color: const Color(0xFF31A1C9)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Irgendwas ist schief gelaufen",
+                            textAlign: TextAlign.center,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.replay_outlined),
+                            onPressed: () => TableComplexExample(),
+                          ),
+                        ],
+                      ),
+                    ));
+              }
 
-                        if (snapshot.hasData && !snapshot.data!.exists) {
-                          Map<String, dynamic> data = calContent
-                              .daypiedataMapCalendar(_focusedDay.value.day);
-                          calContent.dayliepieMap(data, _focusedDay.value.day);
-                          /* calContent.listSum(data); */
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 4.0,
-                            ),
-                            child: Neumorphic(
-                              style: NeumorphicStyle(
-                                  shape: NeumorphicShape.concave,
-                                  boxShape: NeumorphicBoxShape.roundRect(
-                                      BorderRadius.circular(12)),
-                                  depth: 15,
-                                  intensity: 3.0,
-                                  shadowLightColor: Colors.transparent,
-                                  /*  lightSource: LightSource.topLeft, */
-                                  color: const Color(0xFF31A1C9)),
-                              /*  decoration: BoxDecoration(
+              /*    if (snapshot.hasData && !snapshot.data!.exists) {
+                return Container(
+                    height: 40,
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 4.0,
+                    ),
+                    child: Neumorphic(
+                        style: NeumorphicStyle(
+                            shape: NeumorphicShape.concave,
+                            boxShape: NeumorphicBoxShape.roundRect(
+                                BorderRadius.circular(12)),
+                            depth: 15,
+                            intensity: 3.0,
+                            shadowLightColor: Colors.transparent,
+                            /*  lightSource: LightSource.topLeft, */
+                            color: const Color(0xFF31A1C9)),
+                        child: Row(
+                          children: [
+                            const Text("Dokument existiert nicht",
+                                textAlign: TextAlign.center),
+                            IconButton(
+                              icon: const Icon(Icons.replay_outlined),
+                              onPressed: () => TableComplexExample(),
+                            )
+                          ],
+                        )));
+              } */
+
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.data!.exists) {
+                Map<String, dynamic> data =
+                    snapshot.data!.data() as Map<String, dynamic>;
+                calContent.dayliepieMap(data, _focusedDay.value.day);
+                /* calContent.listSum(data); */
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 4.0,
+                  ),
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                        shape: NeumorphicShape.concave,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        depth: 15,
+                        intensity: 3.0,
+                        shadowLightColor: Colors.transparent,
+                        /*  lightSource: LightSource.topLeft, */
+                        color: const Color(0xFF31A1C9)),
+                    /*  decoration: BoxDecoration(
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(12.0),
                         ), */
 
-                              child: Container(
-                                height: 85,
-                                margin: const EdgeInsets.only(
-                                  right: 12.0,
-                                  top: 20.0,
-                                ),
-                                child: ListTile(
-                                  leading: Text('${_focusedDay.value.day}.',
-                                      style: const TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                        /* calContent.getLevel(calContent
+                    child: Container(
+                      height: 85,
+                      margin: const EdgeInsets.only(
+                        right: 12.0,
+                        top: 20.0,
+                      ),
+                      child: ListTile(
+                        leading: Text('${_focusedDay.value.day}.',
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                              /* calContent.getLevel(calContent
                                         .sumColorList[_focusedDay.value.day]) */
-                                      )),
-                                  subtitle: Container(
-                                    margin: const EdgeInsets.only(
-                                      bottom: 2,
-                                    ),
-                                    height: 60,
-                                    width: 60,
-                                    child: DayPiePeek(
-                                        _focusedDay.value.day,
-                                        calContent.getLevel(
-                                            calContent.sumColorList[
-                                                _focusedDay.value.day])),
-                                    // ignore: avoid_print
-                                  ),
-                                  onTap: () => print('${value[index]}'),
-                                ),
-                              ),
-                            ),
-                          );
-                          /* 
-                          return Container(
-                              height: 40,
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 4.0,
-                              ),
-                              child: Neumorphic(
-                                  style: NeumorphicStyle(
-                                      shape: NeumorphicShape.concave,
-                                      boxShape: NeumorphicBoxShape.roundRect(
-                                          BorderRadius.circular(12)),
-                                      depth: 15,
-                                      intensity: 3.0,
-                                      shadowLightColor: Colors.transparent,
-                                      /*  lightSource: LightSource.topLeft, */
-                                      color: const Color(0xFF31A1C9)),
-                                  child:
-                                      const Text("Dokument existiert nicht"))); */
-                        }
+                            )),
+                        subtitle: Container(
+                          margin: const EdgeInsets.only(
+                            bottom: 2,
+                          ),
+                          height: 60,
+                          width: 60,
+                          child: DayPiePeek(
+                              _focusedDay.value.day,
+                              calContent.getLevel(calContent
+                                  .sumColorList[_focusedDay.value.day]
+                                  .round())),
+                          // ignore: avoid_print
+                        ),
+                        /*     onTap: () => print('${value[index]}'), */
+                      ),
+                    ),
+                  ),
+                );
+              }
 
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          Map<String, dynamic> data =
-                              snapshot.data!.data() as Map<String, dynamic>;
-                          calContent.dayliepieMap(data, _focusedDay.value.day);
-                          /* calContent.listSum(data); */
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 4.0,
-                            ),
-                            child: Neumorphic(
-                              style: NeumorphicStyle(
-                                  shape: NeumorphicShape.concave,
-                                  boxShape: NeumorphicBoxShape.roundRect(
-                                      BorderRadius.circular(12)),
-                                  depth: 15,
-                                  intensity: 3.0,
-                                  shadowLightColor: Colors.transparent,
-                                  /*  lightSource: LightSource.topLeft, */
-                                  color: const Color(0xFF31A1C9)),
-                              /*  decoration: BoxDecoration(
+              /* if (snapshot.connectionState == ConnectionState.done &&
+                  !snapshot.data!.exists) {
+               
+              } */
+
+              /*  return Container(
+                  height: 40,
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 4.0,
+                  ),
+                  child: Neumorphic(
+                      margin: const EdgeInsets.all(1.0),
+                      style: NeumorphicStyle(
+                          shape: NeumorphicShape.concave,
+                          boxShape: NeumorphicBoxShape.roundRect(
+                              BorderRadius.circular(12)),
+                          depth: 15,
+                          intensity: 3.0,
+                          shadowLightColor: Colors.transparent,
+                          /*  lightSource: LightSource.topLeft, */
+                          color: const Color(0xFF31A1C9)),
+                      child: Container(
+                          height: 35,
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 12.0,
+                            vertical: 4.0,
+                          ),
+                          child: const Text("laden...")))); */
+
+              calContent.daypiedataMapCalendar(_focusedDay.value.day);
+              /* calContent.listSum(data); */
+              return Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 4.0,
+                ),
+                child: Neumorphic(
+                  style: NeumorphicStyle(
+                      shape: NeumorphicShape.concave,
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(12)),
+                      depth: 15,
+                      intensity: 3.0,
+                      shadowLightColor: Colors.transparent,
+                      /*  lightSource: LightSource.topLeft, */
+                      color: const Color(0xFF31A1C9)),
+                  /*  decoration: BoxDecoration(
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(12.0),
                         ), */
 
-                              child: Container(
-                                height: 85,
-                                margin: const EdgeInsets.only(
-                                  right: 12.0,
-                                  top: 20.0,
-                                ),
-                                child: ListTile(
-                                  leading: Text('${_focusedDay.value.day}.',
-                                      style: const TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                        /* calContent.getLevel(calContent
+                  child: Container(
+                    height: 85,
+                    margin: const EdgeInsets.only(
+                      right: 12.0,
+                      top: 20.0,
+                    ),
+                    child: ListTile(
+                      leading: Text('${_focusedDay.value.day}.',
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                            /* calContent.getLevel(calContent
                                         .sumColorList[_focusedDay.value.day]) */
-                                      )),
-                                  subtitle: Container(
-                                    margin: const EdgeInsets.only(
-                                      bottom: 2,
-                                    ),
-                                    height: 60,
-                                    width: 60,
-                                    child: DayPiePeek(
-                                        _focusedDay.value.day,
-                                        calContent.getLevel(
-                                            calContent.sumColorList[
-                                                _focusedDay.value.day])),
-                                    // ignore: avoid_print
-                                  ),
-                                  onTap: () => print('${value[index]}'),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        return const Text("laden...");
-                      });
-                },
+                          )),
+                      subtitle: Container(
+                        margin: const EdgeInsets.only(
+                          bottom: 2,
+                        ),
+                        height: 60,
+                        width: 60,
+                        child: DayPiePeek(
+                            _focusedDay.value.day,
+                            calContent.getLevel(calContent
+                                .sumColorList[_focusedDay.value.day]
+                                .round())),
+                        // ignore: avoid_print
+                      ),
+                      /*   onTap: () => print('${value[index]}'), */
+                    ),
+                  ),
+                ),
               );
-            },
-          ))
-        ],
-      ),
+            })
+      ]),
     );
   }
 }
+           /*   );
+            },
+          )
+        ],
+      ),
+    );
+} */
 
 
 /* class _CalendarHeader extends StatelessWidget {

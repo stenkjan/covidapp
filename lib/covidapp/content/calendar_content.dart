@@ -62,39 +62,20 @@ class CalendarContent with ChangeNotifier {
   int indexGrafik = 0;
   int index = 0;
   //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
-  List<int> dateL = [
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31
-  ];
-  List<int> moodL = List.generate(30, (index) => index);
-  List<int> muedigkeitL = List.generate(30, (index) => index);
-  List<int> atemnotL = List.generate(30, (index) => index);
-  List<int> sinneL = List.generate(30, (index) => index);
-  List<int> herzL = List.generate(30, (index) => index);
-  List<int> schlafL = List.generate(30, (index) => index);
-  List<int> nervenL = List.generate(30, (index) => index);
+  List<int> dateL = List.generate(31, (index) => index);
+  List<int> moodL = List.generate(31, (index) => index);
+  List<int> muedigkeitL = List.generate(31, (index) => index);
+  List<int> atemnotL = List.generate(31, (index) => index);
+  List<int> sinneL = List.generate(31, (index) => index);
+  List<int> herzL = List.generate(31, (index) => index);
+  List<int> schlafL = List.generate(31, (index) => index);
+  List<int> nervenL = List.generate(31, (index) => index);
   List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
   List bpmday = [100, 70, 75];
   List introList = [];
-  List sumColorList = List.generate(30, (index) => index);
+  List sumColorList = List.generate(31, (index) => index);
+
+  String fireDate = "";
 
   ///Map for PieChart
   Map<String, double> pieMap = {};
@@ -254,6 +235,10 @@ class CalendarContent with ChangeNotifier {
       headline[5]['tag']: calContent.schlafL[indexgetter].toDouble(),
       headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
     };
+    var values = daypiedataMapCal.values;
+    sumColor = (values.reduce((sum, element) => sum + element)) / 7;
+
+    sumColorList[indexgetter] = sumColor;
     return daypiedataMapCal;
   }
 
@@ -272,14 +257,8 @@ class CalendarContent with ChangeNotifier {
     calContent.herzL[day] = map['herz'];
     calContent.schlafL[day] = map['schlaf'];
     calContent.nervenL[day] = map['nerven'];
-    sumColor = (map['mood'].toDouble() +
-            map['muedigkeit'].toDouble() +
-            map['atemnot'].toDouble() +
-            map['sinne'].toDouble() +
-            map['herz'].toDouble() +
-            map['schlaf'].toDouble() +
-            map['nerven'].toDouble()) /
-        7;
+    var values = pieMap.values;
+    sumColor = (values.reduce((sum, element) => sum + element)) / 7;
 
     sumColorList[map['created_date']] = sumColor;
   }
@@ -324,7 +303,7 @@ class CalendarContent with ChangeNotifier {
     atemnotL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
     atemnotL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
 
-       sinneL[calContent.listIndex] = (map[map.length - 7]['sinne']);
+    sinneL[calContent.listIndex] = (map[map.length - 7]['sinne']);
     sinneL[calContent.listIndex + 1] = (map[map.length - 6]['sinne']);
     sinneL[calContent.listIndex + 2] = (map[map.length - 5]['sinne']);
     sinneL[calContent.listIndex + 3] = (map[map.length - 4]['sinne']);
@@ -355,8 +334,6 @@ class CalendarContent with ChangeNotifier {
     nervenL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
     nervenL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
     nervenL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
-
- 
   }
 
   Map<String, double> daypiedataMap() {
