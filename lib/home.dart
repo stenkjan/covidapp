@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/faq.dart';
 import 'package:covidapp/covidapp/calendar_view/lrm_data_model.dart';
@@ -11,14 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
 
-class T2Home extends StatefulWidget {
-  const T2Home({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  T2HomeState createState() => T2HomeState();
+  HomeState createState() => HomeState();
 }
 
-class T2HomeState extends State<T2Home> {
+class HomeState extends State<Home> {
   late DatabaseService dbService;
   late AuthService authService;
   late CalendarContent cal;
@@ -198,7 +199,7 @@ class T2HomeState extends State<T2Home> {
                           color: Colors.lightBlue,
                           borderRadius: BorderRadius.all(Radius.circular(50.0)),
                           image: DecorationImage(
-                              image: NetworkImage(
+                              image: CachedNetworkImageProvider(
                                   "https://media3.giphy.com/media/l1J9LxVGTBa8DS3pC/giphy.gif?cid=ecf05e47twt83mqy00z2hsz5mq2tnomover36jzi4zz9bmzm&rid=giphy.gif&ct=g"),
                               fit: BoxFit.cover)),
                     ),
@@ -361,7 +362,7 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const T2Home()));
+                          pageBuilder: (_, __, ___) => const Home()));
                     },
                     child: itemDrawer(Icons.home, "Übersicht")),
                 InkWell(

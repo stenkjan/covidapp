@@ -109,7 +109,7 @@ class BreatheHome extends GetView<HomeController> {
                     ),
                     onPressed: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const T2Home()));
+                          pageBuilder: (_, __, ___) => const Home()));
                       /* Get.offAll(() => const T2Home());
                       Get.deleteAll(); */
                     }),

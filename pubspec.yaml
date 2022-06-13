@@ -28,6 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   audioplayers: ^0.20.1
+  cached_network_image: ^3.2.1
   camera: ^0.9.4+14
   carousel_slider: ^4.0.0
   charts_flutter: ^0.12.0

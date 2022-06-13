@@ -34,7 +34,7 @@ class Wrapper extends StatelessWidget {
             adminIDMode = true;
             return const OnBoardingPage();
           } else {
-            return user == null ? const SignInScreen() : const T2Home();
+            return user == null ? const SignInScreen() : const Home();
           }
         } else {
           return const Scaffold(

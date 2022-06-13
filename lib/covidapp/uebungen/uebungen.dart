@@ -45,7 +45,7 @@ class UebungenState extends State<Uebungen> {
           color: Colors.white,
           onPressed: () {
             Navigator.of(context).push(
-                PageRouteBuilder(pageBuilder: (_, __, ___) => const T2Home()));
+                PageRouteBuilder(pageBuilder: (_, __, ___) => const Home()));
           },
         ),
         title: const Text(
