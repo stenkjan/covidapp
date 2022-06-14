@@ -301,25 +301,28 @@ class TableComplexExampleState extends State<TableComplexExample> {
 
                     child: Container(
                       height: 85,
-                      margin: const EdgeInsets.only(
+                      /*  margin: const EdgeInsets.only(
                         right: 12.0,
                         top: 20.0,
-                      ),
+                      ), */
                       child: ListTile(
-                        leading: Text('${_focusedDay.value.day}.',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                              /* calContent.getLevel(calContent
-                                        .sumColorList[_focusedDay.value.day]) */
-                            )),
+                        leading: Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text('${_focusedDay.value.day}.',
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                                /* calContent.getLevel(calContent
+                                          .sumColorList[_focusedDay.value.day]) */
+                              )),
+                        ),
                         subtitle: Container(
                           margin: const EdgeInsets.only(
                             bottom: 2,
                           ),
-                          height: 60,
-                          width: 60,
+                          height: 85,
+                          width: 85,
                           child: DayPiePeek(
                               _focusedDay.value.day,
                               calContent.getLevel(calContent
@@ -389,26 +392,29 @@ class TableComplexExampleState extends State<TableComplexExample> {
                         ), */
 
                   child: Container(
-                    height: 85,
+                    height: 110,
                     margin: const EdgeInsets.only(
                       right: 12.0,
                       top: 20.0,
                     ),
                     child: ListTile(
-                      leading: Text('${_focusedDay.value.day}.',
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            /* calContent.getLevel(calContent
-                                        .sumColorList[_focusedDay.value.day]) */
-                          )),
+                      leading: Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Text('${_focusedDay.value.day}.',
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                              /* calContent.getLevel(calContent
+                                          .sumColorList[_focusedDay.value.day]) */
+                            )),
+                      ),
                       subtitle: Container(
                         margin: const EdgeInsets.only(
-                          bottom: 2,
+                          bottom: 25,
                         ),
-                        height: 60,
-                        width: 60,
+                        height: 110,
+                        width: 110,
                         child: DayPiePeek(
                             _focusedDay.value.day,
                             calContent.getLevel(calContent

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
