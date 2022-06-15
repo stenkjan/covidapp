@@ -40,6 +40,10 @@ class CalendarContent with ChangeNotifier {
   bool pulseTrue = false;
   bool calTrue = false;
 
+  bool spoofCheck = false;
+  List<bool> calBoolL = List.generate(31, (index) => false);
+  List<bool> breatheBoolL = List.generate(31, (index) => false);
+  List<bool> pulseBoolL = List.generate(31, (index) => false);
   String breatheMin = "0";
   double sum = 0;
   double sumColor = 0;
@@ -70,7 +74,7 @@ class CalendarContent with ChangeNotifier {
   List<int> herzL = List.generate(31, (index) => index);
   List<int> schlafL = List.generate(31, (index) => index);
   List<int> nervenL = List.generate(31, (index) => index);
-  List<int> bpm = [70, 80, 85, 70, 90, 100, 70, 75];
+  List<int> bpm = List.generate(31, (index) => index);
   List bpmday = [100, 70, 75];
   List introList = [];
   List sumColorList = List.generate(31, (index) => index);
@@ -125,7 +129,7 @@ class CalendarContent with ChangeNotifier {
     if (pulseTrue == true) {
       return iconDone;
     } else {
-      calTrue = false;
+      pulseTrue = false;
       return iconNotDone;
     }
   }
@@ -151,6 +155,7 @@ class CalendarContent with ChangeNotifier {
     if (breatheTrue == true && breatheMin.isNotEmpty) {
       return iconDone;
     } else {
+      breatheTrue = false;
       return iconNotDone;
     }
   }
@@ -164,6 +169,42 @@ class CalendarContent with ChangeNotifier {
         breatheMin.isNotEmpty &&
         pulseTrue == true &&
         calTrue == true) {
+      return iconDone;
+    } else {
+      return iconNotDone;
+    }
+  }
+
+  Icon getpulseTrueWeek(int day) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (pulseBoolL[day] == true) {
+      return iconDone;
+    } else {
+      return iconNotDone;
+    }
+  }
+
+  Icon getcalendarTrueWeek(int day) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (calBoolL[day] == true) {
+      return iconDone;
+    } else {
+      return iconNotDone;
+    }
+  }
+
+  Icon getbreatheTrueWeek(int day) {
+    Icon iconDone =
+        const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
+    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.redAccent);
+    if (breatheBoolL[day] == true) {
       return iconDone;
     } else {
       return iconNotDone;
@@ -237,7 +278,9 @@ class CalendarContent with ChangeNotifier {
     };
     var values = daypiedataMapCal.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
-
+    pulseBoolL[indexgetter] = false;
+    breatheBoolL[indexgetter] = false;
+    calBoolL[indexgetter] = false;
     sumColorList[indexgetter] = sumColor;
     return daypiedataMapCal;
   }
@@ -259,7 +302,9 @@ class CalendarContent with ChangeNotifier {
     calContent.nervenL[day] = map['nerven'];
     var values = pieMap.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
-
+    pulseBoolL[map['created_date']] = true;
+    breatheBoolL[map['created_date']] = true;
+    calBoolL[map['created_date']] = true;
     sumColorList[map['created_date']] = sumColor;
   }
 

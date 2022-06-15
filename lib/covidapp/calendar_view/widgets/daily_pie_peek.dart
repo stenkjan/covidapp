@@ -73,9 +73,11 @@ class DayPiePeekState extends State<DayPiePeek> {
                               height: 2,
                               width: 2,
                               child: Icon((() {
-                                if (calContent.breatheTrue == true) {
-                                  calContent.getbreatheTrue();
-                                }
+                                setState(() {
+                                  if (calContent.breatheTrue == true) {
+                                    calContent.getbreatheTrueWeek(index);
+                                  }
+                                });
                               })()),
                             ),
                           ),
@@ -98,9 +100,11 @@ class DayPiePeekState extends State<DayPiePeek> {
                               height: 2,
                               width: 2,
                               child: Icon((() {
-                                if (calContent.pulseTrue == true) {
-                                  calContent.getpulseTrue();
-                                }
+                                setState(() {
+                                  if (calContent.pulseTrue == true) {
+                                    calContent.getpulseTrueWeek(index);
+                                  }
+                                });
                               })()),
                             ),
                           ),
@@ -123,9 +127,11 @@ class DayPiePeekState extends State<DayPiePeek> {
                               height: 2,
                               width: 2,
                               child: Icon((() {
-                                if (calContent.calTrue == true) {
-                                  calContent.getcalendarTrue();
-                                }
+                                setState(() {
+                                  if (calContent.calTrue == true) {
+                                    calContent.getcalendarTrueWeek(index);
+                                  }
+                                });
                               })()),
                             ),
                           ),
@@ -137,13 +143,15 @@ class DayPiePeekState extends State<DayPiePeek> {
                     padding: EdgeInsets.only(
                       top: 5,
                     ),
-                    child: Text(
-                      "Übungsfortschritt",
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.black54,
+                    child: Center(
+                      child: Text(
+                        "Übungsfortschritt",
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                   ),
@@ -170,14 +178,14 @@ class DayPiePeekState extends State<DayPiePeek> {
                             Text(
                               "${calContent.sumColorList[index].round()} ",
                               style: const TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic,
                                 color: Colors.black54,
                               ),
                             ),
                             const Padding(
-                              padding: EdgeInsets.only(top: 5, right: 8.0),
+                              padding: EdgeInsets.only(top: 4, right: 8.0),
                               child: Text(
                                 "Tagessumme",
                                 style: TextStyle(

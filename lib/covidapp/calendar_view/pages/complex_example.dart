@@ -275,6 +275,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
 
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.data!.exists) {
+                calContent.spoofCheck = false;
                 Map<String, dynamic> data =
                     snapshot.data!.data() as Map<String, dynamic>;
                 calContent.dayliepieMap(data, _focusedDay.value.day);
@@ -337,10 +338,10 @@ class TableComplexExampleState extends State<TableComplexExample> {
                 );
               }
 
-              /* if (snapshot.connectionState == ConnectionState.done &&
+              if (snapshot.connectionState == ConnectionState.done &&
                   !snapshot.data!.exists) {
-               
-              } */
+                calContent.spoofCheck = true;
+              }
 
               /*  return Container(
                   height: 40,
@@ -370,6 +371,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
                           child: const Text("laden...")))); */
 
               calContent.daypiedataMapCalendar(_focusedDay.value.day);
+
               /* calContent.listSum(data); */
               return Container(
                 margin: const EdgeInsets.symmetric(
@@ -391,39 +393,78 @@ class TableComplexExampleState extends State<TableComplexExample> {
                           borderRadius: BorderRadius.circular(12.0),
                         ), */
 
-                  child: Container(
-                    height: 110,
-                    margin: const EdgeInsets.only(
-                      right: 12.0,
-                      top: 20.0,
-                    ),
-                    child: ListTile(
-                      leading: Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Text('${_focusedDay.value.day}.',
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                              /* calContent.getLevel(calContent
-                                          .sumColorList[_focusedDay.value.day]) */
+                  child: Stack(
+                    children: [
+                      Visibility(
+                        visible: calContent.spoofCheck,
+                        child: Container(
+                            alignment: Alignment.topCenter,
+                            height: 18,
+                            width: 350,
+                            margin: const EdgeInsets.only(
+                              top: 1,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 19, 221, 235)
+                                      .withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 8,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: const Text(
+                              "Für diesen Tag liegen noch keine Ergebnisse vor.",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 14,
+                              ),
                             )),
                       ),
-                      subtitle: Container(
-                        margin: const EdgeInsets.only(
-                          bottom: 25,
-                        ),
+                      Container(
                         height: 110,
-                        width: 110,
-                        child: DayPiePeek(
-                            _focusedDay.value.day,
-                            calContent.getLevel(calContent
-                                .sumColorList[_focusedDay.value.day]
-                                .round())),
-                        // ignore: avoid_print
+                        margin: const EdgeInsets.only(
+                          right: 12.0,
+                          top: 20.0,
+                        ),
+                        child: ListTile(
+                          leading: Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Text('${_focusedDay.value.day}.',
+                                style: const TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black87,
+                                  /* calContent.getLevel(calContent
+                                              .sumColorList[_focusedDay.value.day]) */
+                                )),
+                          ),
+                          subtitle: Container(
+                            margin: const EdgeInsets.only(
+                              bottom: 25,
+                            ),
+                            height: 110,
+                            width: 110,
+                            child: DayPiePeek(
+                                _focusedDay.value.day,
+                                calContent.getLevel(calContent
+                                    .sumColorList[_focusedDay.value.day]
+                                    .round())),
+                            // ignore: avoid_print
+                          ),
+                          /*   onTap: () => print('${value[index]}'), */
+                        ),
                       ),
-                      /*   onTap: () => print('${value[index]}'), */
-                    ),
+                    ],
                   ),
                 ),
               );
