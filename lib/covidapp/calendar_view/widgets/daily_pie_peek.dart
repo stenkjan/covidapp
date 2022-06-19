@@ -128,7 +128,7 @@ class DayPiePeekState extends State<DayPiePeek> {
                               width: 2,
                               child: Icon((() {
                                 setState(() {
-                                  if (calContent.calTrue == true) {
+                                  if (calContent.calTrue == true || calContent.spoofCheck == false) {
                                     calContent.getcalendarTrueWeek(index);
                                   }
                                 });

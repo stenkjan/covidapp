@@ -194,6 +194,9 @@ class CalendarContent with ChangeNotifier {
         size: 17.0, color: Colors.redAccent);
     if (calBoolL[day] == true) {
       return iconDone;
+    }
+    if (spoofCheck == false) {
+      return iconDone;
     } else {
       return iconNotDone;
     }
