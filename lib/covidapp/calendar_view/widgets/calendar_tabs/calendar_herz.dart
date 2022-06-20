@@ -3,14 +3,13 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class CalendarHerz extends StatefulWidget {
   const CalendarHerz({Key? key}) : super(key: key);
   @override
   CalendarHerzState createState() => CalendarHerzState();
-
-
 }
 
 class CalendarHerzState extends State<CalendarHerz> {
@@ -92,7 +91,7 @@ class CalendarHerzState extends State<CalendarHerz> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CupertinoSwitch(
+                NeumorphicSwitch(
                   value: _switchValue,
                   onChanged: (value) {
                     setState(() {
@@ -139,13 +138,10 @@ class CalendarHerzState extends State<CalendarHerz> {
               ),
               Opacity(
                 opacity: i.toDouble(),
-                child: Slider(
+                child: NeumorphicSlider(
                     min: 1,
                     max: 10,
-                    divisions: 10,
-                    activeColor: const Color(0xFF31A1C9),
-                    inactiveColor: Colors.orange,
-                    label: "Herz",
+                 
                     value: _value,
                     onChanged: (value) {
                       _value = value;
@@ -161,14 +157,16 @@ class CalendarHerzState extends State<CalendarHerz> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => const HerzDesc()),
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const HerzDesc()),
                     );
                   },
                   child: Hero(
                     tag: "herz",
                     child: CircleAvatar(
                       maxRadius: 70,
-                      backgroundImage: const AssetImage("images/lcs_herz_hero.png"),
+                      backgroundImage:
+                          const AssetImage("images/lcs_herz_hero.png"),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Material(
@@ -183,7 +181,7 @@ class CalendarHerzState extends State<CalendarHerz> {
                   ),
                 ),
               ),
-                const SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Text("Für Beschreibung Bild anklicken",

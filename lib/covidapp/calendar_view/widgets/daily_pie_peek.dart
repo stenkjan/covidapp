@@ -39,7 +39,7 @@ class DayPiePeekState extends State<DayPiePeek> {
         left: 2.0,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Padding(
             padding: const EdgeInsets.only(
@@ -72,13 +72,16 @@ class DayPiePeekState extends State<DayPiePeek> {
                             child: SizedBox(
                               height: 2,
                               width: 2,
-                              child: Icon((() {
+                              child: calContent.getbreatheTrueWeek(index)
+
+                              /* Icon((() {
                                 setState(() {
                                   if (calContent.breatheTrue == true) {
                                     calContent.getbreatheTrueWeek(index);
                                   }
                                 });
-                              })()),
+                              })()) */
+                              ,
                             ),
                           ),
                         ],
@@ -99,13 +102,15 @@ class DayPiePeekState extends State<DayPiePeek> {
                             child: SizedBox(
                               height: 2,
                               width: 2,
-                              child: Icon((() {
+                              child: calContent.getpulseTrueWeek(index)
+                              /* Icon((() {
                                 setState(() {
                                   if (calContent.pulseTrue == true) {
                                     calContent.getpulseTrueWeek(index);
                                   }
                                 });
-                              })()),
+                              })()) */
+                              ,
                             ),
                           ),
                         ],
@@ -126,13 +131,16 @@ class DayPiePeekState extends State<DayPiePeek> {
                             child: SizedBox(
                               height: 2,
                               width: 2,
-                              child: Icon((() {
+                              child: calContent.getcalendarTrueWeek(
+                                  index) /*  Icon((() {
                                 setState(() {
-                                  if (calContent.calTrue == true || calContent.spoofCheck == false) {
+                                  if (calContent.calTrue == true ||
+                                      calContent.spoofCheck == false) {
                                     calContent.getcalendarTrueWeek(index);
                                   }
                                 });
-                              })()),
+                              })()) */
+                              ,
                             ),
                           ),
                         ],
@@ -205,56 +213,33 @@ class DayPiePeekState extends State<DayPiePeek> {
               ),
             ),
           ),
-          /*    const SizedBox(width: 2),
-          const Padding(
-            padding: EdgeInsets.only(right: 10.0),
-            child: Divider(
-              color: Colors.grey,
-              thickness: 2.0,
-              indent: 12.0,
-              endIndent: 12.0,
-            ),
-          ),
-          const SizedBox(width: 2), */
-          Neumorphic(
-            padding: const EdgeInsets.all(25),
-            style: const NeumorphicStyle(
-                shape: NeumorphicShape.convex,
-                boxShape: NeumorphicBoxShape.circle(),
-                depth: 3,
-                intensity: 2.0,
-                shadowLightColor: Colors.transparent,
-                /*  lightSource: LightSource.topLeft, */
-                color: Color(0xFF31A1C9)),
-            drawSurfaceAboveChild: true,
-            child: PieChart(
-              dataMap: calContent.daypiedataMapCalendar(widget.index),
-              animationDuration: const Duration(milliseconds: 800),
+          const SizedBox(width: 15),
+          PieChart(
+            dataMap: calContent.daypiedataMapCalendar(widget.index),
+            animationDuration: const Duration(milliseconds: 800),
 
-              chartRadius: MediaQuery.of(context).size.width / 20.3,
-              colorList: AppColors.pieColors.cast(),
-              initialAngleInDegree: 0,
-              chartType: ChartType.ring,
-              ringStrokeWidth: 120,
-              centerText: "",
-              legendOptions: const LegendOptions(
-                showLegends: false,
-              ),
-              chartValuesOptions: ChartValuesOptions(
-                showChartValueBackground: true,
-                chartValueBackgroundColor:
-                    const Color.fromARGB(83, 158, 158, 158),
-                showChartValues: true,
-                showChartValuesInPercentage: true,
-                showChartValuesOutside: true,
-                chartValueStyle: defaultChartValueStyle.copyWith(
-                  color: Colors.black,
-                  fontSize: 14,
-                ),
-                decimalPlaces: 0,
-              ),
-              // gradientList: ---To add gradient colors---
+            chartRadius: MediaQuery.of(context).size.width / 9.3,
+            colorList: AppColors.pieColors.cast(),
+            initialAngleInDegree: 0,
+            chartType: ChartType.ring,
+            ringStrokeWidth: 75,
+            centerText: "",
+            legendOptions: const LegendOptions(
+              showLegends: false,
             ),
+            chartValuesOptions: ChartValuesOptions(
+              showChartValueBackground: true,
+              chartValueBackgroundColor: Color.fromARGB(82, 29, 19, 19),
+              showChartValues: true,
+              showChartValuesInPercentage: true,
+              showChartValuesOutside: true,
+              chartValueStyle: defaultChartValueStyle.copyWith(
+                color: Color.fromARGB(255, 194, 192, 192),
+                fontSize: 14,
+              ),
+              decimalPlaces: 0,
+            ),
+            // gradientList: ---To add gradient colors---
           ),
         ],
       ),

@@ -3,13 +3,13 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class CalendarSinne extends StatefulWidget {
   const CalendarSinne({Key? key}) : super(key: key);
   @override
   CalendarSinneState createState() => CalendarSinneState();
-
 }
 
 class CalendarSinneState extends State<CalendarSinne> {
@@ -91,7 +91,7 @@ class CalendarSinneState extends State<CalendarSinne> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CupertinoSwitch(
+                NeumorphicSwitch(
                   value: _switchValue,
                   onChanged: (value) {
                     setState(() {
@@ -138,13 +138,10 @@ class CalendarSinneState extends State<CalendarSinne> {
               ),
               Opacity(
                 opacity: i.toDouble(),
-                child: Slider(
+                child: NeumorphicSlider(
                     min: 1,
                     max: 10,
-                    divisions: 10,
-                    activeColor: const Color(0xFF31A1C9),
-                    inactiveColor: Colors.orange,
-                    label: "Sinne",
+                
                     value: _value,
                     onChanged: (value) {
                       _value = value;

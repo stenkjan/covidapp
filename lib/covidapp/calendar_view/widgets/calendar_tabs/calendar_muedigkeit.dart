@@ -4,6 +4,7 @@ import 'package:covidapp/covidapp/content/size.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class CalendarMuedigkeit extends StatefulWidget {
@@ -90,7 +91,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CupertinoSwitch(
+                    NeumorphicSwitch(
                       value: _switchValue,
                       onChanged: (value) {
                         setState(() {
@@ -137,13 +138,10 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
               ),
               Opacity(
                 opacity: i.toDouble(),
-                child: Slider(
+                child: NeumorphicSlider(
                     min: 1,
                     max: 10,
-                    divisions: 10,
-                    activeColor: const Color(0xFF31A1C9),
-                    inactiveColor: Colors.orange,
-                    label: "Müdigkeit",
+                
                     value: _value,
                     onChanged: (value) {
                       _value = value;

@@ -6,14 +6,13 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class CalendarNervCom extends StatefulWidget {
   const CalendarNervCom({Key? key}) : super(key: key);
   @override
   CalendarNervComState createState() => CalendarNervComState();
-
-
 }
 
 class CalendarNervComState extends State<CalendarNervCom> {
@@ -100,7 +99,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CupertinoSwitch(
+                    NeumorphicSwitch(
                       value: _switchValue,
                       onChanged: (value) {
                         setState(() {
@@ -173,12 +172,10 @@ class CalendarNervComState extends State<CalendarNervCom> {
                   ),
                   Opacity(
                     opacity: i.toDouble(),
-                    child: Slider(
+                    child: NeumorphicSlider(
                         min: 1,
                         max: 10,
-                        activeColor: const Color(0xFF31A1C9),
-                        inactiveColor: Colors.orange,
-                        label: "Müdigkeit",
+                    
                         value: _value,
                         onChanged: (value) {
                           _value = value;

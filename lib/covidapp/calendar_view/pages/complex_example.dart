@@ -2,13 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'dart:collection';
+import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/pages/utils.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -168,11 +169,59 @@ class TableComplexExampleState extends State<TableComplexExample> {
               },
             ), */
         TableCalendar<Event>(
-          locale: 'de_AT',
+          locale: 'de_DE',
           firstDay: kFirstDay,
           lastDay: kLastDay,
           focusedDay: _focusedDay.value,
           headerVisible: true,
+          headerStyle: HeaderStyle(
+            formatButtonShowsNext: true,
+            titleTextFormatter: (date, locale) =>
+                DateFormat.yMMM(locale).format(date),
+            formatButtonDecoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.1),
+                  offset: const Offset(-6.0, -6.0),
+                  blurRadius: 16.0,
+                ),
+                BoxShadow(
+                  color: Colors.black87.withOpacity(0.4),
+                  offset: const Offset(6.0, 6.0),
+                  blurRadius: 16.0,
+                ),
+              ],
+              color: const Color(0xFF292D32),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            headerMargin: const EdgeInsets.all(8),
+            titleTextStyle: const TextStyle(
+              color: Colors.white70,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              wordSpacing: 2.0,
+            ),
+            formatButtonTextStyle: const TextStyle(
+              color: Colors.white70,
+              fontSize: 16,
+            ),
+            decoration: const BoxDecoration(
+              color: Color(0xFF31A1C9),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(123, 49, 160, 201),
+                  spreadRadius: 4,
+                  blurRadius: 8,
+                  offset: Offset(1, 0), // changes position of shadow
+                ),
+              ],
+            ),
+          ),
           pageJumpingEnabled: false,
           selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
           // _selectedDays.contains(day),
@@ -276,6 +325,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
               if (snapshot.connectionState == ConnectionState.done &&
                   snapshot.data!.exists) {
                 calContent.spoofCheck = false;
+                calContent.calTrue = true;
                 Map<String, dynamic> data =
                     snapshot.data!.data() as Map<String, dynamic>;
                 calContent.dayliepieMap(data, _focusedDay.value.day);
@@ -300,7 +350,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
                           borderRadius: BorderRadius.circular(12.0),
                         ), */
 
-                    child: Container(
+                    child: SizedBox(
                       height: 85,
                       /*  margin: const EdgeInsets.only(
                         right: 12.0,

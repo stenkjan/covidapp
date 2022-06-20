@@ -3,14 +3,13 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 class CalendarSchlaf extends StatefulWidget {
   const CalendarSchlaf({Key? key}) : super(key: key);
   @override
   CalendarSchlafState createState() => CalendarSchlafState();
-
-
 }
 
 class CalendarSchlafState extends State<CalendarSchlaf> {
@@ -105,7 +104,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CupertinoSwitch(
+                    NeumorphicSwitch(
                       value: _switchValue,
                       onChanged: (value) {
                         setState(() {
@@ -155,13 +154,9 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
               ),
               Opacity(
                 opacity: i.toDouble(),
-                child: Slider(
+                child: NeumorphicSlider(
                     min: 1,
                     max: 10,
-                    divisions: 10,
-                    activeColor: const Color(0xFF31A1C9),
-                    inactiveColor: Colors.orange,
-                    label: "Schlaf",
                     value: _value,
                     onChanged: (value) {
                       _value = value;
@@ -177,7 +172,8 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => const SchlafDesc()),
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const SchlafDesc()),
                     );
                   },
                   child: Hero(
@@ -185,7 +181,8 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                     child: CircleAvatar(
                       maxRadius: 70,
                       foregroundColor: const Color(0xFF313237),
-                      backgroundImage: const AssetImage("images/lcs_schlaf_hero.png"),
+                      backgroundImage:
+                          const AssetImage("images/lcs_schlaf_hero.png"),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Material(
@@ -200,7 +197,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                   ),
                 ),
               ),
-                const SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Text("Für Beschreibung Bild anklicken",

@@ -178,39 +178,41 @@ class CalendarContent with ChangeNotifier {
   Icon getpulseTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
-    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
-        size: 17.0, color: Colors.redAccent);
+ Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.transparent);
     if (pulseBoolL[day] == true) {
       return iconDone;
     } else {
-      return iconNotDone;
+      return iconNotVisible;
     }
   }
 
   Icon getcalendarTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
-    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
-        size: 17.0, color: Colors.redAccent);
+ 
+    Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.transparent);
     if (calBoolL[day] == true) {
+      calTrue = true;
       return iconDone;
     }
     if (spoofCheck == false) {
       return iconDone;
     } else {
-      return iconNotDone;
+      return iconNotVisible;
     }
   }
 
   Icon getbreatheTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
-    Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
-        size: 17.0, color: Colors.redAccent);
+   Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
+        size: 17.0, color: Colors.transparent);
     if (breatheBoolL[day] == true) {
       return iconDone;
     } else {
-      return iconNotDone;
+      return iconNotVisible;
     }
   }
 
