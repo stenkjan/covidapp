@@ -9,8 +9,10 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
+import 'covidapp/web_view.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -346,7 +348,7 @@ class DrawerLayout extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(top: 70.0, left: 20.0),
                 child: Text(
-                  "Übersicht",
+                  "ÜBERSICHT",
                   style: TextStyle(
                     fontFamily: "Lemon",
                     fontSize: 25.0,
@@ -364,7 +366,7 @@ class DrawerLayout extends StatelessWidget {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const Home()));
                     },
-                    child: itemDrawer(Icons.home, "Übersicht")),
+                    child: itemDrawer(Icons.home, "ÜBERSICHT")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
@@ -376,27 +378,77 @@ class DrawerLayout extends StatelessWidget {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const Uebungen()));
                     },
-                    child: itemDrawer(Icons.style, "Übungen")),
+                    child: itemDrawer(Icons.style, "ÜBUNGEN")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const CalendarTabBar()));
                     },
-                    child: itemDrawer(Icons.calendar_today, "Kalender")),
+                    child: itemDrawer(Icons.calendar_today, "KALENDER")),
+                InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => const WebViewExample()));
+                    },
+                    child: itemDrawer(Icons.calendar_today, "WEB")),
                 const SizedBox(
-                  height: 50.0,
+                  height: 20.0,
                 ),
-                ElevatedButton.icon(
-                  icon: const Icon(Icons.logout_rounded, color: Colors.white10),
-                  label: const Text("Ausloggen"),
-                  onPressed: () async {
-                    await authService.signOut();
-                    // ignore: use_build_context_synchronously
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Sie haben sich abgemeldet"),
-                    ));
-                    await authService.signOut();
-                  },
+                Neumorphic(
+                  margin: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  curve: Curves.easeIn,
+                  style: NeumorphicStyle(
+                      shape: NeumorphicShape.convex,
+                      border: const NeumorphicBorder(
+                        color: Color.fromARGB(255, 87, 86, 86),
+                        width: 4.0,
+                      ),
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          const BorderRadius.horizontal(
+                              left: Radius.circular(50),
+                              right: Radius.circular(50))),
+                      depth: 10,
+                      intensity: 4.0,
+                      shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
+                      /*  lightSource: LightSource.topLeft, */
+                      color: Colors.transparent),
+                ),
+                const SizedBox(
+                  height: 5.0,
+                ),
+                Neumorphic(
+                  margin: const EdgeInsets.all(20),
+                  curve: Curves.easeIn,
+                  style: NeumorphicStyle(
+                      shape: NeumorphicShape.convex,
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(50)),
+                      depth: 5,
+                      intensity: 2.0,
+                      shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
+                      /*  lightSource: LightSource.topLeft, */
+                      color: const Color.fromARGB(255, 46, 155, 244)),
+                  child: SizedBox(
+                    height: 35,
+                    width: 140,
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.logout_rounded,
+                          color: Colors.white54),
+                      label: const Text("Ausloggen"),
+                      onPressed: () async {
+                        await authService.signOut();
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Sie haben sich abgemeldet"),
+                        ));
+                        await authService.signOut();
+                      },
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 3.0,
@@ -423,32 +475,59 @@ Widget line(double width) {
 /// item widget for drawer
 ///
 Widget itemDrawer(IconData icon, String txt) {
-  return Padding(
-    padding: const EdgeInsets.only(top: 30.0, left: 20.0),
-    child: Row(
-      children: <Widget>[
-        Icon(
-          icon,
-          size: 25.0,
-          color: Colors.lightBlue,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                txt,
-                style: const TextStyle(color: Colors.white70, fontSize: 15.5),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 8.0),
-              )
-            ],
+  return Neumorphic(
+    margin: const EdgeInsets.only(top: 5, bottom: 2.5, left: 20, right: 20),
+    style: const NeumorphicStyle(
+        shape: NeumorphicShape.convex,
+        depth: 2,
+        intensity: 1.0,
+        shadowLightColor: Colors.transparent,
+        shadowDarkColor: Colors.black26,
+        /*  lightSource: LightSource.topLeft, */
+        color: Colors.transparent),
+    child: Padding(
+      padding: const EdgeInsets.only(top: 5.0, left: 20.0, bottom: 5),
+      child: Row(
+        children: <Widget>[
+          Icon(
+            icon,
+            size: 25.0,
+            color: Colors.lightBlue,
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  txt,
+                  style: const TextStyle(
+                    letterSpacing: 3.0,
+                    color: Colors.white70,
+                    fontSize: 20.0,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 3.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                      Shadow(
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 4.0,
+                        color: Color.fromARGB(124, 184, 184, 185),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     ),
   );
 }

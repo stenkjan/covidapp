@@ -194,13 +194,17 @@ class DayPiePeekState extends State<DayPiePeek> {
                             ),
                             const Padding(
                               padding: EdgeInsets.only(top: 4, right: 8.0),
-                              child: Text(
-                                "Tagessumme",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.black54,
+                              child: Tooltip(
+                                message:
+                                    "Mittlerer Tagesdurchschnitt der Übungen",
+                                child: Text(
+                                  "Tagessumme",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black54,
+                                  ),
                                 ),
                               ),
                             ),

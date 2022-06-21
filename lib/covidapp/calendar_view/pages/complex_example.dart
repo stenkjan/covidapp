@@ -174,6 +174,35 @@ class TableComplexExampleState extends State<TableComplexExample> {
           lastDay: kLastDay,
           focusedDay: _focusedDay.value,
           headerVisible: true,
+          calendarStyle: const CalendarStyle(
+            todayDecoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(228, 250, 59, 59),
+                  Color.fromARGB(169, 80, 3, 3),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            selectedDecoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(135, 180, 221, 31),
+                  Color.fromARGB(255, 2, 88, 35)
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              shape: BoxShape.circle,
+            ),
+          ),
+          availableCalendarFormats: const {
+            CalendarFormat.month: 'Monat',
+            CalendarFormat.twoWeeks: '2 Wochen',
+            CalendarFormat.week: 'Woche'
+          },
           headerStyle: HeaderStyle(
             formatButtonShowsNext: true,
             titleTextFormatter: (date, locale) =>
@@ -186,7 +215,7 @@ class TableComplexExampleState extends State<TableComplexExample> {
                   blurRadius: 16.0,
                 ),
                 BoxShadow(
-                  color: Colors.black87.withOpacity(0.4),
+                  color: Colors.black54.withOpacity(0.4),
                   offset: const Offset(6.0, 6.0),
                   blurRadius: 16.0,
                 ),
@@ -197,9 +226,21 @@ class TableComplexExampleState extends State<TableComplexExample> {
             headerMargin: const EdgeInsets.all(8),
             titleTextStyle: const TextStyle(
               color: Colors.white70,
-              fontSize: 20,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               wordSpacing: 2.0,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                Shadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 8.0,
+                  color: Color.fromARGB(124, 184, 184, 185),
+                ),
+              ],
             ),
             formatButtonTextStyle: const TextStyle(
               color: Colors.white70,
@@ -223,7 +264,9 @@ class TableComplexExampleState extends State<TableComplexExample> {
             ),
           ),
           pageJumpingEnabled: false,
+
           selectedDayPredicate: (day) => isSameDay(_selectedDays.last, day),
+          calendarFormat: _calendarFormat,
           // _selectedDays.contains(day),
           /*  rangeStartDay: _rangeStart,
               rangeEndDay: _rangeEnd,

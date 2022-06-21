@@ -56,7 +56,10 @@ class CalendarMoodState extends State<CalendarMood> {
                       Radius.circular(10.0),
                     ),
                     gradient: LinearGradient(
-                      colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                      colors: [
+                        Color.fromARGB(255, 35, 109, 136),
+                        Color(0xFF3DB6D4)
+                      ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -107,7 +110,10 @@ class CalendarMoodState extends State<CalendarMood> {
                       Radius.circular(10.0),
                     ),
                     gradient: LinearGradient(
-                      colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                      colors: [
+                        Color.fromARGB(255, 35, 109, 136),
+                        Color(0xFF3DB6D4)
+                      ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -154,7 +160,10 @@ class CalendarMoodState extends State<CalendarMood> {
                       Radius.circular(10.0),
                     ),
                     gradient: LinearGradient(
-                      colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                      colors: [
+                        Color.fromARGB(255, 35, 109, 136),
+                        Color(0xFF3DB6D4)
+                      ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -201,7 +210,10 @@ class CalendarMoodState extends State<CalendarMood> {
                       Radius.circular(10.0),
                     ),
                     gradient: LinearGradient(
-                      colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
+                      colors: [
+                        Color.fromARGB(255, 35, 109, 136),
+                        Color(0xFF3DB6D4)
+                      ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
