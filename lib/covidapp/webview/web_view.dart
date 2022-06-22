@@ -11,8 +11,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../content/calendar_content.dart';
 
 const String kNavigationExamplePage = '''
 <!DOCTYPE html><html>
@@ -70,10 +72,11 @@ const String kTransparentBackgroundPage = '''
 ''';
 
 class WebViewExample extends StatefulWidget {
-  const WebViewExample({Key? key, this.cookieManager}) : super(key: key);
+  const WebViewExample({Key? key, this.cookieManager, required this.webIndex})
+      : super(key: key);
 
   final CookieManager? cookieManager;
-
+  final int webIndex;
   @override
   State<WebViewExample> createState() => _WebViewExampleState();
 }
@@ -92,10 +95,11 @@ class _WebViewExampleState extends State<WebViewExample> {
 
   @override
   Widget build(BuildContext context) {
+    final calContent = Provider.of<CalendarContent>(context);
     return Scaffold(
       backgroundColor: Colors.green,
       appBar: AppBar(
-        title: const Text('Flutter WebView example'),
+        title: const Text('Web'),
         // This drop down menu demonstrates that Flutter widgets can be shown over the web view.
         actions: <Widget>[
           NavigationControls(_controller.future),
@@ -103,13 +107,13 @@ class _WebViewExampleState extends State<WebViewExample> {
         ],
       ),
       body: WebView(
-        initialUrl: 'https://flutter.dev',
+        initialUrl: calContent.urlMap.values.elementAt(widget.webIndex),
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webViewController) {
           _controller.complete(webViewController);
         },
         onProgress: (int progress) {
-          print('WebView is loading (progress : $progress%)');
+          print('Webseite lädt (progress : $progress%)');
         },
         javascriptChannels: <JavascriptChannel>{
           _toasterJavascriptChannel(context),

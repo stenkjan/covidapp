@@ -81,6 +81,36 @@ class CalendarContent with ChangeNotifier {
 
   String fireDate = "";
 
+//URLs for Webview: Title and Link
+  Map<String, String> urlMap = {
+    "infektionsschutz.de":
+        "https://www.infektionsschutz.de/coronavirus/basisinformationen/long-covid-langzeitfolgen-von-covid-19/",
+    "sozialministerium.at":
+        "https://www.sozialministerium.at/Corona-Schutzimpfung/Long-COVID.html",
+    "rki.de":
+        "https://www.rki.de/SharedDocs/FAQ/NCOV2019/FAQ_Liste_Gesundheitliche_Langzeitfolgen.html",
+    "longcovidaustria.at": "https://www.longcovidaustria.at/",
+    "Long Covid Leitlinie":
+        "https://oegam.at/system/files/attachments/kurz_long_covid_s1_master_211104.pdf",
+    "Klinische Falldefinition der WHO":
+        "https://apps.who.int/iris/bitstream/handle/10665/350195/WHO-2019-nCoV-Post-COVID-19-condition-Clinical-case-definition-2021.1-ger.pdf?sequence=1&isAllowed=y",
+  };
+  //URL-Description and Image for WebViewMain
+  Map<AssetImage, String> urlMapDesc = {
+    const AssetImage("images/Icon_Images/infektionsschutz_web.png"):
+        "Informationssetie des Bundesministerium für Gesundheit in Deutschland in Zusammenarbeit mit dem RKI.",
+    const AssetImage("images/Icon_Images/sozialministerium_web.png"):
+        "https://www.sozialministerium.at/Corona-Schutzimpfung/Long-COVID.html",
+    const AssetImage("images/Icon_Images/rki_web.png"):
+        "Aktuelle Informationen zu Long Covid vom Robert Koch Institut.",
+    const AssetImage("images/Icon_Images/longcovidaustria_web.png"):
+        "Infoportal und Kontaktinformationen für Long Covid - Verein & Betroffeneninitiative.",
+    const AssetImage("images/Icon_Images/oegam_web.png"):
+        "Medizinische Leitlinie in Auftrag der österreichischen Gesellschaft für Allgemein- und Familienmedizin.",
+    const AssetImage("images/Icon_Images/who_web.png"):
+        "Die klinische Falldefinition der WHO: Grundlage für die medizinische Beurteilung von Long Covid.",
+  };
+
   ///Map for PieChart
   Map<String, double> pieMap = {};
   Map<String, double> graphMap = {};
@@ -178,7 +208,7 @@ class CalendarContent with ChangeNotifier {
   Icon getpulseTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
- Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
+    Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.transparent);
     if (pulseBoolL[day] == true) {
       return iconDone;
@@ -190,7 +220,7 @@ class CalendarContent with ChangeNotifier {
   Icon getcalendarTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
- 
+
     Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.transparent);
     if (calBoolL[day] == true) {
@@ -207,7 +237,7 @@ class CalendarContent with ChangeNotifier {
   Icon getbreatheTrueWeek(int day) {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
-   Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
+    Icon iconNotVisible = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.transparent);
     if (breatheBoolL[day] == true) {
       return iconDone;

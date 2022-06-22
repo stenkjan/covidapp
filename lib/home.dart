@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:covidapp/covidapp/webview/main_web_view.dart';
 import 'package:covidapp/faq.dart';
 import 'package:covidapp/covidapp/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
-import 'covidapp/web_view.dart';
+import 'covidapp/webview/web_view.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -388,23 +389,22 @@ class DrawerLayout extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => const WebViewExample()));
+                          pageBuilder: (_, __, ___) => const WebMain()));
                     },
                     child: itemDrawer(Icons.calendar_today, "WEB")),
                 const SizedBox(
-                  height: 20.0,
+                  height: 17.0,
                 ),
                 Neumorphic(
                   margin: const EdgeInsets.only(
                     left: 20,
                     right: 20,
                   ),
-                  curve: Curves.easeIn,
                   style: NeumorphicStyle(
                       shape: NeumorphicShape.convex,
                       border: const NeumorphicBorder(
-                        color: Color.fromARGB(255, 87, 86, 86),
-                        width: 4.0,
+                        color: Color.fromARGB(157, 87, 86, 86),
+                        width: 2.5,
                       ),
                       boxShape: NeumorphicBoxShape.roundRect(
                           const BorderRadius.horizontal(
@@ -412,12 +412,12 @@ class DrawerLayout extends StatelessWidget {
                               right: Radius.circular(50))),
                       depth: 10,
                       intensity: 4.0,
-                      shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
-                      /*  lightSource: LightSource.topLeft, */
+                      shadowLightColor: const Color.fromARGB(255, 0, 0, 0),
+                      lightSource: LightSource.topLeft,
                       color: Colors.transparent),
                 ),
                 const SizedBox(
-                  height: 5.0,
+                  height: 2.0,
                 ),
                 Neumorphic(
                   margin: const EdgeInsets.all(20),
