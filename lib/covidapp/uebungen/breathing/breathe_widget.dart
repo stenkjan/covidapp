@@ -1,3 +1,4 @@
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
@@ -149,7 +150,50 @@ class BreatheHome extends GetView<HomeController> {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 40),
+          Center(
+            child: SizedBox(
+              width: 150,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(75, 50),
+                  primary: const Color(0xFF313237),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    side: const BorderSide(color: Colors.white),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text('Statistik',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold)),
+                    Icon(
+                      Icons.graphic_eq,
+                      size: 35,
+                      color: Color(0xB444B2C5),
+                    )
+                  ],
+                ),
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                            backgroundColor: const Color.fromARGB(202, 0, 0, 0),
+                            title: const Text(""),
+                            content: const BreatheGraph(),
+                            actions: [
+                              TextButton(
+                                child: const Text("Schließen"),
+                                onPressed: () => Navigator.pop(context),
+                              ),
+                            ])),
+              ),
+            ),
+          ),
         ],
       ),
     );

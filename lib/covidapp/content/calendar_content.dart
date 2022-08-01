@@ -66,18 +66,21 @@ class CalendarContent with ChangeNotifier {
   int indexGrafik = 0;
   int index = 0;
   //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
-  List<int> dateL = List.generate(31, (index) => index);
-  List<int> moodL = List.generate(31, (index) => index);
-  List<int> muedigkeitL = List.generate(31, (index) => index);
-  List<int> atemnotL = List.generate(31, (index) => index);
-  List<int> sinneL = List.generate(31, (index) => index);
-  List<int> herzL = List.generate(31, (index) => index);
-  List<int> schlafL = List.generate(31, (index) => index);
-  List<int> nervenL = List.generate(31, (index) => index);
-  List<int> bpm = List.generate(31, (index) => index);
+  List<int> dateL = List.generate(32, (index) => index);
+  List<int> moodL = List.generate(32, (index) => index);
+  List<int> muedigkeitL = List.generate(32, (index) => index);
+  List<int> atemnotL = List.generate(32, (index) => index);
+  List<int> sinneL = List.generate(32, (index) => index);
+  List<int> herzL = List.generate(32, (index) => index);
+  List<int> schlafL = List.generate(32, (index) => index);
+  List<int> nervenL = List.generate(32, (index) => index);
+  List<int> bpm = List.generate(32, (index) => index);
+  List<int> breatheTotalL = List.generate(32, (index) => index);
+  List<int> breatheSecL = List.generate(32, (index) => index);
+
   List bpmday = [100, 70, 75];
   List introList = [];
-  List sumColorList = List.generate(31, (index) => index);
+  List sumColorList = List.generate(32, (index) => index);
 
   String fireDate = "";
 
@@ -262,6 +265,59 @@ class CalendarContent with ChangeNotifier {
     return breatheMin;
   }
 
+  List<double> breatheGraphTotalL() {
+    List<double> breatheGraphTotalL = [0.0,];
+    ;
+    int date = currentDate;
+
+    for (int review = 7;
+        review > 0 && breatheGraphTotalL.length < 8;
+        review--) {
+      if (date > 7) {
+        breatheGraphTotalL.add(breatheTotalL[(date - review)].toDouble() / 10);
+      } else if (date < 8 && (date - review >= 1)) {
+        breatheGraphTotalL.add(breatheTotalL[(date - review)].toDouble() / 10);
+      } else if (date == 1) {
+        breatheGraphTotalL.add(breatheTotalL[(date)].toDouble());
+      }
+    }
+    return breatheGraphTotalL;
+  }
+
+  List<double> breatheGraphSecL() {
+    List<double> breatheGraphSecL = [
+      0.0,
+    ];
+
+    for (int review = 7; review > 0 && breatheGraphSecL.length < 8; review--) {
+      int date = currentDate;
+
+      if (date > 7) {
+        breatheGraphSecL.add(breatheSecL[(date - review)].toDouble() / 10);
+      } else if (date < 7 && (date - review >= 1)) {
+        breatheGraphSecL.add(breatheSecL[(date - review)].toDouble() / 10);
+      } else if (date == 1) {
+        breatheGraphSecL.add(breatheSecL[(date)].toDouble());
+      }
+    }
+    return breatheGraphSecL;
+  }
+
+  List<String> graphLabelL() {
+    List<String> graphLabelL = [""];
+    int labelIndex = 0;
+    for (int labelNum = 7; labelNum > 0; labelNum--) {
+      if (currentDate > 7) {
+        graphLabelL.add((currentDate - labelNum).toString());
+      } else if (currentDate < 7 && (currentDate - labelNum >= 1)) {
+        graphLabelL.add((currentDate - labelNum).toString());
+      } else if (currentDate == 1) {
+        graphLabelL.add(currentDate.toString());
+      }
+    }
+    return graphLabelL;
+  }
+
   List<int> bpmWeekL() {
     num sum = 0;
     for (num e in bpmday) {
@@ -277,7 +333,7 @@ class CalendarContent with ChangeNotifier {
   }
 
   /// boolean for current Date */
-  bool getgrafikCurrentDate(int grafikcurrentDate) {
+  /*  bool getgrafikCurrentDate(int grafikcurrentDate) {
     grafikcurrentDateCal = grafikcurrentDate;
     bool curDateooRange = false;
     if (grafikcurrentDateCal > dateL.last) {
@@ -288,7 +344,7 @@ class CalendarContent with ChangeNotifier {
       return curDateooRange;
     }
     return curDateooRange;
-  }
+  } */
 
   int getIndex() {
     return index;

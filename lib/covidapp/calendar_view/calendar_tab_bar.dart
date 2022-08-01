@@ -2,6 +2,10 @@ import 'package:covidapp/covidapp/calendar_view/grafik.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import '../content/calendar_content.dart';
+import '../services/calendar_service.dart';
 
 class CalendarTabBar extends StatefulWidget {
   const CalendarTabBar({Key? key}) : super(key: key);
@@ -29,6 +33,9 @@ class CalendarTabBarState extends State<CalendarTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    final calContent = Provider.of<CalendarContent>(context);
+    final calService = Provider.of<CalendarService>(context);
+
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
 
@@ -37,7 +44,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
       ///
       appBar: AppBar(
         title: const Text(
-          "Kalender/ Entwicklung",
+          "Symptome",
           style: TextStyle(
               color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
         ),
@@ -297,6 +304,38 @@ class CalendarTabBarState extends State<CalendarTabBar> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: Opacity(
+        opacity: calContent.count.toDouble(),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            if (calContent.docExists == false) {
+              calService.dailyTask(
+                  calContent.mood,
+                  calContent.muedigkeit,
+                  calContent.atemnot,
+                  calContent.sinne,
+                  calContent.herz,
+                  calContent.schlaf,
+                  calContent.nerven,
+                  calContent.comment,
+                  calContent.currentDate);
+              calContent.clear();
+            }
+          
+          },
+          tooltip: "Bestätigen",
+          foregroundColor: const Color(0xFF31A1C9),
+          backgroundColor: const Color(0xFF31A1C9),
+          label: const Text(
+            "Speichern",
+            style: TextStyle(color: Colors.white),
+          ),
+          icon: const Icon(
+            Icons.save_alt,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

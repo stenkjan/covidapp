@@ -1,7 +1,4 @@
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
-import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
-import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
 import 'package:covidapp/covidapp/webview/web_view.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';

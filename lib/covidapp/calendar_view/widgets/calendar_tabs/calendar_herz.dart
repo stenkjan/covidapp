@@ -1,8 +1,6 @@
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/herz_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
@@ -122,7 +120,7 @@ class CalendarHerzState extends State<CalendarHerz> {
             ),
           ),
           const SizedBox(
-            height: 0,
+            height: 10,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -140,13 +138,10 @@ class CalendarHerzState extends State<CalendarHerz> {
                   ),
                 ),
               ),
+            
               Opacity(
                 opacity: i.toDouble(),
-                child: NeumorphicSlider(
-                    style: SliderStyle(
-                      lightSource: LightSource.top,
-                      depth: 2.0,
-                    ),
+                child:  Slider(
                     min: 1,
                     max: 10,
                     value: _value,

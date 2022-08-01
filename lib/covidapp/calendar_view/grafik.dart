@@ -178,7 +178,7 @@ class GrafikState extends State<Grafik> {
                                 dayChange = false;
                                 currentDate();
 
-                                calContent.getgrafikCurrentDate(currentDateInt);
+                               /*  calContent.getgrafikCurrentDate(currentDateInt); */
                                 calContent.getCalendarList();
                                 grafService.dailyRead(
                                     currentDateInt, dayChange);
@@ -202,7 +202,7 @@ class GrafikState extends State<Grafik> {
                             setState(() {
                               dayChange = true;
                               currentDate();
-                              calContent.getgrafikCurrentDate(currentDateInt);
+                             /*  calContent.getgrafikCurrentDate(currentDateInt); */
                               calContent.getCalendarList();
                               grafService.dailyRead(currentDateInt, dayChange);
                               headline;

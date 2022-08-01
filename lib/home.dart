@@ -9,11 +9,9 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
-import 'covidapp/webview/web_view.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

@@ -1,7 +1,5 @@
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
@@ -233,12 +231,12 @@ class DayPiePeekState extends State<DayPiePeek> {
             ),
             chartValuesOptions: ChartValuesOptions(
               showChartValueBackground: true,
-              chartValueBackgroundColor: Color.fromARGB(82, 29, 19, 19),
+              chartValueBackgroundColor: const Color.fromARGB(82, 29, 19, 19),
               showChartValues: true,
               showChartValuesInPercentage: true,
               showChartValuesOutside: true,
               chartValueStyle: defaultChartValueStyle.copyWith(
-                color: Color.fromARGB(255, 194, 192, 192),
+                color: const Color.fromARGB(255, 194, 192, 192),
                 fontSize: 14,
               ),
               decimalPlaces: 0,

@@ -2,8 +2,6 @@ import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/mue
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/size.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
@@ -127,6 +125,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+                const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Row(
@@ -140,13 +139,10 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   ),
                 ),
               ),
+             
               Opacity(
                 opacity: i.toDouble(),
-                child: NeumorphicSlider(
-                    style: SliderStyle(
-                      lightSource: LightSource.top,
-                      depth: 2.0,
-                    ),
+                child:  Slider(
                     min: 1,
                     max: 10,
                     value: _value,

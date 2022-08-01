@@ -4,8 +4,6 @@ import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/mis
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/nerven_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
@@ -156,7 +154,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                 ),
               ),
               const SizedBox(
-                height: 0,
+                height: 10,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -176,11 +174,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                   ),
                   Opacity(
                     opacity: i.toDouble(),
-                    child: NeumorphicSlider(
-                        style: SliderStyle(
-                          lightSource: LightSource.top,
-                          depth: 2.0,
-                        ),
+                    child: Slider(
                         min: 1,
                         max: 10,
                         value: _value,
@@ -194,7 +188,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
               const SizedBox(
                 height: 30,
               ),
-              Row(
+              /* Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
@@ -260,7 +254,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                   ),
                 ],
               ),
-              Row(
+               Row(
                 children: [
                   SizedBox(
                     width: 300,
@@ -305,7 +299,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
                         }
                       }),
                 ],
-              ),
+              ), */
             ],
           ),
         ],

@@ -3,7 +3,6 @@
 
 import 'dart:collection';
 
-import 'package:covidapp/covidapp/calendar_view/widgets/daily_pie_peek.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.

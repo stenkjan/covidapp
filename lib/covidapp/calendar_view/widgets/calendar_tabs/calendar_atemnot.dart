@@ -110,7 +110,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
             ),
           ),
           const SizedBox(
-            height: 0,
+            height: 10,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -130,11 +130,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               ),
               Opacity(
                 opacity: i.toDouble(),
-                child: NeumorphicSlider(
-                  style: SliderStyle(
-                    lightSource: LightSource.top,
-                    depth: 2.0,
-                  ),
+                child: Slider(
                   min: 1,
                   max: 10,
                   value: _value,
