@@ -524,10 +524,10 @@ class TableComplexExampleState extends State<TableComplexExample> {
                             )),
                       ),
                       Container(
-                        height: 110,
+                        height: 120,
                         margin: const EdgeInsets.only(
                           right: 12.0,
-                          top: 20.0,
+                          top: 25.0,
                         ),
                         child: ListTile(
                           leading: Padding(

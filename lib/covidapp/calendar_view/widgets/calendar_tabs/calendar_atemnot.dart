@@ -13,7 +13,7 @@ class CalendarAtemnot extends StatefulWidget {
 class CalendarAtemnotState extends State<CalendarAtemnot> {
   var zustand = <String>[];
   CalendarContent calContent = CalendarContent();
-  double _value = 1;
+  late double _value;
   late Color colorswitch;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
@@ -22,6 +22,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
   void initState() {
     list;
     i = 0;
+    _value = 1;
     colorswitch = const Color(0xFF313237);
     super.initState();
   }
@@ -78,6 +79,10 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NeumorphicSwitch(
+                  style: const NeumorphicSwitchStyle(
+                      inactiveTrackColor: Color(0xFF2E4E57),
+                      lightSource: LightSource.bottom),
+                  isEnabled: true,
                   value: _switchValue,
                   onChanged: (value) {
                     setState(() {
@@ -93,6 +98,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
                     });
                   },
                 ),
+                const SizedBox(width: 5),
                 Text(list[i],
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -125,16 +131,19 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               Opacity(
                 opacity: i.toDouble(),
                 child: NeumorphicSlider(
-                    min: 1,
-                    max: 10,
-                      
-               
-                    value: _value,
-                    onChanged: (value) {
-                      _value = value;
+                  style: SliderStyle(
+                    lightSource: LightSource.top,
+                    depth: 2.0,
+                  ),
+                  min: 1,
+                  max: 10,
+                  value: _value,
+                  onChanged: (value) {
+                    _value = value;
 
-                      calContent.calendarContentatemnot(_value);
-                    }),
+                    calContent.calendarContentatemnot(_value);
+                  },
+                ),
               ),
             ],
           ),

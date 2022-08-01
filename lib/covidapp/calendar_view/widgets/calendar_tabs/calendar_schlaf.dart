@@ -105,6 +105,9 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     NeumorphicSwitch(
+                      style: const NeumorphicSwitchStyle(
+                          inactiveTrackColor: Color(0xFF2E4E57),
+                          lightSource: LightSource.bottom),
                       value: _switchValue,
                       onChanged: (value) {
                         setState(() {
@@ -121,6 +124,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                         });
                       },
                     ),
+                    const SizedBox(width: 5),
                     Text(list[i],
                         textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -155,6 +159,10 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
               Opacity(
                 opacity: i.toDouble(),
                 child: NeumorphicSlider(
+                    style: SliderStyle(
+                      lightSource: LightSource.top,
+                      depth: 2.0,
+                    ),
                     min: 1,
                     max: 10,
                     value: _value,

@@ -193,8 +193,8 @@ class WebMainState extends State<WebMain> {
                 padding: const EdgeInsets.only(top: 65.0),
                 child: Image(
                   image: image,
-                  height: 10.0,
-                  width: 10,
+                  height: 50.0,
+                  width: 50,
                 ),
               ),
               Padding(

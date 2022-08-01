@@ -92,6 +92,9 @@ class CalendarSinneState extends State<CalendarSinne> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NeumorphicSwitch(
+                  style: const NeumorphicSwitchStyle(
+                      inactiveTrackColor: Color(0xFF2E4E57),
+                      lightSource: LightSource.bottom),
                   value: _switchValue,
                   onChanged: (value) {
                     setState(() {
@@ -107,6 +110,7 @@ class CalendarSinneState extends State<CalendarSinne> {
                     });
                   },
                 ),
+                const SizedBox(width: 5),
                 Text(list[i],
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -139,9 +143,12 @@ class CalendarSinneState extends State<CalendarSinne> {
               Opacity(
                 opacity: i.toDouble(),
                 child: NeumorphicSlider(
+                    style: SliderStyle(
+                      lightSource: LightSource.top,
+                      depth: 2.0,
+                    ),
                     min: 1,
                     max: 10,
-                
                     value: _value,
                     onChanged: (value) {
                       _value = value;
