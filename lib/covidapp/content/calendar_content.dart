@@ -2,11 +2,16 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
+import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../models/user_models.dart';
+import '../uebungen/exercise_data.dart';
 
 /*MasterClass of Variable Declaration and Methods for Value Exchange */
 
@@ -75,8 +80,18 @@ class CalendarContent with ChangeNotifier {
   List<int> schlafL = List.generate(32, (index) => index);
   List<int> nervenL = List.generate(32, (index) => index);
   List<int> bpm = List.generate(32, (index) => index);
-  List<int> breatheTotalL = List.generate(32, (index) => index);
+  List<int> breatheMinL = List.generate(32, (index) => index);
   List<int> breatheSecL = List.generate(32, (index) => index);
+
+  List<double> breatheGraphMinList = [
+    0.0,
+  ];
+  List<double> breatheGraphSecList = [
+    0.0,
+  ];
+  List<double> pulseGraphList = [
+    0.0,
+  ];
 
   List bpmday = [100, 70, 75];
   List introList = [];
@@ -127,6 +142,7 @@ class CalendarContent with ChangeNotifier {
     return mood;
   }
 
+  ///bools to verify committed tasks
   bool returnBreatheTrue() {
     breatheTrue = true;
     print("no way");
@@ -193,6 +209,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+  ///icons to verify committed tasks
   Icon getallTrue() {
     Icon iconDone = const Icon(Icons.task_alt,
         semanticLabel: "Check", color: Colors.lightGreen);
@@ -249,7 +266,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-  /// timestring gets the Brathing -- if empty -sets the String to 0 */
+  /// timestring gets the Breathing per Min-- if empty -sets the String to 0 */
   String getBreatheMin(String timeString) {
     if (breatheTrue == true) {
       breatheMin = timeString;
@@ -265,54 +282,139 @@ class CalendarContent with ChangeNotifier {
     return breatheMin;
   }
 
-  List<double> breatheGraphTotalL() {
-    List<double> breatheGraphTotalL = [0.0,];
-    ;
+  ///Initializing breatheGraphData
+  List<double> breatheGraphMinL(List<double> breatheminL) {
+    List<double> breatheGraphDataList = breatheminL;
+    breatheGraphMinList.clear();
+    breatheGraphMinList.add(0);
     int date = currentDate;
 
     for (int review = 7;
-        review > 0 && breatheGraphTotalL.length < 8;
+        review >= 0 && breatheGraphMinList.length < 8;
         review--) {
-      if (date > 7) {
-        breatheGraphTotalL.add(breatheTotalL[(date - review)].toDouble() / 10);
-      } else if (date < 8 && (date - review >= 1)) {
-        breatheGraphTotalL.add(breatheTotalL[(date - review)].toDouble() / 10);
-      } else if (date == 1) {
-        breatheGraphTotalL.add(breatheTotalL[(date)].toDouble());
+      if (breatheGraphDataList.isNotEmpty) {
+        if (breatheGraphDataList[currentDate] != 0) {
+          if (breatheGraphMinList.length < 8 &&
+              breatheGraphMinList.length <= date + 1) {
+            if (date > 7) {
+              breatheGraphMinList
+                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
+            } else if (date - review == 1) {
+              breatheGraphMinList
+                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
+            } else if (date < 8 && (date - review > 1)) {
+              breatheGraphMinList
+                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
+            }
+          } else {
+            breatheGraphMinList.removeAt(1);
+          }
+        }
+      } else if (breatheGraphDataList.isEmpty ||
+          breatheGraphDataList[currentDate] == 0) {
+        if (date > 7) {
+          breatheGraphMinList
+              .add(breatheMinL[(date - review)].toDouble() / 180);
+        } else if (date - review == 1) {
+          breatheGraphMinList
+              .add(breatheMinL[(date - review)].toDouble() / 180);
+        } else if (date < 8 && (date - review > 1)) {
+          breatheGraphMinList
+              .add(breatheMinL[(date - review)].toDouble() / 180);
+        }
       }
     }
-    return breatheGraphTotalL;
+    return breatheGraphMinList;
   }
 
-  List<double> breatheGraphSecL() {
-    List<double> breatheGraphSecL = [
-      0.0,
-    ];
+  ///creating a list of breathing (seconds) values
+  List<double> breatheGraphSecL(List<double> breathesecL) {
+    breatheGraphSecList.clear();
+    breatheGraphSecList.add(0);
+    List<double> breatheGraphDataSecList = breathesecL;
 
-    for (int review = 7; review > 0 && breatheGraphSecL.length < 8; review--) {
+    for (int review = 7;
+        review >= 0 && breatheGraphSecList.length < 8;
+        review--) {
       int date = currentDate;
-
-      if (date > 7) {
-        breatheGraphSecL.add(breatheSecL[(date - review)].toDouble() / 10);
-      } else if (date < 7 && (date - review >= 1)) {
-        breatheGraphSecL.add(breatheSecL[(date - review)].toDouble() / 10);
-      } else if (date == 1) {
-        breatheGraphSecL.add(breatheSecL[(date)].toDouble());
+      if (breatheGraphDataSecList.isNotEmpty) {
+        if (breatheGraphDataSecList[currentDate] != 0) {
+          if (breatheGraphSecList.length < 8 &&
+              breatheGraphSecList.length <= date + 1) {
+            if (date > 7) {
+              breatheGraphSecList
+                  .add(breatheGraphDataSecList[(date - review)] / 180);
+            } else if (date - review == 1) {
+              breatheGraphSecList
+                  .add(breatheGraphDataSecList[(date - review)] / 180);
+            } else if (date < 7 && (date - review > 1)) {
+              breatheGraphSecList
+                  .add(breatheGraphDataSecList[(date - review)] / 180);
+            }
+          } else {
+            breatheGraphSecList.removeAt(1);
+          }
+        }
+      } else if (breatheGraphDataSecList.isEmpty ||
+          breatheGraphDataSecList[currentDate] == 0) {
+        if (date > 7) {
+          breatheGraphSecList
+              .add(breatheSecL[(date - review)].toDouble() / 180);
+        } else if (date - review == 1) {
+          breatheGraphSecList
+              .add(breatheSecL[(date - review)].toDouble() / 180);
+        } else if (date < 7 && (date - review > 1)) {
+          breatheGraphSecList
+              .add(breatheSecL[(date - review)].toDouble() / 180);
+        }
       }
     }
-    return breatheGraphSecL;
+    return breatheGraphSecList;
+  }
+
+  List<double> pulseGraphL(List<double> pulseL) {
+    pulseGraphList.clear();
+    pulseGraphList.add(0);
+    List<double> pulseGraphDataL = pulseL;
+
+    for (int review = 7; review >= 0 && pulseGraphList.length < 8; review--) {
+      int date = currentDate;
+      if (pulseGraphDataL.isNotEmpty) {
+        if (pulseGraphDataL[currentDate] != 0) {
+          if (pulseGraphList.length < 8 && pulseGraphList.length <= date + 1) {
+            if (date > 7) {
+              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
+            } else if (date - review == 1) {
+              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
+            } else if (date < 7 && (date - review > 1)) {
+              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
+            }
+          }
+          pulseGraphList.removeAt(1);
+        }
+      } else if (pulseGraphDataL.isEmpty || pulseGraphDataL[currentDate] == 0) {
+        if (date > 7) {
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+        } else if (date - review == 1) {
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+        } else if (date < 7 && (date - review > 1)) {
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+        }
+      }
+    }
+    return pulseGraphList;
   }
 
   List<String> graphLabelL() {
-    List<String> graphLabelL = [""];
-    int labelIndex = 0;
-    for (int labelNum = 7; labelNum > 0; labelNum--) {
+    List<String> graphLabelL = ["0"];
+
+    for (int labelNum = 7; labelNum >= 0; labelNum--) {
       if (currentDate > 7) {
         graphLabelL.add((currentDate - labelNum).toString());
-      } else if (currentDate < 7 && (currentDate - labelNum >= 1)) {
+      } else if (currentDate - labelNum == 1) {
         graphLabelL.add((currentDate - labelNum).toString());
-      } else if (currentDate == 1) {
-        graphLabelL.add(currentDate.toString());
+      } else if (currentDate < 7 && (currentDate - labelNum) > 1) {
+        graphLabelL.add((currentDate - labelNum).toString());
       }
     }
     return graphLabelL;

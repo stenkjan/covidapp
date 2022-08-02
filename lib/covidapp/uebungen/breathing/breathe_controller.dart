@@ -94,7 +94,7 @@ class BreatheController extends GetxController {
         breathTime.value -= 100;
         update();
       } else {
-        calContent.breatheTotalL[calContent.currentDate] =
+        calContent.breatheMinL[calContent.currentDate] =
             int.parse(calContent.getBreatheMin(value));
         if (int.parse(value) > 0) {
           calContent.returnBreatheTrue();

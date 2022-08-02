@@ -22,7 +22,7 @@ class AuthService {
     id = user.uid;
 
     // ignore: avoid_print
-    print(id);
+    
     return User(user.uid, user.email);
   }
 

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
 
+import '../exercise_data.dart';
 import 'home_controller.dart';
 
 /// Homepage-- Widget build */
@@ -166,31 +167,48 @@ class BreatheHome extends GetView<HomeController> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Statistik',
+                  children: [
+                    const Text('Statistik',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold)),
-                    Icon(
+                    const Icon(
                       Icons.graphic_eq,
                       size: 35,
-                      color: Color(0xB444B2C5),
-                    )
+                      color: const Color(0xB444B2C5),
+                    ),
                   ],
                 ),
                 onPressed: () => showDialog(
                     context: context,
-                    builder: (context) => AlertDialog(
-                            backgroundColor: const Color.fromARGB(202, 0, 0, 0),
-                            title: const Text(""),
-                            content: const BreatheGraph(),
-                            actions: [
-                              TextButton(
-                                child: const Text("Schließen"),
-                                onPressed: () => Navigator.pop(context),
+                    builder: (context) {
+                      return Stack(
+                        children: [
+                          AlertDialog(
+                              backgroundColor:
+                                  const Color.fromARGB(202, 0, 0, 0),
+                              title: const Text(""),
+                              content: Stack(
+                                children: [
+                                  Opacity(
+                                      opacity: 0.5,
+                                      child: ExerciseData('breathemin')),
+                                  Opacity(
+                                      opacity: 0.5,
+                                      child: ExerciseData('breathesec')),
+                                  const BreatheGraph(),
+                                ],
                               ),
-                            ])),
+                              actions: [
+                                TextButton(
+                                  child: const Text("Schließen"),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ]),
+                        ],
+                      );
+                    }),
               ),
             ),
           ),
