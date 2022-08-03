@@ -95,11 +95,15 @@ class BreatheController extends GetxController {
         update();
       } else {
         calContent.breatheMinL[calContent.currentDate] =
-            int.parse(calContent.getBreatheMin(value));
+            int.parse(initTime.toString());
+        calContent.breatheMin = initTime.toString();
         if (int.parse(value) > 0) {
           calContent.returnBreatheTrue();
           calContent.breatheSecL[calContent.currentDate] = initBreathTime;
+          calContent.breatheSec = 
+          initBreathTime.toString();
         }
+        
         _breathTimer.cancel();
         Get.to(const Uebungen());
 

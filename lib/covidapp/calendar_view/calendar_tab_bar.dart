@@ -309,7 +309,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
         opacity: calContent.count.toDouble(),
         child: FloatingActionButton.extended(
           onPressed: () {
-            if (calContent.docExists == false) {
+           /*  if (calContent.docExists == false) { */
               calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
@@ -321,9 +321,10 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                   calContent.comment,
                   calContent.currentDate);
               calContent.clear();
-            }
+              /*  } */
+            },
           
-          },
+         
           tooltip: "Bestätigen",
           foregroundColor: const Color(0xFF31A1C9),
           backgroundColor: const Color(0xFF31A1C9),

@@ -6,22 +6,22 @@ import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BreatheGraph extends StatefulWidget {
-  const BreatheGraph({Key? key}) : super(key: key);
+class PulseGraph extends StatefulWidget {
+  const PulseGraph({Key? key}) : super(key: key);
 
   @override
-  BreatheGraphState createState() => BreatheGraphState();
+  PulseGraphState createState() => PulseGraphState();
 }
 
-class BreatheGraphState extends State<BreatheGraph> {
+class PulseGraphState extends State<PulseGraph> {
   late List<Feature> features;
   late CalendarContent calContent;
 
   @override
   void initState() {
     calContent = CalendarContent();
-    features = featureList(
-        calContent.breatheGraphMinList, calContent.breatheGraphSecList);
+
+    features = featureList(calContent.pulseGraphList);
     super.initState();
   }
 
@@ -33,41 +33,36 @@ class BreatheGraphState extends State<BreatheGraph> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
-    if (calContent.breatheGraphMinList.length <= 1 ||
-        calContent.breatheGraphSecList.length <= 1) {
+
+    if (calContent.pulseGraphList.length <= 1) {
       setState(() {
-        ExerciseData("breathemin");
-        ExerciseData("breathesec");
-        features = featureList(
-            calContent.breatheGraphMinList, calContent.breatheGraphSecList);
+        ExerciseData("pulse");
+
+        features = featureList(calContent.pulseGraphList);
       });
     }
 
     return Stack(
       children: [
-        ExerciseData("breathemin"),
-        ExerciseData("breathesec"),
         Container(
           alignment: Alignment.topRight,
           child: TextButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                            backgroundColor: Colors.black12,
-                            title: const Text(""),
-                            content: const Text(
-                                "Die Grafik zeigt einen Vergleich zwischen den Werten Atemübungslänge (insgesamt) und Ein-Ausatmungsdauer (vergangene 7 Tage ab Auswahldatum).",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                )),
-                            actions: [
-                              TextButton(
-                                child: const Text("Verstanden"),
-                                onPressed: () => Navigator.pop(context),
-                              ),
-                            ]));
-              },
+              onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                          backgroundColor: Colors.black12,
+                          title: const Text(""),
+                          content: const Text(
+                              "Die Grafik zeigt die Entwicklung der Pulsübung der letzten 7 Tage.",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
+                          actions: [
+                            TextButton(
+                              child: const Text("Verstanden"),
+                              onPressed: () => Navigator.pop(context),
+                            ),
+                          ])),
               child: const Icon(
                 Icons.info,
                 color: Colors.white,
@@ -81,7 +76,7 @@ class BreatheGraphState extends State<BreatheGraph> {
             children: [
               const Padding(
                 padding: EdgeInsets.only(left: 8.0, top: 22),
-                child: Text("Sekunden"),
+                child: Text("BPM"),
               ),
               const Padding(
                 padding: EdgeInsets.only(
@@ -109,8 +104,7 @@ class BreatheGraphState extends State<BreatheGraph> {
                     height: 30,
                   ),
                   LineGraph(
-                    features: featureList(calContent.breatheGraphMinList,
-                        calContent.breatheGraphSecList),
+                    features: featureList(calContent.pulseGraphList),
                     size: const Size(500, 400),
                     labelX: calContent.graphLabelL(),
                     labelY: const [
@@ -120,9 +114,6 @@ class BreatheGraphState extends State<BreatheGraph> {
                       '80',
                       '100',
                       '120',
-                      '140',
-                      '160',
-                      '180',
                     ],
                     showDescription: true,
                     graphColor: Colors.white54,
@@ -140,31 +131,20 @@ class BreatheGraphState extends State<BreatheGraph> {
     );
   }
 
-  List<Feature> featureList(
-      List<double> featureListMin, List<double> featureListSec) {
+  List<Feature> featureList(List<double> featureListPuls) {
     List<Feature> features = [
       Feature(
-        title: "Gesamtlänge",
-        color: AppColors.pieColors[3],
-        data: featureListMin,
-      ),
-      Feature(
-        title: "Atemlänge",
+        title: '''Herzschlag pro Minute : Ø''',
         color: AppColors.pieColors[5],
-        data: featureListSec,
+        data: featureListPuls,
       ),
     ];
     setState(() {
       features = [
         Feature(
-          title: "Gesamtlänge",
-          color: AppColors.pieColors[3],
-          data: featureListMin,
-        ),
-        Feature(
-          title: "Atemlänge",
+          title: '''Herzschlag pro Minute : Ø''',
           color: AppColors.pieColors[5],
-          data: featureListSec,
+          data: featureListPuls,
         ),
       ];
     });

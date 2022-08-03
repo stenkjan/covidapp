@@ -1,6 +1,8 @@
 import 'dart:core';
+import 'dart:html';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class DatabaseService {
   final String uid;
@@ -15,6 +17,8 @@ class DatabaseService {
   late List docList;
   late List nameData;
   int registeredDate = 0;
+  int currentDate =
+      int.parse(DateFormat('d').format(DateTime.now()).toString());
 
   final CalendarContent calContent = CalendarContent();
   Future updateUserData(
@@ -49,6 +53,27 @@ class DatabaseService {
     });
   }
 
+  Future updateBreatheExerciseModel(
+      var breathemin, var breathesec) async {
+    return await userCollection
+        .doc(uid)
+        .collection('exercise')
+        .doc(currentDate.toString())
+        .set({
+      'breathemin': breathemin,
+      'breathesec': breathesec,
+      
+    });
+  }
+Future updatePulseExerciseModel( var pulse) async {
+    return await userCollection
+        .doc(uid)
+        .collection('exercise')
+        .doc(currentDate.toString())
+        .set({      
+      'pulse': pulse,
+    });
+  }
   /// Reads the Collection on the given User */
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance

@@ -7,7 +7,8 @@ import 'heart_bpm.dart';
 
 export 'package:covidapp/covidapp/uebungen/Puls_Messung/heart_bpm.dart'
     // ignore: undefined_shown_name
-    show BPMChart;
+    show
+        BPMChart;
 
 /// Generate a simple heart BPM graph
 class BPMChart extends StatelessWidget {
@@ -60,7 +61,7 @@ class BPMChart extends StatelessWidget {
     return charts.TimeSeriesChart(
       _data,
       primaryMeasureAxis: charts.NumericAxisSpec(
-        showAxisLine: false,
+        showAxisLine: true,
         renderSpec: const charts.NoneRenderSpec(),
         viewport: charts.NumericExtents(min, max),
         tickProviderSpec:
@@ -71,7 +72,7 @@ class BPMChart extends StatelessWidget {
       ),
       domainAxis: charts.DateTimeAxisSpec(
         renderSpec: charts.NoneRenderSpec(),
-        showAxisLine: false,
+        showAxisLine: true,
       ),
       dateTimeFactory: const charts.LocalDateTimeFactory(),
     );

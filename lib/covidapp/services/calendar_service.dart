@@ -27,8 +27,8 @@ class CalendarService {
       //create a new user doc with uid
       await DatabaseService(uid: uid).updateCalendarModel(mood, muedigkeit,
           atemnot, sinne, herz, schlaf, nerven, comment, createdDate);
-      print('$uid  updateCalInitiated');
-      print('$mood mood value on DB');
+      print('$uid  Calendar updateCalInitiated');
+     
     } catch (collectionError) {
       print('${auth.getUser()} update CalendarModel uid exception');
       if (collectionError is PlatformException) {

@@ -39,6 +39,9 @@ class ExerciseData extends StatelessWidget {
             if (exerciseString == "breathesec") {
               calContent.breatheGraphSecL(breathesecData(dataExample));
             }
+            if (exerciseString == "pulse") {
+              calContent.pulseGraphL(pulseData(dataExample));
+            }
             return const Padding(
               padding: EdgeInsets.only(left: 100.0),
               child: Text("Error"),
@@ -51,6 +54,9 @@ class ExerciseData extends StatelessWidget {
             }
             if (exerciseString == "breathesec") {
               calContent.breatheGraphSecL(breathesecData(dataExample));
+            }
+            if (exerciseString == "pulse") {
+              calContent.pulseGraphL(pulseData(dataExample));
             }
             return const Padding(
               padding: EdgeInsets.only(left: 8.0),
@@ -66,6 +72,10 @@ class ExerciseData extends StatelessWidget {
             }
             if (exerciseString == "breathesec") {
               calContent.breatheGraphSecL(breathesecData(data));
+            }
+            if (exerciseString == "pulse") {
+              calContent.bpmday.clear();
+              calContent.bpmday = calContent.pulseGraphL(pulseData(data));
             }
             /* if (exerciseString == "pulse") {
             calContent.pulseGraphL(pulseData(data));

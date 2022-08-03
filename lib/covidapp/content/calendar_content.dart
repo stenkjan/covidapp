@@ -50,6 +50,7 @@ class CalendarContent with ChangeNotifier {
   List<bool> breatheBoolL = List.generate(31, (index) => false);
   List<bool> pulseBoolL = List.generate(31, (index) => false);
   String breatheMin = "0";
+  String breatheSec = "0";
   double sum = 0;
   double sumColor = 0;
 
@@ -93,7 +94,7 @@ class CalendarContent with ChangeNotifier {
     0.0,
   ];
 
-  List bpmday = [100, 70, 75];
+  List bpmday = [];
   List introList = [];
   List sumColorList = List.generate(32, (index) => index);
 
@@ -282,36 +283,34 @@ class CalendarContent with ChangeNotifier {
     return breatheMin;
   }
 
-  ///Initializing breatheGraphData
+  ///Initializing breatheGraphData for min values with firebase data
   List<double> breatheGraphMinL(List<double> breatheminL) {
     List<double> breatheGraphDataList = breatheminL;
-    breatheGraphMinList.clear();
-    breatheGraphMinList.add(0);
+
     int date = currentDate;
 
+    breatheGraphMinList.clear();
+    breatheGraphMinList.add(0);
     for (int review = 7;
         review >= 0 && breatheGraphMinList.length < 8;
         review--) {
       if (breatheGraphDataList.isNotEmpty) {
-        if (breatheGraphDataList[currentDate] != 0) {
-          if (breatheGraphMinList.length < 8 &&
-              breatheGraphMinList.length <= date + 1) {
-            if (date > 7) {
-              breatheGraphMinList
-                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
-            } else if (date - review == 1) {
-              breatheGraphMinList
-                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
-            } else if (date < 8 && (date - review > 1)) {
-              breatheGraphMinList
-                  .add(breatheGraphDataList[(date - review)].toDouble() / 180);
-            }
-          } else {
-            breatheGraphMinList.removeAt(1);
+        if (breatheGraphMinList.length < 8 &&
+            breatheGraphMinList.length <= date + 1) {
+          if (date > 7) {
+            breatheGraphMinList
+                .add(breatheGraphDataList[(date - review)].toDouble() / 180);
+          } else if (date - review == 1) {
+            breatheGraphMinList
+                .add(breatheGraphDataList[(date - review)].toDouble() / 180);
+          } else if (date < 8 && (date - review > 1)) {
+            breatheGraphMinList
+                .add(breatheGraphDataList[(date - review)].toDouble() / 180);
           }
+        } else {
+          breatheGraphMinList.removeAt(1);
         }
-      } else if (breatheGraphDataList.isEmpty ||
-          breatheGraphDataList[currentDate] == 0) {
+      } else if (breatheGraphDataList.isEmpty) {
         if (date > 7) {
           breatheGraphMinList
               .add(breatheMinL[(date - review)].toDouble() / 180);
@@ -327,7 +326,7 @@ class CalendarContent with ChangeNotifier {
     return breatheGraphMinList;
   }
 
-  ///creating a list of breathing (seconds) values
+  ///creating a list of breathing (seconds) values with firebase data
   List<double> breatheGraphSecL(List<double> breathesecL) {
     breatheGraphSecList.clear();
     breatheGraphSecList.add(0);
@@ -338,25 +337,22 @@ class CalendarContent with ChangeNotifier {
         review--) {
       int date = currentDate;
       if (breatheGraphDataSecList.isNotEmpty) {
-        if (breatheGraphDataSecList[currentDate] != 0) {
-          if (breatheGraphSecList.length < 8 &&
-              breatheGraphSecList.length <= date + 1) {
-            if (date > 7) {
-              breatheGraphSecList
-                  .add(breatheGraphDataSecList[(date - review)] / 180);
-            } else if (date - review == 1) {
-              breatheGraphSecList
-                  .add(breatheGraphDataSecList[(date - review)] / 180);
-            } else if (date < 7 && (date - review > 1)) {
-              breatheGraphSecList
-                  .add(breatheGraphDataSecList[(date - review)] / 180);
-            }
-          } else {
-            breatheGraphSecList.removeAt(1);
+        if (breatheGraphSecList.length < 8 &&
+            breatheGraphSecList.length <= date + 1) {
+          if (date > 7) {
+            breatheGraphSecList
+                .add(breatheGraphDataSecList[(date - review)] / 180);
+          } else if (date - review == 1) {
+            breatheGraphSecList
+                .add(breatheGraphDataSecList[(date - review)] / 180);
+          } else if (date < 7 && (date - review > 1)) {
+            breatheGraphSecList
+                .add(breatheGraphDataSecList[(date - review)] / 180);
           }
+        } else {
+          breatheGraphSecList.removeAt(1);
         }
-      } else if (breatheGraphDataSecList.isEmpty ||
-          breatheGraphDataSecList[currentDate] == 0) {
+      } else if (breatheGraphDataSecList.isEmpty) {
         if (date > 7) {
           breatheGraphSecList
               .add(breatheSecL[(date - review)].toDouble() / 180);
@@ -372,6 +368,7 @@ class CalendarContent with ChangeNotifier {
     return breatheGraphSecList;
   }
 
+  ///creating a list of pulse values with firebase data
   List<double> pulseGraphL(List<double> pulseL) {
     pulseGraphList.clear();
     pulseGraphList.add(0);
@@ -380,31 +377,32 @@ class CalendarContent with ChangeNotifier {
     for (int review = 7; review >= 0 && pulseGraphList.length < 8; review--) {
       int date = currentDate;
       if (pulseGraphDataL.isNotEmpty) {
-        if (pulseGraphDataL[currentDate] != 0) {
-          if (pulseGraphList.length < 8 && pulseGraphList.length <= date + 1) {
-            if (date > 7) {
-              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
-            } else if (date - review == 1) {
-              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
-            } else if (date < 7 && (date - review > 1)) {
-              pulseGraphList.add(pulseGraphDataL[(date - review)] / 180);
-            }
+        if (pulseGraphList.length < 8 && pulseGraphList.length <= date + 1) {
+          if (date > 7) {
+            pulseGraphList.add(pulseGraphDataL[(date - review)] / 120);
+          } else if (date - review == 1) {
+            pulseGraphList.add(pulseGraphDataL[(date - review)] / 120);
+          } else if (date < 7 && (date - review > 1)) {
+            pulseGraphList.add(pulseGraphDataL[(date - review)] / 120);
           }
+        } else {
           pulseGraphList.removeAt(1);
         }
-      } else if (pulseGraphDataL.isEmpty || pulseGraphDataL[currentDate] == 0) {
+      } else if (pulseGraphDataL.isEmpty) {
         if (date > 7) {
-          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 120);
         } else if (date - review == 1) {
-          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 120);
         } else if (date < 7 && (date - review > 1)) {
-          pulseGraphList.add(bpm[(date - review)].toDouble() / 180);
+          pulseGraphList.add(bpm[(date - review)].toDouble() / 120);
         }
       }
     }
+    
     return pulseGraphList;
   }
 
+  ///List for graph description in breathe
   List<String> graphLabelL() {
     List<String> graphLabelL = ["0"];
 
@@ -420,6 +418,7 @@ class CalendarContent with ChangeNotifier {
     return graphLabelL;
   }
 
+  ///List for graph description in pulse
   List<int> bpmWeekL() {
     num sum = 0;
     for (num e in bpmday) {
@@ -434,24 +433,11 @@ class CalendarContent with ChangeNotifier {
     return daychangeBool;
   }
 
-  /// boolean for current Date */
-  /*  bool getgrafikCurrentDate(int grafikcurrentDate) {
-    grafikcurrentDateCal = grafikcurrentDate;
-    bool curDateooRange = false;
-    if (grafikcurrentDateCal > dateL.last) {
-      curDateooRange = true;
-      return curDateooRange;
-    } else if (grafikcurrentDateCal < dateL.first) {
-      curDateooRange = true;
-      return curDateooRange;
-    }
-    return curDateooRange;
-  } */
-
   int getIndex() {
     return index;
   }
 
+  ///Map for Day Pie in Calendar
   Map<String, double> daypiedataMapCalendar(int day) {
     int indexgetter = dateL.indexOf(day);
     if (indexgetter > dateL.length - 1) {
@@ -478,6 +464,7 @@ class CalendarContent with ChangeNotifier {
     return daypiedataMapCal;
   }
 
+  ///Map for Day Pie in Graphic
   void dayliepieMap(Map<String, dynamic> map, int day) {
     pieMap = {
       headline[1]['tag']: map['muedigkeit'].toDouble(),
@@ -509,14 +496,8 @@ class CalendarContent with ChangeNotifier {
     return pieMap;
   }
 
+  ///Map for Week Pie in Graphic
   void weekpiedataMap(List map) {
-    /* map.forEach((key, value) {
-      if (kDebugMode) {
-        print('Key: $key');
-        print('Value: $value');
-        print('------------------------------');
-      }
-    }); */
     moodL[calContent.listIndex] = (map[map.length - 7]['mood']);
     moodL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
     moodL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
@@ -574,6 +555,7 @@ class CalendarContent with ChangeNotifier {
     nervenL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
   }
 
+  ///Map for daily Pie Data in Graphic
   Map<String, double> daypiedataMap() {
     int indexgetter = getIndex();
     if (indexgetter > dateL.length - 1) {
@@ -594,7 +576,7 @@ class CalendarContent with ChangeNotifier {
     return daypiedataMap;
   }
 
-//TODO: maybe not in use
+  ///alternative for docList in database service in function readcalendarDocDaily
   List getCalendarList() {
     headlineupdate = headline;
     daycount = grafikcurrentDateCal;
@@ -676,6 +658,8 @@ class CalendarContent with ChangeNotifier {
     return calList;
   }
 
+  ///getters for sums for displaying symptom average data
+
   Color getLevel(int value) {
     Color color = Colors.grey;
     if (value >= 1 && value <= 2) {
@@ -723,52 +707,10 @@ class CalendarContent with ChangeNotifier {
     if (value >= 7 && value <= 10) {
       return color = (AppColors.pieColors[5]);
     }
-    /* if (value == 0) {
-      print("$color null");
-      return color;
-    } */
+
     return color;
   }
 
-  /// Saving the Variables to double  */
-  /*  double listSum(Map<String, dynamic> data) {
-    int sumInt = data['mood'] +
-        data['muedigkeit'] +
-        data['atemnot'] +
-        data['sinne'] +
-        data['herz'] +
-        data['schlaf'] +
-        data['nerven'];
-
-    if (sumInt != 0) {
-      sumColor = sumInt.toDouble() / 7;
-      return sumColor;
-    }
-    if (sumInt == 0) {
-      return sumColor;
-      /* 
-    double sum = mood.toDouble() +
-        muedigkeit.toDouble() +
-        atemnot.toDouble() +
-        sinne.toDouble() +
-        herz.toDouble() +
-        schlaf.toDouble() +
-        nerven.toDouble();
-    sum = sum / 7; */
-
-      /*  sum = moodL.last.toDouble() +
-          muedigkeitL.last.toDouble() +
-          atemnotL.last.toDouble() +
-          sinneL.last.toDouble() +
-          herzL.last.toDouble() +
-          schlafL.last.toDouble() +
-          nervenL.last.toDouble();
-      sum = sum / 7; */
-    }
-
-    return sum;
-  }
- */
   String getcalAnswer() {
     if (calTrue == true) {
       return answeredSumInt().toString();
@@ -854,6 +796,7 @@ class CalendarContent with ChangeNotifier {
     return comment;
   }
 
+  /// increment function for view updates on symptom data
   bool increment() {
     if (count == 0) {
       count++;
@@ -868,7 +811,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
-  /// Push to Firebase  */
+  /// clear symptom variable data  */
   Future<bool> clear() async {
     createDateInt = int.parse(createdDate);
     if (createDateInt > dateL.last.toInt()) {

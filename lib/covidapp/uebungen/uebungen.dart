@@ -1,9 +1,12 @@
+import 'package:covidapp/covidapp/content/calendar_content.dart';
+import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class Uebungen extends StatefulWidget {
   const Uebungen({Key? key}) : super(key: key);
@@ -28,6 +31,10 @@ class UebungenState extends State<Uebungen> {
   /// Widget build 3 Übungen Classes. On Card Click  */
 
   Widget build(BuildContext context) {
+    final exService = Provider.of<ExerciseService>(context);
+    final calContent = Provider.of<CalendarContent>(context);
+    exService.dailyBreatheExercise(
+        calContent.breatheMin, calContent.breatheSec);
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
 
