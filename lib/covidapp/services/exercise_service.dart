@@ -5,11 +5,16 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/src/foundation/change_notifier.dart';
+import 'package:provider/provider.dart';
 
-class ExerciseService {
+class ExerciseService extends ChangeNotifierProvider {
   AuthService auth = AuthService();
 
   GrafikService grafService = GrafikService();
+
+  ExerciseService({required Create<ChangeNotifier?> create})
+      : super(create: create);
 
   /// Variables for Firebase */
   Future<CalendarContent?> dailyBreatheExercise(
