@@ -53,6 +53,7 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.0.2
   meta: ^1.2.3
+  path_provider: ^2.0.11
   percent_indicator: ^4.0.0
   pie_chart: ^5.1.0
   provider: ^6.0.2

@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:html';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';

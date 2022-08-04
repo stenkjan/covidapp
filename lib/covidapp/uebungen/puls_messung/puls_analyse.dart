@@ -87,8 +87,8 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                       if (bpmValues.length >= 100) bpmValues.removeAt(0);
                       bpmValues.add(SensorValue(
                           value: value.toDouble(), time: DateTime.now()));
-                      if (calContent.bpmday.last != value) {
-                        calContent.bpmday.add(value);
+                      if (calContent.bpmday[calContent.currentDate] != null) {
+                        calContent.bpmday[calContent.currentDate] = value;
                       }
                       print("§value : bpm value added");
                       Visibility(
