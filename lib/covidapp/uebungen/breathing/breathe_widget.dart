@@ -174,16 +174,16 @@ class BreatheHome extends GetView<HomeController> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text('Statistik',
+                  children: const [
+                    Text('Statistik',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.bold)),
-                    const Icon(
+                    Icon(
                       Icons.graphic_eq,
                       size: 35,
-                      color: const Color(0xB444B2C5),
+                      color: Color(0xB444B2C5),
                     ),
                   ],
                 ),

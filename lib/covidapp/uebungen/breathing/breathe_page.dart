@@ -9,6 +9,7 @@ import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import '../../content/calendar_content.dart';
 import '../../services/exercise_service.dart';
+import '../uebungen.dart';
 import 'breathe_controller.dart';
 import 'breathe_widget.dart';
 
@@ -24,6 +25,7 @@ class BreathePage extends GetView<BreatheController> {
     ExerciseService exService = Provider.of<ExerciseService>(context);
     exService.dailyBreatheExercise(
         calContent.breatheMin, calContent.breatheSec);
+
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle:
@@ -41,6 +43,13 @@ class BreathePage extends GetView<BreatheController> {
       body: GetX<BreatheController>(
           init: BreatheController(),
           builder: (c) {
+            /*  if (c.timerDone) {
+              Future.delayed(Duration.zero, () {
+                Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => (const Uebungen())));
+              });
+            } */
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,6 +65,39 @@ class BreathePage extends GetView<BreatheController> {
                   ),
                   const SizedBox(height: 50),
                 ],
+                /* if (c.timerDone) ...[
+                  Center(
+                    child: SizedBox(
+                      width: 180,
+                      height: 35,
+                      child: Neumorphic(
+                        style: NeumorphicStyle(
+                            shape: NeumorphicShape.concave,
+                            boxShape: NeumorphicBoxShape.roundRect(
+                                BorderRadius.circular(12)),
+                            depth: 15,
+                            intensity: 3.0,
+                            shadowLightColor: Colors.transparent,
+                            /*  lightSource: LightSource.topLeft, */
+                            color: const Color.fromARGB(255, 1, 25, 32)),
+                        child: ElevatedButton.icon(
+                            icon: const Icon(Icons.arrow_back_sharp),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(
+                                  fontWeight: FontWeight.w300, fontSize: 18),
+                            ),
+                            label: const Text("Beenden"),
+                            onPressed:
+                                () => /* Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      (UebungBreathing()))), */
+
+                                    Navigator.pop(context)),
+                      ),
+                    ),
+                  ),
+                ], */
                 CircularPercentIndicator(
                   radius: 180,
                   lineWidth: 16,
@@ -98,43 +140,6 @@ class BreathePage extends GetView<BreatheController> {
                   ),
                 ],
                 const SizedBox(height: 5),
-                if (c.timerDone) ...[
-                  const BreatheHome(),
-                  /*  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      child: SizedBox(
-                        width: 180,
-                        height: 35,
-                        child: Neumorphic(
-                          style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              depth: 15,
-                              intensity: 3.0,
-                              shadowLightColor: Colors.transparent,
-                              /*  lightSource: LightSource.topLeft, */
-                              color: const Color.fromARGB(255, 1, 25, 32)),
-                          child: ElevatedButton.icon(
-                              icon: const Icon(Icons.arrow_back_sharp),
-                              style: ElevatedButton.styleFrom(
-                                textStyle: const TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 18),
-                              ),
-                              label: const Text("Beenden"),
-                              onPressed:
-                                  () => /* Navigator.of(context).push(
-                                PageRouteBuilder(
-                                    pageBuilder: (_, __, ___) =>
-                                        (UebungBreathing()))), */
-
-                                      Navigator.pop(context)),
-                        ),
-                      ),
-                    ),
-                  ), */
-                ],
                 const SizedBox(height: 5),
                 Container(
                   padding: const EdgeInsets.all(8),

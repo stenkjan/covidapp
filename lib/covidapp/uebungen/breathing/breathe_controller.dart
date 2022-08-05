@@ -13,6 +13,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../../home.dart';
+import '../../content/calendar_content.dart';
 import 'breathe_main.dart';
 
 class BreatheController extends GetxController {
@@ -50,6 +51,8 @@ class BreatheController extends GetxController {
     hideBreathBar = box.read(boxHideBreathBar) ?? false;
     timerDone = box.read(boxtimerDone) ?? false;
     Wakelock.enable();
+    CalendarContent calContent = CalendarContent();
+    calContent.breatheTrue = false;
     super.onInit();
   }
 
@@ -71,13 +74,11 @@ class BreatheController extends GetxController {
     _timer.cancel();
     _breathTimer.cancel();
     Wakelock.disable();
-    //  calContent.returnBreatheTrue();
     Get.delete<BreatheController>();
     calContent.breatheMinL[calContent.currentDate] =
         int.parse(initTime.toString());
     calContent.breatheMin = initTime.toString();
     if (initBreathTime > 0) {
-      calContent.returnBreatheTrue();
       calContent.breatheSecL[calContent.currentDate] = initBreathTime;
       calContent.breatheSec = initBreathTime.toString();
     }
@@ -90,6 +91,9 @@ class BreatheController extends GetxController {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (time.value > 0) {
         time.value--;
+        if (time.value <= 1.0) {
+          calContent.returnBreatheTrue();
+        }
         update();
       } else {
         _timer.cancel();
@@ -117,7 +121,6 @@ class BreatheController extends GetxController {
             int.parse(initTime.toString());
         calContent.breatheMin = initTime.toString();
         if (initBreathTime > 0) {
-          calContent.returnBreatheTrue();
           calContent.breatheSecL[calContent.currentDate] = initBreathTime;
           calContent.breatheSec = initBreathTime.toString();
         }
