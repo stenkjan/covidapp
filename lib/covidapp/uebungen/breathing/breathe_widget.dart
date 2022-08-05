@@ -6,8 +6,11 @@ import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart'
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 
+import '../../content/calendar_content.dart';
+import '../../services/exercise_service.dart';
 import '../exercise_data.dart';
 import 'home_controller.dart';
 
@@ -18,6 +21,10 @@ class BreatheHome extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
+    ExerciseService exService = Provider.of<ExerciseService>(context);
+    exService.dailyBreatheExercise(
+        calContent.breatheMin, calContent.breatheSec);
     return Scaffold(
       /* appBar: AppBar(
         title: const Text(
@@ -65,7 +72,7 @@ class BreatheHome extends GetView<HomeController> {
               },
               icon: const Icon(Icons.settings)),
           Text(
-            'Weitere Übungen sind auf der Website zu finden',
+            'Weitere Übungen sind auf den Webseiten zu finden',
             style: Theme.of(context).textTheme.bodyText1,
             textAlign: TextAlign.center,
           ),

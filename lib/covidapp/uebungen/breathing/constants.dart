@@ -11,6 +11,7 @@ const String boxBackgroundColor = 'backgroundColor';
 const String boxSoundOn = 'soundOn';
 const String boxHideTimer = 'hideTimer';
 const String boxHideBreathBar = 'hideBreathBar';
+const String boxtimerDone = 'timerDone';
 
 // themes
 /// initializing the Colors to 2 */

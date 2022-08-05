@@ -31,10 +31,6 @@ class UebungenState extends State<Uebungen> {
   /// Widget build 3 Übungen Classes. On Card Click  */
 
   Widget build(BuildContext context) {
-    final exService = Provider.of<ExerciseService>(context);
-    final calContent = Provider.of<CalendarContent>(context);
-    exService.dailyBreatheExercise(
-        calContent.breatheMin, calContent.breatheSec);
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
 
@@ -92,7 +88,7 @@ class UebungenState extends State<Uebungen> {
         onTap: () {
           if (title == "Atem Übung") {
             Navigator.of(context).pushReplacement(PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const UebungBreathing()));
+                pageBuilder: (_, __, ___) => UebungBreathing()));
           }
           if (title == "Puls Analyse") {
             Navigator.of(context).pushReplacement(

@@ -1,20 +1,29 @@
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
+import '../../content/calendar_content.dart';
+import '../../services/exercise_service.dart';
 import 'breathe_controller.dart';
+import 'breathe_widget.dart';
 
 /// Parameters are imported from the Breathecontroller / Widget is build  */
 
 class BreathePage extends GetView<BreatheController> {
   const BreathePage({Key? key}) : super(key: key);
 
-  
- 
+  @override
   @override
   Widget build(BuildContext context) {
+    CalendarContent calContent = Provider.of<CalendarContent>(context);
+    ExerciseService exService = Provider.of<ExerciseService>(context);
+    exService.dailyBreatheExercise(
+        calContent.breatheMin, calContent.breatheSec);
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle:
@@ -33,71 +42,110 @@ class BreathePage extends GetView<BreatheController> {
           init: BreatheController(),
           builder: (c) {
             return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: double.infinity,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: double.infinity,
+                ),
+                if (!c.hideTimer) ...[
+                  Text(
+                    c.timeString,
+                    style: Theme.of(context).textTheme.headline4,
+                    textAlign: TextAlign.center,
                   ),
-                  if (!c.hideTimer) ...[
-                    Text(
-                      c.timeString,
-                      style: Theme.of(context).textTheme.headline4,
-                      textAlign: TextAlign.center,
+                  const SizedBox(height: 50),
+                ],
+                CircularPercentIndicator(
+                  radius: 180,
+                  lineWidth: 16,
+                  backgroundColor: Colors.black12,
+                  progressColor: Color.fromARGB(223, 2, 97, 175),
+                  circularStrokeCap: CircularStrokeCap.round,
+                  animateFromLastPercent: true,
+                  animation: true,
+                  animationDuration: 1000,
+                  percent: c.time / c.initTime,
+                  center: Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                    child: RiveAnimation.asset(
+                      'images/lung.riv',
+                      controllers: [
+                        SpeedController('breathe',
+                            speedMultiplier: 1 / (c.initBreathTime / 1000))
+                      ],
                     ),
-                    const SizedBox(height: 50),
-                  ],
-                  CircularPercentIndicator(
-                    radius: 180,
-                    lineWidth: 16,
+                  ),
+                ),
+
+                /**Progress animation with c as Variable for initialization */
+
+                if (!c.hideBreathBar) ...[
+                  const SizedBox(height: 50),
+                  LinearPercentIndicator(
+                    percent: c.breathIn.value
+                        ? 1 - c.breathTime / c.initBreathTime
+                        : c.breathTime / c.initBreathTime,
                     backgroundColor: Colors.black12,
-                    progressColor: Colors.white,
-                    circularStrokeCap: CircularStrokeCap.round,
+                    progressColor: const Color.fromRGBO(225, 225, 225, 1),
+                    lineHeight: 12,
+                    width: 200,
                     animateFromLastPercent: true,
                     animation: true,
-                    animationDuration: 1000,
-                    percent: c.time / c.initTime,
-                    center: Padding(
-                      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-                      child: RiveAnimation.asset(
-                        'images/lung.riv',
-                        controllers: [
-                          SpeedController('breathe',
-                              speedMultiplier: 1 / (c.initBreathTime / 1000))
-                        ],
+                    animationDuration: 100,
+                    alignment: MainAxisAlignment.center,
+                    barRadius: const Radius.circular(10.0),
+                  ),
+                ],
+                const SizedBox(height: 5),
+                if (c.timerDone) ...[
+                  const BreatheHome(),
+                  /*  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: SizedBox(
+                        width: 180,
+                        height: 35,
+                        child: Neumorphic(
+                          style: NeumorphicStyle(
+                              shape: NeumorphicShape.concave,
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(12)),
+                              depth: 15,
+                              intensity: 3.0,
+                              shadowLightColor: Colors.transparent,
+                              /*  lightSource: LightSource.topLeft, */
+                              color: const Color.fromARGB(255, 1, 25, 32)),
+                          child: ElevatedButton.icon(
+                              icon: const Icon(Icons.arrow_back_sharp),
+                              style: ElevatedButton.styleFrom(
+                                textStyle: const TextStyle(
+                                    fontWeight: FontWeight.w300, fontSize: 18),
+                              ),
+                              label: const Text("Beenden"),
+                              onPressed:
+                                  () => /* Navigator.of(context).push(
+                                PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) =>
+                                        (UebungBreathing()))), */
+
+                                      Navigator.pop(context)),
+                        ),
                       ),
                     ),
+                  ), */
+                ],
+                const SizedBox(height: 5),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    c.breathIn.value ? 'Einatmen' : 'Ausatmen',
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.center,
                   ),
-
-                  /**Progress animation with c as Variable for initialization */
-
-                  if (!c.hideBreathBar) ...[
-                    const SizedBox(height: 50),
-                    LinearPercentIndicator(
-                      percent: c.breathIn.value
-                          ? 1 - c.breathTime / c.initBreathTime
-                          : c.breathTime / c.initBreathTime,
-                      backgroundColor: Colors.black12,
-                      progressColor: const Color.fromRGBO(225, 225, 225, 1),
-                      lineHeight: 12,
-                      width: 200,
-                      animateFromLastPercent: true,
-                      animation: true,
-                      animationDuration: 100,
-                      alignment: MainAxisAlignment.center,
-                      barRadius: const Radius.circular(10.0),
-                    ),
-                  ],
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      c.breathIn.value ? 'Einatmen' : 'Ausatmen',
-                      style: Theme.of(context).textTheme.headline5,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ]);
+                ),
+              ],
+            );
           }),
     );
   }

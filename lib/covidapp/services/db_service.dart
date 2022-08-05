@@ -9,8 +9,6 @@ class DatabaseService {
   //collection reference
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-  final CollectionReference userCollectionData =
-      FirebaseFirestore.instance.collection('users');
   late CollectionReference calendarCollection;
   late DocumentReference calendarDoc;
   late List docList;
@@ -52,27 +50,35 @@ class DatabaseService {
     });
   }
 
-  Future updateBreatheExerciseModel(
-      var breathemin, var breathesec) async {
+  Future updateBreatheMinExerciseModel(var breathemin) async {
     return await userCollection
         .doc(uid)
         .collection('exercise')
-        .doc(currentDate.toString())
-        .set({
-      'breathemin': breathemin,
-      'breathesec': breathesec,
-      
+        .doc('breathemin')
+        .update({
+      currentDate.toString(): breathemin,
     });
   }
-Future updatePulseExerciseModel( var pulse) async {
+    Future updateBreatheSecExerciseModel(var breathesec) async {
     return await userCollection
         .doc(uid)
         .collection('exercise')
-        .doc(currentDate.toString())
-        .set({      
-      'pulse': pulse,
+        .doc('breathesec')
+        .update({
+      currentDate.toString():breathesec,
     });
   }
+
+  Future updatePulseExerciseModel(var pulse) async {
+    return await userCollection
+        .doc(uid)
+        .collection('exercise')
+        .doc('pulse')
+        .update({
+      currentDate.toString(): pulse,
+    });
+  }
+
   /// Reads the Collection on the given User */
   Future readcalendarCollection() async {
     calendarCollection = FirebaseFirestore.instance

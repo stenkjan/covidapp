@@ -1,13 +1,19 @@
 import 'dart:async';
 
+import 'package:covidapp/covidapp/services/exercise_service.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_widget.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/constants.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/theme_controller.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wakelock/wakelock.dart';
+
+import '../../../home.dart';
+import 'breathe_main.dart';
 
 class BreatheController extends GetxController {
   int initTime = totalTimeSecondsDefault;
@@ -25,7 +31,9 @@ class BreatheController extends GetxController {
 
   final box = GetStorage();
 
-  late bool soundOn, hideTimer, hideBreathBar;
+  late bool soundOn, hideTimer, hideBreathBar, timerDone;
+
+  ExerciseService exService = ExerciseService();
 
   @override
 
@@ -40,6 +48,7 @@ class BreatheController extends GetxController {
     soundOn = box.read(boxSoundOn) ?? true;
     hideTimer = box.read(boxHideTimer) ?? false;
     hideBreathBar = box.read(boxHideBreathBar) ?? false;
+    timerDone = box.read(boxtimerDone) ?? false;
     Wakelock.enable();
     super.onInit();
   }
@@ -64,6 +73,14 @@ class BreatheController extends GetxController {
     Wakelock.disable();
     //  calContent.returnBreatheTrue();
     Get.delete<BreatheController>();
+    calContent.breatheMinL[calContent.currentDate] =
+        int.parse(initTime.toString());
+    calContent.breatheMin = initTime.toString();
+    if (initBreathTime > 0) {
+      calContent.returnBreatheTrue();
+      calContent.breatheSecL[calContent.currentDate] = initBreathTime;
+      calContent.breatheSec = initBreathTime.toString();
+    }
     super.onClose();
   }
 
@@ -76,6 +93,7 @@ class BreatheController extends GetxController {
         update();
       } else {
         _timer.cancel();
+        onClose();
       }
     });
 
@@ -94,18 +112,17 @@ class BreatheController extends GetxController {
         breathTime.value -= 100;
         update();
       } else {
+        timerDone = true;
         calContent.breatheMinL[calContent.currentDate] =
             int.parse(initTime.toString());
         calContent.breatheMin = initTime.toString();
-        if (int.parse(value) > 0) {
+        if (initBreathTime > 0) {
           calContent.returnBreatheTrue();
           calContent.breatheSecL[calContent.currentDate] = initBreathTime;
-          calContent.breatheSec = 
-          initBreathTime.toString();
+          calContent.breatheSec = initBreathTime.toString();
         }
-        
+
         _breathTimer.cancel();
-        Get.to(const Uebungen());
 
 /** Popup after timer = 0 */
         Get.snackbar(
@@ -119,6 +136,9 @@ class BreatheController extends GetxController {
               style:
                   Get.theme.textTheme.headline5!.copyWith(color: Colors.black)),
         );
+      }
+      if (_breathTimer.isActive == false) {
+        timerDone = true;
       }
     });
   }

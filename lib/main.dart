@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:covidapp/covidapp/login/wrapper.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
+import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -18,14 +19,12 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
-
+final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
   MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return MultiProvider(
         providers: [
           Provider<AuthService>(
@@ -39,6 +38,9 @@ class MyApp extends StatelessWidget {
           ),
           Provider<GrafikService>(
             create: (_) => GrafikService(),
+          ),
+          Provider<ExerciseService>(
+            create: (_) => ExerciseService(),
           ),
         ],
         child: MaterialApp(
@@ -64,17 +66,16 @@ class MyApp extends StatelessWidget {
                   }
                   return const Text("Etwas ist schief gelaufen");
                 } else if (snapshot.hasData) {
-                  
-                    return const Wrapper();
-                  } else {
-                    return const Center(
-                      child: SizedBox(
-                        height: 50.0,
-                        width: 50.0,
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  }                
+                  return const Wrapper();
+                } else {
+                  return const Center(
+                    child: SizedBox(
+                      height: 50.0,
+                      width: 50.0,
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
               },
             )));
   }

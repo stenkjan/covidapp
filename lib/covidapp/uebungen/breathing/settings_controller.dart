@@ -31,7 +31,7 @@ class SettingsController extends GetxController {
   RxBool soundOn = true.obs;
   RxBool hideTimer = false.obs;
   RxBool hideBreathBar = false.obs;
-
+  RxBool timerDone = false.obs;
   @override
 
   /// On initalization */
@@ -46,6 +46,7 @@ class SettingsController extends GetxController {
     soundOn.value = box.read(boxSoundOn) ?? true;
     hideTimer.value = box.read(boxHideTimer) ?? false;
     hideBreathBar.value = box.read(boxHideBreathBar) ?? false;
+    timerDone.value = box.read(boxtimerDone) ?? false;
     super.onInit();
   }
 

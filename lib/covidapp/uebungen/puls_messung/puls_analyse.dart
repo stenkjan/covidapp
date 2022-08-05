@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/pulse_graph.dart';
-import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -27,10 +30,12 @@ class PulsAnalyseState extends State<PulsAnalyse> {
   bool isvisible = true;
   Widget? dialog;
   late double imageSize;
+  num bpmValue = 0;
 
   @override
   void initState() {
     imageSize = 400;
+
     super.initState();
   }
 
@@ -87,10 +92,14 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                       if (bpmValues.length >= 100) bpmValues.removeAt(0);
                       bpmValues.add(SensorValue(
                           value: value.toDouble(), time: DateTime.now()));
-                      if (calContent.bpmday[calContent.currentDate] != null) {
-                        calContent.bpmday[calContent.currentDate] = value;
-                      }
+
+                      bpmValue = bpmValues
+                              .map((m) => m.value)
+                              .reduce((a, b) => a + b) /
+                          bpmValues.length;
+
                       print("§value : bpm value added");
+                      print("§bpmValue : bpmValue added");
                       Visibility(
                           visible: false, child: calContent.getpulseTrue());
                     }),
@@ -194,7 +203,13 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                       if (isBPMEnabled) {
                         isBPMEnabled = false;
                         isvisible = false;
-                        exService.dailyPulseExercise(calContent.getlastBPM());
+                        if (calContent.bpmday[calContent.currentDate] !=
+                            bpmValue.toDouble()) {
+                          calContent.bpmday[calContent.currentDate] =
+                              bpmValue.toDouble();
+                          exService.dailyPulseExercise(bpmValue.toDouble());
+                        }
+
                         Navigator.of(context).push(
                           PageRouteBuilder(
                               pageBuilder: (_, __, ___) => const PulsAnalyse()),

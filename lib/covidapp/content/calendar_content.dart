@@ -94,7 +94,7 @@ class CalendarContent with ChangeNotifier {
     0.0,
   ];
 
-  List bpmday = List.generate(32, (index) => 1);
+  List <double> bpmday = List.generate(32, (index) => 1);
 
   List introList = [];
   List sumColorList = List.generate(32, (index) => index);

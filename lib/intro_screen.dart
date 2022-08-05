@@ -140,16 +140,19 @@ class OnBoardingPageState extends State<OnBoardingPage> {
               )),
         ),
       ),
-      globalFooter: Container(
-        width: double.infinity,
-        height: 40,
-        color: const Color(0xFF31A1C9),
-        child: ElevatedButton(
-          child: const Text(
-            'Überspringen',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      globalFooter: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0),
+        child: Container(
+          width: double.infinity,
+          height: 40,
+          color: const Color(0xFF31A1C9),
+          child: ElevatedButton(
+            child: const Text(
+              'Überspringen',
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
+            onPressed: () => _onIntroEnd(context),
           ),
-          onPressed: () => _onIntroEnd(context),
         ),
       ),
       pages: [
