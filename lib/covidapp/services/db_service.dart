@@ -59,13 +59,14 @@ class DatabaseService {
       currentDate.toString(): breathemin,
     });
   }
-    Future updateBreatheSecExerciseModel(var breathesec) async {
+
+  Future updateBreatheSecExerciseModel(var breathesec) async {
     return await userCollection
         .doc(uid)
         .collection('exercise')
         .doc('breathesec')
         .update({
-      currentDate.toString():breathesec,
+      currentDate.toString(): breathesec,
     });
   }
 
@@ -95,7 +96,7 @@ class DatabaseService {
   }
 
   /// Get Data of User Class
-
+  ///not in use yet!!!!!!!!!!!!!
   Future getUserData() async {
     String name = "Maximilian Stenk";
     return await userCollection

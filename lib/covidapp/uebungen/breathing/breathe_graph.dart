@@ -80,8 +80,12 @@ class BreatheGraphState extends State<BreatheGraph> {
           child: Stack(
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 8.0, top: 22),
+                padding: EdgeInsets.only(left: 8.0, top: 17),
                 child: Text("Sekunden"),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 39),
+                child: Text("Ein/Aus : Gesamt"),
               ),
               const Padding(
                 padding: EdgeInsets.only(
@@ -114,15 +118,15 @@ class BreatheGraphState extends State<BreatheGraph> {
                     size: const Size(500, 400),
                     labelX: calContent.graphLabelL(),
                     labelY: const [
-                      '20',
-                      '40',
-                      '60',
-                      '80',
-                      '100',
-                      '120',
-                      '140',
-                      '160',
-                      '180',
+                      '2 : 20',
+                      '4 : 40',
+                      '6 : 60',
+                      '8 : 80',
+                      '10 : 100',
+                      '12 : 120',
+                      '14 : 140',
+                      '16 : 160',
+                      '18 : 180',
                     ],
                     showDescription: true,
                     graphColor: Colors.white54,

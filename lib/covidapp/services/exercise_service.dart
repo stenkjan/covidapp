@@ -22,7 +22,7 @@ class ExerciseService {
       await DatabaseService(uid: uid)
           .updateBreatheMinExerciseModel(breathemin);
       await DatabaseService(uid: uid)
-          .updateBreatheMinExerciseModel(breathesec);
+          .updateBreatheSecExerciseModel(breathesec);
 
       print('$uid  Exercise updateCalInitiated');
     } catch (collectionError) {

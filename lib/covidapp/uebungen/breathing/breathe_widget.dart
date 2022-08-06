@@ -21,10 +21,6 @@ class BreatheHome extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    CalendarContent calContent = Provider.of<CalendarContent>(context);
-    ExerciseService exService = Provider.of<ExerciseService>(context);
-    exService.dailyBreatheExercise(
-        calContent.breatheMin, calContent.breatheSec);
     return Scaffold(
       /* appBar: AppBar(
         title: const Text(

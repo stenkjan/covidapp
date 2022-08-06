@@ -2,6 +2,7 @@ import 'package:covidapp/covidapp/login/sign_in/signin.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:covidapp/covidapp/login/constants.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../home.dart';
@@ -34,18 +35,23 @@ class _CredentialsState extends State<Credentials> {
           TextField(
             controller: birthdayController,
             textAlign: TextAlign.center,
-            onTap: () {
-              showDatePicker(
+            onTap: () async {
+              DateTime? pickedDate = await showDatePicker(
                 context: context,
-                initialDate: DateTime(2004, 1),
+                initialDate:
+                    DateTime(DateTime.now().year - 18, DateTime.now().month),
                 firstDate: DateTime(1900, 1),
-                lastDate: DateTime(2022, 12),
+                lastDate: DateTime(DateTime.now().year, DateTime.now().month),
                 locale: const Locale('de', 'AT'),
-              ).then((pickedDate) {
+              );
+              if (pickedDate != null) {
+                String formattedDate =
+                    DateFormat('dd-MM-yyyy').format(pickedDate);
+
                 setState(() {
-                  date = pickedDate.toString();
+                  birthdayController.text = formattedDate;
                 });
-              });
+              }
             },
             decoration: InputDecoration(
                 icon: const Icon(

@@ -22,7 +22,7 @@ class AuthService {
     id = user.uid;
 
     // ignore: avoid_print
-    
+
     return User(user.uid, user.email);
   }
 
@@ -35,6 +35,7 @@ class AuthService {
   }
 
   String getName() {
+    name = _firebaseAuth.currentUser!.displayName!;
     if (name == "") {
       return name = "Maximilian Stenk";
     } else {

@@ -35,6 +35,7 @@ class BreatheController extends GetxController {
   late bool soundOn, hideTimer, hideBreathBar, timerDone;
 
   ExerciseService exService = ExerciseService();
+  CalendarContent calContent = CalendarContent();
 
   @override
 
@@ -51,8 +52,7 @@ class BreatheController extends GetxController {
     hideBreathBar = box.read(boxHideBreathBar) ?? false;
     timerDone = box.read(boxtimerDone) ?? false;
     Wakelock.enable();
-    CalendarContent calContent = CalendarContent();
-    calContent.breatheTrue = false;
+
     super.onInit();
   }
 
@@ -63,6 +63,7 @@ class BreatheController extends GetxController {
   void onReady() {
     super.onReady();
     startTimer();
+    calContent.breatheTrue = false;
   }
 
   @override
@@ -80,8 +81,10 @@ class BreatheController extends GetxController {
     calContent.breatheMin = initTime.toString();
     if (initBreathTime > 0) {
       calContent.breatheSecL[calContent.currentDate] = initBreathTime;
-      calContent.breatheSec = initBreathTime.toString();
+      calContent.breatheSec = (initBreathTime / 1000).round().toString();
     }
+    exService.dailyBreatheExercise(
+        calContent.breatheMin, calContent.breatheSec);
     super.onClose();
   }
 
@@ -91,7 +94,8 @@ class BreatheController extends GetxController {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (time.value > 0) {
         time.value--;
-        if (time.value <= 1.0) {
+        if (time.value <= 2) {
+          timerDone = true;
           calContent.returnBreatheTrue();
         }
         update();
@@ -122,7 +126,7 @@ class BreatheController extends GetxController {
         calContent.breatheMin = initTime.toString();
         if (initBreathTime > 0) {
           calContent.breatheSecL[calContent.currentDate] = initBreathTime;
-          calContent.breatheSec = initBreathTime.toString();
+          calContent.breatheSec = (initBreathTime / 1000).round().toString();
         }
 
         _breathTimer.cancel();

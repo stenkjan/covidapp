@@ -162,6 +162,11 @@ class CalendarContent with ChangeNotifier {
     return calTrue;
   }
 
+  bool returnbreatheFalse() {
+    breatheTrue = false;
+    return breatheTrue;
+  }
+
   String getlastBPM() {
     if (pulseTrue == true) {
       //return bpm.last.toString();
@@ -341,13 +346,13 @@ class CalendarContent with ChangeNotifier {
             breatheGraphSecList.length <= date + 1) {
           if (date > 7) {
             breatheGraphSecList
-                .add(breatheGraphDataSecList[(date - review)] / 180);
+                .add(breatheGraphDataSecList[(date - review)] / 18);
           } else if (date - review == 1) {
             breatheGraphSecList
-                .add(breatheGraphDataSecList[(date - review)] / 180);
+                .add(breatheGraphDataSecList[(date - review)] / 18);
           } else if (date < 7 && (date - review > 1)) {
             breatheGraphSecList
-                .add(breatheGraphDataSecList[(date - review)] / 180);
+                .add(breatheGraphDataSecList[(date - review)] / 18);
           }
         } else {
           breatheGraphSecList.removeAt(1);
@@ -355,13 +360,13 @@ class CalendarContent with ChangeNotifier {
       } else if (breatheGraphDataSecList.isEmpty) {
         if (date > 7) {
           breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 180);
+              .add(breatheSecL[(date - review)].toDouble() / 18);
         } else if (date - review == 1) {
           breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 180);
+              .add(breatheSecL[(date - review)].toDouble() / 18);
         } else if (date < 7 && (date - review > 1)) {
           breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 180);
+              .add(breatheSecL[(date - review)].toDouble() / 18);
         }
       }
     }

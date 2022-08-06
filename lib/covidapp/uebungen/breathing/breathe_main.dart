@@ -22,8 +22,6 @@ class UebungBreathing extends GetView<ThemeController> {
         init: ThemeController(),
         builder: (c) {
           return MaterialApp(
-            navigatorKey: exService.breatheKey,
-            initialRoute: '/',
             themeMode: ThemeMode.light,
             theme: ThemeData.light().copyWith(
               elevatedButtonTheme: ElevatedButtonThemeData(

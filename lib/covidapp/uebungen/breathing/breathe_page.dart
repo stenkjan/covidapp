@@ -11,7 +11,6 @@ import '../../content/calendar_content.dart';
 import '../../services/exercise_service.dart';
 import '../uebungen.dart';
 import 'breathe_controller.dart';
-import 'breathe_widget.dart';
 
 /// Parameters are imported from the Breathecontroller / Widget is build  */
 
@@ -23,9 +22,19 @@ class BreathePage extends GetView<BreatheController> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     ExerciseService exService = Provider.of<ExerciseService>(context);
-    exService.dailyBreatheExercise(
-        calContent.breatheMin, calContent.breatheSec);
-    calContent.breatheTrue = false;
+   /*  exService.dailyBreatheExercise(
+        calContent.breatheMin, calContent.breatheSec); */
+    calContent.returnbreatheFalse();
+
+    void navigateOnClosed(bool breathDone) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
+      if (calContent.breatheTrue) { 
+        Navigator.of(context).push(
+            PageRouteBuilder(pageBuilder: (_, __, ___) => (const Uebungen())));
+
+        const SnackBar(content: Text("Abgeschlossen"));
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -50,9 +59,8 @@ class BreathePage extends GetView<BreatheController> {
                     pageBuilder: (_, __, ___) => (const Uebungen())));
               });
             } */
-            if (calContent.breatheTrue) {
-              c.hideTimer = true;
-              c.hideBreathBar = true;
+            if (c.timerDone) {
+              navigateOnClosed(calContent.breatheTrue);
             }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -69,6 +77,7 @@ class BreathePage extends GetView<BreatheController> {
                   ),
                   const SizedBox(height: 50),
                 ],
+
                 /* if (c.timerDone) ...[
                   Center(
                     child: SizedBox(
