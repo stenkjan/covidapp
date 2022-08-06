@@ -25,6 +25,7 @@ class BreathePage extends GetView<BreatheController> {
     ExerciseService exService = Provider.of<ExerciseService>(context);
     exService.dailyBreatheExercise(
         calContent.breatheMin, calContent.breatheSec);
+    calContent.breatheTrue = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +50,10 @@ class BreathePage extends GetView<BreatheController> {
                     pageBuilder: (_, __, ___) => (const Uebungen())));
               });
             } */
-
+            if (calContent.breatheTrue) {
+              c.hideTimer = true;
+              c.hideBreathBar = true;
+            }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
