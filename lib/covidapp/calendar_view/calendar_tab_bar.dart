@@ -18,11 +18,12 @@ class CalendarTabBarState extends State<CalendarTabBar> {
   late bool itemSwitch;
   String questionChoice = "";
   bool showInformation = false;
-
+  late double floatingOpacity;
   @override
   void initState() {
     itemSwitch = false;
     showInformation = false;
+    floatingOpacity = 0;
     super.initState();
   }
 
@@ -35,7 +36,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
     final calService = Provider.of<CalendarService>(context);
-
+    floatingOpacity = calContent.count.toDouble();
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
 
@@ -306,10 +307,13 @@ class CalendarTabBarState extends State<CalendarTabBar> {
         ],
       ),
       floatingActionButton: Opacity(
-        opacity: calContent.count.toDouble(),
+        opacity: floatingOpacity,
         child: FloatingActionButton.extended(
           onPressed: () {
-           /*  if (calContent.docExists == false) { */
+            setState(() {
+              floatingOpacity = 0;
+
+              /*  if (calContent.docExists == false) { */
               calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
@@ -322,9 +326,8 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                   calContent.currentDate);
               calContent.clear();
               /*  } */
-            },
-          
-         
+            });
+          },
           tooltip: "Bestätigen",
           foregroundColor: const Color(0xFF31A1C9),
           backgroundColor: const Color(0xFF31A1C9),

@@ -203,12 +203,6 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                       if (isBPMEnabled) {
                         isBPMEnabled = false;
                         isvisible = false;
-                        if (calContent.bpmday[calContent.currentDate] !=
-                            bpmValue.toDouble()) {
-                          calContent.bpmday[calContent.currentDate] =
-                              bpmValue.toDouble();
-                          exService.dailyPulseExercise(bpmValue.toDouble());
-                        }
 
                         Navigator.of(context).push(
                           PageRouteBuilder(
@@ -216,6 +210,16 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                         );
                       } else {
                         isBPMEnabled = true;
+                      }
+                      if (calContent.returnbpmDay().length > 7) {
+                        calContent.returnbpmDay().removeAt(1);
+                      }
+
+                      if (calContent.returnbpmDay()[calContent.currentDate] !=
+                          bpmValue.toDouble()) {
+                        calContent.addbpmDay(bpmValue.toDouble());
+                        exService
+                            .dailyPulseExercise(bpmValue.toDouble().round());
                       }
                     }),
                   ),

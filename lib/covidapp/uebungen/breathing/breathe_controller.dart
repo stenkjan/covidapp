@@ -63,6 +63,7 @@ class BreatheController extends GetxController {
   void onReady() {
     super.onReady();
     startTimer();
+
     calContent.breatheTrue = false;
   }
 
@@ -78,13 +79,13 @@ class BreatheController extends GetxController {
     Get.delete<BreatheController>();
     calContent.breatheMinL[calContent.currentDate] =
         int.parse(initTime.toString());
-    calContent.breatheMin = initTime.toString();
+    calContent.getBreatheMin(initTime.toString());
     if (initBreathTime > 0) {
       calContent.breatheSecL[calContent.currentDate] = initBreathTime;
       calContent.breatheSec = (initBreathTime / 1000).round().toString();
     }
     exService.dailyBreatheExercise(
-        calContent.breatheMin, calContent.breatheSec);
+        calContent.returnBreatheMin(), calContent.breatheSec);
     super.onClose();
   }
 
@@ -123,7 +124,7 @@ class BreatheController extends GetxController {
         timerDone = true;
         calContent.breatheMinL[calContent.currentDate] =
             int.parse(initTime.toString());
-        calContent.breatheMin = initTime.toString();
+        calContent.getBreatheMin(initTime.toString());
         if (initBreathTime > 0) {
           calContent.breatheSecL[calContent.currentDate] = initBreathTime;
           calContent.breatheSec = (initBreathTime / 1000).round().toString();

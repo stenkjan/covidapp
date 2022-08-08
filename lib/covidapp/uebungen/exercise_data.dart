@@ -74,8 +74,8 @@ class ExerciseData extends StatelessWidget {
               calContent.breatheGraphSecL(breathesecData(data));
             }
             if (exerciseString == "pulse") {
-              calContent.bpmday.clear();
-              calContent.bpmday = calContent.pulseGraphL(pulseData(data));
+              calContent.updatebpmDay(pulseData(data));
+              calContent.pulseGraphL(pulseData(data));
             }
             /* if (exerciseString == "pulse") {
             calContent.pulseGraphL(pulseData(data));

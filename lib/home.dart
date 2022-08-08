@@ -27,8 +27,9 @@ class HomeState extends State<Home> {
   late Icon iconbreathe;
   late Icon iconpulse;
   late Icon iconcal;
-  late String breatheMin;
-  late String lastBPM;
+  static late String breatheMin;
+  static late String lastBPM;
+  static late String calAct;
   @override
   void initState() {
     authService = AuthService();
@@ -36,10 +37,28 @@ class HomeState extends State<Home> {
     cal = CalendarContent();
 
     breatheMin = cal.returnBreatheMin();
+    if (breatheMin != "0") {
+      cal.returnBreatheTrue();
+    } else {
+      cal.returnbreatheFalse();
+    }
+
     iconbreathe = cal.getbreatheTrue();
-    iconpulse = cal.getpulseTrue();
+
     iconcal = cal.getcalendarTrue();
+    if (cal.returnbpmDay()[cal.currentDate] != 0) {
+      cal.returnPulseTrue();
+    }
     lastBPM = cal.getlastBPM();
+    calAct = cal.getcalAnswer();
+
+    if (!calAct.isEmpty) {
+      cal.returnCalTrue();
+    }
+    if (cal.returncalSumL()[cal.currentDate] != 0) {
+      cal.returnCalTrue();
+    }
+    iconpulse = cal.getpulseTrue();
     super.initState();
 
     /* if (Credentials.signed_in = false) {
@@ -128,10 +147,22 @@ class HomeState extends State<Home> {
                           setState(() {
                             print("${cal.breatheTrue} breathe");
                             iconbreathe = cal.getbreatheTrue();
-                            iconpulse = cal.getpulseTrue();
-                            iconcal = cal.getcalendarTrue();
                             breatheMin = cal.returnBreatheMin();
-                            lastBPM = cal.getlastBPM();
+                            if (breatheMin != "0") {
+                              cal.returnBreatheTrue();
+                            } else {
+                              cal.returnbreatheFalse();
+                            }
+
+                            iconcal = cal.getcalendarTrue();
+                            if (calContent
+                                    .returnbpmDay()[calContent.currentDate] !=
+                                0) {
+                              lastBPM = calContent.getlastBPM();
+                              calContent.returnPulseTrue();
+                              iconpulse = cal.getpulseTrue();
+                            }
+                            calAct = calContent.getcalAnswer();
                           });
                         },
                       ),
@@ -147,12 +178,8 @@ class HomeState extends State<Home> {
                     dbService.calContent.fullDate, "Fortschritt", iconbreathe),
                 _card(Colors.yellowAccent, "Tägliche Pulsmessung: $lastBPM",
                     dbService.calContent.fullDate, "Fortschritt", iconpulse),
-                _card(
-                    Colors.lightGreenAccent,
-                    "Kalenderaktivitäten: ${calContent.getcalAnswer()}",
-                    dbService.calContent.fullDate,
-                    "Fortschritt",
-                    iconcal),
+                _card(Colors.lightGreenAccent, "Kalenderaktivitäten: $calAct",
+                    dbService.calContent.fullDate, "Fortschritt", iconcal),
 
                 const SizedBox(
                   height: 20.0,

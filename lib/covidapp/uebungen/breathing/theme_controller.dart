@@ -16,7 +16,8 @@ class ThemeController extends GetxController {
   CalendarContent calContent = CalendarContent();
   @override
   void onInit() {
-    calContent.breatheTrue = false;
+
+  
     backgroundColor = Rx<Color>(backgrounds[backgroundColorFromString(
         box.read(boxBackgroundColor) ?? defaultBackgroundColor.toString())]);
     super.onInit();
@@ -24,7 +25,7 @@ class ThemeController extends GetxController {
 
   @override
   void onClose() {
-    //calContent.returnBreatheTrue();
+    calContent.returnBreatheTrue();
     Get.delete<ThemeController>();
     // ignore: avoid_print
     // print("${calContent.breatheTrue} breathe in theme");

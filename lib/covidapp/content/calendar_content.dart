@@ -19,13 +19,13 @@ class CalendarContent with ChangeNotifier {
   /// Variables Inititialisation
   bool saved = false;
 /*calendar variables*/
-  late int mood = moodL.last;
-  late int muedigkeit = muedigkeitL.last;
-  late int atemnot = atemnotL.last;
-  late int sinne = sinneL.last;
-  late int herz = herzL.last;
-  late int schlaf = schlafL.last;
-  late int nerven = nervenL.last;
+  late int mood = moodL[currentDate];
+  late int muedigkeit = muedigkeitL[currentDate];
+  late int atemnot = atemnotL[currentDate];
+  late int sinne = sinneL[currentDate];
+  late int herz = herzL[currentDate];
+  late int schlaf = schlafL[currentDate];
+  late int nerven = nervenL[currentDate];
   String comment = "";
 
   late String createdDate;
@@ -49,10 +49,12 @@ class CalendarContent with ChangeNotifier {
   List<bool> calBoolL = List.generate(31, (index) => false);
   List<bool> breatheBoolL = List.generate(31, (index) => false);
   List<bool> pulseBoolL = List.generate(31, (index) => false);
-  String breatheMin = "0";
+  static String breatheMin = "0";
+  static String breatheMinDashboard = "0";
   String breatheSec = "0";
   double sum = 0;
   double sumColor = 0;
+  int sumCal = 0;
 
   Color color = Colors.grey;
 
@@ -73,17 +75,17 @@ class CalendarContent with ChangeNotifier {
   int index = 0;
   //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
   List<int> dateL = List.generate(32, (index) => index);
-  List<int> moodL = List.generate(32, (index) => index);
-  List<int> muedigkeitL = List.generate(32, (index) => index);
-  List<int> atemnotL = List.generate(32, (index) => index);
-  List<int> sinneL = List.generate(32, (index) => index);
-  List<int> herzL = List.generate(32, (index) => index);
-  List<int> schlafL = List.generate(32, (index) => index);
-  List<int> nervenL = List.generate(32, (index) => index);
+  List<int> moodL = List.generate(32, (index) => 0);
+  List<int> muedigkeitL = List.generate(32, (index) => 0);
+  List<int> atemnotL = List.generate(32, (index) => 0);
+  List<int> sinneL = List.generate(32, (index) => 0);
+  List<int> herzL = List.generate(32, (index) => 0);
+  List<int> schlafL = List.generate(32, (index) => 0);
+  List<int> nervenL = List.generate(32, (index) => 0);
   List<int> bpm = List.generate(32, (index) => index);
   List<int> breatheMinL = List.generate(32, (index) => index);
   List<int> breatheSecL = List.generate(32, (index) => index);
-
+  static List<int> calSumL = List.generate(32, (index) => 0);
   List<double> breatheGraphMinList = [
     0.0,
   ];
@@ -94,7 +96,7 @@ class CalendarContent with ChangeNotifier {
     0.0,
   ];
 
-  List<double> bpmday = List.generate(32, (index) => 1);
+  static List<double> bpmday = List.generate(32, (index) => 0);
 
   List introList = [];
   List sumColorList = List.generate(32, (index) => index);
@@ -135,14 +137,6 @@ class CalendarContent with ChangeNotifier {
   Map<String, double> pieMap = {};
   Map<String, double> graphMap = {};
 /*calendar variable functions to send and retrieve calendar data*/
-  int calendarContentmood(int i) {
-    mood = i;
-    userId = gS.uid;
-    moodL.add(mood);
-    createdDate = currentDate.toString();
-    notifyListeners();
-    return mood;
-  }
 
   ///bools to verify committed tasks
   bool returnBreatheTrue() {
@@ -168,12 +162,37 @@ class CalendarContent with ChangeNotifier {
   }
 
   String getlastBPM() {
+    if (bpmday[currentDate] != 0) {
+      pulseTrue = true;
+    }
     if (pulseTrue == true) {
       //return bpm.last.toString();
-      return bpmday.last.toString();
+      return bpmday[currentDate].round().toString();
     } else {
       return "";
     }
+  }
+
+  List<double> returnbpmDay() {
+    if (bpmday.isEmpty) {
+      bpmday.add(0);
+    }
+    return bpmday;
+  }
+
+  List<double> updatebpmDay(List<double> list) {
+    if (list.first != 0) {
+      list.insert(0, 0);
+    }
+    bpmday = list;
+
+    return bpmday;
+  }
+
+  List<double> addbpmDay(double value) {
+    bpmday[currentDate] = value;
+
+    return bpmday;
   }
 
   Icon getpulseTrue() {
@@ -207,10 +226,9 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (breatheTrue == true && breatheMin.isNotEmpty) {
+    if (breatheTrue == true) {
       return iconDone;
     } else {
-      breatheTrue = false;
       return iconNotDone;
     }
   }
@@ -359,14 +377,11 @@ class CalendarContent with ChangeNotifier {
         }
       } else if (breatheGraphDataSecList.isEmpty) {
         if (date > 7) {
-          breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 18);
+          breatheGraphSecList.add(breatheSecL[(date - review)].toDouble() / 18);
         } else if (date - review == 1) {
-          breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 18);
+          breatheGraphSecList.add(breatheSecL[(date - review)].toDouble() / 18);
         } else if (date < 7 && (date - review > 1)) {
-          breatheGraphSecList
-              .add(breatheSecL[(date - review)].toDouble() / 18);
+          breatheGraphSecList.add(breatheSecL[(date - review)].toDouble() / 18);
         }
       }
     }
@@ -716,40 +731,55 @@ class CalendarContent with ChangeNotifier {
     return color;
   }
 
+  List<int> returncalSumL() {
+    return calSumL;
+  }
+
   String getcalAnswer() {
-    if (calTrue == true) {
-      return answeredSumInt().toString();
+    calTrue == true;
+    if (calSumL[currentDate] != 0) {
+      return calSumL[currentDate].toString();
     } else {
-      return "";
+      return answeredSumInt().toString();
     }
   }
 
   /// Counter */
   double answeredSum() {
     double sum = 0;
-    if (mood != 0) sum++;
-    if (muedigkeit != 0) sum++;
-    if (atemnot != 0) sum++;
-    if (sinne != 0) sum++;
-    if (herz != 0) sum++;
-    if (schlaf != 0) sum++;
-    if (nerven != 0) sum++;
+    if (moodL[currentDate] != 0) sum++;
+    if (muedigkeitL[currentDate] != 0) sum++;
+    if (atemnotL[currentDate] != 0) sum++;
+    if (sinneL[currentDate] != 0) sum++;
+    if (herzL[currentDate] != 0) sum++;
+    if (schlafL[currentDate] != 0) sum++;
+    if (nervenL[currentDate] != 0) sum++;
+    if (sum != 0) {
+      calSumL[currentDate] = sum.round();
+    }
     return sum;
   }
 
   int answeredSumInt() {
-    if (saved == true) {
-      int sum = answeredSum().toInt();
-      return sum;
-    } else {
-      return 0;
-    }
+    sumCal = answeredSum().toInt();
+    return sumCal;
   }
 
   /// Listener Database update */
+  int calendarContentmood(int i) {
+    mood = i;
+    userId = gS.uid;
+    moodL[currentDate] = mood;
+
+    ///initialisation of createdDate String
+    createdDate = currentDate.toString();
+    notifyListeners();
+    return mood;
+  }
+
   int calendarContentmuedigkeit(double d) {
     muedigkeit = d.round();
-    muedigkeitL.add(muedigkeit);
+    muedigkeitL[currentDate] = muedigkeit;
     notifyListeners();
     return muedigkeit;
   }
@@ -757,7 +787,7 @@ class CalendarContent with ChangeNotifier {
   /// Calender Atemnot */
   int calendarContentatemnot(double a) {
     atemnot = a.round();
-    atemnotL.add(atemnot);
+    atemnotL[currentDate] = atemnot;
     notifyListeners();
     return atemnot;
   }
@@ -765,7 +795,7 @@ class CalendarContent with ChangeNotifier {
   /// Calender Sinne */
   int calendarContentsinne(double b) {
     sinne = b.round();
-    sinneL.add(sinne);
+    sinneL[currentDate] = sinne;
     notifyListeners();
     return sinne;
   }
@@ -773,7 +803,7 @@ class CalendarContent with ChangeNotifier {
   /// Calender Herz */
   int calendarContentherz(double c) {
     herz = c.round();
-    herzL.add(herz);
+    herzL[currentDate] = herz;
     notifyListeners();
     return herz;
   }
@@ -781,7 +811,7 @@ class CalendarContent with ChangeNotifier {
   /// Calender schlaf */
   int calendarContentschlaf(double s) {
     schlaf = s.round();
-    schlafL.add(schlaf);
+    schlafL[currentDate] = schlaf;
     notifyListeners();
     return schlaf;
   }
@@ -789,16 +819,9 @@ class CalendarContent with ChangeNotifier {
   /// Calender Nerven */
   int calendarContentnerven(double n) {
     nerven = n.round();
-    nervenL.add(nerven);
+    nervenL[currentDate] = nerven;
     notifyListeners();
     return nerven;
-  }
-
-  /// Calender Comment */
-  String calendarContentcomment(String com) {
-    comment = com;
-    notifyListeners();
-    return comment;
   }
 
   /// increment function for view updates on symptom data

@@ -1,7 +1,7 @@
 // ignore_for_file: no_logic_in_create_state, sized_box_for_whitespace, unused_local_variable, unused_import, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidapp/covidapp/calendar_view/pages/basics_example.dart';
+
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_tabs/calendar_atemnot.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_tabs/calendar_herz.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_tabs/calendar_mood.dart';
@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/calendar_form.dart';
 import 'pages/complex_example.dart';
 import 'widgets/arrow_button.dart';
 
@@ -61,7 +60,6 @@ class CalendarState extends State<Calendar> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-         
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TableComplexExample(),

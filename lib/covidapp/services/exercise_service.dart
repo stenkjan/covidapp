@@ -9,9 +9,8 @@ import 'package:flutter/services.dart';
 
 class ExerciseService {
   AuthService auth = AuthService();
-
   GrafikService grafService = GrafikService();
- final GlobalKey<NavigatorState> breatheKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> breatheKey = GlobalKey<NavigatorState>();
 
   /// Variables for Firebase */
   Future<CalendarContent?> dailyBreatheExercise(
@@ -19,10 +18,8 @@ class ExerciseService {
     try {
       String uid = auth.getUser();
       //create a new user doc with uid
-      await DatabaseService(uid: uid)
-          .updateBreatheMinExerciseModel(breathemin);
-      await DatabaseService(uid: uid)
-          .updateBreatheSecExerciseModel(breathesec);
+      await DatabaseService(uid: uid).updateBreatheMinExerciseModel(breathemin);
+      await DatabaseService(uid: uid).updateBreatheSecExerciseModel(breathesec);
 
       print('$uid  Exercise updateCalInitiated');
     } catch (collectionError) {

@@ -22,13 +22,15 @@ class BreathePage extends GetView<BreatheController> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     ExerciseService exService = Provider.of<ExerciseService>(context);
-   /*  exService.dailyBreatheExercise(
+    /*  exService.dailyBreatheExercise(
         calContent.breatheMin, calContent.breatheSec); */
-    calContent.returnbreatheFalse();
+    if (calContent.returnBreatheMin() == 0) {
+      calContent.returnbreatheFalse();
+    }
 
     void navigateOnClosed(bool breathDone) async {
       await Future.delayed(const Duration(milliseconds: 1000));
-      if (calContent.breatheTrue) { 
+      if (calContent.breatheTrue) {
         Navigator.of(context).push(
             PageRouteBuilder(pageBuilder: (_, __, ___) => (const Uebungen())));
 
