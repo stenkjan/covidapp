@@ -9,7 +9,7 @@ class AuthService {
   String id = "";
   late String email;
   late User userGet;
-  String name = "";
+  String? name = "";
   /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
@@ -34,8 +34,10 @@ class AuthService {
     return id = _firebaseAuth.currentUser!.uid;
   }
 
-  String getName() {
-    name = _firebaseAuth.currentUser!.displayName!;
+  String? getName() {
+    if (_firebaseAuth.currentUser != 0) {
+    name = _firebaseAuth.currentUser?.displayName;
+    }
     if (name == "") {
       return name = "Maximilian Stenk";
     } else {
