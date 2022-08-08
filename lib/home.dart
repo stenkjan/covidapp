@@ -30,6 +30,7 @@ class HomeState extends State<Home> {
   static late String breatheMin;
   static late String lastBPM;
   static late String calAct;
+
   @override
   void initState() {
     authService = AuthService();
@@ -43,22 +44,21 @@ class HomeState extends State<Home> {
       cal.returnbreatheFalse();
     }
 
-    iconbreathe = cal.getbreatheTrue();
-
-    iconcal = cal.getcalendarTrue();
     if (cal.returnbpmDay()[cal.currentDate] != 0) {
       cal.returnPulseTrue();
     }
     lastBPM = cal.getlastBPM();
     calAct = cal.getcalAnswer();
 
-    if (!calAct.isEmpty) {
+    if ((!calAct.isEmpty) && (calAct != "0")) {
       cal.returnCalTrue();
     }
     if (cal.returncalSumL()[cal.currentDate] != 0) {
       cal.returnCalTrue();
     }
+    iconbreathe = cal.getbreatheTrue();
     iconpulse = cal.getpulseTrue();
+    iconcal = cal.getcalendarTrue();
     super.initState();
 
     /* if (Credentials.signed_in = false) {
@@ -153,8 +153,12 @@ class HomeState extends State<Home> {
                             } else {
                               cal.returnbreatheFalse();
                             }
-
+                            calAct = calContent.getcalAnswer();
+                            if (calAct != "0") {
+                              calContent.returnCalTrue();
+                            }
                             iconcal = cal.getcalendarTrue();
+
                             if (calContent
                                     .returnbpmDay()[calContent.currentDate] !=
                                 0) {
@@ -162,7 +166,6 @@ class HomeState extends State<Home> {
                               calContent.returnPulseTrue();
                               iconpulse = cal.getpulseTrue();
                             }
-                            calAct = calContent.getcalAnswer();
                           });
                         },
                       ),
@@ -174,8 +177,12 @@ class HomeState extends State<Home> {
                 /// Card
                 ///
 
-                _card(Colors.lightBlueAccent, "$breatheMin Minuten Atemübungen",
-                    dbService.calContent.fullDate, "Fortschritt", iconbreathe),
+                _card(
+                    Colors.lightBlueAccent,
+                    "$breatheMin Sekunden Atemübungen",
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    iconbreathe),
                 _card(Colors.yellowAccent, "Tägliche Pulsmessung: $lastBPM",
                     dbService.calContent.fullDate, "Fortschritt", iconpulse),
                 _card(Colors.lightGreenAccent, "Kalenderaktivitäten: $calAct",
@@ -607,7 +614,7 @@ Widget _cardHeader(LrmDataModel item) {
                 children: <Widget>[
                   Text(
                     /* dbService.registeredDate.toString() */
-                    calContent.dateL.length.toString(),
+                    calContent.returnSickDays(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,

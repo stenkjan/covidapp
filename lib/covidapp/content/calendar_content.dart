@@ -85,6 +85,8 @@ class CalendarContent with ChangeNotifier {
   List<int> bpm = List.generate(32, (index) => index);
   List<int> breatheMinL = List.generate(32, (index) => index);
   List<int> breatheSecL = List.generate(32, (index) => index);
+  static List<String> breatheMinStringL = List.generate(32, (index) => "0");
+
   static List<int> calSumL = List.generate(32, (index) => 0);
   List<double> breatheGraphMinList = [
     0.0,
@@ -169,7 +171,7 @@ class CalendarContent with ChangeNotifier {
       //return bpm.last.toString();
       return bpmday[currentDate].round().toString();
     } else {
-      return "";
+      return "0";
     }
   }
 
@@ -200,6 +202,9 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
+    if (bpmday[currentDate] != 0) {
+      return iconDone;
+    }
     if (pulseTrue == true) {
       return iconDone;
     } else {
@@ -213,10 +218,9 @@ class CalendarContent with ChangeNotifier {
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
     Icon iconNotDone = const Icon(Icons.radio_button_unchecked,
         size: 17.0, color: Colors.redAccent);
-    if (calTrue == true) {
+    if (calSumL[currentDate] != 0) {
       return iconDone;
     } else {
-      calTrue = false;
       return iconNotDone;
     }
   }
@@ -303,7 +307,12 @@ class CalendarContent with ChangeNotifier {
   }
 
   String returnBreatheMin() {
-    return breatheMin;
+    if (breatheMinStringL[currentDate] == "0" ||
+        breatheMinStringL[currentDate] != breatheMin) {
+      breatheMinStringL[currentDate] = breatheMin;
+    }
+
+    return breatheMinStringL[currentDate];
   }
 
   ///Initializing breatheGraphData for min values with firebase data
@@ -735,9 +744,23 @@ class CalendarContent with ChangeNotifier {
     return calSumL;
   }
 
+  String returnSickDays() {
+    String returnsickDays;
+    int sum = 0;
+    for (int i = 0; i < calSumL.length; i++) {
+      if (calSumL[i] != 0) {
+        sum++;
+      }
+    }
+    if (sum != 0) {
+      return returnsickDays = sum.toString();
+    }
+    return returnsickDays = "0";
+  }
+
   String getcalAnswer() {
-    calTrue == true;
     if (calSumL[currentDate] != 0) {
+      calTrue == true;
       return calSumL[currentDate].toString();
     } else {
       return answeredSumInt().toString();
