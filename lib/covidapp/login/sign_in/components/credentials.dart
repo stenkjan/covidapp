@@ -9,6 +9,7 @@ class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
   /* static bool signed_in = false; */
   @override
+
   /// Widget build --- Email, Password fields, Reset Passord  */
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -93,7 +94,7 @@ class Credentials extends StatelessWidget {
                         if (emailController.text != null &&
                             // ignore: unnecessary_null_comparison
                             passwordController.text != null) {
-                          await authService.signInWithEmailAndPassword(
+                          await authService.signInWithEmailAndPasswort(
                               emailController.text, passwordController.text);
                         } else {
                           ScaffoldMessenger.of(context)
@@ -102,7 +103,6 @@ class Credentials extends StatelessWidget {
 Sie müssen zuerst eine Email und ein Passwort angeben'''),
                           ));
                         }
-                        
                       }),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -131,5 +131,4 @@ Sie müssen zuerst eine Email und ein Passwort angeben'''),
       ),
     );
   }
-
 }

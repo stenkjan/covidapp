@@ -596,7 +596,7 @@ Widget _cardHeader(LrmDataModel item) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    auth.getName().toString(),
+                    auth.getName(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.white,

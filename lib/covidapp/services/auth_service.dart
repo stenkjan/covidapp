@@ -6,10 +6,11 @@ import 'package:flutter/services.dart';
 
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  String id = "";
+  late final DatabaseService dbService;
+  static String id = "";
   late String email;
   late User userGet;
-  String? name = "";
+  static String _name = "";
   /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
@@ -31,29 +32,48 @@ class AuthService {
   }
 
   String getUser() {
-    return id = _firebaseAuth.currentUser!.uid;
+    return id;
   }
 
-  String? getName() {
-    if (_firebaseAuth.currentUser != 0) {
-    name = _firebaseAuth.currentUser?.displayName;
-    }
-    if (name == "") {
-      return name = "Maximilian Stenk";
-    } else {
-      return name;
-    }
+  String? setName(String fName, String lName) {
+    _name = "$fName $lName";
+    return _name;
   }
 
-  Future<User?> signInWithEmailAndPassword(
+  String? returnName() {
+    return _name;
+  }
+
+  String getName() {
+    dbService = DatabaseService(uid: id);
+    if (_firebaseAuth.currentUser != null) {
+      if (_name != "") {
+        return _name;
+      }
+      if (_name == "") {
+        dbService.getUserData();
+        return dbService.returnName();
+      } else {
+        return _name = "Long Covid App";
+      }
+    }
+    return _name;
+  }
+
+  Future<User?> signInWithEmailAndPasswort(
     String email,
     String password,
   ) async {
-    final credential = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-
+    final credential;
+    try {
+      credential = await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return _userFromFirebase(credential.user);
+    } on auth.FirebaseAuthException catch (e) {
+      print(' $e');
+      return null;
+    }
     /* userUid = await (_firebaseAuth.currentUser!.uid); */
-    return _userFromFirebase(credential.user);
   }
 
   Future<User?> createUserWithEmailAndPasswort(
@@ -65,12 +85,13 @@ class AuthService {
   ) async {
     try {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      name = firstname + lastname;
+          email: email, password: password);
+
       /*  userUid = await (_firebaseAuth.currentUser!.uid); */
       //create a new user doc with uid
+      print('waiting');
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       await DatabaseService(uid: credential.user!.uid)
           .updateUserData(email, firstname, lastname, birthday);
       return _userFromFirebase(credential.user);
@@ -78,9 +99,13 @@ class AuthService {
       if (signUpError is PlatformException) {
         if (signUpError.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
           /// Diese Email ist bereits registriert.
+          print('email bereits in Verwendung');
         }
         if (signUpError.code == 'ERROR_INVALID_EMAIL') {
-          /// Diese Email ist nicht korrekt.
+          print('Falsches email Format');
+        }
+        if (signUpError.code == 'ERROR_WEAK_PASSWORD') {
+          print('Schwaches Passwort');
         }
       }
     }

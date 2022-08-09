@@ -285,7 +285,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             imageFlex: 3,
           ),
         ),
-        PageViewModel(
+       /*  PageViewModel(
           title: "",
           body: "",
           image: _buildImage(
@@ -382,7 +382,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             bodyFlex: 2,
             imageFlex: 3,
           ),
-        ),
+        ), */
       ],
       onDone: () => _onIntroEnd(context),
       //onSkip: () => _onIntroEnd(context), // You can override onSkip callback

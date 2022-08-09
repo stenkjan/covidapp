@@ -5,6 +5,7 @@ import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
 
 import '../../content/strings.dart';
+import '../../uebungen/exercise_data.dart';
 
 class HeartGraph extends StatefulWidget {
   const HeartGraph({Key? key}) : super(key: key);
@@ -20,7 +21,8 @@ class HeartGraphState extends State<HeartGraph> {
   void initState() {
     calContent = CalendarContent();
     calContent.bpmWeekL();
-    features = [
+    features = featureList(calContent.pulseGraphList);
+    /* [
       Feature(
         title: headline[4]['tag'],
         color: AppColors.pieColors[3],
@@ -45,7 +47,7 @@ class HeartGraphState extends State<HeartGraph> {
           calContent.bpm[calContent.listIndex + 5].toDouble() * 70 / 1000,
         ],
       ),
-    ];
+    ]; */
     super.initState();
   }
 
@@ -56,6 +58,13 @@ class HeartGraphState extends State<HeartGraph> {
 
   @override
   Widget build(BuildContext context) {
+    if (calContent.pulseGraphList.length <= 1) {
+      setState(() {
+        ExerciseData("pulse");
+
+        features = featureList(calContent.pulseGraphList);
+      });
+    }
     return Stack(
       children: [
         Container(
@@ -105,17 +114,17 @@ class HeartGraphState extends State<HeartGraph> {
                 height: 30,
               ),
               LineGraph(
-                features: features,
+                features: featureList(calContent.pulseGraphList),
                 size: const Size(350, 250),
-                labelX: [
-                  calContent.dateL[calContent.listIndex].toString(),
-                  calContent.dateL[calContent.listIndex + 1].toString(),
-                  calContent.dateL[calContent.listIndex + 2].toString(),
-                  calContent.dateL[calContent.listIndex + 3].toString(),
-                  calContent.dateL[calContent.listIndex + 4].toString(),
-                  calContent.dateL[calContent.listIndex + 5].toString()
+                labelX: calContent.graphLabelL(),
+                labelY: const [
+                  '20',
+                  '40',
+                  '60',
+                  '80',
+                  '100',
+                  '120',
                 ],
-                labelY: const ['20%', '40%', '60%', '80%', '100%'],
                 showDescription: true,
                 graphColor: Colors.white54,
                 descriptionHeight: 40,
@@ -128,5 +137,37 @@ class HeartGraphState extends State<HeartGraph> {
         ),
       ],
     );
+  }
+
+  List<Feature> featureList(List<double> featureListPuls) {
+    List<Feature> features = [
+      Feature(
+        title: '''Herzschlag pro Minute : Ø''',
+        color: AppColors.pieColors[5],
+        data: featureListPuls,
+      ),
+    ];
+    setState(() {
+      features = [
+        Feature(
+          title: '''Herzschlag pro Minute : Ø''',
+          color: AppColors.pieColors[5],
+          data: featureListPuls,
+        ),
+        Feature(
+          title: headline[4]['tag'],
+          color: AppColors.pieColors[3],
+          data: [
+            calContent.herzL[calContent.listIndex].toDouble() / 10,
+            calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
+            calContent.herzL[calContent.listIndex + 2].toDouble() / 10,
+            calContent.herzL[calContent.listIndex + 3].toDouble() / 10,
+            calContent.herzL[calContent.listIndex + 4].toDouble() / 10,
+            calContent.herzL[calContent.listIndex + 5].toDouble() / 10
+          ],
+        ),
+      ];
+    });
+    return features;
   }
 }

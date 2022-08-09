@@ -78,25 +78,29 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                NeumorphicSwitch(
-                  style: const NeumorphicSwitchStyle(
-                      inactiveTrackColor: Color(0xFF2E4E57),
-                      lightSource: LightSource.bottom),
-                  isEnabled: true,
-                  value: _switchValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchValue = value;
-                      if (!value) i = 0;
-                      if (value) i = 1;
-                      if (_switchValue == true) {
-                        colorswitch = Colors.white;
-                      }
-                      if (_switchValue == false) {
-                        colorswitch = const Color(0xFF313237);
-                      }
-                    });
-                  },
+                SizedBox(
+                  height: 25,
+                  width: 50,
+                  child: NeumorphicSwitch(
+                    style: const NeumorphicSwitchStyle(
+                        inactiveTrackColor: Color(0xFF2E4E57),
+                        lightSource: LightSource.bottom),
+                    isEnabled: true,
+                    value: _switchValue,
+                    onChanged: (value) {
+                      setState(() {
+                        _switchValue = value;
+                        if (!value) i = 0;
+                        if (value) i = 1;
+                        if (_switchValue == true) {
+                          colorswitch = Colors.white;
+                        }
+                        if (_switchValue == false) {
+                          colorswitch = const Color(0xFF313237);
+                        }
+                      });
+                    },
+                  ),
                 ),
                 const SizedBox(width: 5),
                 Text(list[i],

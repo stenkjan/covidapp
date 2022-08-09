@@ -1,4 +1,5 @@
 import 'dart:core';
+
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
@@ -12,11 +13,11 @@ class DatabaseService {
   late CollectionReference calendarCollection;
   late DocumentReference calendarDoc;
   late List docList;
-  late List nameData;
+  late Map nameData;
   int registeredDate = 0;
   int currentDate =
       int.parse(DateFormat('d').format(DateTime.now()).toString());
-
+  static String name = "Long Covid App User";
   final CalendarContent calContent = CalendarContent();
   Future updateUserData(
       String email, String firstname, String lastname, String birthday) async {
@@ -98,26 +99,29 @@ class DatabaseService {
   /// Get Data of User Class
   ///not in use yet!!!!!!!!!!!!!
   Future getUserData() async {
-    String name = "Maximilian Stenk";
     return await userCollection
         .doc(uid)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        nameData = userCollection.doc(uid).snapshots().toList() as List;
+        nameData = documentSnapshot.data() as Map;
         if (documentSnapshot.exists == false) {
-          nameData = userCollection.doc(uid).set({
-            'email': 'stenkjan@gmail.com',
-            'firstname': 'Maximilian',
-            'lastname': 'Stenk',
-            'birthday': '01/01/2000',
-          }) as List;
+          nameData = {
+            'email': 'longcovid@longcovid.at',
+            'firstname': 'Long',
+            'lastname': 'Covid',
+            'birthday': '01/01/2020',
+          };
         }
-        name = nameData[0] + " " + nameData[1];
+        name = nameData["firstname"] + " " + nameData["lastname"];
         return name;
       }
       return name;
     });
+  }
+
+  String returnName() {
+    return name;
   }
 
   /// read the doc of the requested date for the issued User UID

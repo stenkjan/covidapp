@@ -2,6 +2,7 @@ import 'package:covidapp/covidapp/login/sign_in/signin.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:covidapp/covidapp/login/constants.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -15,18 +16,38 @@ class Credentials extends StatefulWidget {
 }
 
 class _CredentialsState extends State<Credentials> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstnameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController birthdayController = TextEditingController();
+  String date = "Geburtstag";
+
+  void birthdateListener() {
+    date = birthdayController.text;
+  }
+
   @override
+  void initState() {
+    super.initState();
+    birthdayController.addListener(birthdateListener);
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    firstnameController.dispose();
+    lastnameController.dispose();
+    birthdayController.dispose();
+    super.dispose();
+  }
 
   /// Widget build --- Email, Password fields, Reset Passord,Name, Birthday  */
 
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController firstnameController = TextEditingController();
-    final TextEditingController lastnameController = TextEditingController();
-    final TextEditingController birthdayController = TextEditingController();
-    String date = "Geburtstag";
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),
       child: Column(
@@ -46,10 +67,11 @@ class _CredentialsState extends State<Credentials> {
               );
               if (pickedDate != null) {
                 String formattedDate =
-                    DateFormat('dd-MM-yyyy').format(pickedDate);
+                    DateFormat('dd.MM.yyyy').format(pickedDate);
 
                 setState(() {
                   birthdayController.text = formattedDate;
+                  date = formattedDate;
                 });
               }
             },
@@ -108,6 +130,14 @@ class _CredentialsState extends State<Credentials> {
             height: appPadding / 2,
           ),
           TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(
+                RegExp(
+                    r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                    r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                    r"{0,253}[a-zA-Z0-9])?)*$"),
+              ),
+            ],
             textAlign: TextAlign.center,
             controller: emailController,
             decoration: InputDecoration(
@@ -200,6 +230,8 @@ class _CredentialsState extends State<Credentials> {
                       if (emailController.text != null &&
                           // ignore: unnecessary_null_comparison
                           passwordController.text != null) {
+                        authService.setName(
+                            firstnameController.text, lastnameController.text);
                         await authService.createUserWithEmailAndPasswort(
                             emailController.text,
                             passwordController.text,

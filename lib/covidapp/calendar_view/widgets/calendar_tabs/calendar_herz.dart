@@ -89,7 +89,10 @@ class CalendarHerzState extends State<CalendarHerz> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                NeumorphicSwitch(
+                SizedBox(
+                  height: 25,
+                  width: 50,
+                  child: NeumorphicSwitch(
                   style: const NeumorphicSwitchStyle(
                       inactiveTrackColor: Color(0xFF2E4E57),
                       lightSource: LightSource.bottom),
@@ -107,6 +110,7 @@ class CalendarHerzState extends State<CalendarHerz> {
                       }
                     });
                   },
+                ),
                 ),
                 const SizedBox(width: 5),
                 Text(list[i],

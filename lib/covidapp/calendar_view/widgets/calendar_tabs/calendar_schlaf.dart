@@ -102,7 +102,10 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    NeumorphicSwitch(
+                    SizedBox(
+                  height: 25,
+                  width: 50,
+                  child: NeumorphicSwitch(
                       style: const NeumorphicSwitchStyle(
                           inactiveTrackColor: Color(0xFF2E4E57),
                           lightSource: LightSource.bottom),
@@ -121,6 +124,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
                           /* calContent.calendarContentherz(_switchValue); */
                         });
                       },
+                    ),
                     ),
                     const SizedBox(width: 5),
                     Text(list[i],
