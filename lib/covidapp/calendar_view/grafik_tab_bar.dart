@@ -3,6 +3,7 @@ import 'package:covidapp/covidapp/calendar_view/widgets/heart_graph.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/weekly_graph.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GrafikTabBar extends StatefulWidget {
   const GrafikTabBar({Key? key}) : super(key: key);
@@ -14,13 +15,12 @@ class GrafikTabBar extends StatefulWidget {
 class GrafikTabBarState extends State<GrafikTabBar> {
   late bool itemSwitch;
   late String questionChoice;
-  late CalendarContent calContent;
+
   @override
   void initState() {
     questionChoice = "";
     itemSwitch = false;
-    calContent = CalendarContent();
-    calContent.pieLegendbool = true;
+
     super.initState();
   }
 
@@ -31,6 +31,9 @@ class GrafikTabBarState extends State<GrafikTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    final calContent = Provider.of<CalendarContent>(context);
+
+    calContent.pieLegendbool = true;
     return SizedBox(
       height: 420,
       width: 400,

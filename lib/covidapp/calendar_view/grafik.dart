@@ -177,9 +177,9 @@ class GrafikState extends State<Grafik> {
                               setState(() {
                                 dayChange = false;
                                 currentDate();
-
-                               /*  calContent.getgrafikCurrentDate(currentDateInt); */
-                                calContent.getCalendarList();
+                                calContent.getGrafikDate(currentDateInt);
+                                /*  calContent.getgrafikCurrentDate(currentDateInt); */
+                                /* calContent.getCalendarList(); */
                                 grafService.dailyRead(
                                     currentDateInt, dayChange);
                                 grafService.docId = currentDateInt;
@@ -202,8 +202,11 @@ class GrafikState extends State<Grafik> {
                             setState(() {
                               dayChange = true;
                               currentDate();
-                             /*  calContent.getgrafikCurrentDate(currentDateInt); */
-                              calContent.getCalendarList();
+                              calContent.getGrafikDate(currentDateInt);
+
+                              /*  calContent.getgrafikCurrentDate(currentDateInt); */
+                              /*   calContent.getCalendarList(); */
+
                               grafService.dailyRead(currentDateInt, dayChange);
                               headline;
                               grafService.docId = currentDateInt;
@@ -323,9 +326,8 @@ class GrafikState extends State<Grafik> {
 
   bool currentDate() {
     setState(() {
-      String currentDateString = currentDateInt.toString();
       if (dayChange == true) {
-        if (currentDateString == "31") {
+        if (currentDateInt == 31) {
           // DateFormat('d').format(DateTime.now()).toString()) {
           dayChange = false;
         } else {
@@ -340,7 +342,6 @@ class GrafikState extends State<Grafik> {
           dayChange = true;
         }
       }
-      currentDateString = currentDateInt.toString();
     });
     return dayChange;
   }

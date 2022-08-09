@@ -18,96 +18,11 @@ class WeekGraph extends StatefulWidget {
 
 class WeekGraphState extends State<WeekGraph> {
   late List<Feature> features;
-  late CalendarContent calContent;
+
   @override
   void initState() {
-    calContent = CalendarContent();
-    features = [
-      Feature(
-        title: headline[0]['tag'],
-        color: AppColors.pieColors[7],
-        data: [
-          calContent.moodL[calContent.listIndex].toDouble() / 10,
-          calContent.moodL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.moodL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.moodL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.moodL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.moodL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[1]['tag'],
-        color: AppColors.pieColors[0],
-        data: [
-          calContent.muedigkeitL[calContent.listIndex].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.muedigkeitL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[2]['tag'],
-        color: AppColors.pieColors[1],
-        data: [
-          calContent.atemnotL[calContent.listIndex].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.atemnotL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[3]['tag'],
-        color: AppColors.pieColors[2],
-        data: [
-          calContent.sinneL[calContent.listIndex].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.sinneL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[4]['tag'],
-        color: AppColors.pieColors[3],
-        data: [
-          calContent.herzL[calContent.listIndex + 0].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[5]['tag'],
-        color: AppColors.pieColors[4],
-        data: [
-          calContent.schlafL[calContent.listIndex + 0].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.schlafL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: headline[6]['tag'],
-        color: AppColors.pieColors[5],
-        data: [
-          calContent.nervenL[calContent.listIndex + 0].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.nervenL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-    ];
+    features = featureList();
+
     super.initState();
   }
 
@@ -141,10 +56,15 @@ class WeekGraphState extends State<WeekGraph> {
               return const Center(child: CircularProgressIndicator());
             case ConnectionState.active:
               /*  Map<String, dynamic> data */
+
               List dataList = snapshot.data!.docs;
               /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
             */
+
               calContent.weekpiedataMap(dataList);
+
+              features = featureList();
+
               return
                   /*   }
           if (snapshot.connectionState == ConnectionState.done) {
@@ -194,21 +114,9 @@ class WeekGraphState extends State<WeekGraph> {
                           height: 5,
                         ),
                         LineGraph(
-                          features: features,
+                          features: featureList(),
                           size: const Size(350, 250),
-                          labelX: [
-                            calContent.dateL[calContent.listIndex].toString(),
-                            calContent.dateL[calContent.listIndex + 1]
-                                .toString(),
-                            calContent.dateL[calContent.listIndex + 2]
-                                .toString(),
-                            calContent.dateL[calContent.listIndex + 3]
-                                .toString(),
-                            calContent.dateL[calContent.listIndex + 4]
-                                .toString(),
-                            calContent.dateL[calContent.listIndex + 5]
-                                .toString()
-                          ],
+                          labelX: calContent.weekgraphLabelL(),
                           labelY: const ['20%', '40%', '60%', '80%', '100%'],
                           showDescription: true,
                           graphColor: Colors.white54,
@@ -228,5 +136,47 @@ class WeekGraphState extends State<WeekGraph> {
           }
           return const Text("loading");
         });
+  }
+
+  List<Feature> featureList() {
+    features = [
+      Feature(
+        title: headline[0]['tag'],
+        color: AppColors.pieColors[7],
+        data: calContent.weekGraphMap("mood"),
+      ),
+      Feature(
+        title: headline[1]['tag'],
+        color: AppColors.pieColors[0],
+        data: calContent.weekGraphMap("muedigkeit"),
+      ),
+      Feature(
+        title: headline[2]['tag'],
+        color: AppColors.pieColors[1],
+        data: calContent.weekGraphMap("atemnot"),
+      ),
+      Feature(
+        title: headline[3]['tag'],
+        color: AppColors.pieColors[2],
+        data: calContent.weekGraphMap("sinne"),
+      ),
+      Feature(
+        title: headline[4]['tag'],
+        color: AppColors.pieColors[3],
+        data: calContent.weekGraphMap("herz"),
+      ),
+      Feature(
+        title: headline[5]['tag'],
+        color: AppColors.pieColors[4],
+        data: calContent.weekGraphMap("schlaf"),
+      ),
+      Feature(
+        title: headline[6]['tag'],
+        color: AppColors.pieColors[5],
+        data: calContent.weekGraphMap("nerven"),
+      ),
+    ];
+
+    return features;
   }
 }

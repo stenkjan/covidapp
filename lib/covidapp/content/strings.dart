@@ -132,7 +132,7 @@ List headline = [
     "color": calContent.getCalendarColors(7)
   },
 ];
-
+/* 
 List weekContent = [
   {
     "Tag": calContent.dateL[0].toDouble(),
@@ -194,4 +194,4 @@ List weekContent = [
     "Schlaf": calContent.schlafL[5].toDouble(),
     "Nerven": calContent.nervenL[5].toDouble(),
   },
-];
+]; */

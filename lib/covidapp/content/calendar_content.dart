@@ -2,16 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
-import 'package:covidapp/covidapp/services/auth_service.dart';
+
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
 import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../models/user_models.dart';
-import '../uebungen/exercise_data.dart';
 
 /*MasterClass of Variable Declaration and Methods for Value Exchange */
 
@@ -56,6 +52,10 @@ class CalendarContent with ChangeNotifier {
   double sumColor = 0;
   int sumCal = 0;
 
+  int listIndex = 0;
+  int indexGrafik = 0;
+  int index = 0;
+  static int grafikDate = 0;
   Color color = Colors.grey;
 
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
@@ -70,18 +70,17 @@ class CalendarContent with ChangeNotifier {
   GrafikService gS = GrafikService();
   String? userId;
 /*calendar variables lists with initial data*/
-  int listIndex = 0;
-  int indexGrafik = 0;
-  int index = 0;
+
   //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
   List<int> dateL = List.generate(32, (index) => index);
-  List<int> moodL = List.generate(32, (index) => 0);
-  List<int> muedigkeitL = List.generate(32, (index) => 0);
-  List<int> atemnotL = List.generate(32, (index) => 0);
-  List<int> sinneL = List.generate(32, (index) => 0);
-  List<int> herzL = List.generate(32, (index) => 0);
-  List<int> schlafL = List.generate(32, (index) => 0);
-  List<int> nervenL = List.generate(32, (index) => 0);
+  static List<int> moodL = List.generate(32, (index) => 0);
+  static List<int> muedigkeitL = List.generate(32, (index) => 0);
+  static List<int> atemnotL = List.generate(32, (index) => 0);
+  static List<int> sinneL = List.generate(32, (index) => 0);
+  static List<int> herzL = List.generate(32, (index) => 0);
+  static List<int> schlafL = List.generate(32, (index) => 0);
+  static List<int> nervenL = List.generate(32, (index) => 0);
+  static List<double> pulseWeekL = List.generate(32, (index) => 0);
   List<int> bpm = List.generate(32, (index) => index);
   List<int> breatheMinL = List.generate(32, (index) => index);
   List<int> breatheSecL = List.generate(32, (index) => index);
@@ -319,13 +318,16 @@ class CalendarContent with ChangeNotifier {
   List<double> breatheGraphMinL(List<double> breatheminL) {
     List<double> breatheGraphDataList = breatheminL;
 
-    int date = currentDate;
-
     breatheGraphMinList.clear();
     breatheGraphMinList.add(0);
     for (int review = 7;
         review >= 0 && breatheGraphMinList.length < 8;
         review--) {
+      int date = currentDate;
+      if (date - review < 1) {
+        review = review - date;
+        date = 31;
+      }
       if (breatheGraphDataList.isNotEmpty) {
         if (breatheGraphMinList.length < 8 &&
             breatheGraphMinList.length <= date + 1) {
@@ -368,6 +370,10 @@ class CalendarContent with ChangeNotifier {
         review >= 0 && breatheGraphSecList.length < 8;
         review--) {
       int date = currentDate;
+      if (date - review < 1) {
+        review = review - date;
+        date = 31;
+      }
       if (breatheGraphDataSecList.isNotEmpty) {
         if (breatheGraphSecList.length < 8 &&
             breatheGraphSecList.length <= date + 1) {
@@ -405,6 +411,10 @@ class CalendarContent with ChangeNotifier {
 
     for (int review = 7; review >= 0 && pulseGraphList.length < 8; review--) {
       int date = currentDate;
+      if (date - review < 1) {
+        review = review - date;
+        date = 31;
+      }
       if (pulseGraphDataL.isNotEmpty) {
         if (pulseGraphList.length < 8 && pulseGraphList.length <= date + 1) {
           if (date > 7) {
@@ -435,14 +445,38 @@ class CalendarContent with ChangeNotifier {
   List<String> graphLabelL() {
     List<String> graphLabelL = ["0"];
 
-    for (int labelNum = 7; labelNum >= 0; labelNum--) {
-      if (currentDate > 7) {
-        graphLabelL.add((currentDate - labelNum).toString());
-      } else if (currentDate - labelNum == 1) {
-        graphLabelL.add((currentDate - labelNum).toString());
-      } else if (currentDate < 7 && (currentDate - labelNum) > 1) {
-        graphLabelL.add((currentDate - labelNum).toString());
+    for (int labelNum = 7;
+        labelNum >= 0 && graphLabelL.length < 8;
+        labelNum--) {
+      int date = currentDate;
+      if (date > 7) {
+        graphLabelL.add((date - labelNum).toString());
+      } else if (date - labelNum == 1) {
+        graphLabelL.add((date - labelNum).toString());
+      } else if (date - labelNum < 1) {
+        labelNum = labelNum - date;
+        date = 31;
+        graphLabelL.add((date - labelNum).toString());
+      } else if (date < 7 && (currentDate - labelNum) > 1) {
+        graphLabelL.add((date - labelNum).toString());
       }
+    }
+    return graphLabelL;
+  }
+
+  List<String> weekgraphLabelL() {
+    List<String> graphLabelL = ["0"];
+
+    for (int labelNum = grafikDate;
+        labelNum >= 0 && graphLabelL.length < 8;
+        labelNum--) {
+      if (grafikDate == 0) {
+        labelNum = currentDate;
+      }
+      if (labelNum < 0) {
+        labelNum = 31;
+      }
+      graphLabelL.insert(1, labelNum.toString());
     }
     return graphLabelL;
   }
@@ -466,6 +500,11 @@ class CalendarContent with ChangeNotifier {
     return index;
   }
 
+  void getGrafikDate(int date) {
+    grafikDate = date;
+    notifyListeners();
+  }
+
   ///Map for Day Pie in Calendar
   Map<String, double> daypiedataMapCalendar(int day) {
     int indexgetter = dateL.indexOf(day);
@@ -477,12 +516,12 @@ class CalendarContent with ChangeNotifier {
     }
 /**Pie Map Initialization */
     Map<String, double> daypiedataMapCal = {
-      headline[1]['tag']: calContent.muedigkeitL[indexgetter].toDouble(),
-      headline[2]['tag']: calContent.atemnotL[indexgetter].toDouble(),
-      headline[3]['tag']: calContent.sinneL[indexgetter].toDouble(),
-      headline[4]['tag']: calContent.herzL[indexgetter].toDouble(),
-      headline[5]['tag']: calContent.schlafL[indexgetter].toDouble(),
-      headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
+      headline[1]['tag']: muedigkeitL[indexgetter].toDouble(),
+      headline[2]['tag']: atemnotL[indexgetter].toDouble(),
+      headline[3]['tag']: sinneL[indexgetter].toDouble(),
+      headline[4]['tag']: herzL[indexgetter].toDouble(),
+      headline[5]['tag']: schlafL[indexgetter].toDouble(),
+      headline[6]['tag']: nervenL[indexgetter].toDouble(),
     };
     var values = daypiedataMapCal.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
@@ -503,12 +542,12 @@ class CalendarContent with ChangeNotifier {
       headline[5]['tag']: map['schlaf'].toDouble(),
       headline[6]['tag']: map['nerven'].toDouble(),
     };
-    calContent.muedigkeitL[day] = map['muedigkeit'];
-    calContent.atemnotL[day] = map['atemnot'];
-    calContent.sinneL[day] = map['sinne'];
-    calContent.herzL[day] = map['herz'];
-    calContent.schlafL[day] = map['schlaf'];
-    calContent.nervenL[day] = map['nerven'];
+    muedigkeitL[day] = map['muedigkeit'];
+    atemnotL[day] = map['atemnot'];
+    sinneL[day] = map['sinne'];
+    herzL[day] = map['herz'];
+    schlafL[day] = map['schlaf'];
+    nervenL[day] = map['nerven'];
     var values = pieMap.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
     pulseBoolL[map['created_date']] = true;
@@ -527,61 +566,68 @@ class CalendarContent with ChangeNotifier {
 
   ///Map for Week Pie in Graphic
   void weekpiedataMap(List map) {
-    moodL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    moodL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    moodL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    moodL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    moodL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    moodL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    moodL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+    for (int i = 0; i <= 31 && i >= 0; i++) {
+      final index = map.indexWhere((item) => item.id == i);
 
-    muedigkeitL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    muedigkeitL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    muedigkeitL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    muedigkeitL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    muedigkeitL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    muedigkeitL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    muedigkeitL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+      if (index >= 0 && index < map.length) {
+        moodL[i] = int.parse(map[index]['mood'].toString());
+        muedigkeitL[i] = int.parse(map[index]['muedigkeit'].toString());
+        atemnotL[i] = int.parse(map[index]['atemnot'].toString());
+        sinneL[i] = int.parse(map[index]['sinne'].toString());
+        herzL[i] = int.parse(map[index]['herz'].toString());
+        print("$herzL[i]");
+        schlafL[i] = int.parse(map[index]['schlaf'].toString());
+        nervenL[i] = int.parse(map[index]['nerven'].toString());
+      }
+    }
+  }
 
-    atemnotL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    atemnotL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    atemnotL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    atemnotL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    atemnotL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    atemnotL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    atemnotL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+  void weekheartMap(Map map) {
+    for (int i = 0; i <= 31 && i >= 0; i++) {
+      final index = map.containsKey(i);
 
-    sinneL[calContent.listIndex] = (map[map.length - 7]['sinne']);
-    sinneL[calContent.listIndex + 1] = (map[map.length - 6]['sinne']);
-    sinneL[calContent.listIndex + 2] = (map[map.length - 5]['sinne']);
-    sinneL[calContent.listIndex + 3] = (map[map.length - 4]['sinne']);
-    sinneL[calContent.listIndex + 4] = (map[map.length - 3]['sinne']);
-    sinneL[calContent.listIndex + 5] = (map[map.length - 2]['sinne']);
-    sinneL[calContent.listIndex + 6] = (map[map.length - 1]['sinne']);
+      if (index && i < map.length) {
+        pulseWeekL[i] = map["i"];
+      }
+    }
+  }
 
-    herzL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    herzL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    herzL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    herzL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    herzL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    herzL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    herzL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+  List<double> weekGraphMap(String symptomString) {
+    List<double> symptomList = [];
+    if (grafikDate == 0) {
+      grafikDate = currentDate;
+    }
+    for (int i = grafikDate; i > 0 && symptomList.length < 7; i--) {
+      if (symptomString == "mood") {
+        symptomList.insert(0, moodL[i].toDouble());
+      }
+      if (symptomString == "muedigkeit") {
+        symptomList.insert(0, muedigkeitL[i].toDouble());
+      }
+      if (symptomString == "atemnot") {
+        symptomList.insert(0, atemnotL[i].toDouble());
+      }
+      if (symptomString == "sinne") {
+        symptomList.insert(0, sinneL[i].toDouble());
+      }
+      if (symptomString == "herz") {
+        symptomList.insert(0, herzL[i].toDouble());
+      }
+      if (symptomString == "schlaf") {
+        symptomList.insert(0, schlafL[i].toDouble());
+      }
+      if (symptomString == "nerven") {
+        symptomList.insert(0, nervenL[i].toDouble());
+      }
+      if (symptomString == "pulse") {
+        symptomList.insert(0, pulseWeekL[i]);
+      }
+      if (i == 1) {
+        i = 31;
+      }
+    }
 
-    schlafL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    schlafL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    schlafL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    schlafL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    schlafL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    schlafL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    schlafL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
-
-    nervenL[calContent.listIndex] = (map[map.length - 7]['mood']);
-    nervenL[calContent.listIndex + 1] = (map[map.length - 6]['mood']);
-    nervenL[calContent.listIndex + 2] = (map[map.length - 5]['mood']);
-    nervenL[calContent.listIndex + 3] = (map[map.length - 4]['mood']);
-    nervenL[calContent.listIndex + 4] = (map[map.length - 3]['mood']);
-    nervenL[calContent.listIndex + 5] = (map[map.length - 2]['mood']);
-    nervenL[calContent.listIndex + 6] = (map[map.length - 1]['mood']);
+    return symptomList;
   }
 
   ///Map for daily Pie Data in Graphic
@@ -595,12 +641,12 @@ class CalendarContent with ChangeNotifier {
     }
 /**Pie Map Initialization */
     Map<String, double> daypiedataMap = {
-      headline[1]['tag']: calContent.muedigkeitL[indexgetter].toDouble(),
-      headline[2]['tag']: calContent.atemnotL[indexgetter].toDouble(),
-      headline[3]['tag']: calContent.sinneL[indexgetter].toDouble(),
-      headline[4]['tag']: calContent.herzL[indexgetter].toDouble(),
-      headline[5]['tag']: calContent.schlafL[indexgetter].toDouble(),
-      headline[6]['tag']: calContent.nervenL[indexgetter].toDouble(),
+      headline[1]['tag']: muedigkeitL[indexgetter].toDouble(),
+      headline[2]['tag']: atemnotL[indexgetter].toDouble(),
+      headline[3]['tag']: sinneL[indexgetter].toDouble(),
+      headline[4]['tag']: herzL[indexgetter].toDouble(),
+      headline[5]['tag']: schlafL[indexgetter].toDouble(),
+      headline[6]['tag']: nervenL[indexgetter].toDouble(),
     };
     return daypiedataMap;
   }

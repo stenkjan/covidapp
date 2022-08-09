@@ -12,11 +12,11 @@ class DayPie extends StatefulWidget {
 }
 
 class DayPieState extends State<DayPie> {
-  late CalendarContent calContent;
+
  
   @override
   void initState() {
-    calContent = CalendarContent();
+ 
    
     super.initState();
   }
