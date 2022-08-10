@@ -80,6 +80,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
 
+calContent.returnSickDays();
     /*
     if (Credentials.signed_in = false) {
     return SignInScreen();
@@ -166,6 +167,7 @@ class HomeState extends State<Home> {
                               calContent.returnPulseTrue();
                               iconpulse = cal.getpulseTrue();
                             }
+                            calContent.returnSickDays();
                           });
                         },
                       ),
@@ -569,6 +571,7 @@ Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());
   CalendarContent calContent = CalendarContent();
+  
   dbService.readcalendarCollection();
   return Stack(
     children: <Widget>[
@@ -614,7 +617,7 @@ Widget _cardHeader(LrmDataModel item) {
                 children: <Widget>[
                   Text(
                     /* dbService.registeredDate.toString() */
-                    calContent.returnSickDays(),
+                    calContent.getsickDays(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,

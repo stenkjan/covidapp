@@ -285,7 +285,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             imageFlex: 3,
           ),
         ),
-       /*  PageViewModel(
+        /*  PageViewModel(
           title: "",
           body: "",
           image: _buildImage(
@@ -401,9 +401,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ? const EdgeInsets.all(12.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
-        size: Size(7.0, 7.0),
+        size: Size(10.0, 10.0),
+        spacing: EdgeInsets.all(10),
         color: Color(0xFFBDBDBD),
-        activeSize: Size(20.0, 7.0),
+        activeSize: Size(20.0, 20.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),

@@ -27,12 +27,7 @@ class GrafikState extends State<Grafik> {
   List? docList;
   int currentDateInt = 0;
 
-  final calDocStream = FirebaseFirestore.instance
-      .collection('users')
-      .doc("Hp3voKpg1hZE9uhfMHXjROc8lw72")
-      .collection('calendar')
-      .doc("20")
-      .snapshots();
+ 
   @override
   void initState() {
     currentDateInt =

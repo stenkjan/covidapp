@@ -65,89 +65,87 @@ class HeartGraphState extends State<HeartGraph> {
 
     features = featureList();
 
-    if (calContent.pulseGraphList.length <= 1) {
-      final CollectionReference calCollectionPulse = FirebaseFirestore.instance
-          .collection('users')
-          .doc(grafService.uid.toString())
-          .collection('exercise');
-      return FutureBuilder<DocumentSnapshot>(
-          future: calCollectionPulse.doc('pulse').get(),
-          builder:
-              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              Map<String, dynamic> data =
-                  snapshot.data!.data() as Map<String, dynamic>;
-
-              calContent.weekheartMap(data);
-              features = featureList();
-            }
-            return Text("lade Pulsdaten");
-          });
-    }
-
-    final CollectionReference calCollection = FirebaseFirestore.instance
+    final CollectionReference calCollectionPulse = FirebaseFirestore.instance
         .collection('users')
         .doc(grafService.uid.toString())
-        .collection('calendar');
-    return StreamBuilder<QuerySnapshot>(
-        stream: calCollection.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text("Es ist etwas schief gelaufen");
+        .collection('exercise');
+    return FutureBuilder<DocumentSnapshot>(
+        future: calCollectionPulse.doc('pulse').get(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data =
+                snapshot.data!.data() as Map<String, dynamic>;
+
+            calContent.weekpulseMap(data);
+            features = featureList();
           }
 
-          if (!snapshot.hasData) {
-            return const Text("Daten nicht verfügbar");
-          }
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return const Center(child: Text('Keine Daten'));
-            case ConnectionState.waiting:
-              return const Center(child: CircularProgressIndicator());
-            case ConnectionState.active:
-              /*  Map<String, dynamic> data */
+          final CollectionReference calCollection = FirebaseFirestore.instance
+              .collection('users')
+              .doc(grafService.uid.toString())
+              .collection('calendar');
+          return StreamBuilder<QuerySnapshot>(
+              stream: calCollection.snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return const Text("Es ist etwas schief gelaufen");
+                }
 
-              List dataList = snapshot.data!.docs;
-              /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
+                if (!snapshot.hasData) {
+                  return const Text("Daten nicht verfügbar");
+                }
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    return const Center(child: Text('Keine Daten'));
+                  case ConnectionState.waiting:
+                    return const Center(child: CircularProgressIndicator());
+                  case ConnectionState.active:
+                    /*  Map<String, dynamic> data */
+
+                    List dataList = snapshot.data!.docs;
+                    /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
             */
 
-              calContent.weekpiedataMap(dataList);
-
-              return Stack(
-                children: [
-                  Container(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                        onPressed: () => showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                    backgroundColor: Colors.black12,
-                                    title: const Text(""),
-                                    content: const Text(
-                                        "Die Grafik zeigt einen Vergleich zwischen Herz/-Kreislaufproblemen und der durch die Übung Puls Analyse gemessenen Herzrate (vergangene 7 Tage ab Auswahldatum).",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        )),
-                                    actions: [
-                                      TextButton(
-                                        child: const Text("Verstanden"),
-                                        onPressed: () => Navigator.pop(context),
-                                      ),
-                                    ])),
-                        child: const Icon(
-                          Icons.info,
-                          color: Colors.white,
-                        )),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: 300,
-                    width: 400,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        /*   Padding(
+                    calContent.weekpiedataMap(dataList);
+                    features = featureList();
+                    return Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.topRight,
+                          child: TextButton(
+                              onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                          backgroundColor: Colors.black12,
+                                          title: const Text(""),
+                                          content: const Text(
+                                              "Die Grafik zeigt einen Vergleich zwischen Herz/-Kreislaufproblemen und der durch die Übung Puls Analyse gemessenen Herzrate (vergangene 7 Tage ab Auswahldatum).",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              )),
+                                          actions: [
+                                            TextButton(
+                                              child: const Text("Verstanden"),
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                            ),
+                                          ])),
+                              child: const Icon(
+                                Icons.info,
+                                color: Colors.white,
+                              )),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 300,
+                          width: 400,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              /*   Padding(
                 padding: const EdgeInsets.symmetric(vertical: 64.0),
                 child: Text(
                   "Woche",
@@ -158,66 +156,67 @@ class HeartGraphState extends State<HeartGraph> {
                   ),
                 ),
               ), */
-                        const SizedBox(
-                          height: 30,
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              LineGraph(
+                                features: featureList(),
+                                size: const Size(350, 250),
+                                labelX: calContent.graphLabelL(),
+                                labelY: const [
+                                  '20',
+                                  '40',
+                                  '60',
+                                  '80',
+                                  '100',
+                                  '120',
+                                ],
+                                showDescription: true,
+                                graphColor: Colors.white54,
+                                descriptionHeight: 40,
+                              ),
+                              const SizedBox(
+                                height: 0,
+                              )
+                            ],
+                          ),
                         ),
-                        LineGraph(
-                          features: featureList(),
-                          size: const Size(350, 250),
-                          labelX: calContent.graphLabelL(),
-                          labelY: const [
-                            '20',
-                            '40',
-                            '60',
-                            '80',
-                            '100',
-                            '120',
-                          ],
-                          showDescription: true,
-                          graphColor: Colors.white54,
-                          descriptionHeight: 40,
-                        ),
-                        const SizedBox(
-                          height: 0,
-                        )
                       ],
-                    ),
-                  ),
-                ],
-              );
-            case ConnectionState.done:
-              // TODO: Handle this case.
-              break;
-          }
-          return const Text("loading");
+                    );
+                  case ConnectionState.done:
+                    // TODO: Handle this case.
+                    break;
+                }
+                return const Text("loading");
+              });
         });
   }
+}
 
-  List<Feature> featureList() {
-    List<Feature> features = [
-      Feature(
-        title: '''Herzschlag pro Minute : Ø''',
-        color: AppColors.pieColors[5],
-        data: calContent.weekGraphMap("pulse"),
-      ),
-      Feature(
-        title: headline[4]['tag'],
-        color: AppColors.pieColors[3],
-        data: calContent.weekGraphMap("herz"),
-      ),
-    ];
-    return features;
-  }
+List<Feature> featureList() {
+  List<Feature> features = [
+    Feature(
+      title: '''Herzschlag pro Minute : Ø''',
+      color: AppColors.pieColors[5],
+      data: calContent.weekGraphMap("pulse"),
+    ),
+    Feature(
+      title: headline[4]['tag'],
+      color: AppColors.pieColors[3],
+      data: calContent.weekGraphMap("herzPulse"),
+    ),
+  ];
+  return features;
+}
 
-  List<double> pulseData(Map<String, dynamic> data) {
-    List<double> doubleData = [];
-    for (int index = 0; index < 32; index++) {
-      if (data[index.toString()] != null) {
-        doubleData.add(double.parse(data[index.toString()].toString()));
-      } else if (data[index.toString()] == null) {
-        doubleData.add(0);
-      }
+List<double> pulseData(Map<String, dynamic> data) {
+  List<double> doubleData = [];
+  for (int index = 0; index < 32; index++) {
+    if (data[index.toString()] != null) {
+      doubleData.add(double.parse(data[index.toString()].toString()));
+    } else if (data[index.toString()] == null) {
+      doubleData.add(0);
     }
-    return doubleData;
   }
+  return doubleData;
 }

@@ -2,6 +2,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
+import 'package:covidapp/covidapp/services/auth_service.dart';
+import 'package:covidapp/covidapp/services/db_service.dart';
 
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
@@ -23,7 +25,8 @@ class CalendarContent with ChangeNotifier {
   late int schlaf = schlafL[currentDate];
   late int nerven = nervenL[currentDate];
   String comment = "";
-
+  static String sickDays = "0";
+  static String firstcalDay = "1";
   late String createdDate;
   late int createDateInt;
 /*calendar variable initialisation*/
@@ -42,9 +45,9 @@ class CalendarContent with ChangeNotifier {
   bool calTrue = false;
 
   bool spoofCheck = false;
-  List<bool> calBoolL = List.generate(31, (index) => false);
-  List<bool> breatheBoolL = List.generate(31, (index) => false);
-  List<bool> pulseBoolL = List.generate(31, (index) => false);
+  List<bool> calBoolL = List.generate(32, (index) => false);
+  List<bool> breatheBoolL = List.generate(32, (index) => false);
+  List<bool> pulseBoolL = List.generate(32, (index) => false);
   static String breatheMin = "0";
   static String breatheMinDashboard = "0";
   String breatheSec = "0";
@@ -66,7 +69,7 @@ class CalendarContent with ChangeNotifier {
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-
+  AuthService auth = AuthService();
   GrafikService gS = GrafikService();
   String? userId;
 /*calendar variables lists with initial data*/
@@ -567,27 +570,38 @@ class CalendarContent with ChangeNotifier {
   ///Map for Week Pie in Graphic
   void weekpiedataMap(List map) {
     for (int i = 0; i <= 31 && i >= 0; i++) {
-      final index = map.indexWhere((item) => item.id == i);
+      final index = map.indexWhere((item) => item.reference.id == i.toString());
 
-      if (index >= 0 && index < map.length) {
+      if (index >= 0) {
         moodL[i] = int.parse(map[index]['mood'].toString());
         muedigkeitL[i] = int.parse(map[index]['muedigkeit'].toString());
         atemnotL[i] = int.parse(map[index]['atemnot'].toString());
         sinneL[i] = int.parse(map[index]['sinne'].toString());
         herzL[i] = int.parse(map[index]['herz'].toString());
-        print("$herzL[i]");
         schlafL[i] = int.parse(map[index]['schlaf'].toString());
         nervenL[i] = int.parse(map[index]['nerven'].toString());
       }
     }
   }
 
-  void weekheartMap(Map map) {
-    for (int i = 0; i <= 31 && i >= 0; i++) {
-      final index = map.containsKey(i);
+  void weekpulseMap(Map map) {
+    bool indexTrue = false;
 
-      if (index && i < map.length) {
-        pulseWeekL[i] = map["i"];
+    for (int i = 0; i <= 31 && i >= 0; i++) {
+      String index = i.toString();
+      if (map.containsKey(index)) {
+        indexTrue = true;
+      } else {
+        indexTrue = false;
+      }
+
+      if (indexTrue == true) {
+/*      
+        pulseWeekL[i] = map.values.elementAt(index); */
+        double value = double.parse(map[index].toString());
+        pulseWeekL[i] = value;
+
+        print("map key " + pulseWeekL[i].toString());
       }
     }
   }
@@ -599,28 +613,31 @@ class CalendarContent with ChangeNotifier {
     }
     for (int i = grafikDate; i > 0 && symptomList.length < 7; i--) {
       if (symptomString == "mood") {
-        symptomList.insert(0, moodL[i].toDouble());
+        symptomList.insert(0, moodL[i].toDouble() / 100);
       }
       if (symptomString == "muedigkeit") {
-        symptomList.insert(0, muedigkeitL[i].toDouble());
+        symptomList.insert(0, muedigkeitL[i].toDouble() / 100);
       }
       if (symptomString == "atemnot") {
-        symptomList.insert(0, atemnotL[i].toDouble());
+        symptomList.insert(0, atemnotL[i].toDouble() / 100);
       }
       if (symptomString == "sinne") {
-        symptomList.insert(0, sinneL[i].toDouble());
+        symptomList.insert(0, sinneL[i].toDouble() / 100);
       }
       if (symptomString == "herz") {
-        symptomList.insert(0, herzL[i].toDouble());
+        symptomList.insert(0, herzL[i].toDouble() / 100);
       }
       if (symptomString == "schlaf") {
-        symptomList.insert(0, schlafL[i].toDouble());
+        symptomList.insert(0, schlafL[i].toDouble() / 100);
       }
       if (symptomString == "nerven") {
-        symptomList.insert(0, nervenL[i].toDouble());
+        symptomList.insert(0, nervenL[i].toDouble() / 100);
       }
       if (symptomString == "pulse") {
-        symptomList.insert(0, pulseWeekL[i]);
+        symptomList.insert(0, pulseWeekL[i] / 120);
+      }
+      if (symptomString == "herzPulse") {
+        symptomList.insert(0, herzL[i].toDouble() / 120);
       }
       if (i == 1) {
         i = 31;
@@ -790,18 +807,29 @@ class CalendarContent with ChangeNotifier {
     return calSumL;
   }
 
-  String returnSickDays() {
-    String returnsickDays;
+  String getsickDays() {
+    returnSickDays();
+    return sickDays;
+  }
+
+  String getFirstCalDay() {
+    returnSickDays();
+    return firstcalDay;
+  }
+
+  Future<String> returnSickDays() async {
+    QuerySnapshot qSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.getUser())
+        .collection('calendar')
+        .get();
+    firstcalDay = qSnapshot.docs.first.id;
     int sum = 0;
-    for (int i = 0; i < calSumL.length; i++) {
-      if (calSumL[i] != 0) {
-        sum++;
-      }
-    }
+    sum = qSnapshot.size;
     if (sum != 0) {
-      return returnsickDays = sum.toString();
+      return sickDays = sum.toString();
     }
-    return returnsickDays = "0";
+    return sickDays = "0";
   }
 
   String getcalAnswer() {

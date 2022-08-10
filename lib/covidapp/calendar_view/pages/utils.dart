@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'dart:collection';
+import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Example event class.
@@ -10,7 +11,7 @@ class Event {
   final String title;
   /* final Color eventColor; */
   const Event(this.title);
-
+  
   @override
   String toString() => title;
 }

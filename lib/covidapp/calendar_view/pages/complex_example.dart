@@ -169,8 +169,14 @@ class TableComplexExampleState extends State<TableComplexExample> {
             ), */
         TableCalendar<Event>(
           locale: 'de_DE',
-          firstDay: kFirstDay,
-          lastDay: kLastDay,
+          firstDay: DateTime(kToday.year, kToday.month,
+              int.parse(calContent.getFirstCalDay())),
+
+          lastDay: DateTime(
+              kToday.year,
+              kToday.month + 1,
+              int.parse(calContent.getFirstCalDay()) +
+                  (31 - int.parse(calContent.getFirstCalDay()))),
           focusedDay: _focusedDay.value,
           headerVisible: true,
           calendarStyle: const CalendarStyle(
