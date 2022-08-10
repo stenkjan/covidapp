@@ -80,7 +80,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
 
-calContent.returnSickDays();
+    calContent.returnSickDays();
     /*
     if (Credentials.signed_in = false) {
     return SignInScreen();
@@ -571,7 +571,7 @@ Widget _cardHeader(LrmDataModel item) {
   final AuthService auth = AuthService();
   final DatabaseService dbService = DatabaseService(uid: auth.getUser());
   CalendarContent calContent = CalendarContent();
-  
+
   dbService.readcalendarCollection();
   return Stack(
     children: <Widget>[
