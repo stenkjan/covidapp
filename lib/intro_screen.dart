@@ -141,7 +141,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         ),
       ),
       globalFooter: Padding(
-        padding: const EdgeInsets.only(bottom: 40.0),
+        padding: const EdgeInsets.only(bottom: 10.0),
         child: Container(
           width: double.infinity,
           height: 40,

@@ -301,11 +301,11 @@ Widget _card(Color color, String title, String time, String value, Icon icon) {
                       ),
                     ],
                   ),
-                  const Icon(
+                  /*      const Icon(
                     Icons.open_in_new,
                     size: 17.0,
                     color: Colors.white24,
-                  )
+                  ) */
                 ],
               ),
             ),
