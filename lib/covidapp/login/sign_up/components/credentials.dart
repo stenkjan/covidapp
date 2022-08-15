@@ -130,16 +130,19 @@ class _CredentialsState extends State<Credentials> {
             height: appPadding / 2,
           ),
           TextField(
-            inputFormatters: [
+            /*   inputFormatters: [
               FilteringTextInputFormatter.allow(
                 RegExp(
                     r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
                     r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
                     r"{0,253}[a-zA-Z0-9])?)*$"),
               ),
-            ],
+            ], */
             textAlign: TextAlign.center,
             controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            autocorrect: false,
+            enableSuggestions: false,
             decoration: InputDecoration(
                 icon: const Icon(
                   Icons.email_rounded,

@@ -213,7 +213,7 @@ class HomeState extends State<Home> {
                     padding: const EdgeInsets.only(top: 12.0),
                     child: InkWell(
                         onTap: () {
-                          _scaffoldKeyHome.currentState!.openDrawer();
+                          _scaffoldKeyHome.currentState?.openDrawer();
                         },
                         child: Image.asset("images/tabBar.png")),
                   ),

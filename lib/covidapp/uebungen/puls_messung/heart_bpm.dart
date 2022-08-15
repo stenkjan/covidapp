@@ -130,7 +130,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
     isCameraInitialized = false;
     if (_controller == null) return;
     // await _controller.stopImageStream();
-    await _controller!.dispose();
+    await _controller?.dispose();
     // while (_processing) {}
     // _controller = null;
   }
@@ -148,7 +148,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
           enableAudio: false, imageFormatGroup: ImageFormatGroup.yuv420);
 
       // 3. initialize the camera
-      await _controller!.initialize();
+      await _controller?.initialize();
 
       // 4. set torch to ON and start image stream
       Future.delayed(const Duration(milliseconds: 500))

@@ -23,12 +23,14 @@ class Wrapper extends StatelessWidget {
         builder: (_, AsyncSnapshot<User?> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             final User? user = snapshot.data;
-            if ((introDone == false) && (!userIDL.contains(user!.id))) {
-              introDone == true;
-              userIDL.add(user.id);
-              return const OnBoardingPage();
+            if (introDone == false) {
+              if (!userIDL.contains(user?.id ?? null)) {
+                introDone == true;
+                userIDL.add(user?.id);
+                return const OnBoardingPage();
+              }
             }
-          
+
             return user == null ? const SignInScreen() : const Home();
           } else {
             return const Scaffold(

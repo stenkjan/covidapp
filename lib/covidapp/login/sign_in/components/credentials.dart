@@ -24,6 +24,7 @@ class Credentials extends StatelessWidget {
           TextField(
             textAlign: TextAlign.center,
             controller: emailController,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
                 icon: const Icon(Icons.email_rounded, color: Colors.white24),
                 border: OutlineInputBorder(
@@ -43,7 +44,6 @@ class Credentials extends StatelessWidget {
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
                 icon: const Icon(Icons.lock, color: Colors.white24),
                 border: OutlineInputBorder(
