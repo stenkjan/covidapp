@@ -12,12 +12,8 @@ class DayPie extends StatefulWidget {
 }
 
 class DayPieState extends State<DayPie> {
-
- 
   @override
   void initState() {
- 
-   
     super.initState();
   }
 
@@ -25,7 +21,7 @@ class DayPieState extends State<DayPie> {
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     /* final grafService = Provider.of<GrafikService>(context); */
-   /*  final CollectionReference calCollection = FirebaseFirestore.instance
+    /*  final CollectionReference calCollection = FirebaseFirestore.instance
         .collection('users')
         .doc(grafService.uid)
         .collection('calendar'); */

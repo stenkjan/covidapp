@@ -74,246 +74,249 @@ class GrafikState extends State<Grafik> {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                    height: 25,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        color:
-                            /* calContent.getCalendarColorSum(calContent.sumColor), */
-                            calContent.getLevel(calContent.sumColor.toInt()),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 20.0,
-                            spreadRadius: 2.0,
-                          )
-                        ]),
-                    margin: EdgeInsets.only(
-                        left: SizeConfig.getWidth(context) / 45),
-                    child: Center(
-                      child: Text(
-                        currentDateInt.toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: fontSize(17),
-                          color: Colors.white,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 30,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                      height: 25,
+                      width: 30,
+                      decoration: BoxDecoration(
+                          color:
+                              /* calContent.getCalendarColorSum(calContent.sumColor), */
+                              calContent.getLevel(calContent.sumColor.toInt()),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 20.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                      margin: EdgeInsets.only(
+                          left: SizeConfig.getWidth(context) / 45),
+                      child: Center(
+                        child: Text(
+                          currentDateInt.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: fontSize(17),
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    )),
-                Container(
-                  width: 150,
-                  margin: const EdgeInsets.only(
-                    right: 5,
-                    top: 10,
-                  ),
-                  /*  child: Column(children: [
-                    Row(
-                      children: [
-                        const Text(
-                          "Ausgezeichnet      ",
-                          style: TextStyle(fontSize: 12, color: Colors.white),
-                        ),
-                        const Divider(
-                          thickness: 1,
-                        ),
-                        Icon(
-                          Icons.rectangle,
-                          size: 15,
-                          color: AppColors.pieColors[2],
-                        )
-                      ],
+                      )),
+                  Container(
+                    width: 150,
+                    margin: const EdgeInsets.only(
+                      right: 5,
+                      top: 10,
                     ),
-                    Row(
-                      children: [
-                        const Text(
-                          "Handlungsbedarf ",
-                          style: TextStyle(fontSize: 12, color: Colors.white),
-                        ),
-                        const Divider(
-                          thickness: 1,
-                        ),
-                        Icon(
-                          Icons.rectangle,
-                          size: 15,
-                          color: AppColors.pieColors[5],
-                        )
-                      ],
-                    )
-                  ]), */
-                ),
-                Container(
-                  width: SizeConfig.getWidth(context) / 3.7,
-                  height: 30,
-                  margin: EdgeInsets.only(
-                      right: SizeConfig.getWidth(context) / 45, top: 1),
-                  child: Row(
-                    children: <Widget>[
-                      ArrowButton(
+                    /*  child: Column(children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Ausgezeichnet      ",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
+                          const Divider(
+                            thickness: 1,
+                          ),
+                          Icon(
+                            Icons.rectangle,
+                            size: 15,
+                            color: AppColors.pieColors[2],
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            "Handlungsbedarf ",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
+                          const Divider(
+                            thickness: 1,
+                          ),
+                          Icon(
+                            Icons.rectangle,
+                            size: 15,
+                            color: AppColors.pieColors[5],
+                          )
+                        ],
+                      )
+                    ]), */
+                  ),
+                  Container(
+                    width: SizeConfig.getWidth(context) / 3.7,
+                    height: 30,
+                    margin: EdgeInsets.only(
+                        right: SizeConfig.getWidth(context) / 45, top: 1),
+                    child: Row(
+                      children: <Widget>[
+                        ArrowButton(
+                            margin: const EdgeInsets.only(bottom: 5, top: 2),
+                            iconbutton: IconButton(
+                              padding: const EdgeInsets.all(5),
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                size: fontSize(16),
+                                color: const Color.fromARGB(255, 6, 84, 104),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  dayChange = false;
+                                  currentDate();
+                                  calContent.getGrafikDate(currentDateInt);
+                                  /*  calContent.getgrafikCurrentDate(currentDateInt); */
+                                  /* calContent.getCalendarList(); */
+                                  grafService.dailyRead(
+                                      currentDateInt, dayChange);
+                                  grafService.docId = currentDateInt;
+                                });
+                              },
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                left: SizeConfig.getWidth(context) / 50)),
+                        ArrowButton(
                           margin: const EdgeInsets.only(bottom: 5, top: 2),
                           iconbutton: IconButton(
                             padding: const EdgeInsets.all(5),
                             icon: Icon(
-                              Icons.arrow_back_ios,
+                              Icons.arrow_forward_ios,
                               size: fontSize(16),
                               color: const Color.fromARGB(255, 6, 84, 104),
                             ),
                             onPressed: () {
                               setState(() {
-                                dayChange = false;
+                                dayChange = true;
                                 currentDate();
                                 calContent.getGrafikDate(currentDateInt);
+
                                 /*  calContent.getgrafikCurrentDate(currentDateInt); */
-                                /* calContent.getCalendarList(); */
+                                /*   calContent.getCalendarList(); */
+
                                 grafService.dailyRead(
                                     currentDateInt, dayChange);
+                                headline;
                                 grafService.docId = currentDateInt;
+                                if (kDebugMode) {
+                                  print(currentDateInt);
+                                }
                               });
                             },
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: SizeConfig.getWidth(context) / 50)),
-                      ArrowButton(
-                        margin: const EdgeInsets.only(bottom: 5, top: 2),
-                        iconbutton: IconButton(
-                          padding: const EdgeInsets.all(5),
-                          icon: Icon(
-                            Icons.arrow_forward_ios,
-                            size: fontSize(16),
-                            color: const Color.fromARGB(255, 6, 84, 104),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              dayChange = true;
-                              currentDate();
-                              calContent.getGrafikDate(currentDateInt);
-
-                              /*  calContent.getgrafikCurrentDate(currentDateInt); */
-                              /*   calContent.getCalendarList(); */
-
-                              grafService.dailyRead(currentDateInt, dayChange);
-                              headline;
-                              grafService.docId = currentDateInt;
-                              if (kDebugMode) {
-                                print(currentDateInt);
-                              }
-                            });
-                          },
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          GrafikDataStream((currentDateInt).toString(), gS.uid!),
-          /*   Column( 
-            children: [
-              Center(
-                  child: StreamBuilder<QuerySnapshot>(
-                stream: calStream,
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshots) {
-                  if (!snapshots.hasData) {
-                    return const Center(
-                      child: Text(
-                        'Data not available',
-                      ),
-                    );
-                  }
-                  if (snapshots.connectionState == ConnectionState.waiting) {
-                    return const Text("Loading");
-                  }
-
-                  return ListView(
-                    shrinkWrap: true,
-                    children:
-                        snapshots.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                          document.data()! as Map<String, dynamic>;
-                      return ListTile(
-                        title: Text(data['atemnot']),
-                        subtitle: Text(data['schlaf']),
+            GrafikDataStream((currentDateInt).toString(), gS.uid!),
+            /*   Column( 
+              children: [
+                Center(
+                    child: StreamBuilder<QuerySnapshot>(
+                  stream: calStream,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshots) {
+                    if (!snapshots.hasData) {
+                      return const Center(
+                        child: Text(
+                          'Data not available',
+                        ),
                       );
-                    }).toList(),
-                  );
-                },
-              )),
-            ],
-          ), */
-          const SizedBox(
-            height: 5.0,
-          ),
-          const SizedBox(
-            height: 318,
-            width: 400,
+                    }
+                    if (snapshots.connectionState == ConnectionState.waiting) {
+                      return const Text("Loading");
+                    }
+          
+                    return ListView(
+                      shrinkWrap: true,
+                      children:
+                          snapshots.data!.docs.map((DocumentSnapshot document) {
+                        Map<String, dynamic> data =
+                            document.data()! as Map<String, dynamic>;
+                        return ListTile(
+                          title: Text(data['atemnot']),
+                          subtitle: Text(data['schlaf']),
+                        );
+                      }).toList(),
+                    );
+                  },
+                )),
+              ],
+            ), */
+            const SizedBox(
+              height: 5.0,
+            ),
+            const SizedBox(
+              height: 318,
+              width: 400,
 
-            /// TabBar inclusion
-            child: GrafikTabBar(),
-          ),
-          /* Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: headline.map((data) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            margin: const EdgeInsets.only(right: 10),
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                                color: data['color'], shape: BoxShape.circle),
-                          ),
-                          Text(
-                            data['name'].toString(),
-                            style: TextStyle(
-                              fontSize: fontSize(12),
-                              color: data['level'],
+              /// TabBar inclusion
+              child: Expanded(child: GrafikTabBar()),
+            ),
+            /* Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: headline.map((data) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              margin: const EdgeInsets.only(right: 10),
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                  color: data['color'], shape: BoxShape.circle),
                             ),
-                          ),
-                          Container(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              (data['value'] * 10).toString(),
+                            Text(
+                              data['name'].toString(),
                               style: TextStyle(
                                 fontSize: fontSize(12),
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: data['level'],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                (data['value'] * 10).toString(),
+                                style: TextStyle(
+                                  fontSize: fontSize(12),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 5.0,
-              ),
-              const SizedBox(
-                height: 318,
-                width: 400,
-
-                /// TabBar inclusion
-                child: GrafikTabBar(),
-              ), */
-        ],
+                const SizedBox(
+                  height: 5.0,
+                ),
+                const SizedBox(
+                  height: 318,
+                  width: 400,
+          
+                  /// TabBar inclusion
+                  child: GrafikTabBar(),
+                ), */
+          ],
+        ),
       ),
     );
   }

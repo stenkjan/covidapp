@@ -26,8 +26,8 @@ class CalendarContent with ChangeNotifier {
   late int nerven = nervenL[currentDate];
   String comment = "";
   static String sickDays = "0";
+  static bool exerciseTrue = false;
   static String firstcalDay = "1";
-  late String createdDate;
   late int createDateInt;
 /*calendar variable initialisation*/
   int count = 0;
@@ -45,9 +45,9 @@ class CalendarContent with ChangeNotifier {
   bool calTrue = false;
 
   bool spoofCheck = false;
-  List<bool> calBoolL = List.generate(32, (index) => false);
-  List<bool> breatheBoolL = List.generate(32, (index) => false);
-  List<bool> pulseBoolL = List.generate(32, (index) => false);
+  static List<bool> calBoolL = List.generate(32, (index) => false);
+  static List<bool> breatheBoolL = List.generate(32, (index) => false);
+  static List<bool> pulseBoolL = List.generate(32, (index) => false);
   static String breatheMin = "0";
   static String breatheMinDashboard = "0";
   String breatheSec = "0";
@@ -62,6 +62,7 @@ class CalendarContent with ChangeNotifier {
   Color color = Colors.grey;
 
   int currentDate = int.parse(DateFormat('d').format(DateTime.now()));
+  String createdDate = DateFormat('d').format(DateTime.now());
   int grafikcurrentDateCal = 0;
   String fullDate = DateFormat(
     'd/M/y',
@@ -528,9 +529,9 @@ class CalendarContent with ChangeNotifier {
     };
     var values = daypiedataMapCal.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
-    pulseBoolL[indexgetter] = false;
+    /* pulseBoolL[indexgetter] = false;
     breatheBoolL[indexgetter] = false;
-    calBoolL[indexgetter] = false;
+    calBoolL[indexgetter] = false; */
     sumColorList[indexgetter] = sumColor;
     return daypiedataMapCal;
   }
@@ -589,8 +590,10 @@ class CalendarContent with ChangeNotifier {
 
     for (int i = 0; i <= 31 && i >= 0; i++) {
       String index = i.toString();
-      if (map.containsKey(index)) {
-        indexTrue = true;
+      if (map != null) {
+        if (map.containsKey(index)) {
+          indexTrue = true;
+        }
       } else {
         indexTrue = false;
       }
@@ -832,6 +835,28 @@ class CalendarContent with ChangeNotifier {
     return sickDays = "0";
   }
 
+/* 
+  Future returnExerciseData(String exercise, int date) async {
+    DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.getUser())
+        .collection('exercise')
+        .doc(exercise)
+        .get();
+    Map<String, dynamic> data = docSnapshot.data()! as Map<String, dynamic>;
+
+    if (docSnapshot.id == date.toString()) {
+      if (exercise == 'pulse') {
+        pulseBoolL[date] = data[date];
+      }
+      if (exercise == 'breathemin') {
+        breatheBoolL[date] = data[date];
+      }
+    } else {
+      return null;
+    }
+  }
+ */
   String getcalAnswer() {
     if (calSumL[currentDate] != 0) {
       calTrue == true;

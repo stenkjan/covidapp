@@ -13,12 +13,8 @@ class DayPiePeek extends StatefulWidget {
 }
 
 class DayPiePeekState extends State<DayPiePeek> {
-
-
   @override
   void initState() {
- 
-
     super.initState();
   }
 
@@ -32,6 +28,9 @@ class DayPiePeekState extends State<DayPiePeek> {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     Color color = widget.color;
     int index = widget.index;
+    /*  calContent.returnExerciseData('pulse', index);
+    calContent.returnExerciseData('breathemin', index);
+  */
     return Padding(
       padding: const EdgeInsets.only(
         left: 2.0,

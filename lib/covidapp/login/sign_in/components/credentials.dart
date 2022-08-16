@@ -94,8 +94,16 @@ class Credentials extends StatelessWidget {
                         if (emailController.text != null &&
                             // ignore: unnecessary_null_comparison
                             passwordController.text != null) {
-                          await authService.signInWithEmailAndPasswort(
-                              emailController.text, passwordController.text);
+                          var signIn =
+                              await authService.signInWithEmailAndPasswort(
+                                  emailController.text,
+                                  passwordController.text);
+                          if (signIn == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        '''Email oder Passwort falsch''')));
+                          }
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(

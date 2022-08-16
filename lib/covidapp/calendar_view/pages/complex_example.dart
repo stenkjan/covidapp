@@ -109,7 +109,6 @@ class TableComplexExampleState extends State<TableComplexExample> {
 
   @override
   Widget build(BuildContext context) {
-    final grafService = Provider.of<GrafikService>(context);
     AuthService auth = Provider.of<AuthService>(context);
     final calContent = Provider.of<CalendarContent>(context);
     if (calContent.fireDate == "") {
