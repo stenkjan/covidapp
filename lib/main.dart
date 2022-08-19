@@ -1,15 +1,22 @@
 // @dart=2.9
+import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
 import 'package:covidapp/covidapp/login/wrapper.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
+import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'package:covidapp/covidapp/webview/web_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'covidapp/content/calendar_content.dart';
 import 'covidapp/services/calendar_service.dart';
+import 'globals.dart';
+import 'home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,11 +24,13 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
-final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
   MyApp({Key key}) : super(key: key);
-
+  NavigationService nav = NavigationService();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -48,6 +57,12 @@ final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
+            navigatorKey: nav.navigatorKey,
+            routes: {
+              '/calendar': (_) => const CalendarTabBar(),
+              '/breathe': (_) => UebungBreathing(),
+              '/pulse': (_) => const PulsAnalyse(),
+            },
             supportedLocales: const [
               Locale('en', 'US'),
               Locale('de', 'AT'),

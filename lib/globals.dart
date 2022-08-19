@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 class Global {
   static const String title = "Long Covid App";
- final GlobalKey<NavigatorState> breatheKey = GlobalKey<NavigatorState>();
-}
+ }
 
+class NavigationService {
+   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+ Future<Object?>? navigateTo(String routeName) {
+    return navigatorKey.currentState?.pushNamed(routeName);
+  }
+}

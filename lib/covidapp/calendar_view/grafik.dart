@@ -261,7 +261,7 @@ class GrafikState extends State<Grafik> {
               width: 400,
 
               /// TabBar inclusion
-              child: Expanded(child: GrafikTabBar()),
+              child: GrafikTabBar(),
             ),
             /* Center(
                   child: Column(

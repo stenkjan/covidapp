@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/webview/main_web_view.dart';
 import 'package:covidapp/faq.dart';
 import 'package:covidapp/covidapp/calendar_view/lrm_data_model.dart';
@@ -12,6 +13,9 @@ import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
+import 'covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'globals.dart';
+import 'main.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -254,94 +258,108 @@ class HomeState extends State<Home> {
 /// Card for Archievements initialization */
 
 Widget _card(Color color, String title, String time, String value, Icon icon) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
-    child: Container(
-      height: 120.0,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Color(0xFF363940),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10.0,
-              spreadRadius: 2.0,
-            )
-          ]),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 30.0),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        height: 8.0,
-                        width: 8.0,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            color: color),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Text(
-                          title,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Sans",
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16.0),
+  NavigationService nav = NavigationService();
+  return GestureDetector(
+    onTap: (() {
+      if (title.contains("Atem")) {
+        nav.navigateTo("/breathe");
+      }
+      if (title.contains("Puls")) {
+        nav.navigateTo("/pulse");
+      }
+      if (title.contains("Kalender")) {
+        nav.navigateTo("/calendar");
+      }
+    }),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
+      child: Container(
+        height: 120.0,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            color: Color(0xFF363940),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              )
+            ]),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          height: 8.0,
+                          width: 8.0,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20.0)),
+                              color: color),
                         ),
-                      ),
-                    ],
-                  ),
-                  /*      const Icon(
-                    Icons.open_in_new,
-                    size: 17.0,
-                    color: Colors.white24,
-                  ) */
-                ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: Text(
+                            title,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Sans",
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                    /*      const Icon(
+                      Icons.open_in_new,
+                      size: 17.0,
+                      color: Colors.white24,
+                    ) */
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 45.0, right: 20.0, top: 13.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    time,
-                    style: const TextStyle(
-                        fontFamily: "Sans",
-                        fontWeight: FontWeight.w100,
-                        color: Colors.white54),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        value,
-                        style: const TextStyle(
-                            fontFamily: "Sans",
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 19.0),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 4.0),
-                        child: icon,
-                      ),
-                    ],
-                  )
-                ],
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 45.0, right: 20.0, top: 13.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      time,
+                      style: const TextStyle(
+                          fontFamily: "Sans",
+                          fontWeight: FontWeight.w100,
+                          color: Colors.white54),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          value,
+                          style: const TextStyle(
+                              fontFamily: "Sans",
+                              color: Colors.white,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 19.0),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0),
+                          child: icon,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ),

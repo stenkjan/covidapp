@@ -97,10 +97,10 @@ class HeartBPMDialog extends StatefulWidget {
   }
 
   @override
-  HeartBPPView createState() => HeartBPPView();
+  HeartBPMView createState() => HeartBPMView();
 }
 
-class HeartBPPView extends State<HeartBPMDialog> {
+class HeartBPMView extends State<HeartBPMDialog> {
   /// Camera controller
   CameraController? _controller;
 
