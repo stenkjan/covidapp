@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../content/calendar_content.dart';
-import '../../services/grafik_service.dart';
 import '../widgets/daily_pie_peek.dart';
 
 // ignore: use_key_in_widget_constructors
