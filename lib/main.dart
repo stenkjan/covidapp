@@ -24,13 +24,11 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
   final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
   MyApp({Key key}) : super(key: key);
-  NavigationService nav = NavigationService();
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,6 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-            navigatorKey: nav.navigatorKey,
             routes: {
               '/calendar': (_) => const CalendarTabBar(),
               '/breathe': (_) => UebungBreathing(),

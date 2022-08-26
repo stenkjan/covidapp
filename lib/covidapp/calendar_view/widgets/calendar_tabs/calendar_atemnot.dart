@@ -13,7 +13,7 @@ class CalendarAtemnot extends StatefulWidget {
 class CalendarAtemnotState extends State<CalendarAtemnot> {
   var zustand = <String>[];
   CalendarContent calContent = CalendarContent();
-  late double _value;
+  static late double _value;
   late Color colorswitch;
   bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
@@ -135,6 +135,7 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
               Opacity(
                 opacity: i.toDouble(),
                 child: Slider(
+                  divisions: 10,
                   min: 1,
                   max: 10,
                   value: _value,

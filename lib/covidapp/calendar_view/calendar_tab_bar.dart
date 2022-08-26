@@ -17,7 +17,7 @@ class CalendarTabBar extends StatefulWidget {
 class CalendarTabBarState extends State<CalendarTabBar> {
   late bool itemSwitch;
   String questionChoice = "";
-  bool showInformation = false;
+  static bool showInformation = false;
   late double floatingOpacity;
   @override
   void initState() {
@@ -241,38 +241,6 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                                                       Navigator.pop(context);
                                                     }),
                                               ),
-                                              /*  Container(
-                                                width: 50,
-                                                height: 25,
-                                                alignment: Alignment.bottomLeft,
-                                                margin: const EdgeInsets.only(
-                                                  bottom: 30,
-                                                ),
-                                                child: CheckboxListTile(
-                                                  checkColor: Colors.white,
-                                                  checkboxShape:
-                                                      const CircleBorder(),
-                                                  enableFeedback: true,
-                                                  title: const Text(
-                                                    "Ausblenden",
-                                                    textAlign: TextAlign.end,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontFamily: "sans",
-                                                    ),
-                                                  ), //    <-- label
-                                                  value: showInformation,
-                                                  onChanged: (bool? newValue) {
-                                                    setState(() {
-                                                      showInformation =
-                                                          newValue!;
-                                                    });
-                                                  },
-                                                ),
-                                              ), */
                                             ],
                                           ),
                                         ],
@@ -332,7 +300,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
           foregroundColor: const Color(0xFF31A1C9),
           backgroundColor: const Color(0xFF31A1C9),
           label: const Text(
-            "Speichern",
+            "Abschließen",
             style: TextStyle(color: Colors.white),
           ),
           icon: const Icon(

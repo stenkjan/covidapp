@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
+
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:draw_graph/draw_graph.dart';
-import 'package:draw_graph/models/feature.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
-import '../services/grafik_service.dart';
 
 class ExerciseData extends StatelessWidget {
   final String exerciseString;
@@ -60,7 +57,7 @@ class ExerciseData extends StatelessWidget {
             }
             return const Padding(
               padding: EdgeInsets.only(left: 8.0),
-              child: Text("Beispieldaten"),
+              child: Text(""),
             );
           }
 

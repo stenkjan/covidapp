@@ -12,9 +12,9 @@ class CalendarHerz extends StatefulWidget {
 
 class CalendarHerzState extends State<CalendarHerz> {
   var zustand = <String>[];
-  double _value = 1;
+  static double _value = 1;
   late Color colorswitch;
-  bool _switchValue = false;
+  static bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
   @override
@@ -93,24 +93,26 @@ class CalendarHerzState extends State<CalendarHerz> {
                   height: 25,
                   width: 50,
                   child: NeumorphicSwitch(
-                  style: const NeumorphicSwitchStyle(
-                      inactiveTrackColor: Color(0xFF2E4E57),
-                      lightSource: LightSource.bottom),
-                  value: _switchValue,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchValue = value;
-                      if (!value) i = 0;
-                      if (value) i = 1;
-                      if (_switchValue == true) {
-                        colorswitch = Colors.white;
-                      }
-                      if (_switchValue == false) {
-                        colorswitch = const Color(0xFF313237);
-                      }
-                    });
-                  },
-                ),
+                    style: const NeumorphicSwitchStyle(
+                        inactiveTrackColor: Color(0xFF2E4E57),
+                        lightSource: LightSource.bottom),
+                    value: _switchValue,
+                    onChanged: (value) {
+                      setState(() {
+                        _switchValue = value;
+                        if (!value) i = 0;
+                        if (value) i = 1;
+                        if (_switchValue == true) {
+                          colorswitch = Colors.white;
+                        }
+                        if (_switchValue == false) {
+                          colorswitch = const Color(0xFF313237);
+                        }
+                      });
+                     
+                      
+                    },
+                  ),
                 ),
                 const SizedBox(width: 5),
                 Text(list[i],
@@ -142,16 +144,17 @@ class CalendarHerzState extends State<CalendarHerz> {
                   ),
                 ),
               ),
-            
               Opacity(
                 opacity: i.toDouble(),
-                child:  Slider(
+                child: Slider(
+                    divisions: 10,
                     min: 1,
                     max: 10,
                     value: _value,
                     onChanged: (value) {
                       _value = value;
                       calContent.calendarContentherz(_value);
+                      
                     }),
               ),
             ],

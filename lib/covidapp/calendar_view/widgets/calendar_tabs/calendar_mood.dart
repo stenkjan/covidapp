@@ -84,7 +84,9 @@ class CalendarMoodState extends State<CalendarMood> {
                                   firstPress = true;
                                 });
                               } else if (firstPress) {
-                                setState(() {});
+                                setState(() {
+                                  calContent.count = 1;
+                                });
                               }
                               //method giving data to calendar;
                             }),

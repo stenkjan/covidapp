@@ -259,7 +259,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
           reverse: false,
         ),
-        PageViewModel(
+        /*   PageViewModel(
           title: "Tutorial",
           body:
               "Durch die neuesten Informationen rund um Long Covid die Genesung unterstützen. Treten Sie bei Fragen jederzeit mit uns in Kontakt.",
@@ -284,7 +284,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             bodyFlex: 3,
             imageFlex: 3,
           ),
-        ),
+        ), */
         /*  PageViewModel(
           title: "",
           body: "",
@@ -392,9 +392,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       showBackButton: false,
       //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
-      skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
+      skip: const Text('Überspringen',
+          style: TextStyle(fontWeight: FontWeight.w600)),
       next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
+      done: const Text('Fertig', style: TextStyle(fontWeight: FontWeight.w600)),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
@@ -402,7 +403,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        spacing: EdgeInsets.all(10),
+        spacing: EdgeInsets.all(15),
         color: Color(0xFFBDBDBD),
         activeSize: Size(20.0, 20.0),
         activeShape: RoundedRectangleBorder(

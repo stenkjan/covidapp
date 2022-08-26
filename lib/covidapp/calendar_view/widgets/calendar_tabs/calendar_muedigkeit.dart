@@ -13,9 +13,9 @@ class CalendarMuedigkeit extends StatefulWidget {
 
 class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
   var zustand = <String>[];
-  double _value = 1;
+ static  double _value = 1;
   late Color colorswitch;
-  bool _switchValue = false;
+  static bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
   int i = 0;
   @override
@@ -90,28 +90,29 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                  height: 25,
-                  width: 50,
-                  child: NeumorphicSwitch(
-                      style: const NeumorphicSwitchStyle(
-                          inactiveTrackColor: Color(0xFF2E4E57),
-                          lightSource: LightSource.bottom),
-                      value: _switchValue,
-                      onChanged: (value) {
-                        setState(() {
-                          _switchValue = value;
-                          if (!value) i = 0;
-                          if (value) i = 1;
-                          if (_switchValue == true) {
-                            colorswitch = Colors.white;
-                          }
-                          if (_switchValue == false) {
-                            colorswitch = const Color(0xFF313237);
-                          }
-                          /* calContent.calendarContentherz(_switchValue); */
-                        });
-                      },
-                    ),
+                      height: 25,
+                      width: 50,
+                      child: NeumorphicSwitch(
+                        style: const NeumorphicSwitchStyle(
+                            inactiveTrackColor: Color(0xFF2E4E57),
+                            lightSource: LightSource.bottom),
+                        value: _switchValue,
+                        onChanged: (value) {
+                          setState(() {
+                            _switchValue = value;
+                            if (!value) i = 0;
+                            if (value) i = 1;
+                            if (_switchValue == true) {
+                              colorswitch = Colors.white;
+                            }
+                            if (_switchValue == false) {
+                              colorswitch = const Color(0xFF313237);
+                            }
+                            /* calContent.calendarContentherz(_switchValue); */
+                          });
+                      
+                        },
+                      ),
                     ),
                     const SizedBox(width: 5),
                     Text(list[i],
@@ -129,7 +130,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-                const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: Row(
@@ -143,11 +144,11 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                   ),
                 ),
               ),
-             
               Opacity(
                 opacity: i.toDouble(),
-                child:  Slider(
-                    min: 1,
+                child: Slider(
+                    divisions: 10,
+                      min: 1,
                     max: 10,
                     value: _value,
                     onChanged: (value) {

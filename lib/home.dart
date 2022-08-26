@@ -40,7 +40,8 @@ class HomeState extends State<Home> {
     authService = AuthService();
     dbService = DatabaseService(uid: authService.getUser());
     cal = CalendarContent();
-
+    //cal.fill();
+    //cal.calendarSymptomView();
     breatheMin = cal.returnBreatheMin();
     if (breatheMin != "0") {
       cal.returnBreatheTrue();
@@ -184,15 +185,26 @@ class HomeState extends State<Home> {
                 ///
 
                 _card(
+                    context,
                     Colors.lightBlueAccent,
                     "$breatheMin Sekunden Atemübungen",
                     dbService.calContent.fullDate,
                     "Fortschritt",
                     iconbreathe),
-                _card(Colors.yellowAccent, "Tägliche Pulsmessung: $lastBPM",
-                    dbService.calContent.fullDate, "Fortschritt", iconpulse),
-                _card(Colors.lightGreenAccent, "Kalenderaktivitäten: $calAct",
-                    dbService.calContent.fullDate, "Fortschritt", iconcal),
+                _card(
+                    context,
+                    Colors.yellowAccent,
+                    "Tägliche Pulsmessung: $lastBPM",
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    iconpulse),
+                _card(
+                    context,
+                    Colors.lightGreenAccent,
+                    "Kalenderaktivitäten: $calAct",
+                    dbService.calContent.fullDate,
+                    "Fortschritt",
+                    iconcal),
 
                 const SizedBox(
                   height: 20.0,
@@ -257,18 +269,21 @@ class HomeState extends State<Home> {
 
 /// Card for Archievements initialization */
 
-Widget _card(Color color, String title, String time, String value, Icon icon) {
-  NavigationService nav = NavigationService();
+Widget _card(BuildContext context, Color color, String title, String time,
+    String value, Icon icon) {
   return GestureDetector(
     onTap: (() {
       if (title.contains("Atem")) {
-        nav.navigateTo("/breathe");
+        Navigator.of(context).push(
+            PageRouteBuilder(pageBuilder: (_, __, ___) => UebungBreathing()));
       }
       if (title.contains("Puls")) {
-        nav.navigateTo("/pulse");
+        Navigator.of(context).push(
+            PageRouteBuilder(pageBuilder: (_, __, ___) => const PulsAnalyse()));
       }
       if (title.contains("Kalender")) {
-        nav.navigateTo("/calendar");
+        Navigator.of(context).push(PageRouteBuilder(
+            pageBuilder: (_, __, ___) => const CalendarTabBar()));
       }
     }),
     child: Padding(

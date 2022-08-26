@@ -62,6 +62,7 @@ class BPMChart extends StatelessWidget {
       _data,
       primaryMeasureAxis: charts.NumericAxisSpec(
         showAxisLine: true,
+        
         renderSpec: const charts.NoneRenderSpec(),
         viewport: charts.NumericExtents(min, max),
         tickProviderSpec:

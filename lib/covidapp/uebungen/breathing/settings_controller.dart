@@ -68,7 +68,7 @@ class SettingsController extends GetxController {
 
   /// Total Time (increase) */
   void increaseTotalTime() {
-    if (totalTimeSeconds.value < 3570) {
+    if (totalTimeSeconds.value < 600) {
       totalTimeSeconds.value += 30;
     }
 
@@ -85,8 +85,8 @@ class SettingsController extends GetxController {
 
   /// Breath Time (increase) */
   void increaseBreathTime() {
-    if (breathTimeMilliseconds.value < 59500) {
-      breathTimeMilliseconds.value += 500;
+    if (breathTimeMilliseconds.value < 30000) {
+      breathTimeMilliseconds.value += 1000;
     }
     box.write(boxBreathTime, breathTimeMilliseconds.value);
   }
@@ -94,7 +94,7 @@ class SettingsController extends GetxController {
   /// Breath Time (decrease) */
   void decreaseBreathTime() {
     if (breathTimeMilliseconds.value > 0) {
-      breathTimeMilliseconds.value -= 500;
+      breathTimeMilliseconds.value -= 1000;
     }
     box.write(boxBreathTime, breathTimeMilliseconds.value);
   }

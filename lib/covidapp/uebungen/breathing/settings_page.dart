@@ -84,17 +84,23 @@ class SettingsPage extends GetView<SettingsController> {
                         Column(
                           children: [
                             IconButton(
-                                onPressed: () => c.increaseTotalTime(),
+                                onPressed: () {
+                                  c.increaseTotalTime();
+                                  calContent.getBreatheMin(c.totalTimeString);
+                                },
                                 icon: const Icon(
                                   Icons.arrow_drop_up,
                                   size: 32,
                                 )),
                             Text(
-                              '${calContent.getBreatheMin(c.totalTimeString)} min',
+                              '${c.totalTimeString} min',
                               style: Theme.of(context).textTheme.headline6,
                             ),
                             IconButton(
-                                onPressed: () => c.decreaseTotalTime(),
+                                onPressed: () {
+                                  c.decreaseTotalTime();
+                                  calContent.getBreatheMin(c.totalTimeString);
+                                },
                                 icon: const Icon(
                                   Icons.arrow_drop_down,
                                   size: 32,
@@ -137,10 +143,10 @@ class SettingsPage extends GetView<SettingsController> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Text(
+                  /* Text(
                     'Andere Einstellungen',
                     style: Theme.of(context).textTheme.headline5,
-                  ),
+                  ), */
                   SwitchListTile(
                     value: c.soundOn.value,
                     onChanged: (value) => c.setSoundOn(value),
@@ -151,7 +157,7 @@ class SettingsPage extends GetView<SettingsController> {
                       color: Colors.white,
                     ),
                   ),
-                  SwitchListTile(
+                  /* SwitchListTile(
                     value: c.hideTimer.value,
                     onChanged: (value) => c.setHideTimer(value),
                     activeColor: Colors.white,
@@ -163,7 +169,7 @@ class SettingsPage extends GetView<SettingsController> {
                     activeColor: Colors.white,
                     title: const Text('Bar verdecken'),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 30), */
                 ],
               ),
             );

@@ -31,11 +31,11 @@ class PulsAnalyseState extends State<PulsAnalyse> {
   Widget? dialog;
   late double imageSize;
   num bpmValue = 0;
-
+  static bool showInformation = false;
   @override
   void initState() {
     imageSize = 400;
-
+    showInformation = false;
     super.initState();
   }
 
@@ -174,57 +174,207 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                 : const SizedBox(
                     height: 5,
                   ),
-            Center(
-              child: Neumorphic(
-                margin: const EdgeInsets.all(20),
-                curve: Curves.easeIn,
-                style: NeumorphicStyle(
-                    shape: NeumorphicShape.convex,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(50)),
-                    depth: 5,
-                    intensity: 2.0,
-                    shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
-                    lightSource: LightSource.topLeft,
-                    color: const Color.fromARGB(255, 46, 155, 244)),
-                child: SizedBox(
-                  width: 220,
-                  height: 35,
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.favorite_rounded),
-                    style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(
-                          fontWeight: FontWeight.w300, fontSize: 18),
+            Stack(
+              children: [
+                Center(
+                  child: Neumorphic(
+                    margin: const EdgeInsets.all(20),
+                    curve: Curves.easeIn,
+                    style: NeumorphicStyle(
+                        shape: NeumorphicShape.convex,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(50)),
+                        depth: 5,
+                        intensity: 2.0,
+                        shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
+                        lightSource: LightSource.topLeft,
+                        color: const Color.fromARGB(255, 46, 155, 244)),
+                    child: SizedBox(
+                      width: 220,
+                      height: 35,
+                      child: ElevatedButton.icon(
+                        icon: const Icon(Icons.favorite_rounded),
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 18),
+                        ),
+                        label: Text(isBPMEnabled
+                            ? "Messung Anhalten"
+                            : "Puls Pro Minute"),
+                        onPressed: () => setState(() {
+                          imageSize = 20;
+                          if (isBPMEnabled) {
+                            isBPMEnabled = false;
+                            isvisible = false;
+
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                  pageBuilder: (_, __, ___) =>
+                                      const PulsAnalyse()),
+                            );
+                          } else {
+                            isBPMEnabled = true;
+                          }
+                          if (calContent.returnbpmDay().length > 7) {
+                            calContent.returnbpmDay().removeAt(1);
+                          }
+
+                          if (calContent
+                                  .returnbpmDay()[calContent.currentDate] !=
+                              bpmValue.toDouble()) {
+                            calContent.addbpmDay(bpmValue.toDouble());
+                            exService.dailyPulseExercise(
+                                bpmValue.toDouble().round());
+                          }
+                        }),
+                      ),
                     ),
-                    label: Text(
-                        isBPMEnabled ? "Messung Anhalten" : "Puls Pro Minute"),
-                    onPressed: () => setState(() {
-                      imageSize = 20;
-                      if (isBPMEnabled) {
-                        isBPMEnabled = false;
-                        isvisible = false;
-
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => const PulsAnalyse()),
-                        );
-                      } else {
-                        isBPMEnabled = true;
-                      }
-                      if (calContent.returnbpmDay().length > 7) {
-                        calContent.returnbpmDay().removeAt(1);
-                      }
-
-                      if (calContent.returnbpmDay()[calContent.currentDate] !=
-                          bpmValue.toDouble()) {
-                        calContent.addbpmDay(bpmValue.toDouble());
-                        exService
-                            .dailyPulseExercise(bpmValue.toDouble().round());
-                      }
-                    }),
                   ),
                 ),
-              ),
+                Visibility(
+                    visible: calContent.pulseTrue,
+                    child: Center(
+                      child: Text(
+                        bpmValue.toString(),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.only(left: 312.0, top: 13),
+                  child: TextButton(
+                      onPressed: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0))),
+                                backgroundColor: Colors.black12,
+                                title: const Text("Anleitung"),
+                                content: Builder(
+                                  builder: (context) {
+                                    // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                    var height =
+                                        MediaQuery.of(context).size.height;
+                                    var width =
+                                        MediaQuery.of(context).size.width;
+                                    return SizedBox(
+                                      height: height - 10,
+                                      width: width - 10,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 300,
+                                            height: 100,
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0)),
+                                                color: Color(0xFF363940),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black12,
+                                                    blurRadius: 10.0,
+                                                    spreadRadius: 2.0,
+                                                  ),
+                                                ],
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                      "images/pulse_helper.jpg",
+                                                    ),
+                                                    fit: BoxFit.cover)),
+                                          ),
+                                          const Expanded(
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.vertical,
+                                              child: SizedBox(
+                                                width: 350,
+                                                height: 250,
+                                                child: Text(
+                                                    """In der Pulsanalyse können Sie Ihren Puls täglich messen - dafür gehen Sie auf "Puls pro Minute" und aktivieren dann den Zugriff auf Ihre Kamera durch die App. Danach legen sie den Finger auf die Kamera und halten ihn still. Im Idealfall ist der Finger so auf der Linse des Smartphones, dass Veränderungen im Blutfluss fast mit bloßem Auge sichtbar sind.""",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                    )),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 200,
+                                            height: 120,
+                                            alignment: Alignment.center,
+                                            decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10.0)),
+                                                color: Color(0xFF363940),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.black12,
+                                                    blurRadius: 10.0,
+                                                    spreadRadius: 2.0,
+                                                  ),
+                                                ],
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                    "images/pulse_helper_2.png",
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                )),
+                                          ),
+                                          const Expanded(
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.vertical,
+                                              child: SizedBox(
+                                                width: 350,
+                                                height: 250,
+                                                child: Text(
+                                                    """Der obere Graph zeigt die rohe Herzrate, der untere Graph die geglätteten Werte. Die Zahl über den Graphen gibt den aktuellen Pulswert an. Zum Abschluss der Übung wählen sie "Messung anhalten".""",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                    )),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                ),
+                                actions: [
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.only(
+                                          left: 10,
+                                          top: 3,
+                                        ),
+                                        alignment: Alignment.bottomRight,
+                                        child: TextButton(
+                                          child: const Text(
+                                            "Verstanden",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                              fontFamily: "sans",
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )),
+                      child: const Icon(
+                        Icons.info,
+                        size: 30,
+                        color: Color.fromARGB(255, 165, 165, 165),
+                      )),
+                ),
+              ],
             ),
             Flexible(
               child: Container(

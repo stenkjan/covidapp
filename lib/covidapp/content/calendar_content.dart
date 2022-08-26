@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
@@ -527,6 +529,8 @@ class CalendarContent with ChangeNotifier {
       headline[5]['tag']: schlafL[indexgetter].toDouble(),
       headline[6]['tag']: nervenL[indexgetter].toDouble(),
     };
+    int atemnot = atemnotL[indexgetter];
+    print('$atemnot');
     var values = daypiedataMapCal.values;
     sumColor = (values.reduce((sum, element) => sum + element)) / 7;
     /* pulseBoolL[indexgetter] = false;
@@ -1000,6 +1004,85 @@ class CalendarContent with ChangeNotifier {
 
       notifyListeners();
       return docExists;
+    }
+  }
+
+  Future fill() async {
+    List<String> user = [
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2",
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2",
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3",
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2",
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2",
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2"
+    ];
+
+    CollectionReference userC = FirebaseFirestore.instance.collection('users');
+    for (int day = 17; day < 27; day++) {
+      for (int i = 0; i < user.length; i++) {
+        await userC
+            .doc(user[i])
+            .collection("calendar")
+            .doc(day.toString())
+            .set({
+          'id': user[i],
+          'mood': Random().nextInt(10),
+          'muedigkeit': Random().nextInt(10),
+          'atemnot': Random().nextInt(10),
+          'sinne': Random().nextInt(10),
+          'herz': Random().nextInt(10),
+          'schlaf': Random().nextInt(10),
+          'nerven': Random().nextInt(10),
+          'create_date': day,
+        }, SetOptions(merge: true)
+                /*  {
+            merge: true
+          } */
+                );
+      }
+    }
+  }
+
+  Future calendarSymptomView() async {
+    var list = [
+      30,
+      60,
+      90,
+      120,
+      150,
+      180,
+      210,
+      240,
+      270,
+      300,
+      330,
+      360,
+    ];
+
+    var listSec = List.generate(20, (index) => index + 1);
+    List<String> user = [
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2",
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2",
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3",
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2",
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2",
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2"
+    ];
+    CollectionReference userC = FirebaseFirestore.instance.collection('users');
+    for (int day = 1; day < 32; day++) {
+      for (int i = 0; i < user.length; i++) {
+        var randomItem = (list..shuffle()).first;
+        await userC.doc(user[i]).collection("exercise").doc("breathemin").set({
+          day.toString(): randomItem,
+        }, SetOptions(merge: true));
+        var randomItemSec = (listSec..shuffle()).first;
+        await userC.doc(user[i]).collection("exercise").doc("breathesec").set({
+          day.toString(): randomItemSec,
+        }, SetOptions(merge: true));
+        await userC.doc(user[i]).collection("exercise").doc("pulse").set({
+          day.toString(): Random().nextInt(100) + 40,
+        }, SetOptions(merge: true));
+      }
     }
   }
 }

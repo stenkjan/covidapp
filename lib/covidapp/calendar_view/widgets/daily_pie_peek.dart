@@ -218,13 +218,13 @@ class DayPiePeekState extends State<DayPiePeek> {
           PieChart(
             dataMap: calContent.daypiedataMapCalendar(widget.index),
             animationDuration: const Duration(milliseconds: 800),
-
+            centerText: "",
             chartRadius: MediaQuery.of(context).size.width / 9.3,
             colorList: AppColors.pieColors.cast(),
             initialAngleInDegree: 0,
             chartType: ChartType.ring,
             ringStrokeWidth: 75,
-            centerText: "",
+
             legendOptions: const LegendOptions(
               showLegends: false,
             ),
