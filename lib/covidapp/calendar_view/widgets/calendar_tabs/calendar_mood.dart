@@ -255,13 +255,11 @@ class CalendarMoodState extends State<CalendarMood> {
               const SizedBox(height: 5),
               SizedBox(
                 width: 350,
-                height: 25,
+                height: 50,
                 child: Text(
                     '${headline[0]['name']}'
                     ": "
-                    '${moodList[0]['name']}'
-                    " - "
-                    '${moodList[3]['name']}',
+                    'Wie fühlen Sie sich heute? Wählen Sie ein Emoji aus.',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
@@ -278,8 +276,8 @@ class CalendarMoodState extends State<CalendarMood> {
             width: 360,
             height: 50,
             child: Text(
-                "In der Grafik bedeuet 10 Ausgezeichnet und 100 schlecht",
-                maxLines: 2,
+                "Fühlen Sie sich besonders gut? (Emoji 1) Fühlen Sie sich besonders schlecht? (Emoji 4)",
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 softWrap: false,
                 textAlign: TextAlign.center,

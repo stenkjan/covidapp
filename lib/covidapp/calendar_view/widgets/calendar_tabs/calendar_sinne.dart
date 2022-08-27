@@ -52,15 +52,15 @@ class CalendarSinneState extends State<CalendarSinne> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 360,
                 height: 25,
-                child: Text('${headline[3]['name']}',
+                child: Text('Sinnesverlust: Geruch/Geschmack',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontSize: 20,
                         fontFamily: "Sans",
                         fontWeight: FontWeight.w400,

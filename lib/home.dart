@@ -117,7 +117,7 @@ class HomeState extends State<Home> {
                       autoPlay: false,
                       autoPlayInterval: const Duration(seconds: 2000),
                       viewportFraction: 1.0,
-                      height: 220.0,
+                      height: 160.0,
                     ),
                     items: [0, 1, 2, 3, 4].map((i) {
                       return Builder(
@@ -142,6 +142,16 @@ class HomeState extends State<Home> {
                         style: TextStyle(
                             fontWeight: FontWeight.w800,
                             color: Colors.white,
+                            fontFamily: "Sans",
+                            fontSize: 17.0),
+                      ),
+                      const SizedBox(width: 170),
+                      const Text(
+                        "Aktualisieren",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
                             fontFamily: "Sans",
                             fontSize: 17.0),
                       ),
@@ -289,7 +299,7 @@ Widget _card(BuildContext context, Color color, String title, String time,
     child: Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
       child: Container(
-        height: 120.0,
+        height: 110.0,
         width: double.infinity,
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -609,7 +619,7 @@ Widget _cardHeader(LrmDataModel item) {
   return Stack(
     children: <Widget>[
       Container(
-        height: 220.0,
+        height: 150.0,
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -617,7 +627,7 @@ Widget _cardHeader(LrmDataModel item) {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 25.0, right: 25.0),
@@ -626,7 +636,7 @@ Widget _cardHeader(LrmDataModel item) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 30.0,
+                height: 20.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -639,11 +649,15 @@ Widget _cardHeader(LrmDataModel item) {
                         fontFamily: "Sans",
                         fontSize: 20.0),
                   ),
-                  const Icon(Icons.coronavirus)
+                  const Icon(
+                    Icons.coronavirus,
+                    size: 30,
+                    color: Colors.white54,
+                  )
                 ],
               ),
               const SizedBox(
-                height: 60.0,
+                height: 10.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -703,12 +717,12 @@ Widget _cardHeader(LrmDataModel item) {
       Align(
         alignment: Alignment.topRight,
         child: Container(
-          height: 170.0,
-          width: 170.0,
+          height: 135.0,
+          width: 240.0,
           decoration: BoxDecoration(
               color: Colors.white10.withOpacity(0.1),
               borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(200.0),
+                  bottomLeft: Radius.circular(150.0),
                   topRight: Radius.circular(20.0))),
         ),
       ),

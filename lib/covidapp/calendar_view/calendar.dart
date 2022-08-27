@@ -16,6 +16,7 @@ import 'package:covidapp/covidapp/login/widgets/rounded_button.dart';
 import 'package:covidapp/covidapp/services/calendar_service.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -35,10 +36,18 @@ class CalendarState extends State<Calendar> {
   bool upToggle = false;
   bool downToggle = false;
   int currentDate = 0;
+  bool calVisibleB = true;
+  double widthValue = 25;
+  Icon icon = const Icon(
+    Icons.close_fullscreen,
+    color: Colors.white54,
+    size: 20,
+  );
   @override
   void initState() {
     currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
     //print(currentDate.toString());
+
     super.initState();
   }
 
@@ -54,16 +63,82 @@ class CalendarState extends State<Calendar> {
     final calContent = Provider.of<CalendarContent>(context);
     final calService = Provider.of<CalendarService>(context);
 
+    if (calVisibleB) {
+      icon = const Icon(
+        Icons.close_fullscreen,
+        color: Colors.white54,
+        size: 20,
+      );
+      widthValue = 25;
+    }
+    if (!calVisibleB) {
+      icon = const Icon(
+        Icons.open_in_full,
+        color: Colors.white54,
+        size: 20,
+      );
+      widthValue = 90;
+    }
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TableComplexExample(),
-            ),
+            Stack(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Visibility(
+                    visible: calVisibleB, child: TableComplexExample()),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 25,
+                  width: widthValue,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        enableFeedback: true,
+                        visualDensity: VisualDensity.compact,
+                        fixedSize: const Size(25, 25),
+                        primary: const Color.fromARGB(179, 2, 156, 245),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: const BorderSide(color: Color(0x815DDFDF)),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          icon,
+                          Visibility(
+                            visible: !calVisibleB,
+                            child: const SizedBox(
+                              width: 5,
+                            ),
+                          ),
+                          Visibility(
+                              visible: !calVisibleB,
+                              child: const Text(
+                                "Kalender",
+                                style: TextStyle(color: Colors.white),
+                              ))
+                        ],
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          if (calVisibleB == true) {
+                            calVisibleB = false;
+                            print('$calVisibleB');
+                          } else if (calVisibleB == false) {
+                            calVisibleB = true;
+                          }
+                        });
+                        // ignore: use_build_context_synchronously
+                      }),
+                ),
+              ),
+            ]),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

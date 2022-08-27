@@ -130,7 +130,7 @@ class BreatheGraphState extends State<BreatheGraph> {
                     ],
                     showDescription: true,
                     graphColor: Colors.white54,
-                    descriptionHeight: 40,
+                    descriptionHeight: 5,
                   ),
                   const SizedBox(
                     height: 0,

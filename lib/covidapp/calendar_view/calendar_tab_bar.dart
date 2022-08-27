@@ -95,7 +95,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                           tabs: const [
                             Tab(
                               child: Text(
-                                "Kalender",
+                                "Symptome",
                                 style: TextStyle(
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.w300,

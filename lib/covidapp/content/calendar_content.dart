@@ -246,8 +246,8 @@ class CalendarContent with ChangeNotifier {
   Icon getallTrue() {
     Icon iconDone = const Icon(Icons.task_alt,
         semanticLabel: "Check", color: Colors.lightGreen);
-    Icon iconNotDone =
-        const Icon(Icons.task_alt, semanticLabel: "Check", color: Colors.white);
+    Icon iconNotDone = const Icon(Icons.refresh_rounded,
+        semanticLabel: "Check", color: Colors.amberAccent);
     if (breatheTrue == true &&
         breatheMin.isNotEmpty &&
         pulseTrue == true &&
@@ -620,31 +620,31 @@ class CalendarContent with ChangeNotifier {
     }
     for (int i = grafikDate; i > 0 && symptomList.length < 7; i--) {
       if (symptomString == "mood") {
-        symptomList.insert(0, moodL[i].toDouble() / 100);
+        symptomList.insert(0, moodL[i].toDouble() / 10);
       }
       if (symptomString == "muedigkeit") {
-        symptomList.insert(0, muedigkeitL[i].toDouble() / 100);
+        symptomList.insert(0, muedigkeitL[i].toDouble() / 10);
       }
       if (symptomString == "atemnot") {
-        symptomList.insert(0, atemnotL[i].toDouble() / 100);
+        symptomList.insert(0, atemnotL[i].toDouble() / 10);
       }
       if (symptomString == "sinne") {
-        symptomList.insert(0, sinneL[i].toDouble() / 100);
+        symptomList.insert(0, sinneL[i].toDouble() / 10);
       }
       if (symptomString == "herz") {
-        symptomList.insert(0, herzL[i].toDouble() / 100);
+        symptomList.insert(0, herzL[i].toDouble() / 10);
       }
       if (symptomString == "schlaf") {
-        symptomList.insert(0, schlafL[i].toDouble() / 100);
+        symptomList.insert(0, schlafL[i].toDouble() / 10);
       }
       if (symptomString == "nerven") {
-        symptomList.insert(0, nervenL[i].toDouble() / 100);
+        symptomList.insert(0, nervenL[i].toDouble() / 10);
       }
       if (symptomString == "pulse") {
         symptomList.insert(0, pulseWeekL[i] / 120);
       }
       if (symptomString == "herzPulse") {
-        symptomList.insert(0, herzL[i].toDouble() / 120);
+        symptomList.insert(0, herzL[i].toDouble() / 12);
       }
       if (i == 1) {
         i = 31;
@@ -1018,7 +1018,7 @@ class CalendarContent with ChangeNotifier {
     ];
 
     CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    for (int day = 17; day < 27; day++) {
+    /* for (int day = 17; day <= 31; day++) {
       for (int i = 0; i < user.length; i++) {
         await userC
             .doc(user[i])
@@ -1033,14 +1033,32 @@ class CalendarContent with ChangeNotifier {
           'herz': Random().nextInt(10),
           'schlaf': Random().nextInt(10),
           'nerven': Random().nextInt(10),
-          'create_date': day,
+          'created_date': day,
         }, SetOptions(merge: true)
                 /*  {
             merge: true
           } */
                 );
       }
-    }
+    } */
+
+    /*  for (int day = 1; day < 28; day++) {
+      for (int i = 0; i < user.length; i++) {
+        var docRef =
+            userC.doc(user[i]).collection("calendar").doc(day.toString());
+
+        final updates = <String, dynamic>{
+          'create_date': FieldValue.delete(),
+        };
+        docRef.update(updates);
+        /*  var docRef = userC.doc(user[i]).collection("calendar").doc(day.toString());
+        docRef.delete().then(
+              (doc) => print("Document Deleted"),
+              onError: (e) => print("Error updating document $e"),
+            ); */
+      }
+    } */
+    print("list done");
   }
 
   Future calendarSymptomView() async {
@@ -1059,7 +1077,7 @@ class CalendarContent with ChangeNotifier {
       360,
     ];
 
-    var listSec = List.generate(20, (index) => index + 1);
+    var listSec = [1, 2, 5, 6, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20];
     List<String> user = [
       "IJWaAl0TlDgrab5vMKY9BKetxBa2",
       "LWTXyeZWKrUap8T1dzNJ8AeS9fr2",
@@ -1069,7 +1087,7 @@ class CalendarContent with ChangeNotifier {
       "OJX8NuVA7pOeAPVSObKFZa3PTvN2"
     ];
     CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    for (int day = 1; day < 32; day++) {
+    /*    for (int day = 17; day < 32; day++) {
       for (int i = 0; i < user.length; i++) {
         var randomItem = (list..shuffle()).first;
         await userC.doc(user[i]).collection("exercise").doc("breathemin").set({
@@ -1082,7 +1100,32 @@ class CalendarContent with ChangeNotifier {
         await userC.doc(user[i]).collection("exercise").doc("pulse").set({
           day.toString(): Random().nextInt(100) + 40,
         }, SetOptions(merge: true));
+
+    } 
+     }
+     print("list done"); */
+    /* for (int day = 1; day < 17; day++) {
+      for (int i = 0; i < user.length; i++) {
+        /*  var docRef =
+            userC.doc(user[i]).collection("exercise").doc("breathemin");
+        final updates = <String, dynamic>{
+          day.toString(): FieldValue.delete(),
+        }; */
+        /* docRef.update(updates); */
+        var docRef2 =
+            userC.doc(user[i]).collection("exercise").doc("breathesec");
+        final updates2 = <String, dynamic>{
+          day.toString(): FieldValue.delete(),
+        };
+        docRef2.update(updates2);
+        var docRef3 = userC.doc(user[i]).collection("exercise").doc("pulse");
+        final updates3 = <String, dynamic>{
+          day.toString(): FieldValue.delete(),
+        };
+        docRef3.update(updates3);
       }
     }
+    
+  } */
   }
 }

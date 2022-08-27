@@ -173,7 +173,7 @@ class HeartGraphState extends State<HeartGraph> {
                                 ],
                                 showDescription: true,
                                 graphColor: Colors.white54,
-                                descriptionHeight: 40,
+                                descriptionHeight: 5,
                               ),
                               const SizedBox(
                                 height: 0,
@@ -187,7 +187,7 @@ class HeartGraphState extends State<HeartGraph> {
                     // TODO: Handle this case.
                     break;
                 }
-                return const Text("loading");
+                return const Text("laden");
               });
         });
   }

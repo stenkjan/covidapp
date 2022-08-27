@@ -69,8 +69,8 @@ class UebungenState extends State<Uebungen> {
                 "Die unterversorgten Lungenteile gilt es in der Atemtherapie zu aktivieren, um Langzeitschäden zu verhindern. Die Aktivierung der Atmung ist dabei die effektivste Methode."),
             _card(Icons.favorite, "Puls Analyse",
                 "Die Überwachung der Pulsfrequenz ermöglicht ihnen, ihren Gesundheitszustand zu überwachen und Heilungsfortschritte zu erkennen."),
-            _card(Icons.emoji_emotions, "Emotionaler Zustand",
-                "Wie fühlen Sie sich heute? Beatworten Sie ein paar Fragen! ")
+            _card(Icons.emoji_emotions, "Symptome",
+                "Kalender und Symptomerfassung: Verschaffen Sie sich einen Überblick über die Entwicklung ihrer Symptome")
           ],
         ),
       ),

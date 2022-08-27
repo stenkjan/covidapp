@@ -120,7 +120,7 @@ class WeekGraphState extends State<WeekGraph> {
                           labelY: const ['20%', '40%', '60%', '80%', '100%'],
                           showDescription: true,
                           graphColor: Colors.white54,
-                          descriptionHeight: 40,
+                          descriptionHeight: 5,
                         ),
                         const SizedBox(
                           height: 0,
@@ -134,7 +134,7 @@ class WeekGraphState extends State<WeekGraph> {
               // TODO: Handle this case.
               break;
           }
-          return const Text("loading");
+          return const Text("laden");
         });
   }
 
