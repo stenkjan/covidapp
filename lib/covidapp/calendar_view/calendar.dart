@@ -129,7 +129,6 @@ class CalendarState extends State<Calendar> {
                         setState(() {
                           if (calVisibleB == true) {
                             calVisibleB = false;
-                            print('$calVisibleB');
                           } else if (calVisibleB == false) {
                             calVisibleB = true;
                           }

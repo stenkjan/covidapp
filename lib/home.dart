@@ -211,7 +211,7 @@ class HomeState extends State<Home> {
                 _card(
                     context,
                     Colors.lightGreenAccent,
-                    "Kalenderaktivitäten: $calAct",
+                    "Sympomerfassung: $calAct",
                     dbService.calContent.fullDate,
                     "Fortschritt",
                     iconcal),
