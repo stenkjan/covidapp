@@ -35,15 +35,20 @@ class OnBoardingPageState extends State<OnBoardingPage> {
   Widget _buildImage(String assetName) {
     // [double width = 350]
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Image.asset(
         assetName,
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height - 15,
         width: MediaQuery.of(context).size.width,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
+        gaplessPlayback: true,
+        filterQuality: FilterQuality.high,
       ),
     );
   }
 
+  static bool logoB = true;
+  static Color dotBarColor = Color.fromARGB(153, 2, 37, 58);
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(
@@ -69,14 +74,25 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       ),
       bodyTextStyle: bodyStyle,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Color.fromARGB(50, 123, 148, 160),
-      imagePadding: EdgeInsets.zero,
+      pageColor: Color.fromARGB(69, 123, 148, 160),
+      imagePadding: EdgeInsets.only(bottom: 60),
     );
 
     return IntroductionScreen(
       key: introKey,
       globalBackgroundColor: const Color.fromARGB(255, 50, 37, 231),
-
+      onChange: (value) {
+        setState(() {
+          if (value >= 1 && value <= 5) {
+            dotBarColor = const Color.fromARGB(153, 2, 37, 58);
+          } else if (value >= 6 && value <= 11) {
+            dotBarColor = const Color.fromARGB(15, 2, 36, 58);
+          } else if (value == 12) {
+            dotBarColor = const Color.fromARGB(153, 2, 37, 58);
+          }
+          logoB = false;
+        });
+      },
       globalHeader: Align(
         alignment: Alignment.topRight,
         child: SafeArea(
@@ -85,27 +101,30 @@ class OnBoardingPageState extends State<OnBoardingPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      'Long Covid App',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic,
-                        letterSpacing: 2.0,
-                        wordSpacing: 2.0,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                              color: Colors.black,
-                              offset: Offset(2, 1),
-                              blurRadius: 1.0),
-                          Shadow(
-                              color: Colors.black12,
-                              offset: Offset(2, 1),
-                              blurRadius: 2.0),
-                        ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Visibility(
+                      visible: logoB,
+                      child: const Text(
+                        'Long Covid App',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          letterSpacing: 2.0,
+                          wordSpacing: 2.0,
+                          color: Colors.white,
+                          shadows: <Shadow>[
+                            Shadow(
+                                color: Colors.black,
+                                offset: Offset(2, 1),
+                                blurRadius: 1.0),
+                            Shadow(
+                                color: Colors.black12,
+                                offset: Offset(2, 1),
+                                blurRadius: 2.0),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -166,7 +185,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 10),
+                const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
@@ -181,7 +200,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             contentMargin:
                 const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
             fullScreen: true,
-            bodyFlex: 3,
+            bodyFlex: 4,
             imageFlex: 3,
           ),
         ),
@@ -224,7 +243,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
               introKey.currentState?.animateScroll(0);
             },
             style: ElevatedButton.styleFrom(
-              primary: const Color(0xFF15EDED),
+              primary: const Color(0xFF31A1C9),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -236,9 +255,9 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           ),
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
             fullScreen: true,
-            bodyFlex: 3,
+            bodyFlex: 4,
             imageFlex: 3,
           ),
         ),
@@ -249,9 +268,9 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
             fullScreen: true,
-            bodyFlex: 3,
+            bodyFlex: 4,
             imageFlex: 3,
           ),
           image: _buildImage("images/star_walk.gif"), // inside forest gif
@@ -259,137 +278,140 @@ class OnBoardingPageState extends State<OnBoardingPage> {
 
           reverse: false,
         ),
-        /*   PageViewModel(
+        PageViewModel(
           title: "Tutorial",
           body:
               "Durch die neuesten Informationen rund um Long Covid die Genesung unterstützen. Treten Sie bei Fragen jederzeit mit uns in Kontakt.",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild1.png"), // inside forest gif
+          image: _buildImage("images/tutorial/tut1.png"), // inside forest gif
           // sunset gif
-          footer: SizedBox(
-            width: double.infinity,
-            height: 60,
-            child: ElevatedButton(
-              child: const Text(
-                'Überspringen',
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-              ),
-              onPressed: () => _onIntroEnd(context),
-            ),
-          ),
+
           decoration: pageDecoration.copyWith(
+            pageColor: Color.fromARGB(158, 123, 148, 160),
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 130),
             fullScreen: true,
             bodyFlex: 3,
             imageFlex: 3,
-          ),
-        ), */
-        /*  PageViewModel(
-          title: "",
-          body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild2.png"), // ontop forest river gif
-
-          decoration: pageDecoration.copyWith(
-            contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
-            fullScreen: true,
-            bodyFlex: 2,
-            imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild3.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut2.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild4.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut3.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 20, right: 0, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
-            imageFlex: 3,
+            imageFlex: 4,
+            imageAlignment: Alignment.topCenter,
+            imagePadding: const EdgeInsets.only(left: 20),
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild5.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut4.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
+            imagePadding: const EdgeInsets.only(bottom: 50),
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild6.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut5.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
+            imagePadding: const EdgeInsets.only(top: 20),
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild7.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut6.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 100),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
+            imagePadding: const EdgeInsets.only(bottom: 60),
           ),
         ),
         PageViewModel(
           title: "",
           body: "",
-          image: _buildImage(
-              "images/Tutorial_Images/Bild8.png"), // ontop forest river gif
+          image:
+              _buildImage("images/tutorial/tut7.png"), // ontop forest river gif
 
           decoration: pageDecoration.copyWith(
             contentMargin:
-                const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 30),
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 30),
             fullScreen: true,
             bodyFlex: 2,
             imageFlex: 3,
+            imageAlignment: Alignment.topCenter,
           ),
-        ), */
+        ),
+        PageViewModel(
+          title: "",
+          body: "",
+          image:
+              _buildImage("images/tutorial/tut8.png"), // ontop forest river gif
+
+          decoration: pageDecoration.copyWith(
+            contentMargin:
+                const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 30),
+            fullScreen: true,
+            bodyFlex: 3,
+            imageFlex: 5,
+            imageAlignment: Alignment.topCenter,
+            imagePadding: const EdgeInsets.only(right: 20),
+          ),
+        ),
       ],
       onDone: () => _onIntroEnd(context),
       //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
       showSkipButton: false,
       skipOrBackFlex: 0,
       nextFlex: 0,
-      showBackButton: false,
+      showBackButton: true,
       //rtl: true, // Display as right-to-left
       back: const Icon(Icons.arrow_back),
       skip: const Text('Überspringen',
@@ -399,35 +421,23 @@ class OnBoardingPageState extends State<OnBoardingPage> {
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: kIsWeb
-          ? const EdgeInsets.all(12.0)
+          ? const EdgeInsets.all(5.0)
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
-        size: Size(10.0, 10.0),
-        spacing: EdgeInsets.all(15),
+        size: Size(7.0, 7.0),
+        spacing: EdgeInsets.all(5),
         color: Color(0xFFBDBDBD),
-        activeSize: Size(20.0, 20.0),
+        activeSize: Size(11.0, 11.0),
         activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
         ),
       ),
-      dotsContainerDecorator: const ShapeDecoration(
-        color: Color.fromARGB(153, 2, 37, 58),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(9.0)),
+      dotsContainerDecorator: ShapeDecoration(
+        color: dotBarColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
       ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: const Center(child: Text("This is the screen after Introduction")),
     );
   }
 }

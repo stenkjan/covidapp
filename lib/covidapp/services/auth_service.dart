@@ -1,3 +1,4 @@
+import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:covidapp/covidapp/models/user_models.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -11,6 +12,7 @@ class AuthService {
   late String email;
   late User userGet;
   static String _name = "";
+  static bool introCheck = false;
   /*  late String userUid; */
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
@@ -63,11 +65,13 @@ class AuthService {
   Future<User?> signInWithEmailAndPasswort(
     String email,
     String password,
+    bool introCheck,
   ) async {
     final credential;
     try {
       credential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+
       return _userFromFirebase(credential.user);
     } on auth.FirebaseAuthException catch (e) {
       print(' $e');
@@ -77,12 +81,12 @@ class AuthService {
   }
 
   Future<User?> createUserWithEmailAndPasswort(
-    String email,
-    String password,
-    String firstname,
-    String lastname,
-    String birthday,
-  ) async {
+      String email,
+      String password,
+      String firstname,
+      String lastname,
+      String birthday,
+      bool introCheck) async {
     try {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -93,7 +97,8 @@ class AuthService {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       await DatabaseService(uid: credential.user!.uid)
-          .updateUserData(email, firstname, lastname, birthday);
+          .updateUserData(email, firstname, lastname, birthday, introCheck);
+      
       return _userFromFirebase(credential.user);
     } catch (signUpError) {
       if (signUpError is PlatformException) {

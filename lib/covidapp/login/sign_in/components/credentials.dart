@@ -97,7 +97,7 @@ class Credentials extends StatelessWidget {
                           var signIn =
                               await authService.signInWithEmailAndPasswort(
                                   emailController.text,
-                                  passwordController.text);
+                                  passwordController.text, true);
                           if (signIn == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

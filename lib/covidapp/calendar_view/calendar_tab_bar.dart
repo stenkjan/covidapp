@@ -22,7 +22,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
   @override
   void initState() {
     itemSwitch = false;
-    showInformation = false;
+    
     floatingOpacity = 0;
     super.initState();
   }
@@ -246,9 +246,11 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                                         ],
                                       ),
                                     );
-                                  });
+                                  }
+                                  );
                             }
-                          }),
+                          }
+                          ),
                     ),
                   ),
                 ),

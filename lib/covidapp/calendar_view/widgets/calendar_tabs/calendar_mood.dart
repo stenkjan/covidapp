@@ -259,8 +259,8 @@ class CalendarMoodState extends State<CalendarMood> {
                 child: Text(
                     '${headline[0]['name']}'
                     ": "
-                    'Wie fühlen Sie sich heute? Wählen Sie ein Emoji aus.',
-                    maxLines: 2,
+                    'Wie fühlen Sie sich heute? Wählen Sie ein Emoji aus, um die Symptomerfassung zu starten.',
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     textAlign: TextAlign.center,

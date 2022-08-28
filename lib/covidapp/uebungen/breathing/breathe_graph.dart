@@ -75,22 +75,22 @@ class BreatheGraphState extends State<BreatheGraph> {
         ),
         Container(
           alignment: Alignment.center,
-          height: 500,
-          width: 400,
+          height: 750,
+          width: 750,
           child: Stack(
             children: [
               const Padding(
-                padding: EdgeInsets.only(left: 8.0, top: 17),
+                padding: EdgeInsets.only(left: 8.0, top: 10),
                 child: Text("Sekunden"),
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 8.0, top: 39),
+                padding: EdgeInsets.only(left: 8.0, top: 25),
                 child: Text("Ein/Aus : Gesamt"),
               ),
               const Padding(
                 padding: EdgeInsets.only(
-                  left: 225.0,
-                  top: 380,
+                  left: 240.0,
+                  top: 384,
                 ),
                 child: Text("Tage"),
               ),
@@ -110,27 +110,36 @@ class BreatheGraphState extends State<BreatheGraph> {
                   ),
                 ), */
                   const SizedBox(
-                    height: 30,
+                    height: 0,
                   ),
-                  LineGraph(
-                    features: featureList(calContent.breatheGraphMinList,
-                        calContent.breatheGraphSecList),
-                    size: const Size(500, 400),
-                    labelX: calContent.graphLabelL(),
-                    labelY: const [
-                      '2 : 20',
-                      '4 : 40',
-                      '6 : 60',
-                      '8 : 80',
-                      '10 : 100',
-                      '12 : 120',
-                      '14 : 140',
-                      '16 : 160',
-                      '18 : 180',
-                    ],
-                    showDescription: true,
-                    graphColor: Colors.white54,
-                    descriptionHeight: 5,
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: LineGraph(
+                      features: featureList(calContent.breatheGraphMinList,
+                          calContent.breatheGraphSecList),
+                      size: const Size(400, 700),
+                      labelX: calContent.graphLabelL(),
+                      labelY: const [
+                        '2 : 20',
+                        '4 : 40',
+                        '6 : 60',
+                        '8 : 80',
+                        '10 : 100',
+                        '12 : 120',
+                        '14 : 140',
+                        '16 : 160',
+                        '18 : 180',
+                        '20: 200',
+                        '22: 220',
+                        '24: 240',
+                        '26: 260',
+                        '28: 280',
+                        '30: 300',
+                      ],
+                      showDescription: true,
+                      graphColor: Colors.white54,
+                      descriptionHeight: 5,
+                    ),
                   ),
                   const SizedBox(
                     height: 0,

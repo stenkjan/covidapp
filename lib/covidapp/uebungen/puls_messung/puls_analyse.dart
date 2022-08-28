@@ -34,7 +34,7 @@ class PulsAnalyseState extends State<PulsAnalyse> {
   static bool showInformation = false;
   @override
   void initState() {
-    imageSize = 400;
+    imageSize = 350;
     showInformation = false;
     super.initState();
   }
@@ -75,7 +75,9 @@ class PulsAnalyseState extends State<PulsAnalyse> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ExerciseData('pulse'),
+            Visibility(
+              visible: false,
+              child: ExerciseData('pulse')),
             isBPMEnabled
                 ? dialog = HeartBPMDialog(
                     context: context,

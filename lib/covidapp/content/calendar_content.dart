@@ -18,6 +18,7 @@ import 'package:intl/intl.dart';
 class CalendarContent with ChangeNotifier {
   /// Variables Inititialisation
   bool saved = false;
+  static bool introCheck = false;
 /*calendar variables*/
   late int mood = moodL[currentDate];
   late int muedigkeit = muedigkeitL[currentDate];
@@ -1005,6 +1006,27 @@ class CalendarContent with ChangeNotifier {
       notifyListeners();
       return docExists;
     }
+  }
+
+  bool getintroCheck() {
+    return introCheck;
+  }
+
+  Future introCheckDB(String? uid) async {
+    CollectionReference userC = FirebaseFirestore.instance.collection('users');
+    await userC.doc(uid).get().then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        final data = documentSnapshot.data() as Map<String, dynamic>;
+        introCheck = data['introCheck'];
+        if (documentSnapshot.exists == false) {
+          // ignore: avoid_print
+          print("no data exists for this user");
+        }
+      }
+    }, onError: (e) {
+      print("Error getting document: $e");
+      print("Error getting user: $uid");
+    });
   }
 
   Future fill() async {

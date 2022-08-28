@@ -18,14 +18,16 @@ class DatabaseService {
   int currentDate =
       int.parse(DateFormat('d').format(DateTime.now()).toString());
   static String name = "Long Covid App User";
+  bool introChecK = false;
   final CalendarContent calContent = CalendarContent();
-  Future updateUserData(
-      String email, String firstname, String lastname, String birthday) async {
+  Future updateUserData(String email, String firstname, String lastname,
+      String birthday, bool introCheck) async {
     return await userCollection.doc(uid).set({
       'email': email,
       'firstname': firstname,
       'lastname': lastname,
       'birthday': birthday,
+      'introCheck': introCheck,
     });
   }
 

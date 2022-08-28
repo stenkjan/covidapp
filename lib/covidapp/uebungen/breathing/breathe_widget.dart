@@ -3,6 +3,7 @@ import 'package:covidapp/covidapp/uebungen/uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
+import 'package:covidapp/covidapp/webview/main_web_view.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,10 +75,8 @@ class BreatheHome extends GetView<HomeController> {
           ),
           IconButton(
               onPressed: () {
-                /**navigation to Webview */
-                /* Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Webview())); */
-                Get.to(() => const Webview());
+                Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const WebMain()));
               },
               icon: const Icon(Icons.web)),
           const SizedBox(height: 30),
@@ -191,16 +190,17 @@ class BreatheHome extends GetView<HomeController> {
                           AlertDialog(
                               backgroundColor:
                                   const Color.fromARGB(202, 0, 0, 0),
-                              title: const Text(""),
                               content: Stack(
                                 children: [
-                                  Opacity(
-                                      opacity: 0.5,
+                                  Visibility(
+                                      visible: false,
                                       child: ExerciseData('breathemin')),
-                                  Opacity(
-                                      opacity: 0.5,
+                                  Visibility(
+                                      visible: false,
                                       child: ExerciseData('breathesec')),
-                                  const BreatheGraph(),
+                                  Container(
+                                      alignment: Alignment.topCenter,
+                                      child: const BreatheGraph()),
                                 ],
                               ),
                               actions: [

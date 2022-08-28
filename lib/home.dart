@@ -211,7 +211,7 @@ class HomeState extends State<Home> {
                 _card(
                     context,
                     Colors.lightGreenAccent,
-                    "Sympomerfassung: $calAct",
+                    "Symptomerfassung: $calAct",
                     dbService.calContent.fullDate,
                     "Fortschritt",
                     iconcal),
@@ -291,7 +291,7 @@ Widget _card(BuildContext context, Color color, String title, String time,
         Navigator.of(context).push(
             PageRouteBuilder(pageBuilder: (_, __, ___) => const PulsAnalyse()));
       }
-      if (title.contains("Kalender")) {
+      if (title.contains("Symptom")) {
         Navigator.of(context).push(PageRouteBuilder(
             pageBuilder: (_, __, ___) => const CalendarTabBar()));
       }
@@ -343,11 +343,11 @@ Widget _card(BuildContext context, Color color, String title, String time,
                         ),
                       ],
                     ),
-                    /*      const Icon(
+                    const Icon(
                       Icons.open_in_new,
                       size: 17.0,
                       color: Colors.white24,
-                    ) */
+                    )
                   ],
                 ),
               ),
@@ -450,7 +450,7 @@ class DrawerLayout extends StatelessWidget {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const FAQ()));
                     },
-                    child: itemDrawer(Icons.search, "FAQ")),
+                    child: itemDrawer(Icons.question_answer, "FAQ")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
@@ -462,13 +462,13 @@ class DrawerLayout extends StatelessWidget {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const CalendarTabBar()));
                     },
-                    child: itemDrawer(Icons.calendar_today, "KALENDER")),
+                    child: itemDrawer(Icons.calendar_today, "SYMPTOME")),
                 InkWell(
                     onTap: () {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const WebMain()));
                     },
-                    child: itemDrawer(Icons.calendar_today, "WEB")),
+                    child: itemDrawer(Icons.web, "WEB")),
                 const SizedBox(
                   height: 17.0,
                 ),

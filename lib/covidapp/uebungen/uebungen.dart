@@ -96,7 +96,7 @@ class UebungenState extends State<Uebungen> {
                   pageBuilder: (_, __, ___) => const PulsAnalyse()),
             );
           }
-          if (title == "Emotionaler Zustand") {
+          if (title == "Symptome") {
             Navigator.of(context).pushReplacement(PageRouteBuilder(
                 pageBuilder: (_, __, ___) => const CalendarTabBar()));
           }

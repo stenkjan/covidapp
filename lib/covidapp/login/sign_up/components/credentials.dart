@@ -240,7 +240,7 @@ class _CredentialsState extends State<Credentials> {
                             passwordController.text,
                             firstnameController.text,
                             lastnameController.text,
-                            birthdayController.text);
+                            birthdayController.text, true);
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).push(PageRouteBuilder(
                             pageBuilder: (_, __, ___) => const Home()));

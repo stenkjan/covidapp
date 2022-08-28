@@ -11,24 +11,26 @@ import '../../intro_screen.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
-  static bool introDone = false;
-  static List<String?> userIDL = [];
+
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
     final calContent = Provider.of<CalendarContent>(context);
-
+  
     return StreamBuilder<User?>(
         stream: authService.user,
         builder: (_, AsyncSnapshot<User?> snapshot) {
+           
           if (snapshot.connectionState == ConnectionState.active) {
             final User? user = snapshot.data;
-            if (introDone == false) {
-              if (!userIDL.contains(user?.id ?? null)) {
-                introDone == true;
-                userIDL.add(user?.id);
+             calContent.introCheckDB(user?.id);
+            
+              if (calContent.getintroCheck() == false) {
+                
+         
                 return const OnBoardingPage();
-              }
+              
             }
 
             return user == null ? const SignInScreen() : const Home();

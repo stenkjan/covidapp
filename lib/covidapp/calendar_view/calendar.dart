@@ -67,7 +67,7 @@ class CalendarState extends State<Calendar> {
       icon = const Icon(
         Icons.close_fullscreen,
         color: Colors.white54,
-        size: 20,
+        size: 23,
       );
       widthValue = 25;
     }
@@ -75,9 +75,9 @@ class CalendarState extends State<Calendar> {
       icon = const Icon(
         Icons.open_in_full,
         color: Colors.white54,
-        size: 20,
+        size: 22,
       );
-      widthValue = 90;
+      widthValue = 100;
     }
     return Scaffold(
       backgroundColor: const Color(0xFF313237),
@@ -87,12 +87,12 @@ class CalendarState extends State<Calendar> {
           children: <Widget>[
             Stack(children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.fromLTRB(18.0, 8.0, 8.0, 8.0),
                 child: Visibility(
                     visible: calVisibleB, child: TableComplexExample()),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.fromLTRB(18.0, 8.0, 8.0, 8.0),
                 child: SizedBox(
                   height: 25,
                   width: widthValue,
