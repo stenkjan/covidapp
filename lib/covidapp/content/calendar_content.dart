@@ -606,10 +606,10 @@ class CalendarContent with ChangeNotifier {
       if (indexTrue == true) {
 /*      
         pulseWeekL[i] = map.values.elementAt(index); */
-        double value = double.parse(map[index].toString());
-        pulseWeekL[i] = value;
-
-        print("map key " + pulseWeekL[i].toString());
+        num value = map[index];
+        if (value != 0 && value != null) {
+          pulseWeekL[i] = value.toDouble();
+        }
       }
     }
   }
