@@ -198,23 +198,18 @@ class HomeState extends State<Home> {
                     context,
                     Colors.lightBlueAccent,
                     "$breatheMin Sekunden Atemübungen",
-                    dbService.calContent.fullDate,
+                    "",
                     "Fortschritt",
                     iconbreathe),
                 _card(
                     context,
                     Colors.yellowAccent,
                     "Tägliche Pulsmessung: $lastBPM",
-                    dbService.calContent.fullDate,
+                    "",
                     "Fortschritt",
                     iconpulse),
-                _card(
-                    context,
-                    Colors.lightGreenAccent,
-                    "Symptomerfassung: $calAct",
-                    dbService.calContent.fullDate,
-                    "Fortschritt",
-                    iconcal),
+                _card(context, Colors.lightGreenAccent,
+                    "Symptomerfassung: $calAct", "", "Fortschritt", iconcal),
 
                 const SizedBox(
                   height: 20.0,

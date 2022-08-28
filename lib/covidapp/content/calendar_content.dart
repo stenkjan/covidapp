@@ -1031,56 +1031,51 @@ class CalendarContent with ChangeNotifier {
 
   Future fill() async {
     List<String> user = [
-      "IJWaAl0TlDgrab5vMKY9BKetxBa2",
-      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2",
-      "cQXVdiyfGJeQK2AXQecUBibi9ZH3",
-      "RTxndylZhpVm1YNjRCVpbMUdYnP2",
-      "rpyUKF1asVOiHNN4MGNKrKfKViI2",
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2"
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
     ];
 
     CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    /* for (int day = 17; day <= 31; day++) {
-      for (int i = 0; i < user.length; i++) {
-        await userC
-            .doc(user[i])
-            .collection("calendar")
-            .doc(day.toString())
-            .set({
-          'id': user[i],
-          'mood': Random().nextInt(10),
-          'muedigkeit': Random().nextInt(10),
-          'atemnot': Random().nextInt(10),
-          'sinne': Random().nextInt(10),
-          'herz': Random().nextInt(10),
-          'schlaf': Random().nextInt(10),
-          'nerven': Random().nextInt(10),
-          'created_date': day,
-        }, SetOptions(merge: true)
-                /*  {
-            merge: true
-          } */
-                );
-      }
-    } */
+    for (int day = 17; day <= 24; day++) {
+      /* for (int i = 0; i < user.length; i++) { */
+      await userC.doc(user[3]).collection("calendar").doc(day.toString()).set({
+        'id': user[3],
+        'mood': Random().nextInt(3),
+        'muedigkeit': Random().nextInt(5),
+        'atemnot': Random().nextInt(6),
+        'sinne': Random().nextInt(5),
+        'herz': Random().nextInt(3),
+        'schlaf': Random().nextInt(2),
+        'nerven': Random().nextInt(1),
+        'created_date': day,
+      }, SetOptions(merge: true));
+    }
+    /*   }  */
 
     /*  for (int day = 1; day < 28; day++) {
-      for (int i = 0; i < user.length; i++) {
-        var docRef =
-            userC.doc(user[i]).collection("calendar").doc(day.toString());
+       for (int i = 0; i < user.length; i++) { 
+      var docRef =
+          userC.doc(user[i]).collection("calendar").doc(day.toString());
 
-        final updates = <String, dynamic>{
-          'create_date': FieldValue.delete(),
-        };
-        docRef.update(updates);
-        /*  var docRef = userC.doc(user[i]).collection("calendar").doc(day.toString());
+      final updates = <String, dynamic>{
+         'create_date': FieldValue.delete(), 
+        
+      
+       
+      };
+      docRef.update(updates);
+      /*  var docRef = userC.doc(user[i]).collection("calendar").doc(day.toString());
         docRef.delete().then(
               (doc) => print("Document Deleted"),
               onError: (e) => print("Error updating document $e"),
             ); */
-      }
-    } */
-    print("list done");
+      /*  } */
+    }
+    print("list done"); */
   }
 
   Future calendarSymptomView() async {
