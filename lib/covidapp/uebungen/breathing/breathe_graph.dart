@@ -89,7 +89,7 @@ class BreatheGraphState extends State<BreatheGraph> {
               ),
               const Padding(
                 padding: EdgeInsets.only(
-                  left: 240.0,
+                  left: 220.0,
                   top: 384,
                 ),
                 child: Text("Tage"),

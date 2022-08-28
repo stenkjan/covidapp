@@ -145,7 +145,7 @@ class HomeState extends State<Home> {
                             fontFamily: "Sans",
                             fontSize: 17.0),
                       ),
-                      const SizedBox(width: 170),
+                      const SizedBox(width: 150),
                       const Text(
                         "Aktualisieren",
                         style: TextStyle(

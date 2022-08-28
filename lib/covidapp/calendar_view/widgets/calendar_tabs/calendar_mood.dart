@@ -255,7 +255,7 @@ class CalendarMoodState extends State<CalendarMood> {
               const SizedBox(height: 5),
               SizedBox(
                 width: 350,
-                height: 50,
+                height: 65,
                 child: Text(
                     '${headline[0]['name']}'
                     ": "
