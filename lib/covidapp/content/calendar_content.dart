@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,8 +11,11 @@ import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
 import 'package:covidapp/covidapp/content/strings.dart';
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /*MasterClass of Variable Declaration and Methods for Value Exchange */
 
@@ -1029,36 +1033,92 @@ class CalendarContent with ChangeNotifier {
     });
   }
 
-  Future fill() async {
+  Future getCsv() async {
+    List<List<String>> itemList = [
+      <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
+    ];
+    List<String> csvData = [];
     List<String> user = [
-         "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar 
-      /* "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
-      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro */
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro
       /*   "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
       "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne */
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne*/
+    ];
+    DateTime date = DateTime.now();
+    String formattedDate = DateFormat('dd-MM-yyyy-HH-mm-ss').format(date);
+    Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
+    var status = await Permission.storage.status;
+    if (status.isDenied) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+      ].request();
+      print(statuses[Permission.storage]);
+    }
+
+    for (int i = 0; i < user.length; i++) {
+      QuerySnapshot qSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user[i])
+          .collection('calendar')
+          .get();
+      itemList = [
+        <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
+      ];
+      for (int index = 0; index <= 14; index++) {
+        /* if (qSnapshot.docs[index].exists) { */
+        DocumentSnapshot doc = qSnapshot.docs[index];
+
+        itemList.add(<String>[
+          doc.get('muedigkeit').toString(),
+          doc.get('atemnot').toString(),
+          doc.get('sinne').toString(),
+          doc.get('herz').toString(),
+          doc.get('schlaf').toString(),
+          doc.get('nerven').toString()
+        ]);
+      }
+      /* } */
+      final File file =
+          await (File('${generalDownloadDir.path}/item_export_$i.csv')
+              .create());
+
+      csvData.add(const ListToCsvConverter().convert(itemList));
+      await file.writeAsString(csvData.last);
+    }
+  }
+
+  Future fill() async {
+    List<String> user = [
+      /* "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
+       "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro */
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
     ];
 
     CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    for (int day = 27; day <= 31; day++) {
-      /* for (int i = 0; i < user.length; i++) { */
+    /*  for (int day = 17; day <= 24; day++) {
+      for (int i = 0; i < user.length; i++) {
         await userC
-            .doc(user[0])
+            .doc(user[i])
             .collection("calendar")
             .doc(day.toString())
             .set({
-          'id': user[0],
-          'mood': Random().nextInt(4) + 1,
-          'muedigkeit': Random().nextInt(2),
+          'id': user[i],
+          'mood': Random().nextInt(8) + 1,
+          'muedigkeit': Random().nextInt(6),
           'atemnot': Random().nextInt(8),
-          'sinne': 0,
-          'herz': 0,
-          'schlaf': Random().nextInt(2),
-          'nerven': 0,
+          'sinne': Random().nextInt(7),
+          'herz': Random().nextInt(8),
+          'schlaf': Random().nextInt(6),
+          'nerven': Random().nextInt(7),
           'created_date': day,
         }, SetOptions(merge: true));
-      /* } */
-    }
+      }
+    } */
 
     /*  for (int day = 1; day < 28; day++) {
        for (int i = 0; i < user.length; i++) { 
@@ -1100,12 +1160,12 @@ class CalendarContent with ChangeNotifier {
 
     var listSec = [1, 2, 5, 6, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20];
     List<String> user = [
-    "IJWaAl0TlDgrab5vMKY9BKetxBa2", //ma
-      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2",//mat
-      "cQXVdiyfGJeQK2AXQecUBibi9ZH3",//ro
-      "RTxndylZhpVm1YNjRCVpbMUdYnP2",//ni
-      "rpyUKF1asVOiHNN4MGNKrKfKViI2",//se
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2"//ne
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2", //ma
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //mat
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //ro
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2", //ni
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //se
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
     ];
     CollectionReference userC = FirebaseFirestore.instance.collection('users');
     /*    for (int day = 17; day < 32; day++) {
