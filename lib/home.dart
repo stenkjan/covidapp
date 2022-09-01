@@ -41,7 +41,8 @@ class HomeState extends State<Home> {
     dbService = DatabaseService(uid: authService.getUser());
     cal = CalendarContent();
    // cal.fill();
-    //cal.getCsv();
+    //cal.getCsvCal();
+    cal.getCsvEx();
     //cal.calendarSymptomView();
     breatheMin = cal.returnBreatheMin();
     if (breatheMin != "0") {

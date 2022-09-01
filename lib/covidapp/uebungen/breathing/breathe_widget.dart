@@ -1,4 +1,5 @@
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
+import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:covidapp/covidapp/uebungen/uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';

@@ -1033,7 +1033,228 @@ class CalendarContent with ChangeNotifier {
     });
   }
 
-  Future getCsv() async {
+  Future getCsvEx() async {
+    List<List<String>> itemListBreathe = [
+      <String>[
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"
+      ]
+    ];
+    List<List<String>> itemListBreathesec = [
+      <String>[
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"
+      ]
+    ];
+    List<List<String>> itemListPulse = [
+      <String>[
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31"
+      ]
+    ];
+
+    List<String> user = [
+      "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
+      "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
+      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
+      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
+    ];
+    DateTime date = DateTime.now();
+    String formattedDate = DateFormat('dd-MM-yyyy-HH-mm-ss').format(date);
+    Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
+    var status = await Permission.storage.status;
+    if (status.isDenied) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+      ].request();
+      print(statuses[Permission.storage]);
+    }
+
+    for (int i = 0; i < user.length; i++) {
+      QuerySnapshot qSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user[i])
+          .collection('exercise')
+          .get();
+      itemListBreathe = [
+        <String>[
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31"
+        ]
+      ];
+      List<List<String>> itemListBreathesec = [
+        <String>[
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31"
+        ]
+      ];
+      List<List<String>> itemListPulse = [
+        <String>[
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31"
+        ]
+      ];
+
+      /* if (qSnapshot.docs[index].exists) { */
+      DocumentSnapshot docBreathe = qSnapshot.docs[0];
+      DocumentSnapshot docBreathesec = qSnapshot.docs[1];
+      DocumentSnapshot docPulse = qSnapshot.docs[2];
+
+      itemListBreathe.add(<String>[
+        docBreathe.get('17').toString(),
+        docBreathe.get('18').toString(),
+        docBreathe.get('19').toString(),
+        docBreathe.get('20').toString(),
+        docBreathe.get('21').toString(),
+        docBreathe.get('22').toString(),
+        docBreathe.get('23').toString(),
+        docBreathe.get('24').toString(),
+        docBreathe.get('25').toString(),
+        docBreathe.get('26').toString(),
+        docBreathe.get('27').toString(),
+        docBreathe.get('28').toString(),
+        docBreathe.get('29').toString(),
+        docBreathe.get('30').toString(),
+        docBreathe.get('31').toString()
+      ]);
+      itemListBreathesec.add(<String>[
+        docBreathesec.get('17').toString(),
+        docBreathesec.get('18').toString(),
+        docBreathesec.get('19').toString(),
+        docBreathesec.get('20').toString(),
+        docBreathesec.get('21').toString(),
+        docBreathesec.get('22').toString(),
+        docBreathesec.get('23').toString(),
+        docBreathesec.get('24').toString(),
+        docBreathesec.get('25').toString(),
+        docBreathesec.get('26').toString(),
+        docBreathesec.get('27').toString(),
+        docBreathesec.get('28').toString(),
+        docBreathesec.get('29').toString(),
+        docBreathesec.get('30').toString(),
+        docBreathesec.get('31').toString()
+      ]);
+      itemListPulse.add(<String>[
+        docPulse.get('17').toString(),
+        docPulse.get('18').toString(),
+        docPulse.get('19').toString(),
+        docPulse.get('20').toString(),
+        docPulse.get('21').toString(),
+        docPulse.get('22').toString(),
+        docPulse.get('23').toString(),
+        docPulse.get('24').toString(),
+        docPulse.get('25').toString(),
+        docPulse.get('26').toString(),
+        docPulse.get('27').toString(),
+        docPulse.get('28').toString(),
+        docPulse.get('29').toString(),
+        docPulse.get('30').toString(),
+        docPulse.get('31').toString()
+      ]);
+
+      /* } */
+      final File fileBreathe =
+          await (File('${generalDownloadDir.path}/exc_export_breathe_$i.csv')
+              .create());
+      final File fileBreathesec =
+          await (File('${generalDownloadDir.path}/exc_export_breathesec_$i.csv')
+              .create());
+      final File filePulse =
+          await (File('${generalDownloadDir.path}/exc_export_pulse_$i.csv')
+              .create());
+
+      String csvDataBreathe =
+          const ListToCsvConverter().convert(itemListBreathe);
+      await fileBreathe.writeAsString(csvDataBreathe);
+      String csvDataBreathesec =
+          const ListToCsvConverter().convert(itemListBreathesec);
+      await fileBreathesec.writeAsString(csvDataBreathesec);
+      String csvDataPulse = const ListToCsvConverter().convert(itemListPulse);
+      await filePulse.writeAsString(csvDataPulse);
+    }
+  }
+
+  Future getCsvCal() async {
     List<List<String>> itemList = [
       <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
     ];

@@ -75,9 +75,7 @@ class PulsAnalyseState extends State<PulsAnalyse> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Visibility(
-              visible: false,
-              child: ExerciseData('pulse')),
+            Visibility(visible: false, child: ExerciseData('pulse')),
             isBPMEnabled
                 ? dialog = HeartBPMDialog(
                     context: context,
@@ -237,7 +235,7 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                     visible: calContent.pulseTrue,
                     child: Center(
                       child: Text(
-                        bpmValue.toString(),
+                        bpmValue.round().toString(),
                         style: const TextStyle(color: Colors.white),
                       ),
                     )),
