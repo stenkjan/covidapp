@@ -120,7 +120,7 @@ class CalendarContent with ChangeNotifier {
     "infektionsschutz.de":
         "https://www.infektionsschutz.de/coronavirus/basisinformationen/long-covid-langzeitfolgen-von-covid-19/",
     "sozialministerium.at":
-        "https://www.sozialministeri  um.at/Corona-Schutzimpfung/Long-COVID.html",
+        "https://www.sozialministerium.at/Corona-Schutzimpfung/Long-COVID.html",
     "rki.de":
         "https://www.rki.de/SharedDocs/FAQ/NCOV2019/FAQ_Liste_Gesundheitliche_Langzeitfolgen.html",
     "longcovidaustria.at": "https://www.longcovidaustria.at/",
