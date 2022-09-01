@@ -99,7 +99,7 @@ class DatabaseService {
   }
 
   /// Get Data of User Class
-  ///not in use yet!!!!!!!!!!!!!
+  
   Future getUserData() async {
     return await userCollection
         .doc(uid)

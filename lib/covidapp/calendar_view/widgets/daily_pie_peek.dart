@@ -28,9 +28,7 @@ class DayPiePeekState extends State<DayPiePeek> {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
     Color color = widget.color;
     int index = widget.index;
-    /*  calContent.returnExerciseData('pulse', index);
-    calContent.returnExerciseData('breathemin', index);
-  */
+ 
     return Padding(
       padding: const EdgeInsets.only(
         left: 2.0,
@@ -50,7 +48,7 @@ class DayPiePeekState extends State<DayPiePeek> {
                   depth: 3,
                   intensity: 2.0,
                   shadowLightColor: Colors.transparent,
-                  /*  lightSource: LightSource.topLeft, */
+                 
                   color: const Color(0xFF31A1C9)),
               child: Column(
                 children: [
@@ -71,13 +69,7 @@ class DayPiePeekState extends State<DayPiePeek> {
                               width: 2,
                               child: calContent.getbreatheTrueWeek(index)
 
-                              /* Icon((() {
-                                setState(() {
-                                  if (calContent.breatheTrue == true) {
-                                    calContent.getbreatheTrueWeek(index);
-                                  }
-                                });
-                              })()) */
+                             
                               ,
                             ),
                           ),
@@ -100,13 +92,7 @@ class DayPiePeekState extends State<DayPiePeek> {
                               height: 2,
                               width: 2,
                               child: calContent.getpulseTrueWeek(index)
-                              /* Icon((() {
-                                setState(() {
-                                  if (calContent.pulseTrue == true) {
-                                    calContent.getpulseTrueWeek(index);
-                                  }
-                                });
-                              })()) */
+                             
                               ,
                             ),
                           ),
@@ -129,14 +115,7 @@ class DayPiePeekState extends State<DayPiePeek> {
                               height: 2,
                               width: 2,
                               child: calContent.getcalendarTrueWeek(
-                                  index) /*  Icon((() {
-                                setState(() {
-                                  if (calContent.calTrue == true ||
-                                      calContent.spoofCheck == false) {
-                                    calContent.getcalendarTrueWeek(index);
-                                  }
-                                });
-                              })()) */
+                                  index)
                               ,
                             ),
                           ),

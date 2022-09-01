@@ -16,9 +16,7 @@ class SignInScreen extends StatelessWidget {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               colors: [
-            /* 
-                lightPrimary,
-                darkPrimary, */
+          
             Color(0xFF31A1C9),
             Color(0xEA1F3F48),
           ])),

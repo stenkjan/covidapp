@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/misc_desc.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/calendar_image_views/nerven_desc.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
@@ -37,8 +36,6 @@ class CalendarNervComState extends State<CalendarNervCom> {
   @override
   Widget build(BuildContext context) {
     final calContent = Provider.of<CalendarContent>(context);
-    final TextEditingController anderesymptomeController =
-        TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 0.0),
@@ -195,118 +192,7 @@ class CalendarNervComState extends State<CalendarNervCom> {
               const SizedBox(
                 height: 30,
               ),
-              /* Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 300,
-                        height: 25,
-                        child: Text("${andereSymptome[0]['name']}",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: false,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Sans",
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white70)),
-                      ),
-                      SizedBox(
-                        width: 300,
-                        height: 40,
-                        child: Text("${andereSymptome[0]['tag']}",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: false,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: "Sans",
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white70)),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => const MiscDesc()),
-                        );
-                      },
-                      child: Hero(
-                        tag: "misc",
-                        child: CircleAvatar(
-                          maxRadius: 25,
-                          backgroundImage:
-                              const AssetImage("images/lcs_sonstige_hero.png"),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Material(
-                                color: const Color(0xFF313237),
-                                borderRadius: BorderRadius.circular(12),
-                                shadowColor: const Color(0xFF2E4E57),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                )),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-               Row(
-                children: [
-                  SizedBox(
-                    width: 300,
-                    height: 50,
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      controller: anderesymptomeController,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: "${andereSymptome[0]['desc']}",
-                          fillColor: Colors.white70),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(50, 50),
-                        primary: const Color(0xFF029CF5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: const BorderSide(color: Color(0x815DDFDF)),
-                        ),
-                      ),
-                      child: const Icon(Icons.comment),
-                      onPressed: () async {
-                        // ignore: unnecessary_null_comparison
-                        if (anderesymptomeController.text != null) {
-                          calContent.calendarContentcomment(
-                              anderesymptomeController.text);
-                        } else {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text('''
-                      Bitte geben Sie einen Kommentar an'''),
-                          ));
-                        }
-                      }),
-                ],
-              ), */
+        
             ],
           ),
         ],

@@ -20,11 +20,7 @@ class DayPieState extends State<DayPie> {
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
-    /* final grafService = Provider.of<GrafikService>(context); */
-    /*  final CollectionReference calCollection = FirebaseFirestore.instance
-        .collection('users')
-        .doc(grafService.uid)
-        .collection('calendar'); */
+     
     return Column(
       children: [
         const SizedBox(

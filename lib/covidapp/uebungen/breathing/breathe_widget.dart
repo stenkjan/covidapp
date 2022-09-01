@@ -1,6 +1,4 @@
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
-import 'package:covidapp/covidapp/uebungen/uebungen.dart';
-import 'package:covidapp/covidapp/uebungen/uebungen_webview.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
@@ -8,11 +6,8 @@ import 'package:covidapp/covidapp/webview/main_web_view.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 
-import '../../content/calendar_content.dart';
-import '../../services/exercise_service.dart';
 import '../exercise_data.dart';
 import 'home_controller.dart';
 
@@ -24,27 +19,7 @@ class BreatheHome extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /* appBar: AppBar(
-        title: const Text(
-          "Start",
-          style: TextStyle(
-              color: Colors.white, fontFamily: "Popins", fontSize: 18.0),
-        ),
-        centerTitle: true,
-        systemOverlayStyle:
-            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
-        backgroundColor: const Color(0xFF313237),
-        iconTheme: const IconThemeData(color: Colors.blue),
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).push(PageRouteBuilder(
-                pageBuilder: (_, __, ___) => const Uebungen()));
-          },
-        ),
-      ), */
+    
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,13 +35,10 @@ class BreatheHome extends GetView<HomeController> {
           IconButton(
               onPressed: () {
                 /**Navigation to Settings */
-                /* Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsPage())); */
+              
                 Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (_, __, ___) => const SettingsPage()));
-                //Get.to(() => const SettingsPage());
+           
               },
               icon: const Icon(Icons.settings)),
           Text(
@@ -115,8 +87,7 @@ class BreatheHome extends GetView<HomeController> {
                     onPressed: () {
                       Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (_, __, ___) => const Home()));
-                      /* Get.offAll(() => const T2Home());
-                      Get.deleteAll(); */
+                     
                     }),
               ),
               SizedBox(
@@ -147,7 +118,7 @@ class BreatheHome extends GetView<HomeController> {
                   ),
                   onPressed: () {
                     /** Navigation to Breathe Page */
-                    //Get.to(const BreathePage());
+                 
                     Navigator.of(context).push(PageRouteBuilder(
                         pageBuilder: (_, __, ___) => const BreathePage()));
                   },
@@ -193,10 +164,10 @@ class BreatheHome extends GetView<HomeController> {
                                   const Color.fromARGB(202, 0, 0, 0),
                               content: Stack(
                                 children: [
-                                  Visibility(
+                                  const Visibility(
                                       visible: false,
                                       child: ExerciseData('breathemin')),
-                                  Visibility(
+                                  const Visibility(
                                       visible: false,
                                       child: ExerciseData('breathesec')),
                                   Container(

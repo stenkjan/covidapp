@@ -1,4 +1,3 @@
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -8,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import '../../content/calendar_content.dart';
-import '../../services/exercise_service.dart';
 import '../uebungen.dart';
 import 'breathe_controller.dart';
 
@@ -21,16 +19,16 @@ class BreathePage extends GetView<BreatheController> {
   @override
   Widget build(BuildContext context) {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
-    ExerciseService exService = Provider.of<ExerciseService>(context);
-    /*  exService.dailyBreatheExercise(
-        calContent.breatheMin, calContent.breatheSec); */
-    if (calContent.returnBreatheMin() == 0) {
+   
+    // ignore: unrelated_type_equality_checks
+    if (calContent.returnBreatheMin() == "0") {
       calContent.returnbreatheFalse();
     }
 
     void navigateOnClosed(bool breathDone) async {
       await Future.delayed(const Duration(milliseconds: 1000));
       if (calContent.breatheTrue) {
+        // ignore: use_build_context_synchronously
         Navigator.of(context).push(
             PageRouteBuilder(pageBuilder: (_, __, ___) => (const Uebungen())));
 
@@ -55,12 +53,7 @@ class BreathePage extends GetView<BreatheController> {
       body: GetX<BreatheController>(
           init: BreatheController(),
           builder: (c) {
-            /*  if (c.timerDone) {
-              Future.delayed(Duration.zero, () {
-                Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (_, __, ___) => (const Uebungen())));
-              });
-            } */
+        
             if (c.timerDone) {
               navigateOnClosed(calContent.breatheTrue);
             }
@@ -80,44 +73,12 @@ class BreathePage extends GetView<BreatheController> {
                   const SizedBox(height: 50),
                 ],
 
-                /* if (c.timerDone) ...[
-                  Center(
-                    child: SizedBox(
-                      width: 180,
-                      height: 35,
-                      child: Neumorphic(
-                        style: NeumorphicStyle(
-                            shape: NeumorphicShape.concave,
-                            boxShape: NeumorphicBoxShape.roundRect(
-                                BorderRadius.circular(12)),
-                            depth: 15,
-                            intensity: 3.0,
-                            shadowLightColor: Colors.transparent,
-                            /*  lightSource: LightSource.topLeft, */
-                            color: const Color.fromARGB(255, 1, 25, 32)),
-                        child: ElevatedButton.icon(
-                            icon: const Icon(Icons.arrow_back_sharp),
-                            style: ElevatedButton.styleFrom(
-                              textStyle: const TextStyle(
-                                  fontWeight: FontWeight.w300, fontSize: 18),
-                            ),
-                            label: const Text("Beenden"),
-                            onPressed:
-                                () => /* Navigator.of(context).push(
-                              PageRouteBuilder(
-                                  pageBuilder: (_, __, ___) =>
-                                      (UebungBreathing()))), */
-
-                                    Navigator.pop(context)),
-                      ),
-                    ),
-                  ),
-                ], */
+              
                 CircularPercentIndicator(
                   radius: 180,
                   lineWidth: 16,
                   backgroundColor: Colors.black12,
-                  progressColor: Color.fromARGB(223, 2, 97, 175),
+                  progressColor: const Color.fromARGB(223, 2, 97, 175),
                   circularStrokeCap: CircularStrokeCap.round,
                   animateFromLastPercent: true,
                   animation: true,

@@ -10,7 +10,8 @@ import '../services/auth_service.dart';
 
 class ExerciseData extends StatelessWidget {
   final String exerciseString;
-  ExerciseData(this.exerciseString);
+  
+   const ExerciseData(this.exerciseString, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

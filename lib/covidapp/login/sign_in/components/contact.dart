@@ -46,7 +46,7 @@ class Contact extends StatelessWidget {
         path: 'jan.stenk@edu.fh-joanneum.at',
         query: encodeQueryParameters(
             <String, String>{'Long Covid App Support': 'Ihr Anliegen:'}));
-    //  launch(emailLaunchUri.toString());
+   
 
     if (await canLaunchUrl(emailLaunchUri)) {
       await launchUrl(emailLaunchUri);

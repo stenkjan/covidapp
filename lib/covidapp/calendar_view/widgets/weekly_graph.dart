@@ -55,27 +55,16 @@ class WeekGraphState extends State<WeekGraph> {
             case ConnectionState.waiting:
               return const Center(child: CircularProgressIndicator());
             case ConnectionState.active:
-              /*  Map<String, dynamic> data */
-
+         
               List dataList = snapshot.data!.docs;
-              /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
-            */
+            
 
               calContent.weekpiedataMap(dataList);
 
               features = featureList();
 
               return
-                  /*   }
-          if (snapshot.connectionState == ConnectionState.done) {
-            const Text("connection done");
-            Map<String, dynamic> data = snapshot.data as Map<String, dynamic>;
-            calContent.weekpiedataMap(data);
-            if (snapshot.hasData) {
-              return const Text("Data available");
-            }
-
-            return */
+          
                   Stack(
                 children: [
                   Container(
@@ -131,7 +120,6 @@ class WeekGraphState extends State<WeekGraph> {
                 ],
               );
             case ConnectionState.done:
-              // TODO: Handle this case.
               break;
           }
           return const Text("laden");

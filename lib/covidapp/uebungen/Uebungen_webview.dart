@@ -45,8 +45,8 @@ class Webviewpage extends StatelessWidget {
       ),
       body: const SizedBox(
           width: double.infinity,
-          // height: 600,
-          // the most important part of this example
+       
+          // Link to covidapp.at
           child: WebView(
             initialUrl: 'https://www.longcovidapp.at/blog',
             // Enable Javascript on WebView

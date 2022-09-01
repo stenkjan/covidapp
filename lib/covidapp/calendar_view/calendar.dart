@@ -46,7 +46,7 @@ class CalendarState extends State<Calendar> {
   @override
   void initState() {
     currentDate = int.parse(DateFormat('d').format(DateTime.now()).toString());
-    //print(currentDate.toString());
+ 
 
     super.initState();
   }
@@ -262,34 +262,7 @@ class CalendarState extends State<Calendar> {
           ],
         ),
       ),
-      /* floatingActionButton: Opacity(
-        opacity: calContent.count.toDouble(),
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            if (calContent.docExists == false) {
-              calService.dailyTask(
-                  calContent.mood,
-                  calContent.muedigkeit,
-                  calContent.atemnot,
-                  calContent.sinne,
-                  calContent.herz,
-                  calContent.schlaf,
-                  calContent.nerven,
-                  calContent.comment,
-                  currentDate);
-              calContent.clear();
-            }
-          },
-          // tooltip: "Bestätigen",
-          //foregroundColor: const Color(0xFF31A1C9),
-          backgroundColor: const Color(0xFF31A1C9),
-          label: const Text(
-            "Speichern",
-            style: TextStyle(color: Colors.white),
-          ),
-          icon: const Icon(Icons.save_alt),
-        ),
-      ), */
+     
     );
   }
 }

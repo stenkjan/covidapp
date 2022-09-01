@@ -2,7 +2,6 @@ import 'package:covidapp/covidapp/login/sign_in/signin.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:covidapp/covidapp/login/constants.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +44,7 @@ class _CredentialsState extends State<Credentials> {
 
   /// Widget build --- Email, Password fields, Reset Passord,Name, Birthday  */
 
+  @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
 
@@ -130,14 +130,7 @@ class _CredentialsState extends State<Credentials> {
             height: appPadding / 2,
           ),
           TextField(
-            /*   inputFormatters: [
-              FilteringTextInputFormatter.allow(
-                RegExp(
-                    r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                    r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                    r"{0,253}[a-zA-Z0-9])?)*$"),
-              ),
-            ], */
+      
             textAlign: TextAlign.center,
             controller: emailController,
             keyboardType: TextInputType.emailAddress,

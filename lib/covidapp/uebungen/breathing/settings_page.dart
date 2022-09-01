@@ -143,10 +143,7 @@ class SettingsPage extends GetView<SettingsController> {
                   const SizedBox(
                     height: 30,
                   ),
-                  /* Text(
-                    'Andere Einstellungen',
-                    style: Theme.of(context).textTheme.headline5,
-                  ), */
+                 
                   SwitchListTile(
                     value: c.soundOn.value,
                     onChanged: (value) => c.setSoundOn(value),
@@ -157,19 +154,7 @@ class SettingsPage extends GetView<SettingsController> {
                       color: Colors.white,
                     ),
                   ),
-                  /* SwitchListTile(
-                    value: c.hideTimer.value,
-                    onChanged: (value) => c.setHideTimer(value),
-                    activeColor: Colors.white,
-                    title: const Text('Timer verstecken'),
-                  ),
-                  SwitchListTile(
-                    value: c.hideBreathBar.value,
-                    onChanged: (value) => c.setHideBreathBar(value),
-                    activeColor: Colors.white,
-                    title: const Text('Bar verdecken'),
-                  ),
-                  const SizedBox(height: 30), */
+                
                 ],
               ),
             );

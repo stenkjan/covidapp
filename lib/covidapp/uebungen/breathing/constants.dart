@@ -20,5 +20,5 @@ enum BackgroundColors {
   black,
 }
 
-/* const BackgroundColors defaultBackgroundColor = BackgroundColors.blue; */
+
 const BackgroundColors defaultBackgroundColor = BackgroundColors.black;

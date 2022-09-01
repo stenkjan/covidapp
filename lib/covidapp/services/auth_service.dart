@@ -1,4 +1,5 @@
-import 'package:covidapp/covidapp/content/strings.dart';
+// ignore_for_file: avoid_print
+
 import 'package:covidapp/covidapp/models/user_models.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -13,7 +14,7 @@ class AuthService {
   late User userGet;
   static String _name = "";
   static bool introCheck = false;
-  /*  late String userUid; */
+
   User? _userFromFirebase(auth.User? user) {
     if (user == null) {
       return null;
@@ -24,7 +25,7 @@ class AuthService {
     }
     id = user.uid;
 
-    // ignore: avoid_print
+   
 
     return User(user.uid, user.email);
   }
@@ -67,7 +68,7 @@ class AuthService {
     String password,
     bool introCheck,
   ) async {
-    final credential;
+    final auth.UserCredential credential;
     try {
       credential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -77,7 +78,7 @@ class AuthService {
       print(' $e');
       return null;
     }
-    /* userUid = await (_firebaseAuth.currentUser!.uid); */
+  
   }
 
   Future<User?> createUserWithEmailAndPasswort(
@@ -91,7 +92,7 @@ class AuthService {
       final credential = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      /*  userUid = await (_firebaseAuth.currentUser!.uid); */
+
       //create a new user doc with uid
       print('waiting');
       await _firebaseAuth.signInWithEmailAndPassword(
@@ -121,7 +122,7 @@ class AuthService {
     try {
       return await _firebaseAuth.signOut();
     } catch (e) {
-      // ignore: avoid_print
+     
       print(e.toString());
       return;
     }

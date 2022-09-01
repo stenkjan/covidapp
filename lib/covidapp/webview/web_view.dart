@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, avoid_print, use_build_context_synchronously
 
 import 'dart:async';
 import 'dart:convert';
@@ -422,6 +422,7 @@ class SampleMenu extends StatelessWidget {
   }
 
   Widget _getCookieList(String cookies) {
+    // ignore: unnecessary_null_comparison
     if (cookies == null || cookies == '""') {
       return Container();
     }
@@ -449,6 +450,7 @@ class SampleMenu extends StatelessWidget {
 
 class NavigationControls extends StatelessWidget {
   const NavigationControls(this._webViewControllerFuture, {Key? key})
+      // ignore: unnecessary_null_comparison
       : assert(_webViewControllerFuture != null),
         super(key: key);
 

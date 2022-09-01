@@ -36,7 +36,7 @@ class PulseGraphState extends State<PulseGraph> {
 
     if (calContent.pulseGraphList.length <= 1) {
       setState(() {
-        ExerciseData("pulse");
+        const ExerciseData("pulse");
 
         features = featureList(calContent.pulseGraphList);
       });
@@ -89,17 +89,8 @@ class PulseGraphState extends State<PulseGraph> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  /*   Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 64.0),
-                  child: Text(
-                    "Woche",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ), */
+             
+          
                   const SizedBox(
                     height: 30,
                   ),

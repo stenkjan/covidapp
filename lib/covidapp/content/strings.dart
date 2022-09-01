@@ -53,9 +53,7 @@ List calenderChoices = [
     "item4": "Symptome",
     "icon4": "🧾\u200d"
   },
-  /*{"name": "Zustand", "emoji": "😍️\u200d",
-    "item1":"Ausgezeichnet", "icon1": "😍️\u200d", "item2": "Gut", "icon1": "☺\u200d",  "item2": "Neutral", "icon3": "😐️\u200d",  "item4":"Schlecht", "icon4": "😧\u200d"},
-  */
+
 ];
 
 final List moodList = [
@@ -132,66 +130,3 @@ List headline = [
     "color": calContent.getCalendarColors(7)
   },
 ];
-/* 
-List weekContent = [
-  {
-    "Tag": calContent.dateL[0].toDouble(),
-    "Zustand": calContent.moodL[0].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[0].toDouble(),
-    "Atemnot": calContent.atemnotL[0].toDouble(),
-    "Sinne": calContent.sinneL[0].toDouble(),
-    "Herz": calContent.herzL[0].toDouble(),
-    "Schlaf": calContent.schlafL[0].toDouble(),
-    "Nerven": calContent.nervenL[0].toDouble(),
-  },
-  {
-    "Tag": calContent.dateL[1].toDouble(),
-    "Zustand": calContent.moodL[1].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[1].toDouble(),
-    "Atemnot": calContent.atemnotL[1].toDouble(),
-    "Sinne": calContent.sinneL[1].toDouble(),
-    "Herz": calContent.herzL[1].toDouble(),
-    "Schlaf": calContent.schlafL[1].toDouble(),
-    "Nerven": calContent.nervenL[1].toDouble(),
-  },
-  {
-    "Tag": calContent.dateL[2].toDouble(),
-    "Zustand": calContent.moodL[2].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[2].toDouble(),
-    "Atemnot": calContent.atemnotL[2].toDouble(),
-    "Sinne": calContent.sinneL[2].toDouble(),
-    "Herz": calContent.herzL[2].toDouble(),
-    "Schlaf": calContent.schlafL[2].toDouble(),
-    "Nerven": calContent.nervenL[2].toDouble(),
-  },
-  {
-    "Tag": calContent.dateL[3].toDouble(),
-    "Zustand": calContent.moodL[3].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[3].toDouble(),
-    "Atemnot": calContent.atemnotL[3].toDouble(),
-    "Sinne": calContent.sinneL[3].toDouble(),
-    "Herz": calContent.herzL[3].toDouble(),
-    "Schlaf": calContent.schlafL[3].toDouble(),
-    "Nerven": calContent.nervenL[3].toDouble(),
-  },
-  {
-    "Tag": calContent.dateL[4].toDouble(),
-    "Zustand": calContent.moodL[4].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[4].toDouble(),
-    "Atemnot": calContent.atemnotL[4].toDouble(),
-    "Sinne": calContent.sinneL[4].toDouble(),
-    "Herz": calContent.herzL[4].toDouble(),
-    "Schlaf": calContent.schlafL[4].toDouble(),
-    "Nerven": calContent.nervenL[4].toDouble(),
-  },
-  {
-    "Tag": calContent.dateL[5].toDouble(),
-    "Zustand": calContent.moodL[5].toDouble(),
-    'Muedigkeit': calContent.muedigkeitL[5].toDouble(),
-    "Atemnot": calContent.atemnotL[5].toDouble(),
-    "Sinne": calContent.sinneL[5].toDouble(),
-    "Herz": calContent.herzL[5].toDouble(),
-    "Schlaf": calContent.schlafL[5].toDouble(),
-    "Nerven": calContent.nervenL[5].toDouble(),
-  },
-]; */

@@ -4,7 +4,6 @@ import 'package:covidapp/covidapp/models/user_models.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../intro_screen.dart';

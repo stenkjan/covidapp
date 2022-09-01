@@ -14,8 +14,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
 import 'covidapp/uebungen/puls_messung/puls_analyse.dart';
-import 'globals.dart';
-import 'main.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -40,10 +38,10 @@ class HomeState extends State<Home> {
     authService = AuthService();
     dbService = DatabaseService(uid: authService.getUser());
     cal = CalendarContent();
-   // cal.fill();
+   ///Functions to obtain .csv-data from Firebase
     //cal.getCsvCal();
-    cal.getCsvEx();
-    //cal.calendarSymptomView();
+    //cal.getCsvEx();
+    
     breatheMin = cal.returnBreatheMin();
     if (breatheMin != "0") {
       cal.returnBreatheTrue();
@@ -57,7 +55,7 @@ class HomeState extends State<Home> {
     lastBPM = cal.getlastBPM();
     calAct = cal.getcalAnswer();
 
-    if ((!calAct.isEmpty) && (calAct != "0")) {
+    if ((calAct.isNotEmpty) && (calAct != "0")) {
       cal.returnCalTrue();
     }
     if (cal.returncalSumL()[cal.currentDate] != 0) {
@@ -68,11 +66,7 @@ class HomeState extends State<Home> {
     iconcal = cal.getcalendarTrue();
     super.initState();
 
-    /* if (Credentials.signed_in = false) {
-      SignInScreen();
-    } else {
-      SignInScreen();
-    } */
+  
   }
 
   @override
@@ -88,10 +82,7 @@ class HomeState extends State<Home> {
     CalendarContent calContent = Provider.of<CalendarContent>(context);
 
     calContent.returnSickDays();
-    /*
-    if (Credentials.signed_in = false) {
-    return SignInScreen();
-*/
+   
     return Scaffold(
       key: _scaffoldKeyHome,
 
@@ -103,7 +94,7 @@ class HomeState extends State<Home> {
       drawer: const DrawerLayout(),
       body: Stack(
         children: <Widget>[
-          //Login zwischenschieben
+         
 
           SingleChildScrollView(
             child: Column(
@@ -282,7 +273,7 @@ Widget _card(BuildContext context, Color color, String title, String time,
     onTap: (() {
       if (title.contains("Atem")) {
         Navigator.of(context).push(
-            PageRouteBuilder(pageBuilder: (_, __, ___) => UebungBreathing()));
+            PageRouteBuilder(pageBuilder: (_, __, ___) => const UebungBreathing()));
       }
       if (title.contains("Puls")) {
         Navigator.of(context).push(
@@ -503,7 +494,7 @@ class DrawerLayout extends StatelessWidget {
                       depth: 5,
                       intensity: 2.0,
                       shadowLightColor: const Color.fromARGB(108, 0, 0, 0),
-                      /*  lightSource: LightSource.topLeft, */
+                    
                       color: const Color.fromARGB(255, 46, 155, 244)),
                   child: SizedBox(
                     height: 35,
@@ -557,7 +548,7 @@ Widget itemDrawer(IconData icon, String txt) {
         intensity: 1.0,
         shadowLightColor: Colors.transparent,
         shadowDarkColor: Colors.black26,
-        /*  lightSource: LightSource.topLeft, */
+      
         color: Colors.transparent),
     child: Padding(
       padding: const EdgeInsets.only(top: 5.0, left: 20.0, bottom: 5),
@@ -660,7 +651,7 @@ Widget _cardHeader(LrmDataModel item) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    /* dbService.registeredDate.toString() */
+                   
                     calContent.getsickDays(),
                     style: const TextStyle(
                         color: Colors.white,

@@ -131,65 +131,7 @@ class T2SearchState extends State<T2Search> {
           ),
           line(),
 
-          // card(
-          //   img:"https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449_960_720.png",
-          //   name: "",
-          //   price: "24/7/2021",
-          //   increment: "",
-          //   price2: "Abgeschlossen",
-          //   increment2: "",
-          // ),
-          // line(),
-          // card(
-          //   img:
-          //       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/2000px-Ethereum_logo_2014.svg.png",
-          //   name: "ETH",
-          //   price: "\$1000.09",
-          //   increment: "+7.72%",
-          //   price2: "\$121.5B",
-          //   increment2: "+7.72%",
-          // ),
-          // line(),
-          // card(
-          //   img:
-          //       "http://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Tezos-Pre-Launch-XTZ-icon.png",
-          //   name: "XTZ",
-          //   price: "\$1000.09",
-          //   increment: "+7.72%",
-          //   price2: "\$121.5B",
-          //   increment2: "+7.72%",
-          // ),
-          // line(),
-          // card(
-          //   img:
-          //       "https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/neo_neocoin-512.png",
-          //   name: "NEO",
-          //   price: "\$1000.09",
-          //   increment: "+7.72%",
-          //   price2: "\$121.5B",
-          //   increment2: "+7.72%",
-          // ),
-          // line(),
-          // card(
-          //   img:
-          //       "http://icons.iconarchive.com/icons/cjdowner/cryptocurrency-flat/1024/Ark-icon.png",
-          //   name: "ARK",
-          //   price: "\$1000.09",
-          //   increment: "+7.72%",
-          //   price2: "\$121.5B",
-          //   increment2: "+7.72%",
-          // ),
-          // line(),
-          // card(
-          //   img:
-          //       "https://www.cryptocurrencer.com/wp-content/uploads/2018/01/CRYPTOCURRENCY-bitcoin-logo.png",
-          //   name: "GIC",
-          //   price: "\$1000.09",
-          //   increment: "+7.72%",
-          //   price2: "\$121.5B",
-          //   increment2: "+7.72%",
-          // ),
-          // line(),
+         
         ],
       ),
     );
@@ -255,8 +197,7 @@ class _CardState extends State<Card> {
                       widget.increment,
                       style: const TextStyle(color: Colors.white),
                     ),
-//                      Icon(Icons.keyboard_arrow_down,color: Colors.red,size: 15.0,)
-                  ]),
+                ]),
                 ],
               ),
               Column(

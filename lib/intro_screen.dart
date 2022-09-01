@@ -22,18 +22,10 @@ class OnBoardingPageState extends State<OnBoardingPage> {
     );
   }
 
-  /*  Widget _buildFullscreenImage() {
-    return Image.asset(
-      'assets/fullscreen.jpg',
-      fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
-      alignment: Alignment.center,
-    );
-  } */
+ 
 
   Widget _buildImage(String assetName) {
-    // [double width = 350]
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Image.asset(
@@ -48,7 +40,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   static bool logoB = true;
-  static Color dotBarColor = Color.fromARGB(153, 2, 37, 58);
+  static Color dotBarColor = const Color.fromARGB(153, 2, 37, 58);
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(
@@ -219,18 +211,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             imageFlex: 3,
           ),
         ),
-        /* PageViewModel(
-          title: "Full Screen Page",
-          body:
-              "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
-          image: _buildFullscreenImage(),
-          decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-            fullScreen: true,
-            bodyFlex: 2,
-            imageFlex: 3,
-          ),
-        ), */
+      
         PageViewModel(
           title: "Übersicht",
           body:
@@ -286,7 +267,7 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           // sunset gif
 
           decoration: pageDecoration.copyWith(
-            pageColor: Color.fromARGB(158, 123, 148, 160),
+            pageColor: const Color.fromARGB(158, 123, 148, 160),
             contentMargin:
                 const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 130),
             fullScreen: true,
@@ -407,12 +388,11 @@ class OnBoardingPageState extends State<OnBoardingPage> {
         ),
       ],
       onDone: () => _onIntroEnd(context),
-      //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
-      showSkipButton: false,
+     showSkipButton: false,
       skipOrBackFlex: 0,
       nextFlex: 0,
       showBackButton: true,
-      //rtl: true, // Display as right-to-left
+     
       back: const Icon(Icons.arrow_back),
       skip: const Text('Überspringen',
           style: TextStyle(fontWeight: FontWeight.w600)),

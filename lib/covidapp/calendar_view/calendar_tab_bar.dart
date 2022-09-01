@@ -283,7 +283,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
             setState(() {
               floatingOpacity = 0;
 
-              /*  if (calContent.docExists == false) { */
+           
               calService.dailyTask(
                   calContent.mood,
                   calContent.muedigkeit,
@@ -295,7 +295,7 @@ class CalendarTabBarState extends State<CalendarTabBar> {
                   calContent.comment,
                   calContent.currentDate);
               calContent.clear();
-              /*  } */
+          
             });
           },
           tooltip: "Bestätigen",

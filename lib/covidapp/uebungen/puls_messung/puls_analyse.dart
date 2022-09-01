@@ -1,10 +1,10 @@
-import 'dart:convert';
+
+// ignore_for_file: avoid_print
 
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/pulse_graph.dart';
 
-import 'package:collection/collection.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -75,7 +75,7 @@ class PulsAnalyseState extends State<PulsAnalyse> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Visibility(visible: false, child: ExerciseData('pulse')),
+            const Visibility(visible: false, child: ExerciseData('pulse')),
             isBPMEnabled
                 ? dialog = HeartBPMDialog(
                     context: context,
@@ -86,7 +86,7 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                       });
                     },
                     onBPM: (value) => setState(() {
-                      // ignore: avoid_print
+                    
                       print(" on bpm${calContent.pulseTrue}");
                       calContent.returnPulseTrue();
                       if (bpmValues.length >= 100) bpmValues.removeAt(0);
@@ -423,11 +423,11 @@ class PulsAnalyseState extends State<PulsAnalyse> {
                                       const Color.fromARGB(202, 0, 0, 0),
                                   title: const Text(""),
                                   content: Stack(
-                                    children: [
+                                    children: const [
                                       Opacity(
                                           opacity: 0.5,
                                           child: ExerciseData('pulse')),
-                                      const PulseGraph(),
+                                      PulseGraph(),
                                     ],
                                   ),
                                   actions: [

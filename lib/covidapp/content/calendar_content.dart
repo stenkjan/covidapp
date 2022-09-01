@@ -1,12 +1,10 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidapp/covidapp/calendar_view/widgets/colors.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
-import 'package:covidapp/covidapp/services/db_service.dart';
 
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 
@@ -14,7 +12,6 @@ import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 /*MasterClass of Variable Declaration and Methods for Value Exchange */
@@ -52,6 +49,7 @@ class CalendarContent with ChangeNotifier {
   bool calTrue = false;
 
   bool spoofCheck = false;
+  /*symptom and exercise helper list initalisation */
   static List<bool> calBoolL = List.generate(32, (index) => false);
   static List<bool> breatheBoolL = List.generate(32, (index) => false);
   static List<bool> pulseBoolL = List.generate(32, (index) => false);
@@ -61,7 +59,7 @@ class CalendarContent with ChangeNotifier {
   double sum = 0;
   double sumColor = 0;
   int sumCal = 0;
-
+/*helper variables initialisation*/ 
   int listIndex = 0;
   int indexGrafik = 0;
   int index = 0;
@@ -82,7 +80,7 @@ class CalendarContent with ChangeNotifier {
   String? userId;
 /*calendar variables lists with initial data*/
 
-  //List<int> dateL = [20, 21, 22, 23, 24, 25, 26, 27];
+  
   List<int> dateL = List.generate(32, (index) => index);
   static List<int> moodL = List.generate(32, (index) => 0);
   static List<int> muedigkeitL = List.generate(32, (index) => 0);
@@ -178,7 +176,7 @@ class CalendarContent with ChangeNotifier {
       pulseTrue = true;
     }
     if (pulseTrue == true) {
-      //return bpm.last.toString();
+      
       return bpmday[currentDate].round().toString();
     } else {
       return "0";
@@ -207,6 +205,7 @@ class CalendarContent with ChangeNotifier {
     return bpmday;
   }
 
+/* return Icons for Calendar Widget to show if exercise done */
   Icon getpulseTrue() {
     Icon iconDone =
         const Icon(Icons.check_circle, size: 17.0, color: Colors.lightGreen);
@@ -594,11 +593,13 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/*return list of values for Week Pulse Graph in Pulse Function*/
   void weekpulseMap(Map map) {
     bool indexTrue = false;
 
     for (int i = 0; i <= 31 && i >= 0; i++) {
       String index = i.toString();
+      // ignore: unnecessary_null_comparison
       if (map != null) {
         if (map.containsKey(index)) {
           indexTrue = true;
@@ -611,13 +612,14 @@ class CalendarContent with ChangeNotifier {
 /*      
         pulseWeekL[i] = map.values.elementAt(index); */
         num value = map[index];
-        if (value != 0 && value != null) {
+        if (value != 0) {
           pulseWeekL[i] = value.toDouble();
         }
       }
     }
   }
 
+/*return list of values for Week Graph in Calendar Week Tab*/
   List<double> weekGraphMap(String symptomString) {
     List<double> symptomList = [];
     if (grafikDate == 0) {
@@ -844,28 +846,6 @@ class CalendarContent with ChangeNotifier {
     return sickDays = "0";
   }
 
-/* 
-  Future returnExerciseData(String exercise, int date) async {
-    DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(auth.getUser())
-        .collection('exercise')
-        .doc(exercise)
-        .get();
-    Map<String, dynamic> data = docSnapshot.data()! as Map<String, dynamic>;
-
-    if (docSnapshot.id == date.toString()) {
-      if (exercise == 'pulse') {
-        pulseBoolL[date] = data[date];
-      }
-      if (exercise == 'breathemin') {
-        breatheBoolL[date] = data[date];
-      }
-    } else {
-      return null;
-    }
-  }
- */
   String getcalAnswer() {
     if (calSumL[currentDate] != 0) {
       calTrue == true;
@@ -1012,6 +992,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+/*check if intro was seen already*/
   bool getintroCheck() {
     return introCheck;
   }
@@ -1022,8 +1003,9 @@ class CalendarContent with ChangeNotifier {
       if (documentSnapshot.exists) {
         final data = documentSnapshot.data() as Map<String, dynamic>;
         introCheck = data['introCheck'];
+      
         if (documentSnapshot.exists == false) {
-          // ignore: avoid_print
+        
           print("no data exists for this user");
         }
       }
@@ -1033,6 +1015,7 @@ class CalendarContent with ChangeNotifier {
     });
   }
 
+  /* get .csv-File from User Exercise Firebase Data */
   Future getCsvEx() async {
     List<List<String>> itemListBreathe = [
       <String>[
@@ -1100,8 +1083,7 @@ class CalendarContent with ChangeNotifier {
       "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
       "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
     ];
-    DateTime date = DateTime.now();
-    String formattedDate = DateFormat('dd-MM-yyyy-HH-mm-ss').format(date);
+
     Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
     var status = await Permission.storage.status;
     if (status.isDenied) {
@@ -1136,7 +1118,7 @@ class CalendarContent with ChangeNotifier {
           "31"
         ]
       ];
-      List<List<String>> itemListBreathesec = [
+      itemListBreathesec = [
         <String>[
           "17",
           "18",
@@ -1155,7 +1137,7 @@ class CalendarContent with ChangeNotifier {
           "31"
         ]
       ];
-      List<List<String>> itemListPulse = [
+      itemListPulse = [
         <String>[
           "17",
           "18",
@@ -1175,7 +1157,7 @@ class CalendarContent with ChangeNotifier {
         ]
       ];
 
-      /* if (qSnapshot.docs[index].exists) { */
+     
       DocumentSnapshot docBreathe = qSnapshot.docs[0];
       DocumentSnapshot docBreathesec = qSnapshot.docs[1];
       DocumentSnapshot docPulse = qSnapshot.docs[2];
@@ -1232,7 +1214,6 @@ class CalendarContent with ChangeNotifier {
         docPulse.get('31').toString()
       ]);
 
-      /* } */
       final File fileBreathe =
           await (File('${generalDownloadDir.path}/exc_export_breathe_$i.csv')
               .create());
@@ -1254,6 +1235,7 @@ class CalendarContent with ChangeNotifier {
     }
   }
 
+  /*get .csv-File from User Symptom Firebase Data */
   Future getCsvCal() async {
     List<List<String>> itemList = [
       <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
@@ -1263,12 +1245,10 @@ class CalendarContent with ChangeNotifier {
       "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
       "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
       "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro
-      /*   "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
+      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
       "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne*/
+      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
     ];
-    DateTime date = DateTime.now();
-    String formattedDate = DateFormat('dd-MM-yyyy-HH-mm-ss').format(date);
     Directory generalDownloadDir = Directory('/storage/emulated/0/Download');
     var status = await Permission.storage.status;
     if (status.isDenied) {
@@ -1288,7 +1268,7 @@ class CalendarContent with ChangeNotifier {
         <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
       ];
       for (int index = 0; index <= 14; index++) {
-        /* if (qSnapshot.docs[index].exists) { */
+       
         DocumentSnapshot doc = qSnapshot.docs[index];
 
         itemList.add(<String>[
@@ -1300,7 +1280,7 @@ class CalendarContent with ChangeNotifier {
           doc.get('nerven').toString()
         ]);
       }
-      /* } */
+ 
       final File file =
           await (File('${generalDownloadDir.path}/item_export_$i.csv')
               .create());
@@ -1308,126 +1288,5 @@ class CalendarContent with ChangeNotifier {
       csvData.add(const ListToCsvConverter().convert(itemList));
       await file.writeAsString(csvData.last);
     }
-  }
-
-  Future fill() async {
-    List<String> user = [
-      /* "IJWaAl0TlDgrab5vMKY9BKetxBa2", //mar
-       "RTxndylZhpVm1YNjRCVpbMUdYnP2", //mat
-      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //ro */
-      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //ni
-      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //sa
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
-    ];
-
-    CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    /*  for (int day = 17; day <= 24; day++) {
-      for (int i = 0; i < user.length; i++) {
-        await userC
-            .doc(user[i])
-            .collection("calendar")
-            .doc(day.toString())
-            .set({
-          'id': user[i],
-          'mood': Random().nextInt(8) + 1,
-          'muedigkeit': Random().nextInt(6),
-          'atemnot': Random().nextInt(8),
-          'sinne': Random().nextInt(7),
-          'herz': Random().nextInt(8),
-          'schlaf': Random().nextInt(6),
-          'nerven': Random().nextInt(7),
-          'created_date': day,
-        }, SetOptions(merge: true));
-      }
-    } */
-
-    /*  for (int day = 1; day < 28; day++) {
-       for (int i = 0; i < user.length; i++) { 
-      var docRef =
-          userC.doc(user[i]).collection("calendar").doc(day.toString());
-
-      final updates = <String, dynamic>{
-         'create_date': FieldValue.delete(), 
-        
-      
-       
-      };
-      docRef.update(updates);
-      /*  var docRef = userC.doc(user[i]).collection("calendar").doc(day.toString());
-        docRef.delete().then(
-              (doc) => print("Document Deleted"),
-              onError: (e) => print("Error updating document $e"),
-            ); */
-      /*  } */
-    }
-    print("list done"); */
-  }
-
-  Future calendarSymptomView() async {
-    var list = [
-      30,
-      60,
-      90,
-      120,
-      150,
-      180,
-      210,
-      240,
-      270,
-      300,
-      330,
-      360,
-    ];
-
-    var listSec = [1, 2, 5, 6, 8, 9, 10, 11, 12, 14, 15, 16, 18, 20];
-    List<String> user = [
-      "IJWaAl0TlDgrab5vMKY9BKetxBa2", //ma
-      "LWTXyeZWKrUap8T1dzNJ8AeS9fr2", //mat
-      "cQXVdiyfGJeQK2AXQecUBibi9ZH3", //ro
-      "RTxndylZhpVm1YNjRCVpbMUdYnP2", //ni
-      "rpyUKF1asVOiHNN4MGNKrKfKViI2", //se
-      "OJX8NuVA7pOeAPVSObKFZa3PTvN2" //ne
-    ];
-    CollectionReference userC = FirebaseFirestore.instance.collection('users');
-    /*    for (int day = 17; day < 32; day++) {
-      for (int i = 0; i < user.length; i++) {
-        var randomItem = (list..shuffle()).first;
-        await userC.doc(user[i]).collection("exercise").doc("breathemin").set({
-          day.toString(): randomItem,
-        }, SetOptions(merge: true));
-        var randomItemSec = (listSec..shuffle()).first;
-        await userC.doc(user[i]).collection("exercise").doc("breathesec").set({
-          day.toString(): randomItemSec,
-        }, SetOptions(merge: true));
-        await userC.doc(user[i]).collection("exercise").doc("pulse").set({
-          day.toString(): Random().nextInt(100) + 40,
-        }, SetOptions(merge: true));
-
-    } 
-     }
-     print("list done"); */
-    /* for (int day = 1; day < 17; day++) {
-      for (int i = 0; i < user.length; i++) {
-        /*  var docRef =
-            userC.doc(user[i]).collection("exercise").doc("breathemin");
-        final updates = <String, dynamic>{
-          day.toString(): FieldValue.delete(),
-        }; */
-        /* docRef.update(updates); */
-        var docRef2 =
-            userC.doc(user[i]).collection("exercise").doc("breathesec");
-        final updates2 = <String, dynamic>{
-          day.toString(): FieldValue.delete(),
-        };
-        docRef2.update(updates2);
-        var docRef3 = userC.doc(user[i]).collection("exercise").doc("pulse");
-        final updates3 = <String, dynamic>{
-          day.toString(): FieldValue.delete(),
-        };
-        docRef3.update(updates3);
-      }
-    }
-    
-  } */
   }
 }

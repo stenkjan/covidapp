@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class Credentials extends StatelessWidget {
   const Credentials({Key? key}) : super(key: key);
-  /* static bool signed_in = false; */
+
   @override
 
   /// Widget build --- Email, Password fields, Reset Passord  */
@@ -15,7 +15,7 @@ class Credentials extends StatelessWidget {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final authService = Provider.of<AuthService>(context);
-    /* bool signed_in = Credentials.signed_in; */
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(7.0, appPadding, 10.5, appPadding),
       child: Column(
@@ -99,6 +99,7 @@ class Credentials extends StatelessWidget {
                                   emailController.text,
                                   passwordController.text, true);
                           if (signIn == null) {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text(

@@ -114,9 +114,7 @@ class GrafikTabBarState extends State<GrafikTabBar> {
                     right: 5.0,
                   ),
                   child: DayPie(),
-                  //PieChartNew(
-                  //calContent.dataMap,
-                  //),
+              
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -124,9 +122,7 @@ class GrafikTabBarState extends State<GrafikTabBar> {
                     right: 5.0,
                   ),
                   child: WeekGraph(),
-                  //PieChartNew(
-                  //calContent.dataMap,
-                  //),
+                 
                 ),
                 Padding(
                   padding: EdgeInsets.only(

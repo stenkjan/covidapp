@@ -41,7 +41,7 @@ class GrafikDataStream extends StatelessWidget {
                         depth: 15,
                         intensity: 3.0,
                         shadowLightColor: Colors.transparent,
-                        /*  lightSource: LightSource.topLeft, */
+                       
                         color: const Color(0xFF31A1C9)),
                     child: const Text("Irgendwas ist schief gelaufen")));
           }
@@ -62,7 +62,7 @@ class GrafikDataStream extends StatelessWidget {
                         depth: 15,
                         intensity: 3.0,
                         shadowLightColor: Colors.transparent,
-                        /*  lightSource: LightSource.topLeft, */
+                       
                         color: const Color(0xFF31A1C9)),
                     child: const Text("Dokument existiert nicht")));
           }
@@ -71,7 +71,7 @@ class GrafikDataStream extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             calContent.dayliepieMap(data, int.parse(documentId));
-            /* calContent.listSum(data); */
+          
 
             return SizedBox(
               width: 350,
@@ -458,7 +458,7 @@ class GrafikDataStream extends StatelessWidget {
                       depth: 15,
                       intensity: 3.0,
                       shadowLightColor: Colors.transparent,
-                      /*  lightSource: LightSource.topLeft, */
+                 
                       color: const Color(0xFF31A1C9)),
                   child: Container(
                       height: 35,

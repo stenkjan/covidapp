@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../content/strings.dart';
 import '../../services/grafik_service.dart';
-import '../../uebungen/exercise_data.dart';
 
 class HeartGraph extends StatefulWidget {
   const HeartGraph({Key? key}) : super(key: key);
@@ -24,32 +23,7 @@ class HeartGraphState extends State<HeartGraph> {
   void initState() {
     calContent.bpmWeekL();
     features = featureList();
-    /* [
-      Feature(
-        title: headline[4]['tag'],
-        color: AppColors.pieColors[3],
-        data: [
-          calContent.herzL[calContent.listIndex].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 1].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 2].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 3].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 4].toDouble() / 10,
-          calContent.herzL[calContent.listIndex + 5].toDouble() / 10
-        ],
-      ),
-      Feature(
-        title: "BPM",
-        color: AppColors.pieColors[5],
-        data: [
-          calContent.bpm[calContent.listIndex].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex + 1].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex + 2].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex + 3].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex + 4].toDouble() * 70 / 1000,
-          calContent.bpm[calContent.listIndex + 5].toDouble() * 70 / 1000,
-        ],
-      ),
-    ]; */
+    
     super.initState();
   }
 
@@ -102,11 +76,10 @@ class HeartGraphState extends State<HeartGraph> {
                   case ConnectionState.waiting:
                     return const Center(child: CircularProgressIndicator());
                   case ConnectionState.active:
-                    /*  Map<String, dynamic> data */
+                   
 
                     List dataList = snapshot.data!.docs;
-                    /* .where((docs['id'] == calContent.grafikcurrentDateCal).map((docs)=>FindFollowerWidget(...))).toList(); as Map<String, dynamic>;
-            */
+                   
 
                     calContent.weekpiedataMap(dataList);
                     features = featureList();
@@ -145,17 +118,7 @@ class HeartGraphState extends State<HeartGraph> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              /*   Padding(
-                padding: const EdgeInsets.symmetric(vertical: 64.0),
-                child: Text(
-                  "Woche",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                ),
-              ), */
+                           
                               const SizedBox(
                                 height: 30,
                               ),
@@ -184,7 +147,7 @@ class HeartGraphState extends State<HeartGraph> {
                       ],
                     );
                   case ConnectionState.done:
-                    // TODO: Handle this case.
+                    
                     break;
                 }
                 return const Text("laden");

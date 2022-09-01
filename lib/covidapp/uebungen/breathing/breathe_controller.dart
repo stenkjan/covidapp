@@ -1,20 +1,14 @@
 import 'dart:async';
 
 import 'package:covidapp/covidapp/services/exercise_service.dart';
-import 'package:covidapp/covidapp/uebungen/breathing/breathe_widget.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/constants.dart';
-import 'package:covidapp/covidapp/content/strings.dart';
-import 'package:covidapp/covidapp/uebungen/breathing/theme_controller.dart';
-import 'package:covidapp/covidapp/uebungen/uebungen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wakelock/wakelock.dart';
 
-import '../../../home.dart';
 import '../../content/calendar_content.dart';
-import 'breathe_main.dart';
 
 class BreatheController extends GetxController {
   int initTime = totalTimeSecondsDefault;
@@ -109,7 +103,6 @@ class BreatheController extends GetxController {
 /** when the timer is not 0 and the breathTime value = the initial Time a sound is played */
 
     _breathTimer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      String value = breathTime.value.toString();
       if (time.value != 0 && breathTime.value == 0) {
         breathTime.value = initBreathTime;
         breathIn.value = !breathIn.value;

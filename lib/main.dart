@@ -6,17 +6,13 @@ import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
-import 'package:covidapp/covidapp/webview/web_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'covidapp/content/calendar_content.dart';
 import 'covidapp/services/calendar_service.dart';
-import 'globals.dart';
-import 'home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +53,7 @@ class MyApp extends StatelessWidget {
             ],
             routes: {
               '/calendar': (_) => const CalendarTabBar(),
-              '/breathe': (_) => UebungBreathing(),
+              '/breathe': (_) => const UebungBreathing(),
               '/pulse': (_) => const PulsAnalyse(),
             },
             supportedLocales: const [

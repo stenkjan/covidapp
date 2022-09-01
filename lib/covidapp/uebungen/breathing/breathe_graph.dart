@@ -36,8 +36,8 @@ class BreatheGraphState extends State<BreatheGraph> {
     if (calContent.breatheGraphMinList.length <= 1 ||
         calContent.breatheGraphSecList.length <= 1) {
       setState(() {
-        ExerciseData("breathemin");
-        ExerciseData("breathesec");
+        const ExerciseData("breathemin");
+        const ExerciseData("breathesec");
         features = featureList(
             calContent.breatheGraphMinList, calContent.breatheGraphSecList);
       });
@@ -45,8 +45,8 @@ class BreatheGraphState extends State<BreatheGraph> {
 
     return Stack(
       children: [
-        ExerciseData("breathemin"),
-        ExerciseData("breathesec"),
+        const ExerciseData("breathemin"),
+        const ExerciseData("breathesec"),
         Container(
           alignment: Alignment.topRight,
           child: TextButton(
@@ -98,17 +98,7 @@ class BreatheGraphState extends State<BreatheGraph> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  /*   Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 64.0),
-                  child: Text(
-                    "Woche",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ), */
+           
                   const SizedBox(
                     height: 0,
                   ),

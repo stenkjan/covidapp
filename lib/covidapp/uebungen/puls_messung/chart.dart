@@ -7,8 +7,7 @@ import 'heart_bpm.dart';
 
 export 'package:covidapp/covidapp/uebungen/Puls_Messung/heart_bpm.dart'
     // ignore: undefined_shown_name
-    show
-        BPMChart;
+    ;
 
 /// Generate a simple heart BPM graph
 class BPMChart extends StatelessWidget {

@@ -108,8 +108,7 @@ class CalendarMuedigkeitState extends State<CalendarMuedigkeit> {
                             if (_switchValue == false) {
                               colorswitch = const Color(0xFF313237);
                             }
-                            /* calContent.calendarContentherz(_switchValue); */
-                          });
+                              });
                       
                         },
                       ),
