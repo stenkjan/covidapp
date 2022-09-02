@@ -59,7 +59,7 @@ class CalendarContent with ChangeNotifier {
   double sum = 0;
   double sumColor = 0;
   int sumCal = 0;
-/*helper variables initialisation*/ 
+/*helper variables initialisation*/
   int listIndex = 0;
   int indexGrafik = 0;
   int index = 0;
@@ -80,7 +80,6 @@ class CalendarContent with ChangeNotifier {
   String? userId;
 /*calendar variables lists with initial data*/
 
-  
   List<int> dateL = List.generate(32, (index) => index);
   static List<int> moodL = List.generate(32, (index) => 0);
   static List<int> muedigkeitL = List.generate(32, (index) => 0);
@@ -176,7 +175,6 @@ class CalendarContent with ChangeNotifier {
       pulseTrue = true;
     }
     if (pulseTrue == true) {
-      
       return bpmday[currentDate].round().toString();
     } else {
       return "0";
@@ -825,13 +823,16 @@ class CalendarContent with ChangeNotifier {
     returnSickDays();
     return sickDays;
   }
-
-  String getFirstCalDay() {
+///return days for table calendar
+  String getCalDay() {
     returnSickDays();
+    
     return firstcalDay;
   }
 
+
   Future<String> returnSickDays() async {
+    DateTime date = DateTime.now();
     QuerySnapshot qSnapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(auth.getUser())
@@ -841,6 +842,9 @@ class CalendarContent with ChangeNotifier {
     int sum = 0;
     sum = qSnapshot.size;
     if (sum != 0) {
+      if (int.parse(firstcalDay) >= date.day) {
+        (firstcalDay = date.day.toString());
+      }
       return sickDays = sum.toString();
     }
     return sickDays = "0";
@@ -1003,9 +1007,8 @@ class CalendarContent with ChangeNotifier {
       if (documentSnapshot.exists) {
         final data = documentSnapshot.data() as Map<String, dynamic>;
         introCheck = data['introCheck'];
-      
+
         if (documentSnapshot.exists == false) {
-        
           print("no data exists for this user");
         }
       }
@@ -1157,7 +1160,6 @@ class CalendarContent with ChangeNotifier {
         ]
       ];
 
-     
       DocumentSnapshot docBreathe = qSnapshot.docs[0];
       DocumentSnapshot docBreathesec = qSnapshot.docs[1];
       DocumentSnapshot docPulse = qSnapshot.docs[2];
@@ -1268,7 +1270,6 @@ class CalendarContent with ChangeNotifier {
         <String>["muedigkeit", "atemnot", "sinne", "herz", "schlaf", "nerven"]
       ];
       for (int index = 0; index <= 14; index++) {
-       
         DocumentSnapshot doc = qSnapshot.docs[index];
 
         itemList.add(<String>[
@@ -1280,7 +1281,7 @@ class CalendarContent with ChangeNotifier {
           doc.get('nerven').toString()
         ]);
       }
- 
+
       final File file =
           await (File('${generalDownloadDir.path}/item_export_$i.csv')
               .create());

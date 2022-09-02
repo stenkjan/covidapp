@@ -16,7 +16,7 @@ class CalendarSinneState extends State<CalendarSinne> {
   static double _value = 1;
   late Color colorswitch;
   List<String> list = ["Nein", "Ja"];
-  int i = 0;
+  static int i = 0;
   @override
   void initState() {
     list;

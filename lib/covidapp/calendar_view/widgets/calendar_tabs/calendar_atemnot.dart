@@ -15,9 +15,9 @@ class CalendarAtemnotState extends State<CalendarAtemnot> {
   CalendarContent calContent = CalendarContent();
   static late double _value;
   late Color colorswitch;
-  bool _switchValue = false;
+  static bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
-  int i = 0;
+  static int i = 0;
   @override
   void initState() {
     list;

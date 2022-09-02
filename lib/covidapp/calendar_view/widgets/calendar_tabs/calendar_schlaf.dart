@@ -16,7 +16,7 @@ class CalendarSchlafState extends State<CalendarSchlaf> {
   late Color colorswitch;
   static bool _switchValue = false;
   List<String> list = ["Nein", "Ja"];
-  int i = 0;
+  static int i = 0;
   @override
   void initState() {
     list;
