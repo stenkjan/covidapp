@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 import 'package:flutter/services.dart';
 import '../../content/calendar_content.dart';
-import '../uebungen.dart';
+import '../uebungen_screen.dart';
 import 'breathe_controller.dart';
 
 /// Parameters are imported from the Breathecontroller / Widget is build  */

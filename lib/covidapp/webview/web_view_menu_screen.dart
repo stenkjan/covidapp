@@ -1,5 +1,5 @@
 import 'package:covidapp/covidapp/content/calendar_content.dart';
-import 'package:covidapp/covidapp/webview/web_view.dart';
+import 'package:covidapp/covidapp/webview/web_view_screen.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

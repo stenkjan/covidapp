@@ -5,7 +5,7 @@ import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/exercise_service.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
-import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

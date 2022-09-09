@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
 import 'package:covidapp/covidapp/calendar_view/calendar_tab_bar.dart';
-import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'package:covidapp/covidapp/uebungen/puls_messung/puls_analyse_screen.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

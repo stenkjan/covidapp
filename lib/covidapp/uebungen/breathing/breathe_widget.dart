@@ -2,7 +2,7 @@ import 'package:covidapp/covidapp/uebungen/breathing/breathe_graph.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/settings_page.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/rive_speed_controller.dart';
-import 'package:covidapp/covidapp/webview/main_web_view.dart';
+import 'package:covidapp/covidapp/webview/web_view_menu_screen.dart';
 import 'package:covidapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -3,17 +3,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:covidapp/covidapp/uebungen/breathing/breathe_main.dart';
-import 'package:covidapp/covidapp/webview/main_web_view.dart';
-import 'package:covidapp/faq.dart';
+import 'package:covidapp/covidapp/webview/web_view_menu_screen.dart';
+import 'package:covidapp/faq_screen.dart';
 import 'package:covidapp/covidapp/calendar_view/lrm_data_model.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/auth_service.dart';
 import 'package:covidapp/covidapp/services/db_service.dart';
-import 'package:covidapp/covidapp/uebungen/uebungen.dart';
+import 'package:covidapp/covidapp/uebungen/uebungen_screen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'covidapp/calendar_view/calendar_tab_bar.dart';
-import 'covidapp/uebungen/puls_messung/puls_analyse.dart';
+import 'covidapp/uebungen/puls_messung/puls_analyse_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
