@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///sinne symptom hero widget
 class SinneDesc extends StatelessWidget {
   const SinneDesc({Key? key}) : super(key: key);
 

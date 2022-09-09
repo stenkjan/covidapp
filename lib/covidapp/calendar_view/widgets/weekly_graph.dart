@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../content/strings.dart';
 import '../../services/grafik_service.dart';
-
+///weekly graph for grafik tab bar widget
 class WeekGraph extends StatefulWidget {
   const WeekGraph({Key? key}) : super(key: key);
 

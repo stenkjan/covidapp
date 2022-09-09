@@ -1,4 +1,4 @@
-/// Initialization Calendarmodel */
+/// Initialization Calendar Symptom Model*/
 
 class CalendarModel {
   final int id;

@@ -22,7 +22,7 @@ import 'package:provider/provider.dart';
 
 import 'pages/complex_example.dart';
 import 'widgets/arrow_button.dart';
-
+///calendar main widget for calendar widget and symptom tab bar (calendar_tab_bar)
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 

@@ -70,7 +70,7 @@ const String kTransparentBackgroundPage = '''
   </body>
   </html>
 ''';
-
+///WebView Widget for displaying web menu and in-app web viewer
 class WebViewExample extends StatefulWidget {
   const WebViewExample({Key? key, this.cookieManager, required this.webIndex})
       : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
-
+///arrow button widget for grafik
 class ArrowButton extends StatelessWidget {
   final EdgeInsets margin;
   final IconButton iconbutton;

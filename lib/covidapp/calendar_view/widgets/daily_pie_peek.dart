@@ -3,7 +3,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-
+///pie chart for calendar widget
 class DayPiePeek extends StatefulWidget {
   final int index;
   final Color color;

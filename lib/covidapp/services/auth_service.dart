@@ -5,7 +5,7 @@ import 'package:covidapp/covidapp/services/db_service.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
+///Firebase Authentication class for user login handling
 class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   late final DatabaseService dbService;

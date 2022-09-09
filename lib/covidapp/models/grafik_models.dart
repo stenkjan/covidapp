@@ -1,4 +1,4 @@
-/// Initialization Graphic Model */
+/// Initialization Graphic Symptom Model */
 class GrafikModel {
   late int? mood;
   late int? muedigkeit;

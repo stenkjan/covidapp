@@ -3,7 +3,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
-
+///sinne symptom widget
 class CalendarSinne extends StatefulWidget {
   const CalendarSinne({Key? key}) : super(key: key);
   @override

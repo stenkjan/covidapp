@@ -1,4 +1,4 @@
-/// Initialization User Model */
+/// Initialization User Model for Firebase Authentication Service */
 
 class User {
   final String? id;

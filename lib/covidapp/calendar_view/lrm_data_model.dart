@@ -1,3 +1,4 @@
+///model for dashboard slider
 class LrmDataModel {
   String title, value, name, id;
   LrmDataModel(

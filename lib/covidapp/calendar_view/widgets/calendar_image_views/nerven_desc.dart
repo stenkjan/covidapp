@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///nerven symptom hero widget
 class NervComDesc extends StatelessWidget {
   const NervComDesc({Key? key}) : super(key: key);
 

@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///mood symptom hero widget
 class MoodDesc extends StatelessWidget {
   const MoodDesc({Key? key}) : super(key: key);
 

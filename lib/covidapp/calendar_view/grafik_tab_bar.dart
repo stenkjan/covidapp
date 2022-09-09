@@ -4,7 +4,7 @@ import 'package:covidapp/covidapp/calendar_view/widgets/weekly_graph.dart';
 import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+///tab bar for grafik widget
 class GrafikTabBar extends StatefulWidget {
   const GrafikTabBar({Key? key}) : super(key: key);
 

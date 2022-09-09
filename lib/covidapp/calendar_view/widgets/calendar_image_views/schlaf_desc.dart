@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///schlaf symptom hero widget
 class SchlafDesc extends StatelessWidget {
   const SchlafDesc({Key? key}) : super(key: key);
 

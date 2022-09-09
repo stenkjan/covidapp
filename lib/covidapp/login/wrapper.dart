@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../intro_screen.dart';
-
+///Wrapper class for switching between intro_screen home and signin screen
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
 

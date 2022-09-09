@@ -4,6 +4,7 @@ import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
+///herz symptom widget
 class CalendarHerz extends StatefulWidget {
   const CalendarHerz({Key? key}) : super(key: key);
   @override

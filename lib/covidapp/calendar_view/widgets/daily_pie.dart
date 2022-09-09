@@ -3,7 +3,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
-
+///pie chart for grafik tab bar widget
 class DayPie extends StatefulWidget {
   const DayPie({Key? key}) : super(key: key);
 

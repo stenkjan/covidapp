@@ -7,7 +7,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
-
+///exercise data builder from firebase data for exercise graph widgets
 class ExerciseData extends StatelessWidget {
   final String exerciseString;
   

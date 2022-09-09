@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+///app colors for symptom list and symptom pie chart
 class AppColors {
   static Color primaryWhite = const Color(0xFFCADCED);
 

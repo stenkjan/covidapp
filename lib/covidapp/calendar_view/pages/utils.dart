@@ -4,7 +4,7 @@
 import 'dart:collection';
 import 'package:table_calendar/table_calendar.dart';
 
-/// Example event class.
+///  event class for calendar widget 
 class Event {
 
   final String title;
@@ -15,7 +15,7 @@ class Event {
   String toString() => title;
 }
 
-/// Example events.
+///  events.
 ///
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
 

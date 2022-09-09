@@ -5,7 +5,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
-
+///nerven symptom widget
 class CalendarNervCom extends StatefulWidget {
   const CalendarNervCom({Key? key}) : super(key: key);
   @override

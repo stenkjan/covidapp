@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../content/calendar_content.dart';
 import '../services/calendar_service.dart';
-
+///tab bar widget for symptom widgets
 class CalendarTabBar extends StatefulWidget {
   const CalendarTabBar({Key? key}) : super(key: key);
 

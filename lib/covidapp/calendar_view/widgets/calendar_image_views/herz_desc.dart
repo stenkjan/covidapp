@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///herz symptom hero widget
 class HerzDesc extends StatelessWidget {
   const HerzDesc({Key? key}) : super(key: key);
 

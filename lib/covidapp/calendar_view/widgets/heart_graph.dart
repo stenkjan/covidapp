@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../content/strings.dart';
 import '../../services/grafik_service.dart';
-
+///heart graph for grafik tab bar  widget
 class HeartGraph extends StatefulWidget {
   const HeartGraph({Key? key}) : super(key: key);
 

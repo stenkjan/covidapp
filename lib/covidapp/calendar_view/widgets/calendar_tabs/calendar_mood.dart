@@ -4,7 +4,7 @@ import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
-
+///mood symptom widget
 class CalendarMood extends StatefulWidget {
   const CalendarMood({Key? key}) : super(key: key);
   @override

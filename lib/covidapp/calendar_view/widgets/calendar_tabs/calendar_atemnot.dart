@@ -4,6 +4,7 @@ import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
+///atemnot symptom widget
 class CalendarAtemnot extends StatefulWidget {
   const CalendarAtemnot({Key? key}) : super(key: key);
   @override

@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/arrow_button.dart';
-
+///main grafik widget for symptom list (grafik_data_stream) and grafik_tab_bar
 class Grafik extends StatefulWidget {
   const Grafik({Key? key}) : super(key: key);
 

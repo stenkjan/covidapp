@@ -19,13 +19,13 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
+///main widget 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
   final GlobalKey<NavigatorState> breathKey = GlobalKey<NavigatorState>();
   MyApp({Key key}) : super(key: key);
 
-  // This widget is the root of your application.
+  // initializing provider classes and routes
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

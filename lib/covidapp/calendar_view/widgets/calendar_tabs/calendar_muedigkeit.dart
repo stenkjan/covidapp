@@ -4,7 +4,7 @@ import 'package:covidapp/covidapp/content/size.dart';
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
-
+///muedigkeit symptom widget
 class CalendarMuedigkeit extends StatefulWidget {
   const CalendarMuedigkeit({Key? key}) : super(key: key);
   @override

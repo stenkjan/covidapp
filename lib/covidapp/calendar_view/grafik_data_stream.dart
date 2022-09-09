@@ -4,7 +4,7 @@ import 'package:covidapp/covidapp/content/calendar_content.dart';
 import 'package:covidapp/covidapp/services/grafik_service.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
-
+///firebase symptom data builder for grafik widget
 class GrafikDataStream extends StatelessWidget {
   final String documentId;
   final String uid;

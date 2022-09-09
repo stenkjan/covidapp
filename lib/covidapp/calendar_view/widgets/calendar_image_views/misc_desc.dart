@@ -1,6 +1,6 @@
 import 'package:covidapp/covidapp/content/strings.dart';
 import 'package:flutter/material.dart';
-
+///misc symptom hero widget
 class MiscDesc extends StatelessWidget {
   const MiscDesc({Key? key}) : super(key: key);
 
